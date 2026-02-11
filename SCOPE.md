@@ -52,7 +52,15 @@ Flowdoc works on text-based structured content:
 - "Semantic HTML" means proper use of semantic tags, not div-based layouts ("div soup")
 - Content must have text-flow structure (headings, paragraphs, lists)
 
-**Flowdoc will reject non-semantic HTML** with a clear error message.
+**Flowdoc will reject non-semantic HTML with a clear error message.**
+
+Rejection criteria (operational definition):
+* Input lacks at least one h1-h3 heading
+* Input lacks p, ul, or ol elements for body content
+* Input is div-only layout structure with no semantic tags
+* Missing heading hierarchy triggers error
+
+Error message: "Input HTML lacks semantic structure (no headings, paragraphs, or lists found). Flowdoc requires semantic HTML elements (h1-h6, p, ul, ol)."
 
 ### Output Format
 
@@ -104,6 +112,7 @@ Flowdoc works on text-based structured content:
 - NOT the default font
 - Provided as a preference toggle; no claim of universal improvement
 - OpenDyslexic is embedded only when selected; otherwise system font stack (Arial, Verdana) is used and no fonts are embedded
+- Note: Enabling OpenDyslexic embeds font files and increases output file size significantly.
 
 **Out of scope for v1:**
 - Multiple font toggles (Lexend, Dyslexie, Atkinson Hyperlegible, etc.)
@@ -116,7 +125,12 @@ Flowdoc works on text-based structured content:
 - Single-column layout
 - Command-line interface
 - Deterministic content selection (main → article → body)
-- HTML sanitization (drop scripts, event handlers, active content)
+- HTML sanitization:
+  * Remove all script tags and content
+  * Strip inline event handlers (onclick, onload, etc.)
+  * Remove external resource URLs
+  * Drop iframe, object, embed elements
+  * Drop all active content
 
 ---
 
@@ -209,9 +223,12 @@ Preserving original layout defeats the purpose. Dyslexia-friendly formatting req
 1. Takes an HTML file with semantic structure
 2. Produces a self-contained, readable HTML file
 3. **Output is measurably better for dyslexic readers**
-   - Measured via short reading tasks and self-reported place-keeping/fatigue compared to the original, with dyslexic readers
-   - Primary test: Readers complete a 2-3 minute reading task with fewer re-reads and fewer line-loss events vs original formatting
-   - Validation: Readers report lower visual fatigue and better place-keeping on structured feedback form
+   * Validation framework:
+      * Fewer self-reported re-read events during timed reading task
+      * Lower fatigue score on 1-5 scale after 3-minute reading session
+      * Fewer line-loss incidents counted during reading
+   * Measured via comparison with original formatting using same content
+   * Tested with dyslexic readers (minimum N=5 for v1 validation)
 4. Works reliably on modern browsers, mobile devices, and print
 5. Command-line interface is simple and functional
 6. Font licensing is clear and documented (OpenDyslexic SIL-OFL)

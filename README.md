@@ -10,7 +10,7 @@ Instead of preserving original layouts and visual design, Flowdoc prioritizes wh
 
 ## Features
 
-- **Dyslexia-friendly typography** - Research-backed font choices, sizing, and spacing
+- **Dyslexia-friendly typography** - Typography informed by British Dyslexia Association guidance and published research
 - **Optimized layout** - Single-column flow, proper line length, generous margins
 - **Semantic structure** - Clear heading hierarchy, well-formatted lists and quotes
 - **Self-contained output** - No external dependencies, works offline
@@ -35,6 +35,8 @@ If your document has headings, paragraphs, and lists, Flowdoc can make it more r
 
 **v1 is currently in development.**
 
+Status: Early CLI prototype. Not production-ready.
+
 v1 scope:
 - **Input:** HTML with semantic structure (h1-h6, p, ul, ol, blockquote, code)
 - **Output:** Self-contained, readable HTML
@@ -57,6 +59,8 @@ flowdoc convert input.html
 flowdoc convert input.html -o output.html
 flowdoc convert input.html --font opendyslexic
 ```
+
+Example output: flowdoc convert recipe.html produces recipe.flowdoc.html
 
 ## Design Principles
 
@@ -85,7 +89,3 @@ Typography guidelines based on:
 - British Dyslexia Association Style Guide (2023)
 - Peer-reviewed research on dyslexia-friendly design
 - Feedback from dyslexic readers
-
----
-
-**Note:** Flowdoc is a general-purpose document converter, not a recipe manager or PDF repair tool. See [SCOPE.md](SCOPE.md) for explicit boundaries.
