@@ -33,8 +33,6 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 
 - Publish both: a pip package for developers and standalone binaries (via PyInstaller or similar) for non-developers.
 
----
-
 ### Option B: Node.js CLI + Library
 
 **Pros**
@@ -49,8 +47,6 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 - Dependency trees can grow large.
 - Producing a true single binary is more difficult without shipping the Node runtime.
 
----
-
 ### Option C: Go CLI (With Optional Library)
 
 **Pros**
@@ -63,8 +59,6 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 - HTML parsing and sanitization ecosystem is thinner than Python or Node for this use case.
 - Slower iteration while transformation rules are still evolving.
 - Rapid changes to typography or layout rules create a heavier development loop.
-
----
 
 ### Option D: Rust CLI
 
@@ -79,15 +73,11 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 - HTML parsing and web-like behavior require more effort.
 - Overkill for the v1 scope.
 
----
-
 ### Why Python Is The Recommended Choice For V1
 
 - The differentiator is not parsing; it is the transformation rules, readable HTML output, and validation with dyslexic readers.
 - Python minimizes time-to-correctness for sanitization and DOM traversal, and keeps the internal model work inexpensive to evolve.
 - A “Linux-command-feeling” tool can still be shipped by distributing a single executable per OS, even if implemented in Python.
-
----
 
 ### Concrete Recommendation
 
@@ -258,7 +248,6 @@ A real-world fixture corpus (recipes, articles, technical documentation).
 
 Formatting engines drift without golden tests.
 
----
 
 ### Change Control Over Formatting Rules
 
@@ -269,7 +258,6 @@ Key questions:
 - Are formatting rule changes treated as MAJOR version bumps?
 - Are visual shifts permitted in MINOR versions?
 
----
 
 ### Output Stability Vs Readability Evolution
 
@@ -278,7 +266,6 @@ If spacing or font sizing improves based on research or feedback:
 - Should existing output automatically adopt the new behavior?
 - Or should versioned “format profiles” exist?
 
----
 
 ### Main-Content Extraction Boundary
 
@@ -286,7 +273,6 @@ Current policy: deterministic selection (main → article → body).
 
 Introducing heuristic readability extraction (similar to Readability.js) would shift the product into scraping territory and significantly increase maintenance complexity.
 
----
 
 ### Internationalization
 
@@ -299,7 +285,6 @@ Areas not yet addressed:
 
 A decision may be required on whether v1 is intentionally English-focused.
 
----
 
 ### Accessibility Positioning
 
@@ -310,7 +295,6 @@ Clarify whether the goal is:
 
 This distinction affects long-term positioning and potential institutional adoption.
 
----
 
 ### Feedback And Iteration Model
 
@@ -322,7 +306,6 @@ Questions to consider:
 - Will typography rules evolve in response?
 - How will changes be communicated?
 
----
 
 ### Governance Model
 
@@ -332,7 +315,6 @@ If open source:
 - How are disputes resolved?
 - Are external pull requests accepted for formatting rules?
 
----
 
 ### Long-Term Positioning
 
