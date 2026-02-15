@@ -1,9 +1,9 @@
-# Flowdoc — Architectural Brainstorming
+# Flowdoc - Architectural Brainstorming
 
 **Status:** Revised  
 **Last Updated:** February 13, 2026  
 
-This document captures some architectural brainstorming around Flowdoc’s runtime, CLI philosophy, integration strategy, parsing approach, and longer-term considerations. The purpose is to retain the thinking behind early technical exploration without presenting it as finalized decisions.
+This document captures some architectural brainstorming around Flowdoc's runtime, CLI philosophy, integration strategy, parsing approach, and longer-term considerations. The purpose is to retain the thinking behind early technical exploration without presenting it as finalized decisions.
 
 ---
 
@@ -13,7 +13,7 @@ Will this tool be a Linux or Windows CLI? What is the tech stack? What are the r
 
 First, make an explicit product decision: Flowdoc should be cross-platform from day one (Windows + macOS + Linux). A CLI is inherently portable if the right runtime and packaging approach are selected. Selecting a single OS would unintentionally constrain adoption and downstream integrations. The real decision is the distribution model and runtime.
 
-Tech stack options that fit the v1 scope (semantic HTML → internal model → self-contained HTML):
+Tech stack options that fit the v1 scope (semantic HTML -> internal model -> self-contained HTML):
 
 ### Option A: Python CLI + Python Library (Recommended For V1)
 
@@ -52,7 +52,7 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 **Pros**
 
 - Excellent single-binary distribution across operating systems.
-- Fast and predictable deployment; aligns well with a “Linux command” philosophy.
+- Fast and predictable deployment; aligns well with a "Linux command" philosophy.
 
 **Cons**
 
@@ -77,7 +77,7 @@ Tech stack options that fit the v1 scope (semantic HTML → internal model → s
 
 - The differentiator is not parsing; it is the transformation rules, readable HTML output, and validation with dyslexic readers.
 - Python minimizes time-to-correctness for sanitization and DOM traversal, and keeps the internal model work inexpensive to evolve.
-- A “Linux-command-feeling” tool can still be shipped by distributing a single executable per OS, even if implemented in Python.
+- A "Linux-command-feeling" tool can still be shipped by distributing a single executable per OS, even if implemented in Python.
 
 ### Concrete Recommendation
 
@@ -94,7 +94,7 @@ Do one thing well, and compose with other commands.
 
 What this means in practice:
 
-- The CLI should be a pure transformer: input → output, with no interactive state, no hidden caches, and no “project” concept.
+- The CLI should be a pure transformer: input -> output, with no interactive state, no hidden caches, and no "project" concept.
 - It should be easy to use in pipes and automation: predictable exit codes, deterministic output, stable flags.
 - Concerns should remain separated: parsing/selection, transformation, rendering, packaging.
 
@@ -114,11 +114,11 @@ How this expresses itself in the CLI:
   - `flowdoc validate` (checks semantic HTML and explains rejection)
   - `flowdoc info` (prints detected title/sections, element counts, degradation summary)
 
-This aligns with a Unix mental model: inspect → validate → convert.
+This aligns with a Unix mental model: inspect -> validate -> convert.
 
 Determinism and trust (critical for composability):
 
-- Same input + same version + same flags ⇒ same output (byte-stable if feasible).
+- Same input + same version + same flags -> same output (byte-stable if feasible).
 - No silent dropping: degraded elements either receive placeholders and/or are reported via a machine-readable report (`--report json`).
 
 This matters for future integrations. If the CLI behaves as a reliable pure function, other tools can invoke it safely. If the engine is separated as a library, direct embedding remains viable.
@@ -132,7 +132,7 @@ Minimal rule of thumb:
 
 ## Embedding In Other Tools
 
-There is a goal of allowing other developers to incorporate Flowdoc (e.g., a recipe manager offering “Save as Flowdoc”).
+There is a goal of allowing other developers to incorporate Flowdoc (e.g., a recipe manager offering "Save as Flowdoc").
 
 This is primarily an architecture and packaging concern. The objective is to be embed-friendly from day one.
 
@@ -209,9 +209,9 @@ Ownership boundaries:
 
 **Owned**
 
-- DOM → Internal Model mapping.
+- DOM -> Internal Model mapping.
 - Degradation rules (tables, images, etc.).
-- Main content extraction policy (main → article → body).
+- Main content extraction policy (main -> article -> body).
 - Typography and layout generation.
 - Deterministic rendering rules.
 
@@ -225,12 +225,12 @@ Ownership boundaries:
 Architectural flow:
 
 HTML input  
-→ Parser (library)  
-→ Sanitizer (library)  
-→ DOM tree  
-→ Internal Document model  
-→ Readability transformation rules  
-→ Deterministic HTML renderer  
+-> Parser (library)  
+-> Sanitizer (library)  
+-> DOM tree  
+-> Internal Document model  
+-> Readability transformation rules  
+-> Deterministic HTML renderer  
 
 Scraping-style heuristic extraction would shift the product into a different problem space. For v1, focus remains on well-structured semantic HTML.
 
@@ -242,7 +242,7 @@ Reuse aggressively. Time and complexity should be invested in the internal model
 
 ### Testing Strategy
 
-Golden file tests (input → exact expected output).  
+Golden file tests (input -> exact expected output).  
 Regression tests for typography and layout rules.  
 A real-world fixture corpus (recipes, articles, technical documentation).
 
@@ -264,12 +264,12 @@ Key questions:
 If spacing or font sizing improves based on research or feedback:
 
 - Should existing output automatically adopt the new behavior?
-- Or should versioned “format profiles” exist?
+- Or should versioned "format profiles" exist?
 
 
 ### Main-Content Extraction Boundary
 
-Current policy: deterministic selection (main → article → body).
+Current policy: deterministic selection (main -> article -> body).
 
 Introducing heuristic readability extraction (similar to Readability.js) would shift the product into scraping territory and significantly increase maintenance complexity.
 

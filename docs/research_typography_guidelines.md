@@ -23,7 +23,7 @@
 ### Secondary Option (Promising, Not Independently Validated - v2 Consideration)
 - **Lexend** (Google Fonts)
 
-**Justification:** Designed to reduce visual stress and improve reading fluency through variable letter spacing. Originated from Dr. Bonnie Shaver-Troup's EdD research (Azusa Pacific University) and subsequent work with Google. Integrated into Google products. The peer-reviewed evidence base for dyslexia-specific improvement is limited — primarily the creator's doctoral research and internal testing. Treat as promising but not firmly established by independent replication. Available on Google Fonts with variable weight support.
+**Justification:** Designed to reduce visual stress and improve reading fluency through variable letter spacing. Originated from Dr. Bonnie Shaver-Troup's EdD research (Azusa Pacific University) and subsequent work with Google. Integrated into Google products. The peer-reviewed evidence base for dyslexia-specific improvement is limited - primarily the creator's doctoral research and internal testing. Treat as promising but not firmly established by independent replication. Available on Google Fonts with variable weight support.
 
 **v2 Note:** Lexend is a candidate for future font toggles but is not included in v1.
 
@@ -39,7 +39,7 @@
 
 **v1 Decision:** OpenDyslexic is provided as a user preference toggle. Flowdoc does not claim OpenDyslexic improves outcomes for everyone.
 
-**Research Context:** Most controlled studies show no reliable improvement in reading speed or accuracy compared to standard sans serif fonts (Wery & Diliberto 2017; Kuster et al. 2018; Rello & Baeza-Yates 2013). For a related specialized font, Dyslexie, one study (Marinus et al. 2016) found a 7% speed improvement over Arial, but the advantage disappeared when Arial's spacing was matched — suggesting spacing, not letterforms, explained the difference. For OpenDyslexic, one preliminary study (Franzen et al. 2019, conference abstract) found improved reading comprehension in adults reading longer texts, despite no speed improvement; this has not been replicated in a full peer-reviewed paper. Individual preference varies, and many users report subjective comfort with OpenDyslexic.
+**Research Context:** Most controlled studies show no reliable improvement in reading speed or accuracy compared to standard sans serif fonts (Wery & Diliberto 2017; Kuster et al. 2018; Rello & Baeza-Yates 2013). For a related specialized font, Dyslexie, one study (Marinus et al. 2016) found a 7% speed improvement over Arial, but the advantage disappeared when Arial's spacing was matched - suggesting spacing, not letterforms, explained the difference. For OpenDyslexic, one preliminary study (Franzen et al. 2019, conference abstract) found improved reading comprehension in adults reading longer texts, despite no speed improvement; this has not been replicated in a full peer-reviewed paper. Individual preference varies, and many users report subjective comfort with OpenDyslexic.
 
 **Implementation Rule:** If OpenDyslexic is selected, embed the font so the output HTML remains self-contained. Otherwise, use the system font stack (Arial, Verdana) and embed no fonts.
 
@@ -71,7 +71,7 @@
 
 ### Word Spacing
 - **BDA guidance:** Inter-word spacing should be at least 3.5 times the inter-letter spacing
-- **Note:** Letter and word spacing interact — increasing letter spacing without proportionally adjusting word spacing can reduce readability by blurring word boundaries
+- **Note:** Letter and word spacing interact - increasing letter spacing without proportionally adjusting word spacing can reduce readability by blurring word boundaries
 
 ### Line Height (Leading)
 - **BDA recommendation:** 1.5 (150%) line spacing is preferable
@@ -88,10 +88,10 @@
 
 ### Margins and Layout
 - **Avoid narrow columns** (like newspaper layouts)
-- **Single color backgrounds only** — no patterns or images behind text
+- **Single color backgrounds only** - no patterns or images behind text
 - **Padding:** Adequate white space around content
 
-**Justification:** Spacing reduces cognitive load and visual stress. BDA guidance emphasises proportional relationships between letter, word, and line spacing — not simply "more is better" for any single dimension.
+**Justification:** Spacing reduces cognitive load and visual stress. BDA guidance emphasises proportional relationships between letter, word, and line spacing - not simply "more is better" for any single dimension.
 
 ---
 
@@ -103,8 +103,8 @@
 - **Minimum Contrast Ratio:** WCAG AA standard (4.5:1 for normal text, 3:1 for large text)
 
 ### Colors to Avoid
-- **Green and red/pink** — difficult for color-blind individuals
-- **Bright white backgrounds** — can appear dazzling and cause visual strain
+- **Green and red/pink** - difficult for color-blind individuals
+- **Bright white backgrounds** - can appear dazzling and cause visual strain
 
 ### Digital Considerations
 - **No background patterns or distracting surrounds**
@@ -222,8 +222,8 @@ The typography decisions above are **format-agnostic** and will transfer directl
 BDA explicitly frames its Style Guide as supporting TTS use. These require content modification capability, not available in v1:
 - Add punctuation after bullet points (semicolons, commas, or full stops) to create pauses in TTS
 - Remove or replace symbols that get spoken awkwardly (asterisks, long dashes, unnecessary special characters)
-- Avoid text in capital letters mid-line — TTS may read as single letters
-- Replace automatic numbering — some text readers skip these
+- Avoid text in capital letters mid-line - TTS may read as single letters
+- Replace automatic numbering - some text readers skip these
 
 ### Content Cleanup and Editing
 Extends Flowdoc from format-only conversion to content transformation, informed by BDA writing style guidance:

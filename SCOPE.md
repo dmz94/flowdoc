@@ -1,4 +1,4 @@
-# Flowdoc — Scope Document
+# Flowdoc - Scope Document
 
 **Version:** 1.0  
 **Status:** Frozen for v1 development
@@ -92,10 +92,10 @@ Error message: "Input HTML lacks semantic structure (no headings, paragraphs, or
 - Inline code (code within paragraphs)
 
 **Degrades with placeholders (v1):**
-- Tables → `[Table omitted - X rows, Y columns]`
-- Images → `[Image: alt text]` or `[Image omitted]` if alt missing
-- Figures/captions → Caption text preserved, image handled per image policy
-- Footnotes/endnotes → Converted to regular paragraphs at point of reference
+- Tables -> `[Table omitted - X rows, Y columns]`
+- Images -> `[Image: alt text]` or `[Image omitted]` if alt missing
+- Figures/captions -> Caption text preserved, image handled per image policy
+- Footnotes/endnotes -> Converted to regular paragraphs at point of reference
 
 **Dropped (v1):**
 - Navigation (nav)
@@ -124,7 +124,7 @@ Error message: "Input HTML lacks semantic structure (no headings, paragraphs, or
 - Optimize spacing, line height, margins
 - Single-column layout
 - Command-line interface
-- Deterministic content selection (main → article → body)
+- Deterministic content selection (main -> article -> body)
 - HTML sanitization:
   * Remove all script tags and content
   * Strip inline event handlers (onclick, onload, etc.)
