@@ -1,0 +1,20 @@
+name: Docs encoding sanity
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on mojibake
+        run: |
+          set -euo pipefail
+          # Common mojibake from UTF-8 mis-decoded as cp1252/latin1
+          MOJI='â€œ|â€|â€™|â€"|â€"|Ã.'
+          if grep -RIn --exclude-dir=.git -E "$MOJI" .; then
+            echo "Found mojibake. Fix encoding before merge."
+            exit 1
+          fi
