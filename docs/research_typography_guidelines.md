@@ -1,6 +1,6 @@
 # Typography Guidelines for Dyslexia-Friendly Design
 
-This is a reference document (evidence, guidelines, citations). v1 implementation contracts live in `decisions.md`.
+This is a reference document (evidence, guidelines, citations). v1 implementation contracts live in [decisions.md](decisions.md).
 
 **Status:** Revised
 **Last Updated:** February 11, 2026
