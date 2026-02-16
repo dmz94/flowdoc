@@ -24,7 +24,7 @@ At a minimum, v1 expects:
 - body content expressed via **p and/or ul/ol**
 - semantic structure usable without heuristics
 
-Flowdoc rejects non-semantic HTML with a clear error. Exact validation rules are defined in `docs/decisions.md`.
+Flowdoc rejects non-semantic HTML with a clear error. Exact validation rules are defined in [docs/decisions.md](docs/decisions.md).
 
 ## v1 output
 
@@ -48,7 +48,7 @@ PDF output is out of scope for v1. Use browser print-to-PDF.
 - Simple CLI conversion workflow
 - Validate usefulness with dyslexic readers before expanding scope
 
-Exact handling rules live in `docs/decisions.md`.
+Exact handling rules live in [docs/decisions.md](docs/decisions.md).
 
 ## Out of scope (v1)
 
