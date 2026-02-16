@@ -6,8 +6,8 @@
 This document is the single source of truth for v1 implementation and tests. If another document disagrees with this one, this one wins.
 
 References:
-- Scope boundaries and success criteria: `../SCOPE.md`
-- Typography evidence and citations: `research_typography_guidelines.md`
+- Scope boundaries and success criteria: [SCOPE.md](../SCOPE.md)
+- Typography evidence and citations: [research_typography_guidelines.md](research_typography_guidelines.md)
 
 ---
 
@@ -286,7 +286,7 @@ Explicitly out of v1:
 - `info` command
 - `--report json`
 
-(They may be discussed only in `architecture_exploration.md`.)
+(They may be discussed only in [architecture_exploration.md](architecture_exploration.md).)
 
 ---
 
