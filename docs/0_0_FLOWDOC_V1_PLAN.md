@@ -4,27 +4,27 @@
 **Note:** This plan intentionally links to the frozen scope and to the authoritative implementation spec in `decisions.md` rather than restating contracts.
 
 Key references:
-- Scope boundaries: `../SCOPE.md`
-- Implementation/test contracts: `decisions.md`
-- Locked v1 architecture/stack: `ARCHITECTURE.md`
-- Typography research reference: `research_typography_guidelines.md`
+- Scope boundaries: [SCOPE.md](../SCOPE.md)
+- Implementation/test contracts: [decisions.md](decisions.md)
+- Locked v1 architecture/stack: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Typography research reference: [research_typography_guidelines.md](research_typography_guidelines.md)
 
 ---
 
 ## Step 1 - Confirm scope is frozen
 
-- Ensure `../SCOPE.md` reflects v1 boundaries and success criteria.
+- Ensure [SCOPE.md](../SCOPE.md) reflects v1 boundaries and success criteria.
 - Do not expand formats (PDF/DOCX/Markdown) or features (GUI, heuristic extraction) in v1.
 
 ## Step 2 - Repository hygiene
 
 - Repo layout, licensing, samples, and tests directories.
 - Minimal README with links to docs.
-- Add `ABOUT.md` for origin story (keep README factual).
+- Add [ABOUT.md](ABOUT.md) for origin story (keep README factual).
 
 ## Step 3 - Lock the implementation spec
 
-- `decisions.md` is the single source of truth for:
+- [decisions.md](decisions.md) is the single source of truth for:
   - input validation rules
   - content selection and sectioning rules
   - internal model (including nested lists)
@@ -34,22 +34,22 @@ Key references:
   - CLI contract and exit codes
   - determinism and test contracts
 
-Do not start coding parser/renderer until `decisions.md` is stable.
+Do not start coding parser/renderer until [decisions.md](decisions.md) is stable.
 
 ## Step 3.5 - Lock architecture and tech stack
 
-- `ARCHITECTURE.md` locks:
+- [ARCHITECTURE.md](ARCHITECTURE.md) locks:
   - runtime and distribution (Python 3.12+, pip + PyInstaller)
   - selected libraries (BeautifulSoup4 + lxml, nh3, pytest)
   - module structure (core/, cli/, io/)
   - pipeline order with specific library usage
   - locked testing approach (golden files, model snapshots, determinism)
 
-Do not start Step 4 until `ARCHITECTURE.md` is locked. Renderer requirements may expose parser/selection edge cases; locking architecture first prevents rework.
+Do not start Step 4 until [ARCHITECTURE.md](ARCHITECTURE.md) is locked. Renderer requirements may expose parser/selection edge cases; locking architecture first prevents rework.
 
 ## Step 4 - Build the core pipeline (library-first)
 
-Implement the pure core pipeline described in `decisions.md`:
+Implement the pure core pipeline described in [decisions.md](decisions.md):
 
 1. sanitize HTML string
 2. parse DOM (tolerant parser)
@@ -69,14 +69,14 @@ Core must be pure: no filesystem, no network, no timestamps.
 ## Step 6 - Implement CLI wrapper (v1 only: convert)
 
 - One command: `flowdoc convert`
-- Support file input/output and stdin/stdout per `decisions.md`.
-- Exit codes and error formatting per `decisions.md`.
+- Support file input/output and stdin/stdout per [decisions.md](decisions.md).
+- Exit codes and error formatting per [decisions.md](decisions.md).
 
 Explicitly out of v1: `validate`, `info`, `--report json`.
 
 ## Step 7 - Test suite
 
-- Fixture corpus (real-world HTML) per `decisions.md`.
+- Fixture corpus (real-world HTML) per [decisions.md](decisions.md).
 - Golden output tests and model snapshot tests.
 - Determinism test (same input/version/flags -> byte-identical output).
 
