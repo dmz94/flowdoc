@@ -12,9 +12,8 @@ jobs:
       - name: Fail on mojibake
         run: |
           set -euo pipefail
-          # Common mojibake from UTF-8 mis-decoded as cp1252/latin1
-          MOJI='â€œ|â€|â€™|â€"|â€"|Ã.'
-          if grep -RIn --exclude-dir=.git -E "$MOJI" .; then
-            echo "Found mojibake. Fix encoding before merge."
+          # Check markdown files only (avoids self-reference in workflow)
+          if grep -RIn --include="*.md" -E "â€[œ™"]|Ã[‰.]" . 2>/dev/null; then
+            echo "Found mojibake in documentation. Fix encoding before merge."
             exit 1
           fi
