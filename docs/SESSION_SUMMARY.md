@@ -125,7 +125,7 @@ These are explicitly deferred (see SCOPE.md):
 ## Key Decisions Made
 
 1. **Incremental development:** Build module by module with tests
-2. **No code in chat:** Provide downloadable files to avoid copy/paste issues
+2. **Code in chat blocks:** Show code in code blocks for copy/paste, NOT as downloadable files
 3. **Step-by-step process:** Explain → Strategize → Plan → Code → Test
 4. **Locked specs:** decisions.md is authoritative, no scope changes during implementation
 5. **Real testing:** Validate with actual HTML files and user feedback before v2
