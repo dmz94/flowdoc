@@ -333,7 +333,9 @@ def parse_inline_element(element: Tag) -> Inline | list[Inline] | None:
     """
     tag_name = element.name
     
-    if tag_name in ("em", "i"):
+    if tag_name == "br":
+        return Text(text=" ")
+    elif tag_name in ("em", "i"):
         return Emphasis(children=parse_inlines(element))
     elif tag_name in ("strong", "b"):
         return Strong(children=parse_inlines(element))
