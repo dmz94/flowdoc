@@ -10,7 +10,7 @@ import html as html_module
 from flowdoc.core.model import (
     Document, Section, Heading,
     Paragraph, ListBlock, ListItem, Quote, Preformatted,
-    Text, Emphasis, Strong, Code, Link
+    Text, Emphasis, Strong, Code, Link, LineBreak
 )
 from flowdoc.core.constants import (
     FONT_STACK, BODY_FONT_SIZE, HEADING_MULTIPLIERS,
@@ -331,6 +331,8 @@ def render_inline(inline) -> str:
         escaped_href = html_module.escape(inline.href)
         content = render_inlines(inline.children)
         return f'<a href="{escaped_href}">{content}</a>'
+    elif isinstance(inline, LineBreak):
+        return "<br>"
     else:
         # Unknown inline type
         return ""

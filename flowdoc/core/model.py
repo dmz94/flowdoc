@@ -37,9 +37,13 @@ class Link:
     href: str
     children: list[Inline]
 
+class LineBreak:
+    """Line break (br tag). No fields - marker type only."""
+    pass 
+
 
 # Type alias for any inline element
-Inline = Text | Emphasis | Strong | Code | Link
+Inline = Text | Emphasis | Strong | Code | Link | LineBreak
 
 
 # === Block elements ===

@@ -16,7 +16,7 @@ ALLOWED_TAGS = {
     # Block elements
     "p", "ul", "ol", "li", "blockquote", "pre", "code",
     # Inline elements
-    "em", "i", "strong", "b", "a",
+    "em", "i", "strong", "b", "a", "br",
     # Elements for degradation (kept so parser can create placeholders)
     "table", "tr", "td", "th", "img", "figure", "figcaption",
     "dl", "dt", "dd", "hr", "form", "input", "textarea", "select", "option", "button",

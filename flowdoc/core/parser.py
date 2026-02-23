@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 from flowdoc.core.model import (
     Document, Section, Heading, Block, Inline,
     Paragraph, ListBlock, ListItem, Quote, Preformatted,
-    Text, Emphasis, Strong, Code, Link
+    Text, Emphasis, Strong, Code, Link, LineBreak
 )
 from flowdoc.core.sanitizer import sanitize
 from flowdoc.core.content_selector import select_main_content
@@ -334,7 +334,7 @@ def parse_inline_element(element: Tag) -> Inline | list[Inline] | None:
     tag_name = element.name
     
     if tag_name == "br":
-        return Text(text=" ")
+        return LineBreak()
     elif tag_name in ("em", "i"):
         return Emphasis(children=parse_inlines(element))
     elif tag_name in ("strong", "b"):
