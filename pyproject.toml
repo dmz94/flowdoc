@@ -21,6 +21,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
+    "flask>=3.0.0",
+    "requests>=2.31.0",
 ]
 
 [project.scripts]
