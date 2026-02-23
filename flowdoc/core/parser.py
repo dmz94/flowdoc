@@ -18,6 +18,9 @@ from flowdoc.core.degradation import (
     degrade_table, degrade_image, degrade_form, degrade_hr
 )
 
+class ValidationError(Exception):
+    """Raised when input HTML lacks required semantic structure."""
+    pass
 
 def parse(html: str) -> Document:
     """
@@ -39,11 +42,14 @@ def parse(html: str) -> Document:
     
     # Step 3: Select main content
     content = select_main_content(soup)
-    
-    # Step 4: Build sections
+
+    # Step 4: Validate structure
+    validate_structure(content)
+
+    # Step 5: Build sections
     sections = build_sections(content)
-    
-    # Step 5: Extract title
+
+    # Step 6: Extract title
     title = extract_title(soup, content)
     
     return Document(title=title, sections=sections)
@@ -76,6 +82,29 @@ def extract_title(soup: BeautifulSoup, content: Tag) -> str:
         return h1.get_text().strip()
     
     return ""
+
+def validate_structure(content: Tag) -> None:
+    """
+    Validate that content has minimum semantic structure.
+
+    Per decisions.md section 3:
+    - Must have at least one h1, h2, or h3
+    - Must have at least one p, ul, or ol
+
+    Args:
+        content: Selected content subtree
+
+    Raises:
+        ValidationError: If structure requirements are not met
+    """
+    has_heading = bool(content.find(["h1", "h2", "h3"]))
+    has_body_content = bool(content.find(["p", "ul", "ol"]))
+
+    if not has_heading or not has_body_content:
+        raise ValidationError(
+            "Input HTML lacks semantic structure "
+            "(requires at least one h1-h3 and body content in p/ul/ol)."
+        )
 
 def build_sections(content: Tag) -> list[Section]:
     """

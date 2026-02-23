@@ -6,7 +6,7 @@ Provides convert command for HTML to readable HTML conversion.
 import argparse
 import sys
 
-from flowdoc.core.parser import parse
+from flowdoc.core.parser import parse, ValidationError
 from flowdoc.core.renderer import render
 from flowdoc.io.reader import read_html
 from flowdoc.io.writer import write_html
@@ -66,12 +66,7 @@ def main():
         
         # Parse to model
         document = parse(html_input)
-        
-        # Validate (check for semantic structure)
-        if not document.sections:
-            print("Error: Input HTML lacks semantic structure (requires at least one h1-h3 and body content in p/ul/ol).", file=sys.stderr)
-            sys.exit(1)
-        
+              
         # Render to readable HTML
         html_output = render(document, use_opendyslexic=use_opendyslexic)
         
@@ -84,6 +79,9 @@ def main():
     except IOError as e:
         print(f"I/O error: {e}", file=sys.stderr)
         sys.exit(3)
+    except ValidationError as e:
+        print(str(e), file=sys.stderr)
+        sys.exit(1)
     except ValueError as e:
         print(f"Validation error: {e}", file=sys.stderr)
         sys.exit(1)

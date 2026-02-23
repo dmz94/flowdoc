@@ -9,7 +9,7 @@ from flowdoc.core.model import Text, Emphasis, Strong, Code, Link
 
 def test_parses_plain_text():
     """Plain text becomes Text objects."""
-    html = "<body><h1>Simple heading</h1></body>"
+    html = "<body><h1>Simple heading</h1><p>Text</p></body>"
     doc = parse(html)
     heading = doc.sections[0].heading
     assert len(heading.inlines) == 1

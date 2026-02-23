@@ -3,7 +3,7 @@ Tests for parser title extraction.
 
 Part 1 of parser tests - validates title extraction logic.
 """
-from flowdoc.core.parser import parse
+from flowdoc.core.parser import parse, ValidationError
 
 
 def test_title_from_title_tag():
@@ -21,14 +21,15 @@ def test_title_from_first_h1():
 
 
 def test_title_empty_when_neither():
-    """Empty string when no <title> or <h1>."""
+    """No headings raises ValidationError."""
+    import pytest
     html = "<body><p>Just a paragraph</p></body>"
-    doc = parse(html)
-    assert doc.title == ""
+    with pytest.raises(ValidationError):
+        parse(html)
 
 
 def test_title_prefers_title_over_h1():
     """<title> takes precedence over <h1>."""
-    html = "<html><head><title>Title Tag</title></head><body><h1>H1 Tag</h1></body></html>"
+    html = "<html><head><title>Title Tag</title></head><body><h1>H1 Tag</h1><p>Text</p></body></html>"
     doc = parse(html)
     assert doc.title == "Title Tag"

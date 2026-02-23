@@ -58,7 +58,7 @@ def test_parses_blockquote():
 
 def test_parses_preformatted():
     """Pre elements become Preformatted objects."""
-    html = "<body><h1>Title</h1><pre>Code here\n  indented</pre></body>"
+    html = "<body><h1>Title</h1><pre>Code here\n  indented</pre><p>Text</p></body>"
     doc = parse(html)
     block = doc.sections[0].blocks[0]
     assert isinstance(block, Preformatted)
@@ -67,7 +67,7 @@ def test_parses_preformatted():
 
 def test_degrades_table():
     """Tables become placeholder paragraphs."""
-    html = "<body><h1>Title</h1><table><tr><td>A</td></tr></table></body>"
+    html = "<body><h1>Title</h1><table><tr><td>A</td></tr></table><p>Text</p></body>"
     doc = parse(html)
     block = doc.sections[0].blocks[0]
     assert isinstance(block, Paragraph)

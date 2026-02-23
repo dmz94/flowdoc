@@ -3,7 +3,7 @@ Tests for parser sectioning logic.
 
 Part 2 of parser tests - validates section creation from headings.
 """
-from flowdoc.core.parser import parse
+from flowdoc.core.parser import parse, ValidationError
 
 
 def test_creates_sections_from_headings():
@@ -25,7 +25,7 @@ def test_drops_content_before_first_heading():
 
 def test_preserves_heading_levels():
     """Heading levels (1-6) are preserved."""
-    html = "<body><h1>L1</h1><h3>L3</h3><h6>L6</h6></body>"
+    html = "<body><h1>L1</h1><p>Text</p><h3>L3</h3><p>Text</p><h6>L6</h6><p>Text</p></body>"
     doc = parse(html)
     assert len(doc.sections) == 3
     assert doc.sections[0].heading.level == 1
@@ -34,7 +34,8 @@ def test_preserves_heading_levels():
 
 
 def test_empty_sections_when_no_headings():
-    """Returns empty sections list when no headings."""
+    """No headings raises ValidationError."""
+    import pytest
     html = "<body><p>No headings here</p></body>"
-    doc = parse(html)
-    assert doc.sections == []
+    with pytest.raises(ValidationError):
+        parse(html)
