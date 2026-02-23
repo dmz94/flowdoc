@@ -1,8 +1,9 @@
 # Flowdoc v1 - Development Session Summary
 
 **Date:** February 23, 2026
-**Status:** Core pipeline complete and tested. Task 6 (drag-drop preview) complete.
-**Test Status:** 81 tests passing locally
+**Status:** Core conversion pipeline feature-complete for v1 scope. Input validation complete. Fixture corpus complete.
+**Release Readiness:** NOT release-ready. Required before release: golden file tests, determinism test, OpenDyslexic font embedding, and user validation with dyslexic readers.
+**Test Status:** 90 tests passing locally
 
 ## What We Built
 
@@ -14,27 +15,29 @@ Complete end-to-end HTML conversion pipeline:
 3. **sanitizer.py** - nh3 wrapper with security allowlist (includes br tag)
 4. **content_selector.py** - Deterministic main content selection (main -> article -> body)
 5. **degradation.py** - Placeholder generation for tables/images/forms
-6. **parser.py** - DOM to model conversion (recursive, handles nesting, collapse_whitespace helper)
+6. **parser.py** - DOM to model conversion (recursive, handles nesting, collapse_whitespace helper). Includes ValidationError and validate_structure().
 7. **renderer.py** - Model to readable HTML with inline CSS
 
 ### CLI Layer (flowdoc/cli/, flowdoc/io/)
-1. **main.py** - Argument parsing, orchestration, exit codes
+1. **main.py** - Argument parsing, orchestration, exit codes. Handles ValidationError with exit code 1.
 2. **reader.py** - File/stdin input
 3. **writer.py** - File/stdout output
 
 ### Dev Tools (project root)
 1. **preview_server.py** - Flask server, two routes: GET / serves preview.html, POST /convert runs pipeline
 2. **preview.html** - Drag-drop UI with iframe and OpenDyslexic toggle
+3. **fetch_fixtures.py** - Dev tool to fetch HTML fixture files from the web. Run with: python fetch_fixtures.py
 
 ### Test Coverage
-- 81 tests passing (unit + integration)
+- 90 tests passing (unit + integration)
 - Tests organized by module
+- Includes test_validation.py (9 tests)
 - Integration test with real HTML fixture (simple_article.html)
 - All tests run with: `pytest -v`
 
 ## What Works Right Now
 
-**The system is fully functional:**
+**The core conversion pipeline is functional for in-scope semantic HTML:**
 
 ```
 # In VS Code terminal with venv active:
@@ -56,59 +59,65 @@ python preview_server.py
 2. Sanitize with nh3 (strip scripts, dangerous attributes)
 3. Parse to BeautifulSoup DOM
 4. Select main content (main -> article -> body)
-5. Build internal model (sections with headings and blocks)
-6. Render to self-contained HTML with inline CSS
-7. Write output (file or stdout)
+5. Validate structure (requires h1-h3 and p/ul/ol content - raises ValidationError if missing)
+6. Build internal model (sections with headings and blocks)
+7. Render to self-contained HTML with inline CSS
+8. Write output (file or stdout)
 
-## Bugs Fixed in February 23 Session
+## Fixture Corpus
 
-1. **Inline whitespace** - collapse_whitespace() added to parser.py. Preserves boundary spaces between text and inline elements (em, strong, etc.)
-2. **br tag handling** - LineBreak inline type added to model.py. Parser returns LineBreak() for br tags. Renderer emits br element.
-3. **br stripped by sanitizer** - Added "br" to ALLOWED_TAGS in sanitizer.py
+11 HTML fixtures in tests/fixtures/input/ (10 GOOD, 1 BAD):
+
+GOOD fixtures (pass validation):
+- simple_article.html - hand-crafted test fixture
+- wikipedia_dyslexia.html - encyclopedia article
+- wikipedia_photosynthesis.html - science article
+- nhs_dyslexia.html - health/medical page
+- clevelandclinic_dyslexia.html - health/medical page
+- bbcgoodfood_carbonara.html - recipe
+- wikihow_ride_a_bike.html - how-to guide
+- mdn_html_elements.html - technical documentation
+- gutenberg_pride_prejudice.html - long-form book
+- readability_001_tech_blog.html - tech blog article
+
+BAD fixtures (fail validation intentionally):
+- paulgraham_identity.html - no semantic structure (font/table layout, no h1-h3)
 
 ## Known Limitations (Intentional for v1)
 
 1. **OpenDyslexic font:** Placeholder empty in constants.py - needs base64 embedding
-2. **Input validation:** Doesn't yet reject non-semantic HTML
-3. **Fixture corpus:** Only one test fixture (simple_article.html)
-4. **Golden file tests:** Not yet implemented
-5. **Determinism test:** Not yet implemented
+2. **Golden file tests:** Not yet implemented
+3. **Determinism test:** Not yet implemented
 
 ## What's Left for v1 Completion
 
-### 1. Input Validation (REQUIRED)
-- Implement validation from decisions.md section 3
-- Reject if no h1-h3 headings found
-- Reject if no p/ul/ol content found
-- Error message: "Input HTML lacks semantic structure (requires at least one h1-h3 and body content in p/ul/ol)."
-- Exit code: 1
-- **Location:** Add validation in parser.py after model building
-- **Test:** Add test_validation.py
-
-### 2. Fixture Corpus (REQUIRED for confidence)
-- Create 5-10 real HTML files in tests/fixtures/input/
-- Sources: recipe sites, articles, technical docs, Wikipedia exports
-- Ensure variety: nested lists, blockquotes, links, code blocks
-- **Goal:** Validate parser handles real-world HTML, not just hand-crafted tests
-
-### 3. Golden File Tests (REQUIRED)
+### 1. Golden File Tests (REQUIRED)
 - For each fixture, store expected output in tests/fixtures/expected/
 - Test: input -> convert -> compare bytes with expected
 - Catches unintended changes to output
-- **Location:** Add test_golden_files.py
+- Location: Add test_golden_files.py
+- Note: only run against GOOD fixtures, not paulgraham_identity.html
 
-### 4. Determinism Test (REQUIRED)
+### 2. Determinism Test (REQUIRED)
 - Same input + same flags -> byte-identical output
 - Test: run conversion twice, compare bytes
-- **Location:** Add to test_integration.py
+- Location: Add to test_integration.py
 
-### 5. OpenDyslexic Font Embedding (REQUIRED for --font flag)
+### 3. OpenDyslexic Font Embedding (REQUIRED for --font flag)
 - Download OpenDyslexic-Regular.woff2 from https://opendyslexic.org/
 - Convert to base64: base64 -w 0 OpenDyslexic-Regular.woff2
 - Replace OPENDYSLEXIC_BASE64 placeholder in constants.py
 - Test: python -m flowdoc.cli.main input.html --font opendyslexic
 - Verify @font-face appears in output
 
+
+## Policy Decisions (Intentional - Do Not Change Without Discussion)
+
+1. **Validation rule is intentional v1 product requirement:** Requiring h1-h3 and p/ul/ol is a deliberate policy decision, not a temporary heuristic. Flowdoc is designed for semantic HTML. Do not relax this without explicit decision.
+2. **CLI failure contract:** On validation failure - exit code 1, error message to stderr, no output file written.
+3. **Golden file process:** Run conversion against each GOOD fixture, manually verify output looks correct, save as expected file. Regenerate expected files only when output changes are intentional.
+4. **Determinism scope:** Byte-identical output expected within same Python version (3.12.x) and pinned dependency versions. Cross-environment determinism is not a v1 requirement.
+5. **--font opendyslexic before embedding:** Currently outputs HTML without the font (falls back to system fonts). This is acceptable until font is embedded - do not make it a hard failure.
 ## What's NOT in v1 Scope
 
 These are explicitly deferred (see SCOPE.md):
@@ -128,7 +137,7 @@ These are explicitly deferred (see SCOPE.md):
 - Virtual environment at project root (venv/)
 - Windows 11, Command Prompt terminal (not PowerShell)
 - GitHub Desktop for version control
-- Dependencies: beautifulsoup4, lxml, nh3, pytest, flask
+- Dependencies: beautifulsoup4, lxml, nh3, pytest, flask, requests
 - GitHub repo linked to Claude project via GitHub integration
 
 ## Key Decisions Made
@@ -140,6 +149,8 @@ These are explicitly deferred (see SCOPE.md):
 5. **Locked specs:** decisions.md is authoritative, no scope changes during implementation
 6. **Real testing:** Validate with actual HTML files and user feedback before v2
 7. **Preview tool testing:** Manual only - no automated tests for preview_server.py
+8. **fetch_fixtures.py uses requests library** - listed in dev dependencies in pyproject.toml
+9. **paulgraham_identity.html kept as bad fixture** - intentional validation failure test case
 
 ## File Organization
 
@@ -165,10 +176,9 @@ flowdoc/
 |       +-- writer.py
 +-- tests/
 |   +-- fixtures/
-|   |   +-- input/
-|   |   |   +-- simple_article.html
-|   |   +-- expected/  (empty - for golden files)
-|   |   +-- snapshots/  (empty - reserved)
+|   |   +-- input/          (11 files - see Fixture Corpus above)
+|   |   +-- expected/       (empty - for golden files)
+|   |   +-- snapshots/      (empty - reserved)
 |   +-- test_model.py
 |   +-- test_constants.py
 |   +-- test_sanitizer.py
@@ -182,6 +192,7 @@ flowdoc/
 |   +-- test_renderer_blocks.py
 |   +-- test_renderer_inlines.py
 |   +-- test_cli_basic.py
+|   +-- test_validation.py
 |   +-- test_integration.py
 +-- docs/
 |   +-- decisions.md (authoritative spec)
@@ -189,6 +200,7 @@ flowdoc/
 |   +-- research_typography_guidelines.md
 |   +-- 0_0_FLOWDOC_V1_PLAN.md
 |   +-- architecture_exploration.md
++-- fetch_fixtures.py  (dev tool - fetch HTML fixtures from web)
 +-- preview_server.py  (dev tool - Flask server)
 +-- preview.html       (dev tool - drag-drop UI)
 +-- SCOPE.md
@@ -201,11 +213,9 @@ flowdoc/
 
 ## Next Steps
 
-1. **Add input validation** - Start here, clear spec in decisions.md section 3
-2. **Create fixture corpus** - Gather real HTML files
-3. **Implement golden file tests** - Lock down output format
-4. **Add determinism test** - Ensure reproducibility
-5. **Embed OpenDyslexic font** - Complete the toggle feature
+1. **Implement golden file tests** - Next priority
+2. **Add determinism test** - Add to test_integration.py
+3. **Embed OpenDyslexic font** - Complete the --font flag
 
 ## Testing Instructions for Next Session
 
@@ -228,7 +238,7 @@ start tests/fixtures/input/simple_article.flowdoc.html
 python preview_server.py
 ```
 
-**Expected:** 81+ tests passing
+**Expected:** 90 tests passing
 
 ## Communication Rules - CRITICAL
 
@@ -240,12 +250,13 @@ These rules MUST be followed in every response:
 4. **Always read files first:** Use project_knowledge_search for .py files, view tool for .md files. State "Reading X now" before every call. No exceptions.
 5. **Verify function signatures:** Never assume parameter names. Read the actual source file first.
 6. **Complete changes across files:** When a change spans multiple files, read ALL affected files first, then list every change needed before touching any of them.
-7. **New dependencies:** Call out pip install command BEFORE showing the run command.
+7. **New dependencies:** Never introduce new dependencies without checking pyproject.toml first. Call out pip install command BEFORE showing the run command.
 8. **File locations:** Always tell the user exactly where to save each file.
 9. **Code blocks must use 4 spaces for indentation, not tabs:** This ensures pasting into VS Code works correctly every time.
 10. **No em dashes or smart quotes in code blocks:** ASCII only (straight quotes, hyphens).
 11. **Commit guidance:** Provide summary and description for GitHub Desktop after each completed task.
 12. **Documentation files output:** Ask the user each time - code block or whole file download? For source code files, always use code blocks.
+14. **Never guess:** Not at URLs, parameter names, file contents, or anything verifiable. Look it up first.
 
 ## Critical Files to Read at Start of Every Session
 
@@ -271,7 +282,7 @@ content_selector.py, degradation.py, parser.py, renderer.py
 
 Files under flowdoc/cli/: main.py
 Files under flowdoc/io/: reader.py, writer.py
-Dev tools (project root): preview_server.py, preview.html
+Dev tools (project root): preview_server.py, preview.html, fetch_fixtures.py
 
 ## Success Criteria (from SCOPE.md)
 
@@ -279,10 +290,10 @@ v1 is complete when:
 1. OK - Accepts semantic HTML inputs within scope
 2. OK - Produces self-contained readable HTML
 3. PENDING - Output measurably better for dyslexic readers (needs user testing)
-4. OK - Works on browsers, mobile, print
-5. PENDING - Failure modes predictable and clear (needs validation)
+4. PENDING - Works on browsers, mobile, print (manually verified in limited testing only)
+5. PENDING - Failure modes predictable and clear (validation implemented but not yet tested against full fixture corpus)
 6. OK - Inline elements render correctly
 7. OK - Unsupported elements degrade deterministically
 8. OK - Sanitization prevents active-content issues
 
-Missing pieces: validation (#5) and user testing (#3).
+Missing pieces: golden file tests, determinism test, font embedding, user testing (#3).
