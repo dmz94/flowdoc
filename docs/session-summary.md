@@ -1,136 +1,197 @@
 # Flowdoc v1 - Development Session Summary
 
 **Date:** February 25, 2026
-**Status:** Core conversion pipeline feature-complete. First real-world validation run complete. Trafilatura integration in progress.
-**Release Readiness:** NOT release-ready. Required before release: Trafilatura implementation, visual validation bug fixes, golden file tests, determinism test, OpenDyslexic font embedding, and user validation.
-**Test Status:** 91 tests passing locally
+**Status:** Dual-pipeline architecture implemented and visually validated. 109 tests passing.
+**Release Readiness:** NOT release-ready. Required before release: backlog bug fixes, golden file tests, determinism test, OpenDyslexic font embedding, and user validation.
+**Test Status:** 109 tests passing locally
 
 ## What We Built
 
-Complete end-to-end HTML conversion pipeline:
+Complete end-to-end HTML conversion pipeline with dual-mode routing:
 
 ### Core Modules (flowdoc/core/)
 1. **model.py** - Document model classes (Document, Section, Heading, Block types, Inline types including LineBreak)
 2. **constants.py** - Typography values from BDA guidelines
 3. **sanitizer.py** - nh3 wrapper with security allowlist (includes br tag)
-4. **content_selector.py** - Trafilatura extraction with deterministic fallback (main -> article -> body)
+4. **content_selector.py** - detect_mode() for auto-routing between transform and extract pipelines. Scoring: scripts >= 10 OR nav >= 5 -> extract, else transform.
 5. **degradation.py** - Placeholder generation for tables/images/forms
-6. **parser.py** - DOM to model conversion (recursive, handles nesting, collapse_whitespace helper). Includes ValidationError and validate_structure().
+6. **parser.py** - DOM to model conversion. Includes extract_with_trafilatura() for boilerplate removal and parse() which accepts optional original_title parameter.
 7. **renderer.py** - Model to readable HTML with inline CSS
 
 ### CLI Layer (flowdoc/cli/, flowdoc/io/)
-1. **main.py** - Argument parsing, orchestration, exit codes. Handles ValidationError with exit code 1.
+1. **main.py** - Argument parsing, orchestration, exit codes. --mode transform|extract|auto flag (default: auto). --verbose flag.
 2. **reader.py** - File/stdin input
 3. **writer.py** - File/stdout output
 
 ### Dev Tools (project root)
-1. **preview_server.py** - Flask server, two routes: GET / serves preview.html, POST /convert runs pipeline
+1. **preview_server.py** - Flask server with mode detection and routing. GET / serves preview.html, POST /convert runs pipeline. Adds HTML comment showing which mode was used.
 2. **preview.html** - Drag-drop UI with iframe and OpenDyslexic toggle
-3. **fetch_fixtures.py** - Dev tool to fetch HTML fixture files from the web. Run with: python fetch_fixtures.py
+3. **fetch_fixtures.py** - Dev tool to fetch HTML fixture files from the web
+4. **convert_fixtures.py** - Dev tool to batch convert all fixtures. Run with: python convert_fixtures.py. Creates .flowdoc.html files alongside inputs for visual inspection.
 
 ### Test Coverage
-- 91 tests passing (unit + integration)
-- Tests organized by module
-- Includes test_validation.py (9 tests)
-- Integration test with real HTML fixture (simple_article.html)
+- 109 tests passing (91 existing + 18 new)
+- test_content_selector.py - 8 new routing tests
+- test_cli_basic.py - 4 new mode flag tests
+- test_extract_mode.py - 9 new tests documenting extract mode behavior and known limitations
 - All tests run with: `pytest -v`
+
+## Dual Pipeline Architecture
+
+### The Core Decision
+Two distinct use cases require different handling:
+- **Transform mode**: Developer-generated clean semantic HTML. Fidelity-first. No Trafilatura. Preserves all structure exactly.
+- **Extract mode**: Real-world web pages with boilerplate. Runs Trafilatura first to strip nav/ads/footer, then parses cleaned HTML.
+
+### Auto-Detection Logic (detect_mode in content_selector.py)
+Score-based routing derived from analysis of all 11 fixtures:
+- Count nav/header/footer/aside tags and script tags
+- scripts >= 10 OR nav >= 5 -> extract
+- else -> transform
+- Default to transform when ambiguous
+
+### Pipeline Flow (auto mode)
+1. Read HTML
+2. detect_mode() -> transform or extract
+3. If extract: capture original title, run extract_with_trafilatura()
+4. Sanitize with nh3
+5. Parse to BeautifulSoup DOM
+6. Validate structure (requires h1-h3 and p/ul/ol)
+7. Build internal model
+8. Render to self-contained HTML
+9. Write output
+
+### Known Extract Mode Limitations (documented, not bugs)
+- pre/code blocks: Trafilatura converts pre to blockquote in some cases
+- Inline spacing: some spaces lost around inline elements
+- Dense link structures (Wikipedia lead sections): fragment into separate paragraphs
+- These are Trafilatura limitations, not parser bugs
+
+## Visual Validation Results (February 25, 2026)
+
+Ran convert_fixtures.py against all 11 fixtures. Results:
+
+| Fixture | Mode | Result | Notes |
+|---|---|---|---|
+| simple_article.html | transform | EXCELLENT | Perfect baseline |
+| nhs_dyslexia.html | extract | GOOD | Clean article, nav gone, minor title newline |
+| clevelandclinic_dyslexia.html | extract | GOOD | Main content clean, trailing boilerplate leaked |
+| readability_001_tech_blog.html | extract | GOOD | Nav gone, inline code fragmentation issue |
+| wikihow_ride_a_bike.html | extract | ACCEPTABLE | Content readable, duplicate list items, reference noise |
+| gutenberg_pride_prejudice.html | transform | GOOD | Readable prose, italic overuse issue, page number artifacts |
+| wikipedia_photosynthesis.html | extract | POOR | Lead section badly fragmented by dense links |
+| wikipedia_dyslexia.html | extract | NOT TESTED | Expected same fragmentation as photosynthesis |
+| mdn_html_elements.html | extract | SCOPE BOUNDARY | Reference table page - content IS the tables |
+| bbcgoodfood_carbonara.html | extract | VALIDATION FAIL | Trafilatura strips headings, no h1-h3 survives |
+| paulgraham_identity.html | extract | VALIDATION FAIL | Intentional bad fixture |
+
+## Backlog of Issues Found in Visual Validation
+
+### Priority 1 - Fixable bugs
+1. **Empty paragraphs** - `<p></p>` appearing in output. Strip empty blocks in renderer or parser.
+2. **Title newline** - NHS title has `\n` in it rendering as `Dyslexia\n - NHS`. Strip whitespace from title.
+3. **"Advertisement" paragraphs** - Cleveland Clinic ad markers surviving extraction. May need post-Trafilatura cleanup.
+4. **Trailing boilerplate** - Cleveland Clinic footer/signup/references section leaking through. Trafilatura limitation.
+
+### Priority 2 - Known Trafilatura limitations (document, consider fixing)
+5. **Inline code becoming pre blocks** - `<code>` inside `<p>` becoming standalone `<pre>` in extract mode.
+6. **Missing spaces around inline elements** - "data-cover attribute" losing space. Trafilatura inline spacing issue.
+7. **Duplicate list items** - WikiHow nested list items appearing twice. Trafilatura structure issue.
+8. **Wikipedia lead section fragmentation** - Dense link structures fragment into single-phrase paragraphs.
+
+### Priority 3 - Accessibility concern
+9. **Italic overuse** - Gutenberg Preface is one long `<em>` block. Italic text is harder for dyslexic readers. Consider converting `<em>` to non-italic style (color, underline) in renderer.
+
+### Priority 4 - Scope boundaries (do not fix in v1)
+10. **MDN reference tables** - Content lives in tables which we strip. Wrong input type for Flowdoc.
+11. **BBC Good Food validation failure** - Recipe site structure strips all headings. Out of scope.
+12. **Wikipedia dense links** - Structural issue with Wikipedia's HTML format. Defer to v2.
 
 ## What Works Right Now
 
-**The core conversion pipeline is functional for in-scope semantic HTML:**
-
+**Batch visual testing:**
 ```
-# In VS Code terminal with venv active:
+python convert_fixtures.py
+```
+Creates .flowdoc.html files in tests/fixtures/input/ for browser inspection.
+
+**Single file conversion:**
+```
 python -m flowdoc.cli.main tests/fixtures/input/simple_article.html
-# Creates: tests/fixtures/input/simple_article.flowdoc.html
-# Open in browser - renders with readable typography
+```
+
+**Mode flag:**
+```
+python -m flowdoc.cli.main --mode transform input.html
+python -m flowdoc.cli.main --mode extract input.html
+python -m flowdoc.cli.main --mode auto input.html
 ```
 
 **Preview tool:**
-
 ```
 python preview_server.py
 # Open http://localhost:5000
 # Drag any HTML file onto the drop zone
+# View source to see <!-- flowdoc mode: transform|extract --> comment
 ```
-
-**Pipeline flow:**
-1. Read HTML (file or stdin)
-2. Extract main content (Trafilatura; deterministic fallback if Trafilatura returns nothing)
-3. Sanitize with nh3 (strip scripts, dangerous attributes)
-4. Parse to BeautifulSoup DOM
-5. Validate structure (requires h1-h3 and p/ul/ol content - raises ValidationError if missing)
-6. Build internal model (sections with headings and blocks)
-7. Render to self-contained HTML with inline CSS
-8. Write output (file or stdout)
 
 ## Fixture Corpus
 
-11 HTML fixtures in tests/fixtures/input/ (10 GOOD, 1 BAD):
+11 HTML fixtures in tests/fixtures/input/ (9 GOOD, 2 BAD):
 
 GOOD fixtures (pass validation):
-- simple_article.html - hand-crafted test fixture
-- wikipedia_dyslexia.html - encyclopedia article
-- wikipedia_photosynthesis.html - science article
-- nhs_dyslexia.html - health/medical page
-- clevelandclinic_dyslexia.html - health/medical page
-- bbcgoodfood_carbonara.html - recipe
-- wikihow_ride_a_bike.html - how-to guide
-- mdn_html_elements.html - technical documentation
-- gutenberg_pride_prejudice.html - long-form book
-- readability_001_tech_blog.html - tech blog article
+- simple_article.html - hand-crafted test fixture (transform mode)
+- gutenberg_pride_prejudice.html - long-form book (transform mode)
+- wikipedia_dyslexia.html - encyclopedia article (extract mode)
+- wikipedia_photosynthesis.html - science article (extract mode)
+- nhs_dyslexia.html - health/medical page (extract mode)
+- clevelandclinic_dyslexia.html - health/medical page (extract mode)
+- wikihow_ride_a_bike.html - how-to guide (extract mode)
+- mdn_html_elements.html - technical documentation (extract mode)
+- readability_001_tech_blog.html - tech blog article (extract mode)
 
-BAD fixtures (fail validation intentionally):
-- paulgraham_identity.html - no semantic structure (font/table layout, no h1-h3)
+BAD fixtures (fail validation):
+- paulgraham_identity.html - no semantic structure (intentional)
+- bbcgoodfood_carbonara.html - headings stripped by Trafilatura (known limitation)
 
 ## Known Limitations (Intentional for v1)
 
 1. **OpenDyslexic font:** Placeholder empty in constants.py - needs base64 embedding
 2. **Golden file tests:** Not yet implemented
 3. **Determinism test:** Not yet implemented
+4. **Extract mode is lossy:** Documented limitation - inline formatting, spacing, some structure lost
 
 ## What's Left for v1 Completion
 
-### 1. Trafilatura Integration (PRIORITY - blocks everything else)
-- Install trafilatura: `pip install trafilatura`
-- Rewrite content_selector.py to call trafilatura.extract() as primary strategy
-- Retain deterministic fallback (main -> article -> body) if Trafilatura returns nothing
-- Update pyproject.toml to add trafilatura as dependency
-- Re-run all 10 GOOD fixtures through preview tool and verify output quality
+### 1. Backlog Bug Fixes (NEXT PRIORITY)
+Work through Priority 1 issues from visual validation above. These are small targeted fixes.
 
-### 2. Visual Validation Bug Fixes (after Trafilatura)
-Issues discovered during first real-world fixture run:
-- In-content navigation lists (NHS Contents, MDN TOC) included in output
-- Footer boilerplate surviving inside content containers (Cleveland Clinic, WikiHow)
-- Advertisement markers surviving sanitization (Cleveland Clinic)
-- Footnote/reference noise inline (WikiHow, Gutenberg)
-- MDN fixture unsuitable for golden files (tables are the content)
-
-### 3. Golden File Tests (after bug fixes)
-- For each fixture, store expected output in tests/fixtures/expected/
+### 2. Golden File Tests (after bug fixes)
+- For each GOOD fixture, store expected output in tests/fixtures/expected/
 - Test: input -> convert -> compare bytes with expected
 - Location: Add test_golden_files.py
 
-### 4. Determinism Test (after golden files)
+### 3. Determinism Test (after golden files)
 - Same input + same flags -> byte-identical output
 - Location: Add to test_integration.py
 
-### 5. OpenDyslexic Font Embedding (REQUIRED for --font flag)
+### 4. OpenDyslexic Font Embedding (REQUIRED for --font flag)
 - Download OpenDyslexic-Regular.woff2 from https://opendyslexic.org/
 - Convert to base64: base64 -w 0 OpenDyslexic-Regular.woff2
 - Replace OPENDYSLEXIC_BASE64 placeholder in constants.py
 
-
 ## Policy Decisions (Intentional - Do Not Change Without Discussion)
 
-1. **Validation rule is intentional v1 product requirement:** Requiring h1-h3 and p/ul/ol is a deliberate policy decision, not a temporary heuristic. Flowdoc is designed for semantic HTML. Do not relax this without explicit decision.
+1. **Validation rule is intentional v1 product requirement:** Requiring h1-h3 and p/ul/ol is a deliberate policy decision. Do not relax without explicit decision.
 2. **CLI failure contract:** On validation failure - exit code 1, error message to stderr, no output file written.
-3. **Golden file process:** Run conversion against each GOOD fixture, manually verify output looks correct, save as expected file. Regenerate expected files only when output changes are intentional.
-4. **Determinism scope:** Byte-identical output expected within same Python version (3.12.x) and pinned dependency versions. Cross-environment determinism is not a v1 requirement.
-5. **--font opendyslexic before embedding:** Currently outputs HTML without the font (falls back to system fonts). This is acceptable until font is embedded - do not make it a hard failure.
+3. **Extract mode is lossy by design:** Documented limitation for v1. Transform mode is fidelity-first.
+4. **Auto-detection thresholds are evidence-based:** scripts >= 10 OR nav >= 5 derived from fixture corpus analysis. Do not change without re-running analysis.
+5. **Golden file process:** Run conversion, manually verify output, save as expected. Regenerate only when output changes are intentional.
+6. **Determinism scope:** Byte-identical within same Python version (3.12.x) and pinned dependencies only.
+7. **--font opendyslexic before embedding:** Falls back to system fonts. Acceptable until embedded.
+
 ## What's NOT in v1 Scope
 
-These are explicitly deferred (see SCOPE.md):
 - PDF input
 - DOCX input/output
 - Native PDF output
@@ -151,15 +212,16 @@ These are explicitly deferred (see SCOPE.md):
 
 ## Key Decisions Made
 
-1. **Incremental development:** Build module by module with tests
-2. **For documentation files:** Ask user each time - code block or whole file download?
-3. **For source code files:** Always use code blocks for copy/paste into VS Code.
-4. **Step-by-step process:** Explain -> Strategize -> Plan -> Code -> Test
-5. **Locked specs:** decisions.md is authoritative, no scope changes during implementation
-6. **Real testing:** Validate with actual HTML files and user feedback before v2
-7. **Preview tool testing:** Manual only - no automated tests for preview_server.py
-8. **fetch_fixtures.py uses requests library** - listed in dev dependencies in pyproject.toml
-9. **paulgraham_identity.html kept as bad fixture** - intentional validation failure test case
+1. **Dual pipeline architecture:** transform vs extract modes with auto-detection
+2. **Trafilatura used for extraction only:** Not for parsing - extract_with_trafilatura() returns HTML, parse() handles DOM
+3. **Evidence-based thresholds:** Auto-detection thresholds derived from fixture corpus analysis, not theory
+4. **ChatGPT consulted for architecture:** Independent validation of dual pipeline decision (GPT-5.2 Thinking mode agreed)
+5. **Extract mode documented as lossy:** Honest v1 choice - accept limitations, document them
+6. **Incremental development:** Build module by module with tests
+7. **Always read files first:** Use project_knowledge_search for .py files, view tool for .md files
+8. **Step-by-step process:** Purpose -> Strategy -> Plan -> Code. Wait for approval after each step.
+9. **One file at a time:** Show one file, wait for confirmation before next
+10. **Commit between tasks:** Clean checkpoint after each completed task
 
 ## File Organization
 
@@ -172,13 +234,13 @@ flowdoc/
 |   |   +-- model.py
 |   |   +-- constants.py
 |   |   +-- sanitizer.py
-|   |   +-- content_selector.py  (Trafilatura extraction with deterministic fallback)
+|   |   +-- content_selector.py  (detect_mode() - auto-routing)
 |   |   +-- degradation.py
-|   |   +-- parser.py
+|   |   +-- parser.py            (extract_with_trafilatura(), parse())
 |   |   +-- renderer.py
 |   +-- cli/
 |   |   +-- __init__.py
-|   |   +-- main.py
+|   |   +-- main.py              (--mode transform|extract|auto)
 |   +-- io/
 |       +-- __init__.py
 |       +-- reader.py
@@ -191,7 +253,7 @@ flowdoc/
 |   +-- test_model.py
 |   +-- test_constants.py
 |   +-- test_sanitizer.py
-|   +-- test_content_selector.py
+|   +-- test_content_selector.py  (includes detect_mode tests)
 |   +-- test_degradation.py
 |   +-- test_parser_title.py
 |   +-- test_parser_sections.py
@@ -200,9 +262,10 @@ flowdoc/
 |   +-- test_renderer_css.py
 |   +-- test_renderer_blocks.py
 |   +-- test_renderer_inlines.py
-|   +-- test_cli_basic.py
+|   +-- test_cli_basic.py         (includes mode flag tests)
 |   +-- test_validation.py
 |   +-- test_integration.py
+|   +-- test_extract_mode.py      (extract mode behavior and known limitations)
 +-- docs/
 |   +-- decisions.md (authoritative spec)
 |   +-- architecture.md
@@ -210,9 +273,10 @@ flowdoc/
 |   +-- flowdoc-v1-plan.md
 |   +-- architecture-exploration.md
 |   +-- session-summary.md (this file)
-+-- fetch_fixtures.py  (dev tool - fetch HTML fixtures from web)
-+-- preview_server.py  (dev tool - Flask server)
-+-- preview.html       (dev tool - drag-drop UI)
++-- convert_fixtures.py  (dev tool - batch convert all fixtures)
++-- fetch_fixtures.py    (dev tool - fetch HTML fixtures from web)
++-- preview_server.py    (dev tool - Flask server with mode routing)
++-- preview.html         (dev tool - drag-drop UI)
 +-- SCOPE.md
 +-- ABOUT.md
 +-- README.md
@@ -223,53 +287,40 @@ flowdoc/
 
 ## Next Steps
 
-1. **Implement Trafilatura integration** - rewrite content_selector.py
-2. **Re-run fixture validation** - verify output quality improvement across all 10 GOOD fixtures
-3. **Fix visual validation bugs** - work through issues discovered in first run
-4. **Implement golden file tests** - after output is stable
-5. **Add determinism test** - add to test_integration.py
-6. **Embed OpenDyslexic font** - complete the --font flag
+1. **Fix Priority 1 bugs** from visual validation backlog (empty paragraphs, title whitespace, ad markers)
+2. **Assess Priority 2 issues** (Trafilatura limitations - decide fix vs document)
+3. **Implement golden file tests** - after output is stable
+4. **Add determinism test** - add to test_integration.py
+5. **Embed OpenDyslexic font** - complete the --font flag
 
-## Testing Instructions for Next Session
-
-All tests must pass before v1 release:
+## Testing Instructions
 
 ```
-# Activate venv
 venv\Scripts\activate
-
-# Run all tests
 pytest -v
-
-# Test CLI manually
-python -m flowdoc.cli.main tests/fixtures/input/simple_article.html
-
-# Open output in browser
-start tests/fixtures/input/simple_article.flowdoc.html
-
-# Run preview tool
+python convert_fixtures.py
 python preview_server.py
 ```
 
-**Expected:** 91 tests passing
+Expected: 109 tests passing
 
 ## Communication Rules - CRITICAL
 
 These rules MUST be followed in every response:
 
-1. **Four-step process:** Purpose -> Strategy -> Plan -> Code. Wait for "yes" after EACH step before proceeding. No exceptions.
-2. **One file at a time:** Show one file, wait for "done" before showing next file.
-3. **Code blocks contain code and commands ONLY:** Never put file names, instructions, or explanations inside code blocks. These go outside the block.
-4. **Always read files first:** Use project_knowledge_search for .py files, view tool for .md files. State "Reading X now" before every call. No exceptions.
+1. **Read project files first:** At the start of every session read session-summary.md, decisions.md, SCOPE.md, and architecture.md using the view tool BEFORE doing anything else. State which file you are reading. No exceptions.
+2. **Four-step process:** Purpose -> Strategy -> Plan -> Code. Wait for "yes" after EACH step before proceeding. No exceptions.
+3. **One file at a time:** Show one file, wait for "done" before showing next file.
+4. **Always read source files before modifying:** Use project_knowledge_search for .py files. State "Reading X now" before every call. Never assume file contents.
 5. **Verify function signatures:** Never assume parameter names. Read the actual source file first.
-6. **Complete changes across files:** When a change spans multiple files, read ALL affected files first, then list every change needed before touching any of them.
-7. **New dependencies:** Never introduce new dependencies without checking pyproject.toml first. Call out pip install command BEFORE showing the run command.
+6. **Complete changes across files:** Read ALL affected files first, then list every change needed before touching any of them.
+7. **New dependencies:** Never introduce without checking pyproject.toml first. Call out pip install BEFORE run command.
 8. **File locations:** Always tell the user exactly where to save each file.
-9. **Code blocks must use 4 spaces for indentation, not tabs:** This ensures pasting into VS Code works correctly every time.
-10. **No em dashes or smart quotes in code blocks:** ASCII only (straight quotes, hyphens).
+9. **4-space indentation in code blocks, not tabs.**
+10. **ASCII only in code blocks:** No em dashes, smart quotes, or Unicode.
 11. **Commit guidance:** Provide summary and description for GitHub Desktop after each completed task.
-12. **Documentation files output:** Ask the user each time - code block or whole file download? For source code files, always use code blocks.
-14. **Never guess:** Not at URLs, parameter names, file contents, or anything verifiable. Look it up first.
+12. **Never guess:** Not at URLs, parameter names, file contents, or anything verifiable. Look it up first.
+13. **No excessive formatting:** No unnecessary bold, headers, or bullet points in responses.
 
 ## Critical Files to Read at Start of Every Session
 
@@ -284,8 +335,7 @@ The view tool only reaches root-level .md files at /mnt/project/.
 Python source files and test files are NOT accessible via the view tool.
 
 Use project_knowledge_search to read any .py file before modifying it.
-State "Reading X now" before each search. This replaces the view tool
-for all source files.
+State "Reading X now" before each search.
 
 Limitation: search returns chunks, not whole files. Use multiple searches
 with different keywords if a file is long.
@@ -295,7 +345,8 @@ content_selector.py, degradation.py, parser.py, renderer.py
 
 Files under flowdoc/cli/: main.py
 Files under flowdoc/io/: reader.py, writer.py
-Dev tools (project root): preview_server.py, preview.html, fetch_fixtures.py
+Dev tools (project root): preview_server.py, preview.html, fetch_fixtures.py,
+convert_fixtures.py
 
 ## Success Criteria (from SCOPE.md)
 
@@ -304,9 +355,9 @@ v1 is complete when:
 2. OK - Produces self-contained readable HTML
 3. PENDING - Output measurably better for dyslexic readers (needs user testing)
 4. PENDING - Works on browsers, mobile, print (manually verified in limited testing only)
-5. PENDING - Failure modes predictable and clear (validation implemented but full fixture corpus not yet clean)
+5. PENDING - Failure modes predictable and clear (validation implemented, fixture corpus mostly clean)
 6. OK - Inline elements render correctly
 7. OK - Unsupported elements degrade deterministically
 8. OK - Sanitization prevents active-content issues
 
-Missing pieces: Trafilatura integration, visual bug fixes, golden file tests, determinism test, font embedding, user testing (#3).
+Missing pieces: Priority 1-2 bug fixes, golden file tests, determinism test, font embedding, user testing.
