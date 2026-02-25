@@ -65,11 +65,6 @@ FIXTURES = [
         "description": "CDC - Dyslexia facts (government/health page)",
     },
     {
-        "filename": "gutenberg_pride_prejudice.html",
-        "url": "https://www.gutenberg.org/files/1342/1342-h/1342-h.htm",
-        "description": "Project Gutenberg - Pride and Prejudice (long-form book)",
-    },
-    {
         "filename": "paulgraham_identity.html",
         "url": "https://paulgraham.com/identity.html",
         "description": "Paul Graham - Keep Your Identity Small (blog/essay)",
