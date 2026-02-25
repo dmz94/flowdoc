@@ -21,7 +21,7 @@ Output (v1): self-contained readable HTML:
 - no external scripts, CSS, images, or fonts
 - OpenDyslexic embedded only when enabled via `--font opendyslexic`
 
-Non-goals for v1 include: PDF input, heuristic scraping of div soup, GUI, native PDF output.
+Non-goals for v1 include: PDF input, GUI, native PDF output.
 
 ---
 
@@ -29,9 +29,9 @@ Non-goals for v1 include: PDF input, heuristic scraping of div soup, GUI, native
 
 Given input HTML string:
 
-1. **Sanitize** (strip active content, strip attributes, enforce URL policies)
-2. **Parse DOM** (tolerant HTML parser)
-3. **Select main content** (deterministic: main -> article -> body)
+1. **Extract main content** (Trafilatura; falls back to deterministic selector if Trafilatura returns nothing)
+2. **Sanitize** (strip active content, strip attributes, enforce URL policies)
+3. **Parse DOM** (tolerant HTML parser)
 4. **Parse to internal model** (apply degradation rules; model is safe and HTML-free)
 5. **Render from model only** (renderer never touches DOM)
 
@@ -59,17 +59,20 @@ Exit code: 1.
 
 ---
 
-## 4) Main content selection (deterministic)
+## 4) Main content selection
 
-Selection is applied on the sanitized DOM:
+Primary strategy: Trafilatura (`trafilatura.extract(html, output_format="html")`).
 
+Trafilatura is called first on the raw HTML string before sanitization. It returns a clean HTML fragment containing the main content, stripping navigation, headers, footers, sidebars, and boilerplate.
+
+Fallback (if Trafilatura returns None or empty string):
 1. If `<main>` exists, select the **first** `<main>` element.
 2. Else if `<article>` exists, select the **first** `<article>` element.
 3. Else select `<body>`.
 
-If `<body>` is missing, treat as parse/validation error (exit code 1).
+If `<body>` is missing and Trafilatura also fails, treat as parse/validation error (exit code 1).
 
-After selection, navigation/sidebars/headers/footers are not separately processed; they are simply excluded by selection.
+The fallback exists for inputs where Trafilatura cannot identify a main content region (e.g. hand-crafted semantic HTML with no boilerplate to strip). In practice the fallback handles simple_article.html and similar clean inputs correctly.
 
 ---
 
@@ -286,7 +289,7 @@ Explicitly out of v1:
 - `info` command
 - `--report json`
 
-(They may be discussed only in [architecture_exploration.md](architecture_exploration.md).)
+(They may be discussed only in [architecture-exploration.md](architecture-exploration.md).)
 
 ---
 
@@ -308,3 +311,4 @@ Tests must include:
 Dependency control:
 - Development may use compatible ranges.
 - Releases must be cut from exact dependency pins; updating dependencies requires intentional regeneration of golden files.
+- Trafilatura updates require particular care: extraction behaviour can change between versions, invalidating golden files. Pin to a specific version for releases.

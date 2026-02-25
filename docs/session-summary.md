@@ -1,9 +1,9 @@
 # Flowdoc v1 - Development Session Summary
 
-**Date:** February 23, 2026
-**Status:** Core conversion pipeline feature-complete for v1 scope. Input validation complete. Fixture corpus complete.
-**Release Readiness:** NOT release-ready. Required before release: golden file tests, determinism test, OpenDyslexic font embedding, and user validation with dyslexic readers.
-**Test Status:** 90 tests passing locally
+**Date:** February 25, 2026
+**Status:** Core conversion pipeline feature-complete. First real-world validation run complete. Trafilatura integration in progress.
+**Release Readiness:** NOT release-ready. Required before release: Trafilatura implementation, visual validation bug fixes, golden file tests, determinism test, OpenDyslexic font embedding, and user validation.
+**Test Status:** 91 tests passing locally
 
 ## What We Built
 
@@ -13,7 +13,7 @@ Complete end-to-end HTML conversion pipeline:
 1. **model.py** - Document model classes (Document, Section, Heading, Block types, Inline types including LineBreak)
 2. **constants.py** - Typography values from BDA guidelines
 3. **sanitizer.py** - nh3 wrapper with security allowlist (includes br tag)
-4. **content_selector.py** - Deterministic main content selection (main -> article -> body)
+4. **content_selector.py** - Trafilatura extraction with deterministic fallback (main -> article -> body)
 5. **degradation.py** - Placeholder generation for tables/images/forms
 6. **parser.py** - DOM to model conversion (recursive, handles nesting, collapse_whitespace helper). Includes ValidationError and validate_structure().
 7. **renderer.py** - Model to readable HTML with inline CSS
@@ -29,7 +29,7 @@ Complete end-to-end HTML conversion pipeline:
 3. **fetch_fixtures.py** - Dev tool to fetch HTML fixture files from the web. Run with: python fetch_fixtures.py
 
 ### Test Coverage
-- 90 tests passing (unit + integration)
+- 91 tests passing (unit + integration)
 - Tests organized by module
 - Includes test_validation.py (9 tests)
 - Integration test with real HTML fixture (simple_article.html)
@@ -56,9 +56,9 @@ python preview_server.py
 
 **Pipeline flow:**
 1. Read HTML (file or stdin)
-2. Sanitize with nh3 (strip scripts, dangerous attributes)
-3. Parse to BeautifulSoup DOM
-4. Select main content (main -> article -> body)
+2. Extract main content (Trafilatura; deterministic fallback if Trafilatura returns nothing)
+3. Sanitize with nh3 (strip scripts, dangerous attributes)
+4. Parse to BeautifulSoup DOM
 5. Validate structure (requires h1-h3 and p/ul/ol content - raises ValidationError if missing)
 6. Build internal model (sections with headings and blocks)
 7. Render to self-contained HTML with inline CSS
@@ -91,24 +91,34 @@ BAD fixtures (fail validation intentionally):
 
 ## What's Left for v1 Completion
 
-### 1. Golden File Tests (REQUIRED)
+### 1. Trafilatura Integration (PRIORITY - blocks everything else)
+- Install trafilatura: `pip install trafilatura`
+- Rewrite content_selector.py to call trafilatura.extract() as primary strategy
+- Retain deterministic fallback (main -> article -> body) if Trafilatura returns nothing
+- Update pyproject.toml to add trafilatura as dependency
+- Re-run all 10 GOOD fixtures through preview tool and verify output quality
+
+### 2. Visual Validation Bug Fixes (after Trafilatura)
+Issues discovered during first real-world fixture run:
+- In-content navigation lists (NHS Contents, MDN TOC) included in output
+- Footer boilerplate surviving inside content containers (Cleveland Clinic, WikiHow)
+- Advertisement markers surviving sanitization (Cleveland Clinic)
+- Footnote/reference noise inline (WikiHow, Gutenberg)
+- MDN fixture unsuitable for golden files (tables are the content)
+
+### 3. Golden File Tests (after bug fixes)
 - For each fixture, store expected output in tests/fixtures/expected/
 - Test: input -> convert -> compare bytes with expected
-- Catches unintended changes to output
 - Location: Add test_golden_files.py
-- Note: only run against GOOD fixtures, not paulgraham_identity.html
 
-### 2. Determinism Test (REQUIRED)
+### 4. Determinism Test (after golden files)
 - Same input + same flags -> byte-identical output
-- Test: run conversion twice, compare bytes
 - Location: Add to test_integration.py
 
-### 3. OpenDyslexic Font Embedding (REQUIRED for --font flag)
+### 5. OpenDyslexic Font Embedding (REQUIRED for --font flag)
 - Download OpenDyslexic-Regular.woff2 from https://opendyslexic.org/
 - Convert to base64: base64 -w 0 OpenDyslexic-Regular.woff2
 - Replace OPENDYSLEXIC_BASE64 placeholder in constants.py
-- Test: python -m flowdoc.cli.main input.html --font opendyslexic
-- Verify @font-face appears in output
 
 
 ## Policy Decisions (Intentional - Do Not Change Without Discussion)
@@ -127,7 +137,6 @@ These are explicitly deferred (see SCOPE.md):
 - GUI or web interface
 - Batch processing features
 - Additional fonts beyond OpenDyslexic
-- Heuristic/scraping for non-semantic HTML
 - Content transformation (readability improvements)
 
 ## Development Environment
@@ -137,7 +146,7 @@ These are explicitly deferred (see SCOPE.md):
 - Virtual environment at project root (venv/)
 - Windows 11, Command Prompt terminal (not PowerShell)
 - GitHub Desktop for version control
-- Dependencies: beautifulsoup4, lxml, nh3, pytest, flask, requests
+- Dependencies: beautifulsoup4, lxml, nh3, pytest, flask, requests, trafilatura
 - GitHub repo linked to Claude project via GitHub integration
 
 ## Key Decisions Made
@@ -163,7 +172,7 @@ flowdoc/
 |   |   +-- model.py
 |   |   +-- constants.py
 |   |   +-- sanitizer.py
-|   |   +-- content_selector.py
+|   |   +-- content_selector.py  (Trafilatura extraction with deterministic fallback)
 |   |   +-- degradation.py
 |   |   +-- parser.py
 |   |   +-- renderer.py
@@ -196,10 +205,11 @@ flowdoc/
 |   +-- test_integration.py
 +-- docs/
 |   +-- decisions.md (authoritative spec)
-|   +-- ARCHITECTURE.md
+|   +-- architecture.md
 |   +-- research_typography_guidelines.md
-|   +-- 0_0_FLOWDOC_V1_PLAN.md
-|   +-- architecture_exploration.md
+|   +-- flowdoc-v1-plan.md
+|   +-- architecture-exploration.md
+|   +-- session-summary.md (this file)
 +-- fetch_fixtures.py  (dev tool - fetch HTML fixtures from web)
 +-- preview_server.py  (dev tool - Flask server)
 +-- preview.html       (dev tool - drag-drop UI)
@@ -213,9 +223,12 @@ flowdoc/
 
 ## Next Steps
 
-1. **Implement golden file tests** - Next priority
-2. **Add determinism test** - Add to test_integration.py
-3. **Embed OpenDyslexic font** - Complete the --font flag
+1. **Implement Trafilatura integration** - rewrite content_selector.py
+2. **Re-run fixture validation** - verify output quality improvement across all 10 GOOD fixtures
+3. **Fix visual validation bugs** - work through issues discovered in first run
+4. **Implement golden file tests** - after output is stable
+5. **Add determinism test** - add to test_integration.py
+6. **Embed OpenDyslexic font** - complete the --font flag
 
 ## Testing Instructions for Next Session
 
@@ -238,7 +251,7 @@ start tests/fixtures/input/simple_article.flowdoc.html
 python preview_server.py
 ```
 
-**Expected:** 90 tests passing
+**Expected:** 91 tests passing
 
 ## Communication Rules - CRITICAL
 
@@ -260,10 +273,10 @@ These rules MUST be followed in every response:
 
 ## Critical Files to Read at Start of Every Session
 
-1. /mnt/project/SESSION_SUMMARY.md - Current state (this file) - use view tool
+1. /mnt/project/docs/session-summary.md - Current state (this file) - use view tool
 2. /mnt/project/decisions.md - Implementation contracts - use view tool
 3. /mnt/project/SCOPE.md - v1 boundaries - use view tool
-4. /mnt/project/ARCHITECTURE.md - Tech stack and structure - use view tool
+4. /mnt/project/docs/architecture.md - Tech stack and structure - use view tool
 
 ## How to Access Source Files
 
@@ -291,9 +304,9 @@ v1 is complete when:
 2. OK - Produces self-contained readable HTML
 3. PENDING - Output measurably better for dyslexic readers (needs user testing)
 4. PENDING - Works on browsers, mobile, print (manually verified in limited testing only)
-5. PENDING - Failure modes predictable and clear (validation implemented but not yet tested against full fixture corpus)
+5. PENDING - Failure modes predictable and clear (validation implemented but full fixture corpus not yet clean)
 6. OK - Inline elements render correctly
 7. OK - Unsupported elements degrade deterministically
 8. OK - Sanitization prevents active-content issues
 
-Missing pieces: golden file tests, determinism test, font embedding, user testing (#3).
+Missing pieces: Trafilatura integration, visual bug fixes, golden file tests, determinism test, font embedding, user testing (#3).

@@ -3,9 +3,9 @@
 **Version:** 1.0
 **Status:** Frozen for v1 development
 
-Flowdoc is a general-purpose document converter that transforms structured documents into dyslexia-friendly, readable formats.
+Flowdoc is a general-purpose document converter that transforms structured documents into accessible, readable formats. The initial focus is dyslexia; the same pipeline extends to related conditions with minimal additional effort.
 
-v1 is intentionally narrow: it validates core value with dyslexic readers before any scope expansion.
+v1 is intentionally narrow: it validates core value with dyslexic and other affected readers before any scope expansion.
 
 ## Design principle
 
@@ -40,7 +40,7 @@ PDF output is out of scope for v1. Use browser print-to-PDF.
 
 ## In-scope functionality (v1)
 
-- Deterministic main content selection (main -> article -> body)
+- Main content extraction via Trafilatura (with deterministic fallback: main -> article -> body)
 - Parse headings, paragraphs, lists, blockquotes, and code blocks
 - Preserve inline emphasis, strong, inline code, and links
 - Deterministic degradation for unsupported elements (e.g., tables/images)
@@ -57,7 +57,6 @@ Inputs:
 - DOCX
 - Markdown
 - OCR / image-based documents
-- Heuristic scraping / "readability extraction" for div soup
 
 Outputs:
 - native PDF generation
@@ -89,3 +88,9 @@ OpenDyslexic is provided as a preference toggle; Flowdoc makes no universal effi
 8. Sanitization prevents active-content and injection issues.
 
 If v1 meets these criteria, scope expansion is justified; otherwise it is premature.
+
+## v2 direction (not a commitment)
+
+v1 validates the core conversion pipeline for dyslexia. v2 is expected to expand in two directions:
+- Additional accessibility profiles (ADHD, Irlen Syndrome, low vision, color blindness)
+- Additional delivery surfaces (hosted web app, browser extension, embeddable API)

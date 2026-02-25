@@ -41,6 +41,16 @@ Alternatives rejected for v1:
 - html5lib backend: more browser-faithful but significantly slower (pure Python).
 - lxml-only parsing: faster, but higher friction and less forgiving.
 
+Content extractor:
+- Trafilatura (Apache 2.0 license, v1.8.0+)
+
+Why:
+- Best-in-class main content extraction (F1 0.958 in independent benchmarks).
+- Uses readability-lxml and jusText internally as fallbacks.
+- Apache 2.0 license - no commercial use restrictions.
+- Pure Python, no external dependencies beyond lxml.
+- Outputs HTML, preserving structure for downstream parsing.
+
 Sanitizer:
 - nh3 (Rust-backed, allowlist-based HTML sanitizer)
 
@@ -73,7 +83,7 @@ flowdoc/
 |   +-- constants.py         # Typography values, colors, spacing
 |   +-- model.py             # Internal Document Model classes
 |   +-- sanitizer.py         # nh3 wrapper with Flowdoc rules
-|   +-- content_selector.py  # main -> article -> body selection
+|   +-- content_selector.py  # Trafilatura extraction with deterministic fallback
 |   +-- parser.py            # DOM -> Internal Model transformation
 |   +-- degradation.py       # Table/image/form placeholder rules
 |   +-- renderer.py          # Model -> HTML + CSS generation
@@ -104,16 +114,18 @@ Pipeline order is mandatory (security and correctness):
 
 ```
 HTML string (user input)
+  -> trafilatura.extract()          [core/content_selector.py]
   -> nh3.clean()                    [core/sanitizer.py]
   -> BeautifulSoup(..., "lxml")     [core/parser.py]
-  -> select main content subtree    [core/content_selector.py]
+  -> validate structure             [core/parser.py]
   -> parse to internal model        [core/parser.py + core/degradation.py]
   -> render self-contained HTML     [core/renderer.py + core/constants.py]
   -> HTML string (output)
 ```
 
 Important:
-- Sanitization occurs before parsing and before content selection.
+- Trafilatura extracts main content before sanitization.
+- Sanitization occurs before BeautifulSoup parsing.
 - The sanitizer allowlist must include `main`, `article`, and `body`, otherwise content selection can break.
 
 ---
@@ -150,4 +162,3 @@ Out of scope for v1 (do not implement in v1):
 - Additional fonts beyond OpenDyslexic
 - Native PDF generation (v1 uses browser print-to-PDF)
 - Additional input formats (PDF, DOCX, Markdown)
-- Heuristic readability extraction or scraping-style algorithms
