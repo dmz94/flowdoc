@@ -1,9 +1,9 @@
 # Flowdoc v1 - Development Session Summary
 
-**Date:** February 25, 2026
-**Status:** Dual-pipeline architecture implemented and visually validated. 109 tests passing.
-**Release Readiness:** NOT release-ready. Required before release: backlog bug fixes, golden file tests, determinism test, OpenDyslexic font embedding, and user validation.
-**Test Status:** 109 tests passing locally
+**Date:** February 26, 2026
+**Status:** Dual-pipeline architecture implemented and visually validated. 112 tests passing.
+**Release Readiness:** NOT release-ready. Required before release: Trafilatura audit, fixture corpus refresh, golden file tests, determinism test, OpenDyslexic font embedding, and user validation.
+**Test Status:** 112 tests passing locally
 
 ## What We Built
 
@@ -30,7 +30,7 @@ Complete end-to-end HTML conversion pipeline with dual-mode routing:
 4. **convert_fixtures.py** - Dev tool to batch convert all fixtures. Run with: python convert_fixtures.py. Creates .flowdoc.html files alongside inputs for visual inspection.
 
 ### Test Coverage
-- 109 tests passing (91 existing + 18 new)
+- 112 tests passing
 - test_content_selector.py - 8 new routing tests
 - test_cli_basic.py - 4 new mode flag tests
 - test_extract_mode.py - 9 new tests documenting extract mode behavior and known limitations
@@ -44,7 +44,7 @@ Two distinct use cases require different handling:
 - **Extract mode**: Real-world web pages with boilerplate. Runs Trafilatura first to strip nav/ads/footer, then parses cleaned HTML.
 
 ### Auto-Detection Logic (detect_mode in content_selector.py)
-Score-based routing derived from analysis of all 11 fixtures:
+Score-based routing derived from analysis of all fixtures:
 - Count nav/header/footer/aside tags and script tags
 - scripts >= 10 OR nav >= 5 -> extract
 - else -> transform
@@ -62,23 +62,19 @@ Score-based routing derived from analysis of all 11 fixtures:
 9. Write output
 
 ### Known Extract Mode Limitations (documented, not bugs)
-- pre/code blocks: Trafilatura converts pre to blockquote in some cases
-- Inline spacing: some spaces lost around inline elements
-- Dense link structures (Wikipedia lead sections): fragment into separate paragraphs
-- These are Trafilatura limitations, not parser bugs
+See docs/known-limitations.md for full reference.
 
 ## Visual Validation Results (February 25, 2026)
 
-Ran convert_fixtures.py against all 11 fixtures. Results:
+Ran convert_fixtures.py against all fixtures. Results:
 
 | Fixture | Mode | Result | Notes |
 |---|---|---|---|
 | simple_article.html | transform | EXCELLENT | Perfect baseline |
-| nhs_dyslexia.html | extract | GOOD | Clean article, nav gone, minor title newline |
+| nhs_dyslexia.html | extract | GOOD | Clean article, title whitespace fixed |
 | clevelandclinic_dyslexia.html | extract | GOOD | Main content clean, trailing boilerplate leaked |
 | readability_001_tech_blog.html | extract | GOOD | Nav gone, inline code fragmentation issue |
 | wikihow_ride_a_bike.html | extract | ACCEPTABLE | Content readable, duplicate list items, reference noise |
-| gutenberg_pride_prejudice.html | transform | GOOD | Readable prose, italic overuse issue, page number artifacts |
 | wikipedia_photosynthesis.html | extract | POOR | Lead section badly fragmented by dense links |
 | wikipedia_dyslexia.html | extract | NOT TESTED | Expected same fragmentation as photosynthesis |
 | mdn_html_elements.html | extract | SCOPE BOUNDARY | Reference table page - content IS the tables |
@@ -88,19 +84,19 @@ Ran convert_fixtures.py against all 11 fixtures. Results:
 ## Backlog of Issues Found in Visual Validation
 
 ### Priority 1 - Fixable bugs
-1. **Empty paragraphs** - `<p></p>` appearing in output. Strip empty blocks in renderer or parser.
-2. **Title newline** - NHS title has `\n` in it rendering as `Dyslexia\n - NHS`. Strip whitespace from title.
-3. **"Advertisement" paragraphs** - Cleveland Clinic ad markers surviving extraction. May need post-Trafilatura cleanup.
-4. **Trailing boilerplate** - Cleveland Clinic footer/signup/references section leaking through. Trafilatura limitation.
+1. **FIXED - Empty paragraphs** - `<p></p>` appearing in output. Returns None from parse_block() when no inline content.
+2. **FIXED - Title newline** - NHS title had `\n` in it. Added re.sub whitespace normalization in extract_title().
+3. **FIXED - "Advertisement" paragraphs** - Cleveland Clinic ad markers. Added regex filter in extract_with_trafilatura().
+4. **OPEN - Trailing boilerplate** - Cleveland Clinic footer/signup/references leaking through. May be addressable with favor_precision=True - pending Trafilatura audit.
 
-### Priority 2 - Known Trafilatura limitations (document, consider fixing)
-5. **Inline code becoming pre blocks** - `<code>` inside `<p>` becoming standalone `<pre>` in extract mode.
-6. **Missing spaces around inline elements** - "data-cover attribute" losing space. Trafilatura inline spacing issue.
-7. **Duplicate list items** - WikiHow nested list items appearing twice. Trafilatura structure issue.
-8. **Wikipedia lead section fragmentation** - Dense link structures fragment into single-phrase paragraphs.
+### Priority 2 - Known Trafilatura limitations (pending audit)
+5. **OPEN - Inline code becoming pre blocks** - `<code>` inside `<p>` becoming standalone `<pre>` in extract mode.
+6. **OPEN - Missing spaces around inline elements** - "data-cover attribute" losing space.
+7. **OPEN - Duplicate list items** - WikiHow nested list items appearing twice. deduplicate=True unlikely to help for single-page use - confirmed in audit.
+8. **OPEN - Wikipedia lead section fragmentation** - Dense link structures fragment into single-phrase paragraphs.
 
 ### Priority 3 - Accessibility concern
-9. **Italic overuse** - Gutenberg Preface is one long `<em>` block. Italic text is harder for dyslexic readers. Consider converting `<em>` to non-italic style (color, underline) in renderer.
+9. **CLOSED - Italic overuse** - Gutenberg fixture removed. No remaining fixtures exhibit wall-of-italic problem.
 
 ### Priority 4 - Scope boundaries (do not fix in v1)
 10. **MDN reference tables** - Content lives in tables which we strip. Wrong input type for Flowdoc.
@@ -137,11 +133,10 @@ python preview_server.py
 
 ## Fixture Corpus
 
-11 HTML fixtures in tests/fixtures/input/ (9 GOOD, 2 BAD):
+10 HTML fixtures in tests/fixtures/input/ (8 GOOD, 2 BAD):
 
 GOOD fixtures (pass validation):
 - simple_article.html - hand-crafted test fixture (transform mode)
-- gutenberg_pride_prejudice.html - long-form book (transform mode)
 - wikipedia_dyslexia.html - encyclopedia article (extract mode)
 - wikipedia_photosynthesis.html - science article (extract mode)
 - nhs_dyslexia.html - health/medical page (extract mode)
@@ -154,28 +149,44 @@ BAD fixtures (fail validation):
 - paulgraham_identity.html - no semantic structure (intentional)
 - bbcgoodfood_carbonara.html - headings stripped by Trafilatura (known limitation)
 
+Note: gutenberg_pride_prejudice.html removed - 19th century book scan, not representative of target use case.
+
 ## Known Limitations (Intentional for v1)
 
 1. **OpenDyslexic font:** Placeholder empty in constants.py - needs base64 embedding
-2. **Golden file tests:** Not yet implemented
+2. **Golden file tests:** Not yet implemented - blocked on Trafilatura audit
 3. **Determinism test:** Not yet implemented
 4. **Extract mode is lossy:** Documented limitation - inline formatting, spacing, some structure lost
+5. **Trafilatura usage audit pending:** Current extract() call parameters have not been fully audited against library capabilities. Do not implement golden files until audit is complete.
 
 ## What's Left for v1 Completion
 
-### 1. Backlog Bug Fixes (NEXT PRIORITY)
-Work through Priority 1 issues from visual validation above. These are small targeted fixes.
+### 1. Trafilatura Audit (NEXT PRIORITY - blocks everything else)
+Read Trafilatura source via project knowledge search and audit extract_with_trafilatura() in parser.py.
+Key questions:
+- Is include_formatting=True correct for output_format="html"?
+- Should we pass include_comments=False and include_tables=False?
+- Should we pass favor_precision=True?
+- Can prune_xpath address trailing boilerplate?
+- Should we switch to the Extractor class?
 
-### 2. Golden File Tests (after bug fixes)
+### 2. Fixture Corpus Refresh (after audit)
+Current corpus is thin and unrepresentative. Need to add:
+- News article (clean semantic structure)
+- Long-form blog post
+- Government/official page
+- Simple how-to (non-WikiHow format)
+
+### 3. Golden File Tests (after audit and fixture refresh)
 - For each GOOD fixture, store expected output in tests/fixtures/expected/
 - Test: input -> convert -> compare bytes with expected
 - Location: Add test_golden_files.py
 
-### 3. Determinism Test (after golden files)
+### 4. Determinism Test
 - Same input + same flags -> byte-identical output
 - Location: Add to test_integration.py
 
-### 4. OpenDyslexic Font Embedding (REQUIRED for --font flag)
+### 5. OpenDyslexic Font Embedding (REQUIRED for --font flag)
 - Download OpenDyslexic-Regular.woff2 from https://opendyslexic.org/
 - Convert to base64: base64 -w 0 OpenDyslexic-Regular.woff2
 - Replace OPENDYSLEXIC_BASE64 placeholder in constants.py
@@ -188,7 +199,6 @@ Work through Priority 1 issues from visual validation above. These are small tar
 4. **Auto-detection thresholds are evidence-based:** scripts >= 10 OR nav >= 5 derived from fixture corpus analysis. Do not change without re-running analysis.
 5. **Golden file process:** Run conversion, manually verify output, save as expected. Regenerate only when output changes are intentional.
 6. **Determinism scope:** Byte-identical within same Python version (3.12.x) and pinned dependencies only.
-7. **--font opendyslexic before embedding:** Falls back to system fonts. Acceptable until embedded.
 
 ## What's NOT in v1 Scope
 
@@ -209,6 +219,7 @@ Work through Priority 1 issues from visual validation above. These are small tar
 - GitHub Desktop for version control
 - Dependencies: beautifulsoup4, lxml, nh3, pytest, flask, requests, trafilatura
 - GitHub repo linked to Claude project via GitHub integration
+- Trafilatura repo (adbar/trafilatura) also linked to Claude project for source reading
 
 ## Key Decisions Made
 
@@ -220,8 +231,9 @@ Work through Priority 1 issues from visual validation above. These are small tar
 6. **Incremental development:** Build module by module with tests
 7. **Always read files first:** Use project_knowledge_search for .py files, view tool for .md files
 8. **Step-by-step process:** Purpose -> Strategy -> Plan -> Code. Wait for approval after each step.
-9. **One file at a time:** Show one file, wait for confirmation before next
+9. **One file at a time:** Show one file, wait for "done" before showing next file.
 10. **Commit between tasks:** Clean checkpoint after each completed task
+11. **Trafilatura audit before golden files:** Do not lock in output until extract() call is confirmed optimal
 
 ## File Organization
 
@@ -247,7 +259,7 @@ flowdoc/
 |       +-- writer.py
 +-- tests/
 |   +-- fixtures/
-|   |   +-- input/          (11 files - see Fixture Corpus above)
+|   |   +-- input/          (10 files - see Fixture Corpus above)
 |   |   +-- expected/       (empty - for golden files)
 |   |   +-- snapshots/      (empty - reserved)
 |   +-- test_model.py
@@ -272,6 +284,7 @@ flowdoc/
 |   +-- research_typography_guidelines.md
 |   +-- flowdoc-v1-plan.md
 |   +-- architecture-exploration.md
+|   +-- known-limitations.md     (Trafilatura limitations reference for v2)
 |   +-- session-summary.md (this file)
 +-- convert_fixtures.py  (dev tool - batch convert all fixtures)
 +-- fetch_fixtures.py    (dev tool - fetch HTML fixtures from web)
@@ -287,11 +300,11 @@ flowdoc/
 
 ## Next Steps
 
-1. **Fix Priority 1 bugs** from visual validation backlog (empty paragraphs, title whitespace, ad markers)
-2. **Assess Priority 2 issues** (Trafilatura limitations - decide fix vs document)
-3. **Implement golden file tests** - after output is stable
-4. **Add determinism test** - add to test_integration.py
-5. **Embed OpenDyslexic font** - complete the --font flag
+1. **Trafilatura audit** - read source via project knowledge, audit extract_with_trafilatura() call in parser.py
+2. **Fixture corpus refresh** - add representative real-world fixtures (news article, long-form blog, government page, simple how-to)
+3. **Golden file tests** - after audit and fixture refresh confirm output is stable
+4. **Determinism test** - add to test_integration.py
+5. **OpenDyslexic font embedding** - complete the --font flag
 
 ## Testing Instructions
 
@@ -302,7 +315,7 @@ python convert_fixtures.py
 python preview_server.py
 ```
 
-Expected: 109 tests passing
+Expected: 112 tests passing
 
 ## Communication Rules - CRITICAL
 
@@ -348,6 +361,13 @@ Files under flowdoc/io/: reader.py, writer.py
 Dev tools (project root): preview_server.py, preview.html, fetch_fixtures.py,
 convert_fixtures.py
 
+## Trafilatura Source Access
+
+The Trafilatura GitHub repo (adbar/trafilatura) is connected to this Claude project.
+Use project_knowledge_search to read Trafilatura source files directly.
+Key files: trafilatura/core.py, trafilatura/settings.py, trafilatura/htmlprocessing.py,
+trafilatura/settings.cfg, docs/usage-python.rst, docs/settings.rst, docs/deduplication.rst
+
 ## Success Criteria (from SCOPE.md)
 
 v1 is complete when:
@@ -360,4 +380,4 @@ v1 is complete when:
 7. OK - Unsupported elements degrade deterministically
 8. OK - Sanitization prevents active-content issues
 
-Missing pieces: Priority 1-2 bug fixes, golden file tests, determinism test, font embedding, user testing.
+Missing pieces: Trafilatura audit, fixture corpus refresh, golden file tests, determinism test, font embedding, user testing.
