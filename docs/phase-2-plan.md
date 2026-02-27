@@ -36,7 +36,7 @@ Completion Gate:
 
 ---
 
-## Phase 2C – Niggle Inventory Session (In Progress)
+## Phase 2C – Niggle Inventory Session (Complete)
 
 Goal:
 Capture all remaining structural artifacts across the fixture corpus in one consolidated pass.
@@ -52,6 +52,7 @@ Process:
 
 Exit:
 All recorded artifacts either fixed or explicitly accepted as known limitations.
+See docs/niggle-inventory.md for the full inventory and accepted deferrals.
 
 ### Progress / Pause (2026-02-27)
 
@@ -78,7 +79,7 @@ Resume criteria:
 
 ---
 
-## Phase 2D – Intro/Title Recovery Improvements
+## Phase 2D – Intro/Title Recovery Improvements (Next)
 
 Goal:
 Improve preservation of titles and opening paragraphs where extraction misses early content.
