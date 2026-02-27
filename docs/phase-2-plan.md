@@ -36,7 +36,7 @@ Completion Gate:
 
 ---
 
-## Phase 2C – Niggle Inventory Session (Next)
+## Phase 2C – Niggle Inventory Session (In Progress)
 
 Goal:
 Capture all remaining structural artifacts across the fixture corpus in one consolidated pass.
@@ -52,6 +52,29 @@ Process:
 
 Exit:
 All recorded artifacts either fixed or explicitly accepted as known limitations.
+
+### Progress / Pause (2026-02-27)
+
+Completed burn-down items 1–5:
+1. Drop empty list blocks (eater, guardian)
+2. Drop empty heading elements (theringer)
+3. Collapse consecutive identical placeholder blocks (aeon, propublica, eater)
+4. Drop duplicate consecutive headings (guardian)
+5. Extend trailing section drop to all-placeholder sections (structural extension)
+
+Pausing before items 6+.
+Items 6+ (end-anchored single-paragraph tail patterns, leading metadata trim,
+mid-document section blocklist, duplicate list deduplication) either rely on
+site-specific strings or involve start-anchored / content-scoring heuristics
+with higher blast radius.  These are not structurally safe to implement without
+broader fixture evidence or explicit scope approval.
+
+Resume criteria:
+- Any new rule must be structural (no site-specific strings).
+- Must be bounded: end-anchored, or first-N-blocks with a conservative
+  stop condition (e.g. stop at first block with ≥20 words of prose).
+- Must be supported by evidence across at least 2 fixtures.
+- If those criteria cannot be met, treat as a known limitation for Phase 2.
 
 ---
 
