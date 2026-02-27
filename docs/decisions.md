@@ -313,3 +313,21 @@ Dependency control:
 - Development may use compatible ranges.
 - Releases must be cut from exact dependency pins; updating dependencies requires intentional regeneration of golden files.
 - Trafilatura updates require particular care: extraction behaviour can change between versions, invalidating golden files. Pin to a specific version for releases.
+
+---
+
+## Phase 2A measurement note (2026-02-27)
+
+**Context:** Trafilatura 2.0.0. Corpus: 10 user-study fixtures (`tests/fixtures/user-study/`).
+
+Three extraction modes were measured: `baseline` (favor_precision=True, no_fallback=False), `precision` (favor_precision=True, no_fallback=True), `recall` (favor_recall=True, no_fallback=False).
+
+**Results:**
+- `precision` == `baseline` on all 10 fixtures (zero char/paragraph delta). The fallback path is not triggered by any user-study fixture; `no_fallback=True` has no observable effect on this corpus.
+- `recall` diverged significantly on 3 fixtures (worse, not better):
+  - eater: −338,460 chars (354,950 → 16,490), −40 paragraphs
+  - propublica: −318,458 chars (366,581 → 48,123), −103 paragraphs
+  - pbs: −274,066 chars (280,423 → 6,357), −4 paragraphs
+- No status changes: all 10 fixtures ACCEPT under all 3 modes.
+
+**Decision:** Keep `baseline` as the default and only production mode. The mode switch (`ExtractionMode`) exists for experimentation only and must not be exposed in the v1 CLI. `recall` must not become the default; it performs worse on this corpus because `favor_recall=True` activates a different internal Trafilatura algorithm that extracts less content from these specific site structures.

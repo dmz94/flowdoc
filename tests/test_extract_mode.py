@@ -11,7 +11,7 @@ Known documented limitations in extract mode:
 """
 import pytest
 from pathlib import Path
-from flowdoc.core.parser import parse, extract_with_trafilatura
+from flowdoc.core.parser import parse, extract_with_trafilatura, ExtractionMode
 from flowdoc.core.renderer import render
 
 
@@ -82,6 +82,51 @@ def test_transform_mode_preserves_links():
     doc = parse(html)
     output = render(doc)
     assert 'href="https://python.org"' in output
+
+
+def test_baseline_extraction_mode_matches_default():
+    """
+    ExtractionMode "baseline" produces byte-identical output to the implicit default.
+
+    This guards against accidental changes to baseline behavior when the
+    extraction_mode parameter is added. The default must equal "baseline".
+    """
+    fixture_path = Path(__file__).parent / "fixtures" / "input" / "simple_article.html"
+    html = fixture_path.read_text(encoding='utf-8')
+    default_result = extract_with_trafilatura(html)
+    baseline_result = extract_with_trafilatura(html, extraction_mode="baseline")
+    assert default_result == baseline_result
+
+
+def test_extraction_mode_default_parameter_is_baseline():
+    """
+    The extraction_mode parameter default is "baseline" at the function signature level.
+
+    Guards against a refactor silently changing the default to "recall" or "precision".
+    Checked via inspect so the assertion is independent of call-site behavior.
+    """
+    import inspect
+    sig = inspect.signature(extract_with_trafilatura)
+    default = sig.parameters["extraction_mode"].default
+    assert default == "baseline", f"Expected 'baseline', got {default!r}"
+
+
+def test_recall_mode_differs_from_baseline_on_real_fixture():
+    """
+    "recall" produces different output from "baseline" on at least one real fixture.
+
+    Guards against the mode switch being accidentally collapsed (i.e., all modes
+    producing identical output, which would defeat the purpose of the switch).
+    Uses cdc fixture where Phase 2A measurements showed chars 4656 vs 5073.
+    """
+    fixture_path = Path(__file__).parent / "fixtures" / "user-study" / "cdc.html"
+    html = fixture_path.read_text(encoding="utf-8")
+    baseline_result = extract_with_trafilatura(html, extraction_mode="baseline")
+    recall_result = extract_with_trafilatura(html, extraction_mode="recall")
+    assert baseline_result != recall_result, (
+        "baseline and recall produced identical output on cdc fixture; "
+        "mode kwargs may have been collapsed"
+    )
 
 
 def test_extract_mode_full_pipeline_wikipedia():

@@ -6,8 +6,13 @@ Pipeline: Step 4 (after sanitization and content selection)
 See decisions.md sections 5-8 for parsing rules.
 """
 import re
+from typing import Literal
 
 import trafilatura
+
+# ExtractionMode controls which Trafilatura parameter set is used.
+# "baseline" is and must remain the current production behavior.
+ExtractionMode = Literal["baseline", "precision", "recall"]
 
 from bs4 import BeautifulSoup, Tag, NavigableString
 
@@ -28,7 +33,102 @@ class ValidationError(Exception):
     pass
 
 
-def extract_with_trafilatura(html: str) -> str:
+# ---------------------------------------------------------------------------
+# Tail boilerplate trim (end-anchored)
+# ---------------------------------------------------------------------------
+# CMS sites sometimes append footer/social paragraphs after legitimate article
+# content that Trafilatura does not strip (e.g. Cleveland Clinic: "Follow
+# Cleveland Clinic", "Blog, News & Apps", "Site Information & Policies").
+#
+# Heuristic: scan the last _TAIL_SCAN_LIMIT blocks of the final section.
+# When an anchor pattern is found, remove that block AND everything after it.
+# End-anchored by construction: blocks before the anchor are never touched.
+
+_TAIL_BOILERPLATE_ANCHORS = frozenset([
+    "Follow Cleveland Clinic",
+])
+
+_TAIL_SCAN_LIMIT = 10  # never scan further than this from the end
+
+
+def _inline_to_text(inline: "Inline") -> str:
+    """Recursively extract plain text from a single Inline for pattern matching."""
+    if isinstance(inline, Text):
+        return inline.text
+    if isinstance(inline, (Emphasis, Strong)):
+        return "".join(_inline_to_text(c) for c in inline.children)
+    if isinstance(inline, Code):
+        return inline.text
+    if isinstance(inline, Link):
+        return "".join(_inline_to_text(c) for c in inline.children)
+    return ""  # LineBreak and unknowns contribute no text
+
+
+def _paragraph_plain_text(para: Paragraph) -> str:
+    """Return the plain-text content of a Paragraph for boilerplate matching."""
+    return "".join(_inline_to_text(il) for il in para.inlines).strip()
+
+
+def trim_trailing_boilerplate(sections: list[Section]) -> list[Section]:
+    """
+    Remove trailing CMS footer paragraphs from the last section.
+
+    Scans up to _TAIL_SCAN_LIMIT blocks from the end of the final section.
+    When an anchor pattern is found, that block and all blocks after it are
+    removed.  Blocks before the anchor are preserved intact.
+
+    End-anchored: never removes content from the middle of a document.
+    Called after build_sections(), before render.
+    """
+    if not sections:
+        return sections
+
+    last = sections[-1]
+    blocks = last.blocks
+    if not blocks:
+        return sections
+
+    tail_start = max(0, len(blocks) - _TAIL_SCAN_LIMIT)
+    cut_at = None
+
+    for i in range(len(blocks) - 1, tail_start - 1, -1):
+        block = blocks[i]
+        if isinstance(block, Paragraph):
+            text = _paragraph_plain_text(block)
+            for pattern in _TAIL_BOILERPLATE_ANCHORS:
+                if pattern in text:
+                    cut_at = i
+                    break
+
+    if cut_at is not None:
+        sections = list(sections)  # do not mutate the input list
+        sections[-1] = Section(heading=last.heading, blocks=list(blocks[:cut_at]))
+
+    return sections
+
+
+def drop_trailing_orphan_section(sections: list[Section]) -> list[Section]:
+    """
+    Drop the final section if it has a heading but zero content blocks.
+
+    End-anchored: only ever inspects the last section, so legitimate content
+    earlier in the document is never affected.  Safe because build_sections()
+    already discards empty paragraphs; a zero-block trailing section means
+    Trafilatura captured a bare heading stub (e.g. a CMS navigation rail like
+    "The Latest", "Related", "More from...") with nothing beneath it in the
+    extracted fragment.  Structural check only — no site-specific strings.
+
+    Called after trim_trailing_boilerplate() (which may itself empty the last
+    section's block list), before render.
+    """
+    if not sections:
+        return sections
+    if len(sections[-1].blocks) == 0:
+        return sections[:-1]
+    return sections
+
+
+def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "baseline") -> str:
     """
     Extract main content from HTML using Trafilatura.
 
@@ -44,10 +144,30 @@ def extract_with_trafilatura(html: str) -> str:
 
     Args:
         html: Raw HTML string
+        extraction_mode: Controls Trafilatura parameter set (default "baseline").
+            "baseline"  - current production behavior: favor_precision=True, with fallback.
+            "precision" - stricter: favor_precision=True, no_fallback=True.
+                          Skips fallback extraction algorithms; more inputs fall
+                          through to original HTML. Fewer false positives.
+            "recall"    - inclusive: favor_recall=True. Less filtering, more
+                          content retained. More boilerplate may leak through.
 
     Returns:
         Extracted HTML string, or original HTML if extraction failed
     """
+    # Trafilatura kwargs per extraction mode.
+    # "baseline" is the unchanged production behavior; existing callers are unaffected.
+    if extraction_mode == "precision":
+        # no_fallback=True: skip secondary extraction methods on failure.
+        # Trafilatura>=1.8.0 supports this parameter.
+        traf_kwargs: dict = dict(favor_precision=True, no_fallback=True)
+    elif extraction_mode == "recall":
+        # favor_recall=True: more inclusive extraction, keeps more content at cost of
+        # more boilerplate leakage. Named for what it does, not for speed.
+        traf_kwargs = dict(favor_precision=False, favor_recall=True, no_fallback=False)
+    else:  # "baseline" — must stay byte-identical to the previous hardcoded call
+        traf_kwargs = dict(favor_precision=True, no_fallback=False)
+
     extracted = trafilatura.extract(
         html,
         output_format="html",
@@ -55,7 +175,7 @@ def extract_with_trafilatura(html: str) -> str:
         include_links=True,
         include_comments=False,
         include_tables=False,
-        favor_precision=True,
+        **traf_kwargs,
     )
     has_headings = extracted and any(f"<h{i}" in extracted for i in range(1, 7))
     if has_headings:
@@ -97,6 +217,12 @@ def parse(html: str, original_title=None) -> Document:
 
     # Step 5: Build sections
     sections = build_sections(content)
+
+    # Step 5.5: Trim trailing CMS boilerplate paragraphs (end-anchored)
+    sections = trim_trailing_boilerplate(sections)
+
+    # Step 5.6: Drop final orphan section (heading with zero content blocks)
+    sections = drop_trailing_orphan_section(sections)
 
     # Step 6: Extract title
     title = extract_title(soup, content, original_title=original_title)

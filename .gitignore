@@ -58,3 +58,4 @@ package-lock.json
 *.log
 *.flowdoc.html
 repo_snapshot.txt
+extraction_trial_output.txt
