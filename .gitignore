@@ -57,3 +57,4 @@ package-lock.json
 *.bak
 *.log
 *.flowdoc.html
+repo_snapshot.txt
