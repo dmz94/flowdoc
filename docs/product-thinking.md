@@ -1,3 +1,23 @@
+---
+
+# Product Thinking (Aligned)
+
+Status: Active (Aligned with canonical strategy)
+
+This document supports the canonical strategy defined in docs/strategy.md.
+
+Flowdoc is infrastructure-first:
+an accessibility document compiler for prose content.
+
+The primary product identity is not a consumer reading app.
+Any user-facing surface exists only for validation and demonstration
+of infrastructure output quality.
+
+If conflicts exist between this document and docs/strategy.md,
+docs/strategy.md wins.
+
+---
+
 # Flowdoc - Current Thinking (February 2026)
 
 ## What Flowdoc is
