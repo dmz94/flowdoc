@@ -88,7 +88,9 @@ def test_cli_mode_transform(tmp_path):
 def test_cli_mode_extract(tmp_path):
     """--mode extract flag is accepted and exits 0."""
     input_file = tmp_path / "input.html"
-    input_file.write_text("<html><body><h1>Test</h1><p>Content</p></body></html>")
+    # Paragraph needs >= 20 words to pass the extract-mode article body guard.
+    prose = "This is a test article with enough prose words to satisfy the minimum article body word count required by the extract mode article body guard check."
+    input_file.write_text(f"<html><body><h1>Test</h1><p>{prose}</p></body></html>")
 
     output_file = tmp_path / "output.html"
 

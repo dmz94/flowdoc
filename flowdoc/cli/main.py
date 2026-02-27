@@ -113,7 +113,11 @@ def main():
                 print("Transform mode: fidelity-first parsing, no boilerplate removal", file=sys.stderr)
 
         # Parse to model
-        document = parse(html_input, original_title=original_title)
+        document = parse(
+            html_input,
+            original_title=original_title,
+            require_article_body=(mode == "extract"),
+        )
 
         # Render to readable HTML
         html_output = render(document, use_opendyslexic=use_opendyslexic)

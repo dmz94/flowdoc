@@ -211,6 +211,34 @@ def collapse_consecutive_placeholder_blocks(sections: list[Section]) -> list[Sec
     return result
 
 
+_ARTICLE_BODY_MIN_WORDS = 20
+
+
+def _has_article_body(sections: list[Section]) -> bool:
+    """
+    Return True if the document contains at least one non-placeholder
+    Paragraph with >= _ARTICLE_BODY_MIN_WORDS words of prose text.
+
+    Placeholder paragraphs (bracketed tokens like '[Form omitted]',
+    '[Image omitted]', etc.) are excluded from the count.  Headings and
+    list blocks are not counted.
+
+    Used to detect extraction failure where Trafilatura captured navigation
+    or boilerplate instead of article content.
+    """
+    from flowdoc.core.model import Paragraph as ParagraphModel
+    for section in sections:
+        for block in section.blocks:
+            if not isinstance(block, ParagraphModel):
+                continue
+            if _is_placeholder_paragraph(block):
+                continue
+            text = "".join(_inline_to_text(il) for il in block.inlines)
+            if len(text.split()) >= _ARTICLE_BODY_MIN_WORDS:
+                return True
+    return False
+
+
 def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "baseline") -> str:
     """
     Extract main content from HTML using Trafilatura.
@@ -267,7 +295,7 @@ def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "basel
     return html
 
 
-def parse(html: str, original_title=None) -> Document:
+def parse(html: str, original_title=None, require_article_body: bool = False) -> Document:
     """
     Parse HTML string to Document model.
 
@@ -282,6 +310,11 @@ def parse(html: str, original_title=None) -> Document:
         original_title: Optional BeautifulSoup Tag for <title>, captured
                         before Trafilatura strips <head>. Passed by main.py
                         in extract mode to preserve document title.
+        require_article_body: If True, raise ValidationError when no paragraph
+                        with >= 20 words of non-placeholder prose is found.
+                        Set to True in extract mode to detect extraction failure.
+                        Default False to preserve backward compatibility.
+
     Returns:
         Document model with title and sections
     """
@@ -311,6 +344,14 @@ def parse(html: str, original_title=None) -> Document:
 
     # Step 5.8: Drop consecutive duplicate-heading sections
     sections = drop_duplicate_consecutive_sections(sections)
+
+    # Step 5.9: Guard against extraction failure — no article body (extract mode only)
+    if require_article_body and not _has_article_body(sections):
+        raise ValidationError(
+            "No article body detected: document contains no paragraph with "
+            "20 or more words of prose text.  Extraction may have captured "
+            "navigation or boilerplate instead of article content."
+        )
 
     # Step 6: Extract title
     title = extract_title(soup, content, original_title=original_title)
