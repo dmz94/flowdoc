@@ -1,8 +1,8 @@
 # Viability V3 - Baseline eval20 run (no code changes)
 
 Run date: 2026-02-28. Flowdoc production default (baseline extraction mode).
-17 of 20 fixtures ACCEPT; 3 REJECT. 1 in-scope reject (e360yale); 2 expected out-of-scope rejects.
-Guardian and theringer now ACCEPT via headingless-prose extraction fix (added post-baseline).
+18 of 20 fixtures ACCEPT; 2 REJECT. 0 in-scope rejects; 2 expected out-of-scope rejects.
+Guardian and theringer ACCEPT via headingless-prose fix. e360yale ACCEPT via h4-only heading fix.
 
 | # | fixture | expected_scope | status | reason | chars | paragraphs |
 |---|---------|---------------|--------|--------|------:|----------:|
@@ -21,7 +21,7 @@ Guardian and theringer now ACCEPT via headingless-prose extraction fix (added po
 | 13 | article-13-theconversation | in-scope | ACCEPT | OK | 11068 | 38 |
 | 14 | article-14-sciencedaily | in-scope | ACCEPT | OK | 12036 | 68 |
 | 15 | article-15-quantamagazine | in-scope | ACCEPT | OK | 24032 | 75 |
-| 16 | article-16-e360yale | in-scope | REJECT | Lacks semantic structure (no h1–h3 + body content) | 95 | 0 |
+| 16 | article-16-e360yale | in-scope | ACCEPT | OK | 15283 | 20 |
 | 17 | article-17-hakaimagazine | in-scope | ACCEPT | OK | 31282 | 82 |
 | 18 | article-18-undark | in-scope | ACCEPT | OK | 33354 | 122 |
 | 19 | article-19-insideclimate | in-scope | ACCEPT | OK | 7366 | 39 |
@@ -35,9 +35,6 @@ Guardian and theringer now ACCEPT via headingless-prose extraction fix (added po
 **12 w3c-validator-tool:**
 > Out of scope: tool/form page.
 
-**16 article-16-e360yale:**
-> Input HTML lacks semantic structure (requires at least one h1-h3 and body content in p/ul/ol).
-
 ## Before / After ACCEPT/REJECT count
 
 | run | ACCEPT | REJECT | notes |
@@ -45,3 +42,4 @@ Guardian and theringer now ACCEPT via headingless-prose extraction fix (added po
 | V3 baseline (no preflight, no headingless fix) | 17 | 3 | out-of-scope false-ACCEPT; guardian+theringer false-REJECT |
 | V3 + preflight scope check | 15 | 5 | out-of-scope REJECT cleanly; guardian+theringer still REJECT |
 | V3 + preflight + headingless-prose fix | 17 | 3 | guardian+theringer now ACCEPT; out-of-scope REJECT correctly |
+| V3 + preflight + headingless + h4-only fix | 18 | 2 | e360yale now ACCEPT; 0 in-scope REJECTs |

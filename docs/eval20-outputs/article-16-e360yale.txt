@@ -1,1 +1,187 @@
-Input HTML lacks semantic structure (requires at least one h1-h3 and body content in p/ul/ol).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Baboon Raiders: In Cape Town, Can Big Primates and People Coexist? - Yale E360</title>
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 22px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    word-spacing: 0.16em;
+    background-color: #faf8f3;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 58ch;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+
+h1 {
+    font-size: calc(22px * 2.0);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: calc(22px * 1.75);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: calc(22px * 1.5);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: calc(22px * 1.25);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: calc(22px * 1.1);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: calc(22px * 1.0);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+
+p {
+    margin: 0 0 1.8em 0;
+    text-align: left;
+}
+
+ul, ol {
+    margin: 0 0 1.8em 0;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+blockquote {
+    margin: 0 0 1.8em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #1a1a1a;
+}
+
+pre {
+    background-color: #f5f5f5;
+    padding: 1em;
+    margin: 0 0 1.8em 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+code {
+    background-color: #f5f5f5;
+    padding: 0.2em 0.4em;
+    font-family: 'Courier New', monospace;
+}
+
+a {
+    color: #0051a5;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #003d7a;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+@media print {
+    body {
+        font-size: 12pt;
+    }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Baboon Raiders: In Cape Town, Can Big Primates and People Coexist? - Yale E360</h1>
+<blockquote>
+</blockquote>
+
+<p>This was not the first time a baboon (or a troop of baboons) had entered our home, and it would not be the last. We are some of the tens of thousands of Capetonians living in neighborhoods visited by baboons. Conflicts between baboons and people, baboons and dogs, and between people with very different feelings about these large and highly intelligent primates have become normal here. Property has been damaged, and baboons have been injured and killed, as have pets.</p>
+
+<p>For decades, many government officials avoided dealing with our tricky “baboon problem.” But recently, the City of Cape Town has collaborated with national and provincial conservation authorities to produce an action plan that includes installing electrified fences, rolling out baboon-proof trash bins, and removing to a caged sanctuary or euthanizing baboons that have become, in their view, too habituated to humans. Its proponents say the plan will manage baboons decisively and fairly, largely end the conflicts, and pioneer methods for other cities to maintain populations of culturally- and ecologically-valuable large primates.</p>
+
+<p>But, as with most things baboon-related in Cape Town, not everyone agrees with the plan.</p>
+
+<h4>The author’s video of chasing Kataza, the baboon, out of his kitchen in 2020 and of later finding a baboon troop in his kitchen in 2024.</h4>
+<p>Cape Town lies on the southwestern corner of Africa. Fossils and archaeological <a href="https://www.sciencedirect.com/science/article/abs/pii/S004724840600162X">evidence</a> indicate that baboons and hominins (<em>Homo sapiens</em> and our ancestral species) have probably occupied this region for at least 600,000 years. The chacma baboon (<em>Papio ursinus</em>), the species now found in southern Africa, is omnivorous, highly adaptable, and can live in most of the region’s natural habitats. (Other species live elsewhere on the continent.) Chacmas occur further south than any other primates worldwide, ranging to Cape Agulhas, the southern tip of Africa.</p>
+
+<p>In 1652 Cape Town became the site of the first European settlement in modern-day South Africa when the Dutch East India Company sent 90 colonists to establish a replenishment station for ships sailing between Europe and Asia. Their priority was to grow vegetable gardens and fruit orchards, which the local baboons began raiding, and soon the colonists were trapping and killing the primates. The white settlers that subsequently spread across southern Africa generally regarded baboons as <a href="https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1019&amp;context=vpc6">vermin</a>, often placing bounties on them, some of which remained in place well into the 1900s. Some South African provinces still have no daily <a href="https://sahunters.co.za/wp-content/uploads/2023/02/Eastern-Cape-Provincial-Hunting-Proclamation-2022.pdf">bag limit</a> on baboons, allowing hunters to kill <a href="https://emsfoundation.org.za/wp-content/uploads/Our-Kin-Discarded-Final-Report-20-February-2023-2.pdf#:~:text=All%20nine%20provinces%20allow%20the,number%20that%20can%20be%20hunted.">unlimited numbers</a>.</p>
+
+<blockquote>
+</blockquote>
+
+<p>Despite relentless persecution, chacma baboons have survived in many parts of southern Africa and even in and around Cape Town, although their numbers here declined during the 1900s. Many were trapped for medical experiments, and whole troops of “problem baboons” were exterminated. Breakneck urban expansion destroyed thousands of acres of foraging habitat and isolated the remaining baboons on the mountainous Cape Peninsula, on the western side of the city, much of which is covered with natural vegetation and today largely protected in Table Mountain National Park.</p>
+
+<p>In the 1990s, researchers Ruth Kansky and Dave Gaynor conducted the first-ever <a href="https://drive.google.com/file/d/1of9t35-kl4Ii9z6Xph7K3zIKjT_P-RCB/view">comprehensive survey</a> of Cape Town’s baboons. They found a declining population of only about 360 animals in 10 troops, which were confined to the southern regions of the peninsula. Troops foraged in natural habitats but also in adjacent urban areas, where they raided trash bins and entered homes. Many were being shot and poisoned by residents, attacked by dogs, run over by cars, and electrocuted on power lines. Kansky and Gaynor found that the more time a troop spent in urban areas, the higher its mortality rate. </p>
+
+<p>Local baboon research ramped up in the 2000s, further establishing that even troops with large areas of natural habitat available to them were attracted to urban areas. Why? Justin O’Raian of the University of Cape Town who, along with colleagues and students, has been studying these animals since 2002, says that urban areas supply many more calories per acre than the native <em>fynbos </em>shrubland. Baboons can survive and even thrive in <em>fynbos</em>, he says, but they must work much harder, walk much further, and spend far more time eating than in urban spaces where calorie-dense human food from households and trash bins are available along with garden plants.</p>
+
+<p>O’Raian says urban areas are “ecological traps of note” for baboons; rich food resources tempt them in, and then they’re killed in large numbers. Recent <a href="https://open.uct.ac.za/items/cbd7761b-bdff-45ca-9dd5-4b00f8c7ee12">research</a> by one of his PhD students, Joselyn Mormile, shows that even in the coastal town of Rooi-Els, which has unusually tolerant residents who don’t shoot and poison them, baboons are still killed in unsustainable numbers by cars and dogs. Diseases and parasites can be transmitted between baboons and humans, which is dangerous for both, and baboons cause expensive damage to property when they break into houses. Keeping baboons out of neighborhoods is best for baboons and humans. “This is black and white. The data are as clear as I’ve ever seen,” he says.</p>
+
+<blockquote>
+</blockquote>
+
+<p>As research on Cape Town baboons has advanced, scientists have generally come to agree on the benefits of keeping baboons out of urban areas. But this has not translated into coherent and consistent management. One reason, observers say, is because wildlife-oriented agencies such as CapeNature (the conservation agency for the Western Cape Province) and South African National Parks long avoided this difficult issue, leaving the City of Cape Town to coordinate and pay for almost all baboon management alone.</p>
+
+<p>Another big reason is that residents have diverse and often deeply <a href="https://unrulynatures.com/outputs-2/">polarized views</a> about baboons and their management. Most are tolerant of baboons in natural areas yet want them out of urban spaces. A small minority would like all Cape Town’s baboons removed. And another minority — although a vocal one — advocates for coexistence, arguing that baboons have lost a lot of their natural habitat, and that by managing waste, baboon-proofing homes (e.g. with window bars), and increasing tolerance for them, we can live together in urban areas in relative peace.</p>
+
+<p>Since 2000, the city has put increasing amounts of money into management programs employing baboon rangers, who monitor baboons and attempt to herd them out of urban areas. This has allowed the peninsula population to grow to about 600 animals. As the programs have expanded, different control techniques have been used, including paintball guns and <a href="https://campnab.com/camping-glossary/bear-banger">bear bangers</a> to haze baboons out of neighborhoods, and “problem baboons” have been euthanized. Distrust has grown between baboon managers and activists, especially around the euthanasia of injured or “problem” animals, which has sometimes been undertaken without the public being notified. Activists have campaigned and occasionally taken legal action against certain management decisions, and government entities even sued each other over baboons, adding to management inconsistency.</p>
+
+<p>In some neighborhoods, activists have installed themselves as unofficial baboon guardians, accompanying the animals, carrying warning flags to stop traffic for baboons, and berating homeowners who don’t secure their trash bins. Sometimes these activists work with baboon rangers, but often they clash with managers and fellow residents who accuse them of encouraging baboons to frequent urban areas.</p>
+
+<p>High-intensity arguments over baboons are common on the streets and online. Community meetings often degenerate into inconclusive shouting matches. In August 2024, unofficial guardians and residents who wanted baboons out of the suburb of Kommetjie brandished clubs and pepper spray and almost came to blows on the main street. “It was like Lord of the Flies,” says Alan van Gysen, a local photographer who witnessed the altercation.</p>
+
+<p>The erratic management that’s resulted from ongoing conflict means “we have been spending more and more money and getting poorer and poorer results,” says Gregg Oelofse, a senior environmental manager for the City of Cape Town. “Everyone agrees that baboons are an incredible asset to the city,” both culturally and ecologically, and a boon for tourism, he says, but the baboon budget cannot increase indefinitely in a city like Cape Town where resources are limited and huge numbers of people live in poverty. “Tough choices” must be made, he says, and baboon management must undergo a “hard reset.”</p>
+
+<p>Oelofse has been key in developing a new baboon action plan in collaboration with the Western Cape Province’s conservation agency (CapeNature) and South African National Parks. The <a href="https://baboons.org.za/final-action-plan-2025/">Final Cape Peninsula Baboon Management Action Plan</a> was announced last November to begin rolling out this year.<em></em>It aims to maintain baboons within the natural areas they currently occupy and radically reduce conflict by keeping them out of urban areas to the maximum extent possible. If the plan succeeds, the primates will live in very close proximity to, but not in, neighborhoods.</p>
+
+<blockquote>
+</blockquote>
+
+<p>Baboon rangers will continue working. Baboon-proof electric fences, which have successfully kept baboons out of vineyards, will be built between some neighborhoods and adjacent natural habitats. The baboons frequenting those neighborhoods will be moved to the opposite side of the fences and if they persistently return to their urban haunts, they will be euthanized. Two troops that are considered to be thoroughly urbanized and live almost permanently within the suburb of Simon’s Town will be moved to a caged sanctuary, where the males will be vasectomized, and tourists will be charged to visit so the baboons don’t burden local taxpayers. If the baboons do not adapt to the sanctuary and are faring poorly there, they too will be euthanized.</p>
+
+<p>Thousands of baboon-proof trash bins will be rolled out to neighborhoods near baboon troops, and residents who feed or harm baboons will be prosecuted under new city bylaws. Some power lines will be placed underground to prevent baboon electrocutions. To prevent baboons spreading out of the southern reaches of the peninsula, numbers will be capped at 525 and, if necessary, controlled via euthanasia. The plan commits to studying the viability of contraception to limit numbers and the practicality of “genetic enrichment” by introducing animals from nearby areas to increase genetic diversity within the isolated peninsula population. The aim of the plan, says Oelofse, is to create well-managed, free-ranging troops of baboons living in natural habitats and end human-on-human conflicts about baboons, which he calls “crazy” and “disconcerting,”</p>
+
+<p>Some pro-baboon activists and local conservation groups oppose the plan because of its explicit use of euthanasia, its hard upper limit on numbers, its confinement of two Simon’s Town troops in a sanctuary, and a lack of public, detailed guidelines for the plan’s implementation. “This plan leans heavily into killing,” <a href="https://drive.google.com/file/d/1OO9LOYYqI1K5njqEcKfLqYX-e5HuPZWW/view">says Lynda Silk</a> of Cape Peninsula Civil Conservation. “Baboons will once again pay with their lives, while the convenience of a wealthy minority is prioritized.” One group called Liberty Fighters Network has already <a href="https://libertyfighters.org/lvn-v-western-cape-premier-alan-winde-others/">announced</a> its intention to sue to stop the plan’s implementation, and others may soon follow.</p>
+
+<p>Justin O’Raian says he does not agree with every aspect of the plan, but it is based on science and, if implemented as envisaged, should improve baboon welfare over the long term. Cape Town is unique in Africa as it is actively trying to maintain a population of baboons, he says. In other cities, troublesome primates are simply killed, and most cities no longer have any. O’Raian says the authorities are legally obliged to conserve baboons as part of natural heritage, but not at any cost. “My concern is that constant legal challenges may see the authorities simply defunding all this. And then the baboons are absolutely screwed.”</p>
+
+</div>
+</body>
+</html>

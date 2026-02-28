@@ -332,9 +332,15 @@ def extract_with_trafilatura(
         **traf_kwargs,
     )
 
-    has_headings = extracted and any(f"<h{i}" in extracted for i in range(1, 7))
-    if has_headings:
+    has_h1_h3 = extracted and any(f"<h{i}" in extracted for i in range(1, 4))
+    has_any_heading = extracted and any(f"<h{i}" in extracted for i in range(1, 7))
+
+    if has_any_heading:
         cleaned = re.sub(r'<p>\s*Advertisement\s*</p>', '', extracted)
+        if not has_h1_h3:
+            title = original_title or _extract_title_string(html)
+            h1 = f"<h1>{title}</h1>\n" if title else "<h1>Article</h1>\n"
+            return h1 + cleaned
         return cleaned
 
     # Headingless extraction: accept if prose-sufficient, inject synthetic heading.
