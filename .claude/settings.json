@@ -42,14 +42,14 @@
       "Bash(pip show*)",
       "Bash(pytest*)",
       "Bash(ruff*)",
-      "Bash(mypy*)"
+      "Bash(mypy*)",
+      "Bash(curl*)",
+      "Bash(wget*)"
     ],
     "deny": [
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~*)",
       "Bash(rm -rf .*)",
-      "Bash(curl*)",
-      "Bash(wget*)",
       "Bash(ssh*)",
       "Bash(scp*)",
       "Bash(nc *)",
