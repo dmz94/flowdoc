@@ -20,11 +20,11 @@ Fixed set — do not change filenames or scoring criteria mid-run.
 | 13 | article-13-theconversation.html | https://theconversation.com/will-ai-accelerate-or-undermine-the-way-humans-have-always-innovated-272246 | 2026-02-28 | in-scope | Academic long-form prose: AI and human innovation, ~1400 words. |
 | 14 | article-14-sciencedaily.html | https://www.sciencedaily.com/releases/2025/11/251130050712.htm | 2026-02-28 | in-scope | Science journalism prose: memory formation neuroscience, ~950 words. |
 | 15 | article-15-quantamagazine.html | https://www.quantamagazine.org/how-smell-guides-our-inner-world-20250703/ | 2026-02-28 | in-scope | Long-form feature journalism: olfaction and neuroscience, ~3500 words. |
-| 16 | TBD | TBD | TBD | TBD | Placeholder — new fixture to be added. |
-| 17 | TBD | TBD | TBD | TBD | Placeholder — new fixture to be added. |
-| 18 | TBD | TBD | TBD | TBD | Placeholder — new fixture to be added. |
-| 19 | TBD | TBD | TBD | TBD | Placeholder — new fixture to be added. |
-| 20 | TBD | TBD | TBD | TBD | Placeholder — new fixture to be added. |
+| 16 | article-16-e360yale.html | https://e360.yale.edu/features/cape-town-baboons | 2026-02-28 | in-scope | Environmental feature journalism: baboon-human coexistence in Cape Town, ~2345 words. |
+| 17 | article-17-hakaimagazine.html | https://hakaimagazine.com/features/caviar-pizzas-new-money-and-the-death-of-an-ancient-fish/ | 2026-02-28 | in-scope | Long-form narrative journalism: sturgeon fishing, caviar economy, ~4952 words. |
+| 18 | article-18-undark.html | https://undark.org/2026/02/26/brain-organoids-big-questions/ | 2026-02-28 | in-scope | Science journalism: brain organoid research ethics and complexity, ~3773 words. |
+| 19 | article-19-insideclimate.html | https://insideclimatenews.org/news/26022026/us-government-accelerates-pacific-coral-reef-collapse/ | 2026-02-28 | in-scope | Investigative science journalism: coral reef collapse and federal policy, ~1729 words. |
+| 20 | article-20-sciencefriday.html | https://www.sciencefriday.com/articles/miyawaki-miniforest-rewilding/ | 2026-02-28 | in-scope | Science feature: Miyawaki miniforest rewilding movement, ~1581 words. |
 
 ## Planned composition for rows 11–20
 
