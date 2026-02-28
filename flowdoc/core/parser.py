@@ -239,14 +239,53 @@ def _has_article_body(sections: list[Section]) -> bool:
     return False
 
 
-def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "baseline") -> str:
+# Minimum prose characters (after stripping tags) to accept a headingless
+# Trafilatura extraction instead of falling back to the full original HTML.
+# Both guardian (32 K) and theringer (18 K) clear this by a wide margin;
+# a genuine empty/navigation-only extraction is well below it.
+_MIN_PROSE_CHARS = 2000
+
+
+def _extract_title_string(html: str) -> str:
+    """
+    Extract and normalise the text content of the <title> tag from a raw
+    HTML string.  Returns an empty string if no <title> is found.
+
+    Used to supply a synthetic heading when Trafilatura produces headingless
+    prose output (see extract_with_trafilatura).
+    """
+    m = re.search(r'<title[^>]*>(.*?)</title>', html, re.IGNORECASE | re.DOTALL)
+    if not m:
+        return ""
+    return re.sub(r'\s+', ' ', m.group(1)).strip()
+
+
+def extract_with_trafilatura(
+    html: str,
+    extraction_mode: ExtractionMode = "baseline",
+    original_title: str | None = None,
+) -> str:
     """
     Extract main content from HTML using Trafilatura.
 
     Used in extract mode (real-world pages with boilerplate).
-    Returns extracted HTML if Trafilatura succeeds and preserves heading
-    structure. Falls back to original HTML if extraction fails or strips
-    all headings.
+    Returns extracted HTML if Trafilatura succeeds.  Falls back to original
+    HTML only when extraction genuinely fails (None or near-empty output).
+
+    Acceptance rules (in order):
+    1. Extracted content contains headings → use as-is (existing behaviour).
+    2. Extracted content is prose-sufficient (>= _MIN_PROSE_CHARS chars after
+       stripping tags) but headingless → inject a synthetic <h1> from the page
+       title so that validate_structure() and build_sections() can process the
+       content normally.  Catches prose articles whose headings are CSS- or
+       JS-rendered and therefore absent from Trafilatura's HTML output
+       (e.g. Guardian long-reads, The Ringer feature articles).
+    3. Otherwise → fall back to original HTML (genuine extraction failure).
+
+    The synthetic heading is sourced from:
+    - ``original_title`` argument if supplied by the caller, else
+    - the raw ``<title>`` element parsed from ``html``, else
+    - the literal string "Article".
 
     Known limitations in extract mode:
     - <pre> code blocks are converted to <blockquote>
@@ -262,9 +301,13 @@ def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "basel
                           through to original HTML. Fewer false positives.
             "recall"    - inclusive: favor_recall=True. Less filtering, more
                           content retained. More boilerplate may leak through.
+        original_title: Optional page title string; used as the synthetic <h1>
+                          text when the extraction is headingless.  Callers may
+                          omit this; the function will extract it from ``html``.
 
     Returns:
-        Extracted HTML string, or original HTML if extraction failed
+        Extracted HTML string (possibly with injected <h1>), or original HTML
+        if extraction failed.
     """
     # Trafilatura kwargs per extraction mode.
     # "baseline" is the unchanged production behavior; existing callers are unaffected.
@@ -288,10 +331,21 @@ def extract_with_trafilatura(html: str, extraction_mode: ExtractionMode = "basel
         include_tables=False,
         **traf_kwargs,
     )
+
     has_headings = extracted and any(f"<h{i}" in extracted for i in range(1, 7))
     if has_headings:
         cleaned = re.sub(r'<p>\s*Advertisement\s*</p>', '', extracted)
         return cleaned
+
+    # Headingless extraction: accept if prose-sufficient, inject synthetic heading.
+    if extracted:
+        prose_chars = len(re.sub(r'<[^>]+>', '', extracted).strip())
+        if prose_chars >= _MIN_PROSE_CHARS:
+            cleaned = re.sub(r'<p>\s*Advertisement\s*</p>', '', extracted)
+            title = original_title or _extract_title_string(html)
+            h1 = f"<h1>{title}</h1>\n" if title else "<h1>Article</h1>\n"
+            return h1 + cleaned
+
     return html
 
 

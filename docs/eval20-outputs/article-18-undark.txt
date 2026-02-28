@@ -128,67 +128,12 @@ a:visited {
 </head>
 <body>
 <div class="container">
-<h3>Share this Story</h3>
-<ul>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=facebook"> Click to share on Facebook (Opens in new window) Facebook </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=twitter"> Click to share on X (Opens in new window) X </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=reddit"> Click to share on Reddit (Opens in new window) Reddit </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=custom-1571833157"> Click to share on FlipBoard (Opens in new window) FlipBoard </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=pocket"> Click to share on Pocket (Opens in new window) Pocket </a></li>
-<li></li>
-</ul>
-
-<p>[Form omitted]</p>
-
-<p>[Image omitted]</p>
-
-<ul>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=facebook"> Click to share on Facebook (Opens in new window) Facebook </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=twitter"> Click to share on X (Opens in new window) X </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=reddit"> Click to share on Reddit (Opens in new window) Reddit </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=custom-1571833157"> Click to share on FlipBoard (Opens in new window) FlipBoard </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=pocket"> Click to share on Pocket (Opens in new window) Pocket </a></li>
-<li></li>
-</ul>
-
-<p>Nora Belblidia is a senior editor at Undark.</p>
-
-<p>[Image omitted]</p>
-
-<ul>
-<li><a href="https://www.facebook.com/undarkmagazine/">Facebook</a></li>
-<li><a href="https://twitter.com/undarkmag/">Twitter</a></li>
-<li><a href="https://vimeo.com/undarkmag/">Vimeo</a></li>
-</ul>
-
-<p>[Image: Undark Magazine]</p>
-
-<p>[Form omitted]</p>
-
-<ul>
-<li><a href="https://undark.org/republishing-guidelines/">Usage Guidelines</a></li>
-<li><a href="https://undark.org/contact/">Contact</a></li>
-<li><a href="https://undark.org/privacy-policy/">Privacy</a></li>
-<li><a href="https://undark.org/terms/">Terms &amp; Conditions</a></li>
-<li><a href="https://undark.org/corrections-policy/">Corrections</a></li>
-<li><a href="https://undark.org/funding-transparency/">Funding</a></li>
-<li><a href="https://undark.org/submission-guidelines/">Submit a Proposal</a></li>
-</ul>
-
-<p>[Image: Undark Magazine]</p>
-
 <h1>As Brain Organoid Science Grows More Complex, So Do the Questions</h1>
-
-<h2>Scientists are growing brain tissue to learn more about the organ. What will the public make of the work?</h2>
-<p><em>Top: Brainstem organoids, each about a millimeter wide, cultured in Annie Kathuria’s lab at Johns Hopkins University. Visual: Nora Belblidia for Undark</em></p>
-
 <p>To the naked eye, Annie Kathuria’s experiments look a bit like tiny tufts of cotton floating in pink Petri dishes. These unassuming orbs are clusters of millions of human brain cells called brain organoids — brainstem organoids in this case — cultured in a lab in East Baltimore. Roughly a month old, the tufts are each around a millimeter wide, smaller than a coarse grain of salt.</p>
 
 <p>“We have about maybe 500 to 600 organoids growing,” said Kathuria, an assistant professor of biomedical engineering and neurosurgery at Johns Hopkins University. In addition to the brainstem organoids, her lab is also growing other types that correspond to different parts of the nervous system: cortical organoids, which mimic a brain’s developing cortex, and spinal cord organoids, to model the spinal nerve tissue that connects to the brain.</p>
 
 <p>Each of these clumps of neural tissue functions similarly to specific regions of the human brain. That similarity has led to some media coverage referring to them as “mini-brains” or “brains in a dish” — now irksome terms to many researchers in the field, some of whom also prefer the term neural organoids to brain organoids.</p>
-
-<p>[Image omitted]</p>
 
 <p>“Whatever else they are, they aren’t brains. They aren’t organized like brains. They aren’t big enough,” said Hank Greely, a Stanford University professor and expert in law and biosciences who works with researchers in the field. “But more importantly, they don’t have the right architecture.” By that he means organoids are basic parts of a whole, similar to how a broom closet or stairwell would never be considered a skyscraper.</p>
 
@@ -196,9 +141,6 @@ a:visited {
 
 <p>That means that the organoids could help scientists understand how brains develop and function, an endeavor that has historically proven elusive. “No other organ is as inaccessible as the human brain,” said Sergiu Pasca, a neuroscientist at Stanford University. “So if you really want to make any progress, we’re going to have to get access to the cells.”</p>
 
-<p>[Image: an oval filled with colorful cellular structures on a black background]</p>
-
-<h4>Related</h4>
 <p>Understanding how a healthy brain works can provide insight into how it fails, too. Scientists hope that studying organoids derived from humans with neurodevelopmental disorders — particularly disorders that are hard to model in animals, like schizophrenia — can lead to developing effective treatments.</p>
 
 <p>Policymakers and funders are paying attention. In April 2025, the Food and Drug Administration <a href="https://www.fda.gov/news-events/press-announcements/fda-announces-plan-phase-out-animal-testing-requirement-monoclonal-antibodies-and-other-drugs">announced</a> that it would promote the use of organoids in testing drug safety as an alternative to using animals. And in September, the National Institutes of Health <a href="https://www.nih.gov/news-events/news-releases/nih-establishes-nations-first-dedicated-organoid-development-center-reduce-reliance-animal-modeling">committed</a> $87 million to establish a center devoted to standardizing research methodologies in order to increase study reproducibility.</p>
@@ -213,8 +155,6 @@ a:visited {
 
 <p>Greely, the Stanford professor, said many such scenarios are a long way off. Some, in fact, may never arise. He is heartened, though, that researchers are already taking these questions seriously, “whether they’re sensitive because they think it would be ethically terrible, or whether they’re sensitive because they think it would be terrible headlines and hurt their funding,” he said. “Or both.”</p>
 
-<p>[-]</p>
-
 <p>The origin of organoid research can be traced back to 2008, when a scientist named Yoshiki Sasai first published work on guiding embryonic stem cells to grow into cortical tissue. He didn’t use the term “organoid” at that time though — that was popularized later, after Madeline Lancaster, a developmental biologist then based at the Austrian Academy of Sciences in Vienna, received media coverage for <a href="https://www.nature.com/articles/nature12517">her work</a> growing clumps of cells that self-organized to resemble the cortex, hippocampus, and other brain regions.</p>
 
 <p>The burgeoning field was aided by a breakthrough that came 20 years ago: the ability to reprogram mature cells into immature stem cells, from which any type of specialized cell can develop.</p>
@@ -223,8 +163,6 @@ a:visited {
 
 <p>“That was a critical point, because it essentially democratized the cells,” said Pasca. “Anybody could derive the cells without major ethical concerns. Everybody could make them in their own lab.”</p>
 
-<p>[Image omitted]</p>
-
 <p>That helped foster an exponential rise in research labs exploring these questions. Ten years ago, there were a “handful of labs” conducting brain organoid research, said Alysson Muotri, a professor in the Departments of Pediatrics and Cellular &amp; Molecular Medicine at the University of California, San Diego. “Now, I lost count.”</p>
 
 <p>For many years, labs primarily focused on experimenting with different protocols to grow organoids. Scientists aren’t able to grow an organoid that represents the entire brain from scratch — the organ is simply too complex. Instead, they grow cells that correspond to different regions, for example, a cortical organoid or a midbrain organoid.</p>
@@ -232,8 +170,6 @@ a:visited {
 <p>There are many ways to grow an organoid. One of the first steps, though, is that a researcher has to get the initial stem cells to roughly form a small sphere. They then implant that sphere into a substance that Kathuria likened to a “sticky glue” that supports the organoid’s structure and helps it grow. Researchers can let the spheres grow on their own without guiding them — Lancaster’s team pioneered this protocol in their 2013 study. Or researchers can coax the cluster into the type of organoid they hope it will become by feeding it a mix of specific molecules and nutrients at specific times, typically over the course of several weeks to months. “We’re just giving a bunch of molecules and waiting around for biology to occur,” said Kathuria.</p>
 
 <p>Different researchers may use a different recipe, similar to how two bakers could adjust ingredients and bake time but both make carrot cakes. And while researchers by now have a general idea of which recipes are reliable for which brain regions, the desired outcome isn’t always guaranteed. Kathuria, for example, was once trying to generate a type of nerve cell cluster that helps facilitate communication to other tissues when she ended up making brainstem organoids instead.</p>
-
-<p>[Image omitted]</p>
 
 <p>In July 2025, Kathuria published work on how she used a brainstem organoid and connected it to other kinds in order to form what she and her co-authors termed a “<a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202503768">multi-region brain organoid</a>.” It was about the size of a small blueberry and, according to Kathuria, a rudimentary model of a fetal brain.</p>
 
@@ -249,8 +185,6 @@ a:visited {
 
 <p>In 2022, Brett Kagan, the chief scientific officer and chief operating officer of the startup Cortical Labs, co-authored a <a href="https://www.npr.org/sections/health-shots/2022/10/14/1128875298/brain-cells-neurons-learn-video-game-pong">much-publicized</a><a href="https://www.cell.com/neuron/fulltext/S0896-6273(22)00806-6">study</a> that trained neural cells to play the video game Pong. And while that paper did not use organoids — but rather two-dimensonal neural cells — the Swiss-based startup <a href="https://www.bbc.com/news/articles/cy7p1lzvxjro">FinalSpark</a> has connected organoids to electrodes, and set up a platform on which scientists can run remote experiments. Researchers have used that platform to train organoids to read Braille characters.</p>
 
-<p>[Image omitted]</p>
-
 <p>Still, Sharf cautioned against overhype. “There’s been a lot of talk about that in the media, and there haven’t been many rigorous approaches to really define what these things are capable of doing.” Last year, Sharf received $1.9 million from the National Science Foundation to design tests to assess those computational capabilities.</p>
 
 <p>In 2023, Lena Smirnova, an assistant professor of environmental health and engineering at Johns Hopkins, co-published an <a href="https://www.frontiersin.org/journals/science/articles/10.3389/fsci.2023.1017235/full">article</a> with Boyd, Kagan, Muotri, and other experts that coined the term “organoid intelligence” to refer to the emerging field of biocomputing — which refers to using any biological materials, including organoids, to process information — and developing “brain-machine interface technologies.”</p>
@@ -259,15 +193,11 @@ a:visited {
 
 <p>Lately, Smirnova has been working to train organoids, similar to how research scientists might train a machine learning model, in order to study their ability to learn and remember, with the eventual goal of using organoids to reduce animal testing in toxicology research.</p>
 
-<p>[Image omitted]</p>
-
 <p>In an email, Smirnova, who consults for the neurotechnology company 28bio (formerly <a href="https://www.prnewswire.com/news-releases/axosim-licenses-revolutionary-mini-brain-technology-from-johns-hopkins-university-enabling-the-use-of-human-data-to-speed-new-drug-research-300858944.html">AxoSim</a>) and whose husband, Thomas Hartung, is involved with and has licensed a technology to the company, noted that simple information processing should be distinguished from “the idea of biocomputers, which we are nowhere near building. Keeping that distinction clear,” she continued, “helps avoid hype and keeps the ethical discussion grounded in reality.”</p>
 
 <p>Still, the idea of human cells used in a computer can inspire an unsettling feeling.</p>
 
 <p>Kagan, of Cortical Labs, likened any potential discomfort to the early days of the computer industry: “Initially there was pushback on computers and all this stuff. And I think that’s the state we’re in now. People are like, ‘Oh, it’s different. It’s a bit weird,’” he said. “But, you know, an important thing here is: Weird isn’t unethical.”</p>
-
-<p>[-]</p>
 
 <p>Questions of ethics have long swirled around organoid research. For instance: What happens if and when they become sentient? Or, in Greely’s words: “Is it unhappy? Is it in pain? Is it thinking? Is it <a href="https://www.sensitiveskinmagazine.com/the-metamorphosis/">Gregor Samsa</a> in the body of a cockroach, thinking ‘Let me out of here?’”</p>
 
@@ -285,16 +215,11 @@ a:visited {
 
 <p>Still, those questions could become more pressing as organoids grow more complex. The field must consider the science, as well as the fast pace of research, when considering this ethical debate, said Lavazza.</p>
 
-<h6>Get Our Newsletter</h6>
-<p>[Form omitted]</p>
-
 <p>Greely said he isn’t worried yet. “But if you make an assembloid that has 20 carefully created and selected organoids connected to each other, you know, that could be about the size of a mouse brain. And we know that mice have behaviors. We’re pretty damn sure that mice feel pain,” said Greely. “Now we allow research that causes pain to mice, but we regulate it. One of the more technical issues with organoids is there’s nobody to regulate them.”</p>
 
 <p>Stem cell-derived research, which includes organoids, <em>is</em> regulated in the U.S., as is animal research, which is relevant when human-derived organoids are transplanted into rodents and other creatures. But the broader focus of those regulations do not cover the unique and specific questions that arise from organoid research.</p>
 
 <p>In November, Greely and Pasca co-organized a conference in California in part to discuss what such an entity might look like, who would be behind it, and who would pay for it. So far, they haven’t come up with a suggested path forward: “Most of the discussion, I thought, seemed to agree with the idea that it would be good to have something looking at this field,” Greely said. “I don’t think there was any obvious consensus on what that should be, or what ‘looking at’ meant,” though he added that he hopes a path forward will arise after they digest the discussions.</p>
-
-<p>[Image omitted]</p>
 
 <p>In addition to such questions, researchers have also discussed how the field deals with issues of <a href="https://undark.org/2024/07/09/informed-consent-human-genome-project/">informed consent</a> — something experts say is a much more immediate issue compared to speculation about the potential for future sentience.</p>
 
@@ -310,12 +235,6 @@ a:visited {
 
 <p>As the field matures, experts are mindful of the effect that public opinion could have on its fate. If someone were to publicly come out saying they didn’t realize their cells would be used to develop organoids, and that they found such research disturbing, “that would be bad ethically,” Greely said. “It would also be bad politically for science. And I think both of those should be avoided.”</p>
 
-<p>[Image omitted]</p>
-
-<p>Dolly the sheep, the world’s first cloned mammal, sparked backlash against cloning research in the 1990s, Greely recalled. Many scientists want organoid research to avoid a similar fate.</p>
-
-<p><em>Visual: Getty Images</em></p>
-
 <p>Scientists, he added, should do their best to keep the public looped in on the latest research so that there are no “disconcerting surprises.” Greely remembers the backlash that <a href="https://www.nytimes.com/2013/10/14/booming/the-clone-named-dolly.html">Dolly</a>, the famous cloned sheep, received in the ’90s. “When Dolly’s birth was announced, we went from one lamb to ‘armies of cloned warrior slaves,’ kind of overnight,” he said. “Countries and states all over started passing laws about banning human cloning long before any human embryo had ever been cloned. And we still don’t have any cloned human babies.”</p>
 
 <p>Many scientists want organoid research to avoid a similar fate. And since the initial media coverage of “mini-brains,” they have become increasingly careful about the language they use to describe their experiments, said Katherine Bassil, a neuroscientist and assistant professor of neuroethics at UMC Utrecht in the Netherlands, “because we know it can have ethical or even societal implications,” she said. “And even, at a certain point, one might argue that it can even have policy implications.”</p>
@@ -326,9 +245,7 @@ a:visited {
 
 <p>That promise may be on the horizon for patients with Timothy syndrome; Pasca and his team have developed a <a href="https://www.nature.com/articles/s41586-024-07310-6">therapeutic</a> for the disorder, for which they are now completing safety studies. Their goal is to begin a clinical trial this year; if approved by the FDA, it would be among the first times that humans took a therapeutic that was developed using brain organoids. (A gene therapy developed by Muotri’s lab for Pitt Hopkins syndrome, for example, was <a href="https://www.prnewswire.com/news-releases/mahzi-therapeutics-announces-first-patient-dosed-in-phase-12-unite-study-of-mz-1866-for-pitt-hopkins-syndrome-302696349.html">recently</a> dosed to its first patient in a trial.)</p>
 
-<p>Kathuria, too, is buoyed by the field’s wide possibilities, particularly drug development and transplantation. “My personal favorite is personalized medicine for neuropsychiatry,” she said. One day, a patient with bipolar disorder, for example, could affordably see whether a particular drug works for the organoid derived from their cells before trying it themselves. Kathuria recently founded a biotech startup called Organotics to help spur personalized medicine and psychiatric drug developments. </p>
-
-<p>[Image omitted]</p>
+<p>Kathuria, too, is buoyed by the field’s wide possibilities, particularly drug development and transplantation. “My personal favorite is personalized medicine for neuropsychiatry,” she said. One day, a patient with bipolar disorder, for example, could affordably see whether a particular drug works for the organoid derived from their cells before trying it themselves. Kathuria recently founded a biotech startup called Organotics to help spur personalized medicine and psychiatric drug developments.</p>
 
 <p>In the meantime, scientists are working to develop organoids that are larger and more complex.</p>
 
@@ -336,52 +253,9 @@ a:visited {
 
 <p>And last November, she was growing more. One batch had just gotten embedded in its sticky glue. “These are very small, they’re young,” she said.</p>
 
-<p>“They’ll grow up.” </p>
+<p>“They’ll grow up.”</p>
 
-<p>[-]</p>
-
-<p><strong><em>UPDATE:</em></strong><em>A previous version of this piece stated that if approved by the FDA, a therapeutic for Timothy syndrome would be the first time humans took a therapeutic that was developed using brain organoids. It would be among the first.</em></p>
-
-<h4>Share This Story</h4>
-<ul>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=facebook"> Click to share on Facebook (Opens in new window) Facebook </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=twitter"> Click to share on X (Opens in new window) X </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=reddit"> Click to share on Reddit (Opens in new window) Reddit </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=custom-1571833157"> Click to share on FlipBoard (Opens in new window) FlipBoard </a></li>
-<li><a href="https://undark.org/2026/02/26/brain-organoids-big-questions/?share=pocket"> Click to share on Pocket (Opens in new window) Pocket </a></li>
-<li></li>
-</ul>
-
-<p>Nora Belblidia is a senior editor at Undark.</p>
-
-<p>[Image omitted]</p>
-
-<h5><a href="https://undark.org/2026/02/25/ai-scientific-publishing/">Will AI Help or Hinder Scientific Publishing?</a></h5>
-<p>[Image omitted]</p>
-
-<h5><a href="https://undark.org/2026/02/24/morgellons-language-complicating-care/">With Morgellons Disease, Language Can Shape Care</a></h5>
-<ul>
-<li><a href="https://www.facebook.com/undarkmagazine/">Facebook</a></li>
-<li><a href="https://twitter.com/undarkmag/">Twitter</a></li>
-<li><a href="https://vimeo.com/undarkmag/">Vimeo</a></li>
-</ul>
-
-<p>[Image: Undark Magazine]</p>
-
-<h6>Get Our Newsletter</h6>
-<p>[Form omitted]</p>
-
-<ul>
-<li><a href="https://undark.org/republishing-guidelines/">Usage Guidelines</a></li>
-<li><a href="https://undark.org/contact/">Contact</a></li>
-<li><a href="https://undark.org/privacy-policy/">Privacy</a></li>
-<li><a href="https://undark.org/terms/">Terms &amp; Conditions</a></li>
-<li><a href="https://undark.org/corrections-policy/">Corrections</a></li>
-<li><a href="https://undark.org/funding-transparency/">Funding</a></li>
-<li><a href="https://undark.org/submission-guidelines/">Submit a Proposal</a></li>
-</ul>
-
-<p>[Image: Undark Magazine]</p>
+<p><em>UPDATE:</em><em>A previous version of this piece stated that if approved by the FDA, a therapeutic for Timothy syndrome would be the first time humans took a therapeutic that was developed using brain organoids. It would be among the first.</em></p>
 
 </div>
 </body>

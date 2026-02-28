@@ -1,1 +1,222 @@
-No article body detected: document contains no paragraph with 20 or more words of prose text.  Extraction may have captured navigation or boilerplate instead of article content.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Remarkable Reinvention of Chase Budinger - The Ringer</title>
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 22px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+    word-spacing: 0.16em;
+    background-color: #faf8f3;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 58ch;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+
+h1 {
+    font-size: calc(22px * 2.0);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: calc(22px * 1.75);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: calc(22px * 1.5);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: calc(22px * 1.25);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: calc(22px * 1.1);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: calc(22px * 1.0);
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: bold;
+}
+
+
+p {
+    margin: 0 0 1.8em 0;
+    text-align: left;
+}
+
+ul, ol {
+    margin: 0 0 1.8em 0;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+blockquote {
+    margin: 0 0 1.8em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #1a1a1a;
+}
+
+pre {
+    background-color: #f5f5f5;
+    padding: 1em;
+    margin: 0 0 1.8em 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+}
+
+code {
+    background-color: #f5f5f5;
+    padding: 0.2em 0.4em;
+    font-family: 'Courier New', monospace;
+}
+
+a {
+    color: #0051a5;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #003d7a;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+@media print {
+    body {
+        font-size: 12pt;
+    }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h1>The Remarkable Reinvention of Chase Budinger - The Ringer</h1>
+<p>Chase Budinger sinks his feet into the sand and catches his breath. He glances at the ocean, glittering blue and endless, here in Hermosa Beach in Southern California, taking a quick break from training with his Team USA beach volleyball partner, Miles Evans.</p>
+
+<p>The beach is still and tranquil on this early July afternoon, only a faint buzzing from a few bicyclists passing nearby. It’s overcast and a little warm. Budinger feels right at home. He leans against a wall on the outskirts of the court and peels off a bandage on his right finger, laughing. “A little crooked,” he says. “That’s normal. Just the wears and tears of the sport.”</p>
+
+<p>Nothing like what his body had been through over the years in his previous life as a professional basketball player, competing at the highest levels of the game. He played for four NBA teams in seven seasons and spent one year in Spain before retiring in 2017. He even scored a career-high 35 points in one game in 2011 and participated in the 2012 NBA slam dunk contest. But injuries cut his career short, and he knew that upon retiring from basketball, he had to direct his competitive drive elsewhere. He needed a new sport—and he found it on the beach.</p>
+
+<p>Now, at 36 years old, he knows that being at the peak of one’s game would be unheard of in NBA circles unless you’re a 39-year-old unicorn like LeBron James. Just about every other basketball player approaching 30? “You’re old. You’re a full-time vet when you turn 30,” Budinger says.</p>
+
+<p>Budinger doesn’t feel anywhere close to being <em>basketball player</em> “old.” “It’s crazy to think it’s the complete opposite for beach volleyball,” he says. Some of the U.S.’s brightest stars on the beach have been in their late 30s and early 40s, such as legendary player Karch Kiraly, now the head coach of the U.S. women’s national volleyball team, who competed into his mid-40s.</p>
+
+<p>And on this afternoon, just weeks before he’s set to head off to Paris to compete in the Olympic Games, Budinger looks as youthful as ever. He and Miles are sprinting, falling, grunting, recovering, shouting directions in fast-paced drills against their coaches on the other side of the net. “Go, go, go!” Budinger calls out. Evans powerfully spikes the ball. Then he shouts back on the next play to Budinger: “Hit it!” The two continue to move in tandem, sensing each other’s position, flowing with ease.</p>
+
+<p>A few plays later, Budinger slides onto the ground, and his entire 6-foot-7 body is covered in sand. He dusts himself off and breaks into a giant smile, pulling off his protective sunglasses for a second.</p>
+
+<p>Budinger never imagined he’d be <em>here</em>—playing professional beach volleyball. In just seven years since walking away from basketball, he’s worked his way from a beach volleyball novice to a circuit pro—and now an Olympian. He and Evans won the prestigious NORCECA Continental Tour final in May and were named to Team USA in early June. When he plays in his first match in Paris next week, he’ll become the only person to have played in the NBA and in the Olympic beach volleyball tournament. (Keith Erickson was an Olympian in indoor volleyball in 1964 before his 12-year NBA career.) Budinger and Evans are now ranked <a href="https://www.fivb.com/beach-volleyball/rankings/ranking-men/">no. 13 in the world</a> and are no. 2 in the U.S. behind Miles Partain and Andy Benesh, who are ninth in the world heading into the Games. </p>
+
+<p>“It’s been such a whirlwind,” Budinger says.</p>
+
+<p>“It’s crazy to think about because the first part of my life was all basketball. And that’s where my focus was for so long,” Budinger says. It wasn’t enough for him to want to tackle a new sport. As soon as he made the switch to beach volleyball, he let himself dream—and dream big. “I want to be an Olympian,” he told himself.</p>
+
+<p>Sure, he didn’t have any beach volleyball experience, outside of casual pickup games in the NBA offseason with friends like Richard Jefferson and Luke Walton, as well as NBA stars Steve Nash and Blake Griffin. “We still do it to this day,” he says. “They come down and mess around, and [we] play these four-on-four games.” He had played years of competitive indoor volleyball as a teen—he was even named Mizuno National Player of the Year by <em>Volleyball Magazine</em> as a high school senior—and he had the height, athleticism, jumping ability, and volleyball IQ to switch sports. </p>
+
+<p>And it turns out that leaving basketball behind has also allowed his body to heal from years of wear and tear. Sand is much more forgiving than hardwood. And as Budinger fully leaned into this new sport, he realized that his second act was just beginning. It is never too late to reinvent oneself, to start over. To see what else one is capable of achieving.</p>
+
+<p>As determined as Budinger was to become an Olympian in beach volleyball, he still initially had some doubts about whether making the switch to the sport was the right move. Knowing he was so new to it, he realized his arrival was, in his own words, “100 percent a question mark.” A sliver of doubt crept in as he weighed his decision to pursue beach volleyball: “I was a little scared. I’m like, ‘Man. Should I be doing this right now?’”</p>
+
+<p>Basketball had long been his world, and as he entered his late 20s, he wasn’t sure whether he was ready to retire. Ever since he was a boy, he’d dreamed of making the NBA and worked relentlessly to make that a reality. “When he finds something he likes, he goes 100 percent into it,” says Duncan, his older brother.</p>
+
+<p>Budinger was a two-sport athlete growing up in Encinitas, California, playing basketball and indoor volleyball and excelling at both. And although Budinger was equally—if not more—talented in indoor volleyball as a teen, he always preferred hoops. He recalls that, at age 16, when he participated in a training camp for the USA U18 volleyball team, he spent time on an off day shooting volleyballs into a basketball hoop. He simply relished the physicality and camaraderie of basketball, and he thrived on the court, easily able to drive to the rim and score. He honed his competitive spirit at home with his siblings, Duncan and Brittanie, elite volleyball players who went on to play professionally in Europe.</p>
+
+<p>Growing up, they had a basketball hoop at the family home next to a giant wooden wall, so when the brothers crashed in for layups, they’d also ram into the wall. Even board games, especially Sorry!, got so heated that their parents had to ban family game night.</p>
+
+<p>Budinger led La Costa Canyon High School to three state volleyball titles. And despite offers to play both sports in college, most notably at UCLA and USC, Budinger chose the University of Arizona—a school that doesn’t sponsor a men’s indoor volleyball team. “I wouldn’t be the basketball player I was without volleyball,” he says. “There is a benefit to playing multiple sports. Because you see these kids just burn out at such young ages. … They’re doing too much at a young age, and they’re not just having that love of the game come to them.”</p>
+
+<p>After three years with Arizona, he declared for the pros and was selected by the Detroit Pistons with the 44th pick in the 2009 NBA draft. He was immediately traded to the Rockets, where he established himself as a key contributor off the bench. He was starting to find his groove, and his body felt strong. As far as injuries, “I felt like I was indestructible,” he says.</p>
+
+<p>Early in his fourth season, and his first after being traded to Minnesota, he suffered a torn meniscus in his left knee. He needed surgery and missed more than four months of the season. He and the Timberwolves were confident enough in his recovery that he signed a new three-year contract heading into the 2013-14 season, but he suffered a cartilage injury to the same knee and required another surgery just as training camp was set to begin.</p>
+
+<p>In the three seasons between 2011 and 2014, he played in just 122 games, and nagging injuries continued to compound over the following few years. Ankle sprains and pulled hamstrings became more frequent. The constant cycle of rehabbing, then coming back, then rehabbing, then coming back took its toll, not just physically but also mentally. The healing process was grueling. Slow. It felt like he was making just minuscule progress each day while laboring through his exercises, knowing he’d have to be fully devoted to the process to make a full recovery.</p>
+
+<p>But even when he did return to the court each time, and when doctors told him he was able to participate in contact drills, he still felt the lingering effects of injury and would hesitate, telling himself not to push it. “It took me a fair bit longer to have my mind trust my body,” he says. And in his final NBA season, when he played for both the Pacers and Suns, he felt his body “starting to break down more and more,” Budinger says.</p>
+
+<p>He was 27, and he came to the sinking realization that every pro athlete eventually does: He had more good athletic years behind him than ahead of him.</p>
+
+<p>Still, Budinger wasn’t ready to give up hoops. He signed with the EuroLeague’s Baskonia team in Vitoria Gasteiz, Spain. He says he initially had a difficult time transitioning to Europe. “I wasn’t playing up to my standard,” Budinger says.</p>
+
+<p>He kept his head down, kept working, and started to notice improvements in his game. And then he experienced heartbreak again: another injury. This time, he suffered a sports hernia after a freak accident in practice. He had fumbled the ball and slipped over a decal, and his body tumbled into a sort of split. It was painful, and he wasn’t able to compete for the last five weeks of the season.</p>
+
+<p>Given all the injuries he had already endured, he knew the arduous rehab process that lay ahead. “I didn’t want to grind to stay in basketball anymore,” he says. “I still felt like I could play basketball at a high level and still compete, and probably could have done it for a few more years, could have gone to Europe and played. Maybe even got back into the NBA. But it would’ve had to be a lot of hard work.”</p>
+
+<p>Emotionally, it was tough, finally deciding to retire. But as he thought about what to do next, his mind kept drifting to beach volleyball. Maybe the sand could help heal his achy joints, he thought.</p>
+
+<p>He returned to his home in Hermosa Beach, determined to learn as much as possible about the sport since indoor and beach volleyball are completely different. The balls are bigger and lighter in beach volleyball and travel with less velocity than in the indoor game; matches are played in teams of two—with no substitutions. The court is smaller on the beach than indoors, leaving less room for players to maneuver and for shots to stay in bounds.</p>
+
+<p>But it was exciting to have a new goal. Budinger began his quest by playing pickup beach volleyball in Hermosa in 2017. He joined some four-on-four tournaments. He had several mutual friends with two-time beach volleyball Olympian Sean Rosenthal, and those friends suggested a meetup. “He asked to practice with me for a week so he could see if I was any good,” Budinger says, “and knew within the first day I could play.”</p>
+
+<p>The two soon became friends, and Rosenthal became a mentor for Budinger as he got serious about becoming a pro. Rosenthal, who had represented the U.S. at the 2008 and 2012 Olympics, saw potential in Budinger and continued to help him improve his game. Budinger relished the chance to get to learn from a veteran like Rosenthal. The two practiced and competed together, and Budinger made his debut on the Association of Volleyball Professionals tour with Rosenthal in 2018. Budinger was amazed by how patient Rosenthal was and how willing he was to take a chance on a rookie like him. “For him to choose me—that just [made] me want to work harder for him,” Budinger says.</p>
+
+<p>What he lacked in pro volleyball experience he made up for in height, natural athleticism, and work ethic. Still, Budinger could see how far away he was from the level of competition he was facing when the two joined the tour. In May 2018, the duo lost their first match together in Budinger’s pro debut at a tournament in Huntington Beach, California, <a href="http://www.bvbinfo.com/tournament.asp?ID=3431">finishing tied for 33rd</a>. “I wasn’t even close,” Budinger says. He says that in some matches, he was “absolutely getting smashed.” </p>
+
+<p>Budinger kept learning, kept working. It felt exciting, pushing his body again. “It got my mojo back of wanting to work and compete and train,” Budinger says. Although running and jumping in sand is challenging, he quickly got used to the environment. The lingering injuries that he had from hoops started to fade. He felt so comfortable, it was as though he was becoming “one with the sand,” he says.</p>
+
+<p>His game continued to improve, and he started to make a name for himself. Budinger was named Rookie of the Year by <em>Volleyball Mag</em>, ranking sixth on the tour in kills (6.98 per set) and eighth in hitting percentage (.454) in his first season. He continued to compete on the circuit, teaming up with Casey Patterson in 2019, when Budinger won his first AVP title in Hermosa. Budinger was fourth on the tour in hitting percentage and fifth in blocks that year and was named as the AVP’s Most Improved Player. He kept up his prolific play while partnering with Chaim Schalk (2020) and Troy Field (2021-22). Last year, he started partnering with Evans, who made his pro debut in 2011 and had played for UC Santa Barbara. Budinger admired Evans’s game, “his passing ability and his quickness on defense,” Budinger says, “and he had plenty of international experience.”</p>
+
+<p>When the two started competing together, Budinger kept thinking of his Olympic dream. “I knew it was a good shot for us to try to make it after partnering up with Miles,” Budinger says.</p>
+
+<p>When Budinger first paired up with Evans, he told his new partner that they’d train five days a week. “And I had never trained five days a week,” Evans says. “He always had an idea of what we wanted to do.”</p>
+
+<p>Budinger says he learned that sort of work ethic from hoops, and it’s helped him in his new sport as he’s chased his goal of becoming an Olympian. “That [dream] motivated him to get out of bed, to do everything, to treat his body well,” his coach, Dan Waineraich, says.</p>
+
+<p>“There is a difference between a player and an athlete. Chase is an athlete,” Waineraich says. “He has talent, and he’s a hard worker. So he always arrives at 20 minutes, 30 minutes before the practice starts. … Chase is professional. He arrives there, he’s coachable, he talks with you, always tries to get better.”</p>
+
+<p>Budinger and Evans train five days a week and lift weights four days a week. They study film and focus on recovery with physical therapy and stretching. The pair feel that their chemistry on the court is strong. “We understand each other,” Evans says.</p>
+
+<p>“If we ever have a problem, we’re always trying to find the solution together. And if we’re not playing well, we’ll watch the film right afterward, and he’ll come up with an idea of how we’re going to move forward,” Evans says.</p>
+
+<p>Budinger appreciates how they “come back to center” after arguments. “Because it’s like a relationship,” Budinger says, “where you’re going to fight, you’re going to have arguments, you’re going to have little tiffs. But we’ve done such a good job, this whole two-year process of knowing our main goal is to make the Olympics. … We are able to receive whatever the other person’s saying, even though it might take a day, and listen, regroup, and use it to better the team the next day.”</p>
+
+<p>That bond isn’t just built on the court during practice. Off-court friendship has made them a better pair when they’re playing, too. “We do everything together when we’re on the road,” Budinger says. “We go out to dinners every single night together. We room together, we do all these little things to just keep building this chemistry.”</p>
+
+<p>They won <a href="https://en.volleyballworld.com/beachvolleyball/competitions/beach-pro-tour/2023/challenge/saquarema-bra/teams/men/991364/schedule/">their first international medal, a silver, together in April 2023</a>, and qualified for the Paris Games after rising to no. 2 in the U.S. rankings earlier this year.</p>
+
+<p>Many former NBA players have congratulated Budinger since the Olympic roster was announced last month. Magic Johnson even <a href="https://x.com/MagicJohnson/status/1800667849331245231">tweeted</a> about it. “Basketball is such a brotherhood,” Budinger says. He’s especially excited to be playing in the same Olympics as Kevin Durant, who is on the USA men’s basketball team. The two were McDonald’s All American <a href="https://www.si.com/nba/2016/11/17/kevin-durant-greg-oden-mike-conley-2006-mcdonalds-all-american-game">co-MVPs</a> in 2006. “It definitely gave me some extra motivation to try to make it to the Olympics this year, knowing that KD’s playing in the Olympics for his fourth time. And Steph [Curry] [is] playing. And this is LeBron’s last time,” Budinger says. “I can’t wait to go watch them and cheer them on.”</p>
+
+<p>Budinger and Evans have spent the summer deep in preparations for Paris. At times friends have shown up at the beach to support them with chants of “USA,” and they’ve practiced with speakers blaring crowd noise in an attempt to simulate what could be a raucous Olympic environment—although Budinger says he never really heard the noise when he was playing in sold-out arenas in the NBA. It seems that nothing is able to break his focus, no matter the sport.</p>
+
+<p>But on this afternoon in early July, as Budinger walks across the beach court, picking up scattered volleyballs after another practice, he reflects on what a gift this is—to be <em>here</em>. To train here. To push himself beyond exhaustion. And then jump into the water to finish the day.</p>
+
+</div>
+</body>
+</html>

@@ -128,11 +128,7 @@ a:visited {
 </head>
 <body>
 <div class="container">
-<h1>For Lisbon, the Pastel de Nata Is a Gift and a Curse</h1>
-<p>As Lisbon’s tourism booms, the classic pastry symbolizes everything going right and wrong for the overcrowded city</p>
-
-<p>[Image: shutterstock_2313618733 edit]</p>
-
+<h1>Pastel de Nata Has Become a Symbol of Overtourism in Lisbon | Eater</h1>
 <p>In Lisbon, you’re never far from a <a href="/2017/6/28/15867646/best-egg-tarts-lisbon-where-to-eat">pastel de nata</a>, the city’s iconic egg tart. While Pastéis de Belém, the 1837 pastry shop that invented the modern version of the pastry, still draws streams of diners out to its the city’s western edge, the center has become crowded with places selling golden, palm-sized custard treats.</p>
 
 <p>Beginning in the early 2010s — as Lisbon emerged as a heavyweight of global tourism and visitors poured into the city — new chain shops like <a href="https://www.natalisboa.com/home-en">Nata Lisboa</a>, <a href="https://manteigaria.com/en/">Manteigaria</a>, and <a href="https://fabricadanata.pt/">Fábrica da Nata</a> collectively opened dozens of locations focused on pastéis de nata in the capital and across Portugal. Today, you’ll find pastéis in hip cafes, restaurants, airport souvenir shops, Starbucks, and even Zara.</p>
@@ -147,13 +143,11 @@ a:visited {
 
 <p>All the while, pastel de nata shops have multiplied on nearly every corner, spreading in step with (and feeding off) rampant gentrification, as investors cash in on Portugal’s most recognizable, and most commercially exploitable, pastry. In a city now populated by vacationers, the pastel de nata has transformed from an expression of Portuguese taste into an expression of capital. All over Lisbon but especially in its center, a sweet scent hangs in the air and lines of visitors snake down the historic blocks, daily sensory reminders of a tourist capital on the brink.</p>
 
-<p>[-]</p>
-
 <p>“The [pastel de nata] recipe dates back to the 16th century, when the confections, like many other Portuguese sweets, were made by nuns in convents,” Miguel Andrade wrote in 2017 for the <a href="/2017/6/28/15870238/best-food-lisbon-restaurants-where-to-eat">Eater Guide to Lisbon</a>. “Now, locals eat pastéis de nata at breakfast, in the midmorning, after lunch, or in the evening — any time they’re craving a snack.”</p>
 
 <p>Following the 2008 global financial crisis, <a href="https://www.mdpi.com/1911-8074/16/1/46">Lisbon threw open its doors to international tourists</a>, using the pastel de nata to attract attention. In 2009, the city launched the O Melhor Pastel de Nata (Best Pastel de Nata) competition, celebrating the best egg custard tarts the way <a href="https://www.youtube.com/watch?v=5VzG7jfZs_Q">Paris does with its baguettes</a>. Then Manteigaria opened in 2014, focusing entirely on pastel de nata at a time when single-product pastry shops weren’t really a thing in Portugal; after the shop proved successful, more brands launched similar concepts, doing for the pastel what Ladurée did for the French macaron.</p>
 
-<p>Visitors and food media (Eater included) globbed on, transforming the photo-ready tart from everyday foodstuff to national icon. Soon enough, the pastel’s image was splashed on souvenir <a href="https://tejo-shop.com/collections/pastel-de-nata">fridge magnets</a> and <a href="https://chule.pt/products/chule-meias-pasteis?srsltid=AfmBOooWxtSCxGDEMcrALiUN1V_USpRmdezlGHcxdHyPntd28zsNm3eB">socks</a>; a giant pastel was welcoming visitors to the Lego shop in the downtown Armazéns do Chiado mall; and <a href="https://www.tiktok.com/@insta.noodls/video/7476904379958791479?lang=en">travel influencers</a> were <a href="https://www.tiktok.com/@snackeatingsnacks/video/7535922736082816287">gobbling up pastéis</a> faster than <a href="https://www.instagram.com/primevideoca/reel/C35XJ3gL70a/">Emma Stone in <em>Poor Things</em></a>. These days, some locals say they don’t eat pastéis at all — it’s just something for the tourists.</p>
+<p>Visitors and food media (Eater included) globbed on, transforming the photo-ready tart from everyday foodstuff to national icon. Soon enough, the pastel’s image was splashed on souvenir <a href="https://tejo-shop.com/collections/pastel-de-nata">fridge magnets</a> and <a href="https://chule.pt/products/chule-meias-pasteis?srsltid=AfmBOooWxtSCxGDEMcrALiUN1V_USpRmdezlGHcxdHyPntd28zsNm3eB">socks</a>; a giant pastel was welcoming visitors to the Lego shop in the downtown Armazéns do Chiado mall; and <a href="https://www.tiktok.com/@insta.noodls/video/7476904379958791479?lang=en">travel influencers</a> were <a href="https://www.tiktok.com/@snackeatingsnacks/video/7535922736082816287">gobbling up pastéis</a> faster than <a href="https://www.instagram.com/primevideoca/reel/C35XJ3gL70a/">Emma Stone in Poor Things</a>. These days, some locals say they don’t eat pastéis at all — it’s just something for the tourists.</p>
 
 <p><a href="https://castropasteisdenata.pt/en/">Castro Atelier</a>, part of the Plateform restaurant group, started selling pastéis de nata in Porto in 2018, before opening three more locations in Lisbon in the years that followed. Plateform CEO Rui Sanches says the brand was born from a desire to honor the original pastel de nata recipe while elevating its technical and aesthetic standards. Each Castro shop produces around 2,000 tarts a day, with strict controls over size, temperature, and baking time (each weighing about 24 grams and baked at 400 degrees celsius) using only the highest-quality ingredients. The strict protocols ensure the pastéis come out of the oven at just the right temperature, making them crisp without burning, and the filling (which is less sweet than some competitors) cooks through completely (not so runny it drips on your hands, not so firm it loses its velvety texture).</p>
 
@@ -183,8 +177,6 @@ a:visited {
 
 <p>Boi-Cavalo’s closure came amid a wave of others across the Portuguese capital that affected not only long-established Portuguese spots, like the decades-old Bota Alta (whose rent increased tenfold), but also international kitchens like Izcalli, a pioneer of Mexican cuisine in the city. And it has affected traditional bakeries, which have been muscled out by newer entrants; with help from Castro, Zara launched its <a href="https://www.instagram.com/p/C_kSpKXNmwT/?img_index=1">branded pastéis shop</a> in the Rossio neighborhood in the exact spot where the cherished local pastry shop, Pastelaria Suíça, once served the community for 92 years.</p>
 
-<p>[-]</p>
-
 <p>The pastel’s story can’t be entirely told in data, though. As sociologist Joshua Sbicca puts it, food offers a “<a href="https://www.academia.edu/36960001/Food_Gentrification_and_the_Changing_City">visceral entry point</a>” into the politics of gentrification; it’s not just about housing prices, but what gets eaten, by whom, and in what context.</p>
 
 <p>“The Portuguese pastry has become disconnected from its roots,” says design critic and curator Frederico Duarte, co-author of the seminal <em>Fabrico Próprio: The Design of Portuguese Semi-industrial Confectionery</em>. “Pastel de nata brands have been created with strategies of expansion and franchising, detached from the local context of the neighborhoods.”</p>
@@ -206,89 +198,6 @@ a:visited {
 <p>In Lisbon today, the pastel de nata tells two stories: one about a pastry perfected over centuries since its origin in Santa Maria de Belém Monastery, and another about a city increasingly reshaped to please those eager for a bite of a viral food emblem. It’s likely impossible to disentangle the two at this point. The sweet has gone beyond iconic to become integral to the city’s fortunes, attracting tourists who are both the lifeblood and a menace to many local businesses and residents.</p>
 
 <p>Or, as Souza puts it, “The gears that keep Lisbon’s economy turning are greased with custard.”</p>
-
-<p>[Form omitted]</p>
-
-<ul>
-<li><a href="/lisbon">Lisbon</a></li>
-<li><a href="/travel-guides">Travel Guides</a></li>
-<li><a href="/dining-out">Dining Out</a></li>
-<li><a href="/travel-restaurants">Eater Travel</a></li>
-</ul>
-
-<p>[Image omitted]</p>
-
-<ol>
-<li><a href="/trends/942437/keap-wood-cabin-candle-nyc-restaurant-trend">Meet the ‘It’ Candle of NYC Restaurant Bathrooms</a></li>
-<li><a href="/awards-season/945058/james-beard-americas-classics-award-winners-2026">These Are 2026’s James Beard America’s Classics Winners</a></li>
-<li><a href="/dining-out/944549/banana-split-ice-cream-dessert-trend">Meet the New-School Banana Split</a></li>
-<li><a href="/dining-out/936672/best-places-to-eat-restaurants-travel-2026">Where to Eat in 2026</a></li>
-<li><a href="/jbfa/936395/james-beard-awards-2026-semifinalists-chefs-restaurants-jbfa">Here Are the 2026 James Beard Awards Restaurant and Chef Semifinalists</a></li>
-</ol>
-
-<p>[Form omitted]</p>
-
-<h2>Eater Travel</h2>
-<p>Dispatches from the Eater staff about the world’s culinary destinations worth planning an entire trip around</p>
-
-<p>[Form omitted]</p>
-
-<h2>Most Popular</h2>
-<p>[Image omitted]</p>
-
-<ol>
-<li><a href="/trends/942437/keap-wood-cabin-candle-nyc-restaurant-trend">Meet the ‘It’ Candle of NYC Restaurant Bathrooms</a></li>
-<li><a href="/awards-season/945058/james-beard-americas-classics-award-winners-2026">These Are 2026’s James Beard America’s Classics Winners</a></li>
-<li><a href="/dining-out/944549/banana-split-ice-cream-dessert-trend">Meet the New-School Banana Split</a></li>
-<li><a href="/dining-out/936672/best-places-to-eat-restaurants-travel-2026">Where to Eat in 2026</a></li>
-<li><a href="/jbfa/936395/james-beard-awards-2026-semifinalists-chefs-restaurants-jbfa">Here Are the 2026 James Beard Awards Restaurant and Chef Semifinalists</a></li>
-</ol>
-
-<p>[Form omitted]</p>
-
-<h2>Eater Today</h2>
-<p>The freshest news from the food world every day</p>
-
-<p>[Form omitted]</p>
-
-<h2>More in <a href="/travel-guides">Travel Guides</a></h2>
-<p>[Image: Chef Mashama Bailey and Restaurateur John O. Morisano’s Guide to Paris]</p>
-
-<p>[Image: Chef Marcus Samuelsson’s Guide to Addis Ababa]</p>
-
-<p>[Image: Chef Eric Sze’s Guide to Eating in Taipei, Taiwan]</p>
-
-<p>[Image: Where to Eat in 2026]</p>
-
-<p>[Image: The 38 Best London Restaurants, According to Eater’s Local Dining Expert]</p>
-
-<p>[Image: The 38 Best Restaurants in Honolulu, According to a Local Expert]</p>
-
-<p>[Image: Chef Mashama Bailey and Restaurateur John O. Morisano’s Guide to Paris]</p>
-
-<p>After opening of their new restaurant, L’Arrêt, in Paris last summer, the duo behind the Grey share their favorite restaurants in the city.</p>
-
-<p>[Image: Chef Marcus Samuelsson’s Guide to Addis Ababa]</p>
-
-<p>Chef Marcus Samuelsson shares his favorite places to eat, cook, and shop in the Ethiopian capital.</p>
-
-<p>[Image: Chef Eric Sze’s Guide to Eating in Taipei, Taiwan]</p>
-
-<p>Chef Eric Sze shares his favorite meals in Taipei, Taiwan, from classic Taiwanese breakfast at a food court stall to the lu rou fan braised pork he’ll always remember.</p>
-
-<p>[Image: Where to Eat in 2026]</p>
-
-<p>The definitive list of the places you have to eat this year</p>
-
-<p>[Image: The 38 Best London Restaurants, According to Eater’s Local Dining Expert]</p>
-
-<p>The best meals in London, from Michelin fine dining to beloved street food, according to a longtime restaurant editor</p>
-
-<p>[Image: The 38 Best Restaurants in Honolulu, According to a Local Expert]</p>
-
-<p>From poke and shave ice to buzzy new restaurants, this is where to eat in Honolulu, according to a local restaurant writer</p>
-
-<p>[-]</p>
 
 </div>
 </body>

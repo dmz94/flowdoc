@@ -128,19 +128,7 @@ a:visited {
 </head>
 <body>
 <div class="container">
-<h2>The snowball effect</h2>
-
-<h1>Our planet was once a harsh, alien, icy world. Yet this deep freeze may have shaped you, me and all life on Earth</h1>
-<p>by Graham Shields + BIO</p>
-
-<p>A representation of Snowball Earth by Chris Butler/Science Photo Library. All other images supplied by the author except where noted</p>
-
-<p>is professor of geology at University College London. His most recent book <a href="https://yalebooks.co.uk/book/9780300242591/born-of-ice-and-fire/"><em>Born of Ice and Fire: How Glaciers and Volcanoes (and a Pinch of Salt) Drove Animal Evolution</em></a><em></em>(2024)<em></em>weighs the evidence for Snowball Earth and asks how that extraordinary event may have helped lead the way to greater biological complexity.</p>
-
-<p>Edited by<a href="/users/richard-fisher">Richard Fisher</a></p>
-
-<p>[Form omitted]</p>
-
+<h1>How the harsh, icy world of Snowball Earth shaped life today | Aeon Essays</h1>
 <p>Listen to this essay</p>
 
 <p>23 minute listen</p>
@@ -214,8 +202,6 @@ a:visited {
 <p>Returning from the Garvellach islands, tired from a day’s rock hammering, and salty from the sea spray, my colleagues and I find time to reflect upon how this incredible transition into glaciation, 717 million years ago, was so much more than simply an unusual climatic event. Wild swings between hot and cold, oxygen-replete and oxygen-starved conditions over many millions of years, heralded a biological revolution that redrew the tree of life. Greater cooperation between cells eventually led to more energetic, oxygen-sapping metabolisms, and the arms race that became the Cambrian explosion.</p>
 
 <p>Walking along the rocky shoreline allows us to step, rock bed by rock bed, through 70 million years of time, when life was forced to adapt to extreme cold. Although icy conditions fostered the gradual emergence of biological complexity, it was the thaw that likely proved the most pivotal. Walk along the coast hereabouts and, abruptly, the rocks change: no evidence of ice can be detected here, or indeed anywhere on Earth 635 million years ago. We have reached the start of the Ediacaran. The catastrophic retreat of the ice sheets and unprecedented sea-level rise, happening swiftly over mere thousands of years, launched a fight for survival in a rapidly warming, oxygenated world. The ancestors of you, me and all our animal cousins must have won that race.</p>
-
-<p>[Form omitted]</p>
 
 </div>
 </body>

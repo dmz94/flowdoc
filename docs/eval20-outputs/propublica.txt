@@ -128,38 +128,7 @@ a:visited {
 </head>
 <body>
 <div class="container">
-<h1>Toxic Gaslighting: How 3M Executives Convinced a Scientist the Forever Chemicals She Found in Human Blood Were Safe</h1>
-
-<h2> Decades ago, Kris Hansen showed 3M that its PFAS chemicals were in people’s bodies. Her bosses halted her work. As the EPA now forces the removal of the chemicals from drinking water, she wrestles with the secrets that 3M kept from her and the world.</h2>
-<p>[Form omitted]</p>
-
-<h2>Republish This Story for Free</h2>
-<p><a href="https://creativecommons.org/licenses/by-nc-nd/3.0/">Creative Commons License (CC BY-NC-ND 3.0)</a></p>
-
-<p>[-]</p>
-
-<p> Thank you for your interest in republishing this story. You are free to republish it so long as you do the following: </p>
-
-<ul>
-<li> You have to credit <em>ProPublica and any co-reporting partners</em>. In the byline, we prefer &quot;Author Name, Publication(s).&quot; At the top of the text of your story, include a line that reads: &quot;This story was originally published by ProPublica.&quot; You must link the word &quot;ProPublica&quot; to the original URL of the story. </li>
-<li> If you&#x27;re republishing online, you must link to the URL of this story on propublica.org, include all of the links from our story, including our newsletter sign up language and link, and use our <a href="/pixelping">PixelPing tag</a>. </li>
-<li> If you use canonical metadata, please use the ProPublica URL. For more information about canonical metadata, <a href="https://support.google.com/webmasters/answer/139066?hl=en">refer to this Google SEO link</a>. </li>
-<li> You can&#x27;t edit our material, except to reflect relative changes in time, location and editorial style. (For example, &quot;yesterday&quot; can be changed to &quot;last week,&quot; and &quot;Portland, Ore.&quot; to &quot;Portland&quot; or &quot;here.&quot;) </li>
-<li> You cannot republish our photographs or illustrations without specific permission. Please contact <a href="/cdn-cgi/l/email-protection#85e8e0e1ece4f7ece2edf1f6c5f5f7eaf5f0e7e9ece6e4abeaf7e2">[email protected]</a>. </li>
-<li> It&#x27;s okay to put our stories on pages with ads, but not ads specifically sold against our stories. You can&#x27;t state or imply that donations to your organization support ProPublica&#x27;s work. </li>
-<li> You can&#x27;t sell our material separately or syndicate it. This includes publishing or syndicating our work on platforms or apps such as Apple News, Google News, etc. </li>
-<li> You can&#x27;t republish our material wholesale, or automatically; you need to select stories to be republished individually. (To inquire about syndication or licensing opportunities, contact <a href="/cdn-cgi/l/email-protection#1874717b7d766b71767f58686a77686d7a74717b7936776a7f">[email protected]</a>.) </li>
-<li> You can&#x27;t use our work to populate a website designed to improve rankings on search engines or solely to gain revenue from network-based advertisements. </li>
-<li> We do not generally permit translation of our stories into another language. </li>
-<li> Any website our stories appear on must include a prominent and effective way to contact you. </li>
-</ul>
-
-<p>[Form omitted]</p>
-
-<p>Co-published with <a href="https://www.newyorker.com/">The New Yorker</a></p>
-
-<p>ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up to receive <a href="https://www.propublica.org/newsletters/the-big-story?source=%25source%25">our biggest stories</a> as soon as they’re published.</p>
-
+<h1>How 3M Execs Convinced a Scientist the Forever Chemicals She Found in Human Blood Were Safe — ProPublica</h1>
 <p>Kris Hansen had worked as a chemist at the 3M Corporation for about a year when her boss, an affable senior scientist named Jim Johnson, gave her a strange assignment. 3M had invented Scotch Tape and Post-­it notes; it sold everything from sandpaper to kitchen sponges. But on this day, in 1997, Johnson wanted Hansen to test human blood for chemical contamination.</p>
 
 <p>Several of 3M’s most successful products contained man-made compounds called fluorochemicals. In a spray called Scotchgard, fluorochemicals protected leather and fabric from stains. In a coating known as Scotchban, they prevented food packaging from getting soggy. In a soapy foam used by firefighters, they helped extinguish jet-fuel fires. Johnson explained to Hansen that one of the company’s fluorochemicals, PFOS — short for perfluorooctanesulfonic acid — often found its way into the bodies of 3M factory workers. Although he said that they were unharmed, he had recently hired an outside lab to measure the levels in their blood. The lab had just reported something odd, however. For the sake of comparison, it had tested blood samples from the American Red Cross, which came from the general population and should have been free of fluorochemicals. Instead, it kept finding a contaminant in the blood.</p>
@@ -171,8 +140,6 @@ a:visited {
 <p>Hansen didn’t want to share her results until she was certain that they were correct, so she and her team spent several weeks analyzing more blood, often in time-consuming overnight tests. All the samples appeared to be contaminated. When Hansen used a more precise method, liquid chromatography, the results left little doubt that the chemical in the Red Cross blood was PFOS.</p>
 
 <p>Hansen now felt obligated to update her boss. Johnson was a towering, bearded man, and she liked him: He seemed to trust her expertise, and he found something to laugh about in most conversations. But, when she shared her findings, his response was cryptic. “This changes everything,” he said. Before she could ask him what he meant, he went into his office and closed the door.</p>
-
-<p>[-]</p>
 
 <p>This was not the first time that Hansen had found a chemical where it didn’t belong. A wiry woman who grew up skiing competitively, Hansen had always liked to spend time outdoors; for her chemistry thesis at Williams College, she had kayaked around the former site of an electric company on the Hoosic River, collecting crayfish and testing them for industrial pollutants called polychlorinated biphenyls, or PCBs. Her research, which showed that a drainage ditch at the site was leaking the chemicals, prompted a news story and contributed to a cleanup effort overseen by the Massachusetts Department of Environmental Protection. At 3M, Hansen assumed that her bosses would respond to her findings with the same kind of diligence and care.</p>
 
@@ -187,8 +154,6 @@ a:visited {
 <p>Hansen’s bosses never told her that PFOS was toxic. In the weeks after Johnson left 3M, however, she felt that she was under a new level of scrutiny. One of her superiors suggested that her equipment might be contaminated, so she cleaned the mass spectrometer and then the entire lab. Her results didn’t change. Another encouraged her to repeatedly analyze her syringes, bags and test tubes, in case they had tainted the blood. (They had not.) Her managers were less concerned about PFOS, it seemed to Hansen, than about the chance that she was wrong.</p>
 
 <p>Sometimes Hansen doubted herself. She was 28 and had only recently earned her Ph.D. But she continued her experiments, if only to respond to the questions of her managers. 3M bought three additional mass spectrometers, which each cost more than a car, and Hansen used them to test more blood samples. In late 1997, her new boss, Bacon, even had her fly out to the company that manufactured the machines, so that she could repeat her tests there. She studied the blood of hundreds of people from more than a dozen blood banks in various states. Each sample contained PFOS. The chemical seemed to be everywhere.</p>
-
-<p>[-]</p>
 
 <p>When 3M was founded, in 1902, it was known as the Minnesota Mining and Manufacturing Company. After its mining operations flopped, the company pivoted to sandpaper and then to a series of clever inventions aimed at improving everyday life. An early employee noticed that autoworkers were struggling to paint two-tone cars, which were popular at the time; he eventually invented masking tape, using crêpe paper and cabinetmaker’s glue. Another 3M employee created Post-it notes to help him bookmark passages in his church hymnal. An official history of 3M, published for the company’s 100th anniversary, celebrated its “tolerance for tinkerers.”</p>
 
@@ -212,8 +177,6 @@ a:visited {
 
 <p>The next morning, anxious to see the results, Hansen arrived at the lab before anyone else. For the first time since she had begun testing blood, some of the samples showed no trace of PFOS. She was so struck that she called her husband. There was nothing wrong with her equipment or methodology; PFOS, a man-made chemical produced by her employer, really <em>was</em> in human blood, practically everywhere. Hansen’s team found it in Swedish blood samples from 1957 and 1971. After that, her lab analyzed blood that had been collected before 3M created PFOS. It tested negative. Apparently, fluorochemicals had entered human blood after the company started selling products that contained them. They had leached out of 3M’s sprays, coatings and factories — and into all of us.</p>
 
-<p>[-]</p>
-
 <p>That summer, an in-house librarian at 3M delivered a surprising article to Hansen’s office mailbox. It had been written in 1981 by 3M scientists, and it described a method for measuring fluorine in blood, indicating that even back then the company was testing for fluorochemicals. One scientist mentioned in the article, Richard Newmark, still worked for 3M, in a low-lying structure nicknamed the “nerdy building.” Hansen arranged to meet with him there.</p>
 
 <p>Newmark, a collegial man with a compact build, told Hansen that, more than 20 years before, two academic scientists, Donald Taves and Warren Guy, had discovered a fluorochemical in human blood. They had wondered whether Scotchgard might be its source, so they approached 3M. Newmark told her that his subsequent experiments had confirmed their suspicions — the chemical was PFOS — but 3M lawyers had urged his lab not to admit it.</p>
@@ -225,8 +188,6 @@ a:visited {
 <p>A few months later, in early 1999, Bacon invited Hansen to an extraordinary meeting: She would have the chance to present her findings to 3M’s CEO, Livio D. DeSimone. Hansen spent several days rehearsing while driving and making dinner. On the day of the meeting, she took an elevator up to the executive suite; her stomach turned as a secretary pointed her to a conference room. Men in suits sat around a long table. Her boss, Bacon, was there. DeSimone, a portly man with white hair, sat at the head of the table.</p>
 
 <p>Almost as soon as Hansen placed her first transparency on the projector, the attendees began interrogating her: Why did she do this research? Who directed her to do it? Whom did she inform of the results? The executives seemed to view her diligence as a betrayal: Her data could be damaging to the company. She remembers defending herself, mentioning Newmark’s similar work in the ’70s and trying, unsuccessfully, to direct the conversation back to her research. While the executives talked over her, Hansen noticed that DeSimone’s eyes had closed and that his chin was resting on his dress shirt. The CEO appeared to have fallen asleep. (DeSimone died in 2017. A company spokesperson did not answer my questions about the meeting.)</p>
-
-<p>[-]</p>
 
 <p>After that meeting, Hansen remembers learning from Bacon that her job would be changing. She would only be allowed to do experiments that a supervisor had specifically requested, and she was to share her data with only that person. She would spend most of her time analyzing samples for studies that other employees were conducting, and she should not ask questions about what the results meant. Several members of her team were also being reassigned. Bacon explained that a different scientist at 3M would lead research into PFOS going forward. Hansen felt that she was being punished and struggled not to cry.</p>
 
@@ -244,8 +205,6 @@ a:visited {
 
 <p>During that time, forever chemicals gained a new scientific name — per- and polyfluoroalkyl substances, or PFAS, an acronym that is vexingly similar to the specific fluorochemical PFOS. A swath of 150 square miles around 3M’s headquarters was found to be polluted with PFAS; scientists discovered PFOS and PFBS in local fish and various fluorochemicals in water that roughly 125,000 Minnesotans drank. Hansen’s husband, Peter, told me that, when friends asked Hansen about PFAS, she would change the subject. Still, she repeatedly told him — and herself — that the chemicals were safe.</p>
 
-<p>[-]</p>
-
 <p>In the 2016 book “Secrecy at Work,” two management theorists, Jana Costas and Christopher Grey, argue that there is nothing inherently wrong or harmful about keeping secrets. Trade secrets, for example, are protected by federal and state law on the grounds that they promote innovation and contribute to the economy. The authors draw on a large body of sociological research to illustrate the many ways that information can be concealed. An organization can compartmentalize a secret by slicing it into smaller components, preventing any one person from piecing together the whole. Managers who don’t want to disclose sensitive information may employ “stone-faced silence.” Secret-keepers can form a kind of tribe, dependent on one another’s continued discretion; in this way, even the existence of a secret can be kept secret. Such techniques become pernicious, Costas and Grey write, when a company keeps a dark secret, a secret about wrongdoing.</p>
 
 <p>Certain unpredictable events — a leak, a lawsuit, a news story — can start to unspool a secret. In the case of forever chemicals, the unspooling began on a cattle farm. In 1998, a West Virginia farmer told a lawyer, Robert Bilott, that wastewater from a DuPont site seemed to be poisoning his cows: They had started to foam at the mouth, their teeth grew black and more than a hundred eventually fell over and died. Bilott sued and obtained tens of thousands of internal documents, which helped push forever chemicals into the public consciousness. The documents revealed that the farm’s water contained PFOA, the fluorochemical that DuPont had bought from 3M, and that both companies had long understood it to be toxic. (The lawsuit, which ended in a settlement, was dramatized in the film “Dark Waters,” starring Mark Ruffalo as Bilott.) Bilott later sued 3M over contamination in Minnesota, but the judge prohibited discussion of health repercussions; a jury ultimately decided in 3M’s favor. Finally, in 2010, the Minnesota attorney general’s office filed its own suit, alleging that 3M had harmed the environment and polluted drinking water. The company paid $850 million in a settlement, without an admission of fault or liability. The AG also released thousands more internal 3M records to the public.</p>
@@ -262,8 +221,6 @@ a:visited {
 
 <p>In October 2022, after Hansen had been at 3M for 26 years, her job was eliminated, and she chose not to apply for a new one. Three months later, she wrote me an email, offering to speak about what she had witnessed inside the company. “If you’d be interested in talking further, please let me know,” she wrote. The next day, we had the first of dozens of conversations.</p>
 
-<p>[-]</p>
-
 <p>When Hansen first told me about her experiences, I felt conflicted. Her work seemed to have helped force 3M to stop making a number of toxic chemicals, but I kept thinking about the 20 years in which she had kept quiet. During my first visit to Hansen’s home, in February 2023, we sat in her kitchen, eating bread that her husband had just baked. She showed me pictures of her father and shared a color-coded timeline of 3M’s history with forever chemicals. On a bitterly cold walk in a local park, we tried to figure out if any of her colleagues, besides Newmark, had known that PFOS was in everyone’s blood. She often sprinkled her stories with such Midwesternisms as “holy ­buckets!”</p>
 
 <p>During my second trip, this past August, I asked her why, as a scientist who was trained to ask questions, she hadn’t been more skeptical of claims that PFOS was harmless. In the awkward silence that followed, I looked out the window at some hummingbirds.</p>
@@ -277,8 +234,6 @@ a:visited {
 <p>Last year, while reading about the thousands of PFAS-related lawsuits that 3M was facing, I was intrigued to learn that one of them, filed by cities and towns with polluted water, had produced a new set of internal 3M documents. When I requested several from the plaintiff’s legal team, I saw two names that I recognized. In a document from 1991, a 3M scientist talked about using a mass spectrometer — the same tool that Hansen would use years later — to devise a technique for measuring PFOS in biological fluid. The author was Jim Johnson — and he had sent the report to his boss, Dale Bacon.</p>
 
 <p>This revelation made me gasp. Johnson had been Hansen’s first boss and had instigated her research into PFOS. Bacon had questioned her findings and ultimately told her to stop her work. (In a sworn deposition, Bacon said that by the ’80s he had heard, during a water-cooler chat with a colleague, that Taves and Guy had found PFOS in human blood.) What I couldn’t understand was why Johnson would ask Hansen to investigate something that he had already studied himself — and then act surprised by the results.</p>
-
-<p>[-]</p>
 
 <p>Jim Johnson, who is now an 81-year-old widower, lives with several dogs in a pale-yellow house in North Dakota. When I first called him, he said that he had begun researching PFOS in the ’70s. “I did a lot of the very original work on it,” he told me. He said that when he saw the chemical’s structure he understood “within 20 minutes” that it would not break down in nature. Shortly thereafter, one of his experiments revealed that PFOS was binding to proteins in the body, causing the chemical to accumulate over time. He told me that he also looked for PFOS in an informal test of blood from the general population, around the late ’70s, and was not surprised when he found it there.</p>
 
@@ -302,8 +257,6 @@ a:visited {
 
 <p>When I called Hansen about my conversation with Johnson, she grew angrier than I’d ever heard her. “He knew the whole time!” she said. Then she had to get off the phone for an appointment. “So glad I’m going to see my therapist,” she added, and hung up.</p>
 
-<p>[-]</p>
-
 <p>I once thought of secrets as discrete, explosive truths that a heroic person could suddenly reveal. In the 1983 film “Silkwood,” which is based on real events, Karen Silkwood, a worker at a plutonium plant, assembles a thick folder documenting her employer’s shoddy safety practices; while driving to share them with a reporter, she dies in a mysterious one-car crash. In another adaptation of a true story, the 2015 film “Spotlight,” a source delivers a box of critical documents to The Boston Globe, helping the paper to publish an investigation into child sexual abuse within the Catholic Church. Talking to Hansen and Johnson, though, I saw that the truth can come out piecemeal over many years, and that the same people who keep secrets can help divulge them. Some slices of 3M’s secret are only now coming to light, and others may never come out.</p>
 
 <p>Between 1951 and 2000, 3M produced at least 100 million pounds of PFOS and chemicals that degrade into PFOS. This is roughly the weight of the Titanic. After the late ’70s, when 3M scientists established that the chemical was toxic in animals and was accumulating in humans, it produced millions of pounds per year. Scientists are still struggling to grasp all the biological consequences. They have learned, just as Johnson did decades ago, that proteins in the body bind to PFOS. It enters our cells and organs, where even tiny amounts can cause stress and interfere with basic biological functions. It contributes to diseases that take many years to develop; at the time of a diagnosis, one’s PFOS level may have fallen, making it difficult to establish causation with any certainty.</p>
@@ -326,42 +279,13 @@ a:visited {
 
 <p>In 2022, 3M said that it would stop making PFAS and would “work to discontinue the use of PFAS across its product portfolio,” by the end of 2025 — a pledge that it called “another example of how we are positioning 3M for continued sustainable growth.” But it acknowledged that more than 16,000 of its products still contained PFAS. Direct sales of the chemicals were generating $1.3 billion annually. 3M’s regulatory filings also allow for the possibility that a full phaseout won’t happen — for example, if 3M fails to find substitutes. “We are continuing to make progress on our announcement to exit PFAS manufacturing,” 3M’s spokesperson told me. The company and its scientists have not admitted wrong­doing or faced criminal liability for producing forever chemicals or for concealing their harms.</p>
 
-<p>[-]</p>
-
 <p>Hansen often wonders what her father would say about 3M if he were still alive. A few years ago, he began to show signs of dementia, which worsened during the COVID-19 pandemic. Every time Hansen explained to him that a novel coronavirus was sickening people around the world, he asked how he might contribute — forgetting that the N95 mask he helped to create was already protecting millions of people from infection. When he died, in January 2021, Hansen noticed some Coban wrap on his arm. It was shielding his delicate skin from tears, just as he had designed it to. “He invented that,” Hansen told the hospice nurse, who smiled politely.</p>
 
 <p>After she left 3M, Hansen began volunteering at a local nature preserve, where she works to clear paths and protect native plants. Last August, she took me there, and we walked to a creek where she often spends time. The water is home to three species of trout, she told me. It is also polluted by forever chemicals that 3M once dumped upstream.</p>
 
 <p>For most of our hike, a thick wall of flowers — purple joe-pye weed and goldenrod — made it impossible to see the creek bank. Then we came to a wooden bench. I climbed on top of it and looked down on the creek. As I listened to the gurgling of water and the buzzing of insects, I thought I understood why Hansen liked to come here. It was too late to save the creek from pollution; 3M’s chemicals could be there for thousands of years to come. Hansen just wanted to appreciate what was left and to leave the place a little better than she’d found it.</p>
 
-<h2><a href="https://www.propublica.org/getinvolved/send-propublica-story-tips">Do You Have a Tip for ProPublica? Help Us Do Journalism.</a></h2>
-<p> Got a story we should hear? Are you down to be a background source on a story about your community, your schools or your workplace? Get in touch.</p>
-
-<h2>Corrections</h2>
-<p><a href="https://www.propublica.org/people/kirsten-berg">Kirsten Berg</a> contributed research.</p>
-
-<h2>Contributors</h2>
-<ul>
-<li>Sharon LernerI cover health and the environment and the agencies that govern them, as well as government oversight.<a href="https://www.propublica.org/people/sharon-lerner">More Stories: Sharon Lerner</a>Need to Get in Touch?I write about health, science, environmental regulation, government oversight and corruption. I’d like to speak with workers in inspector general offices or in science- and health-related agencies. I take confidentiality seriously.<ul>
-<li><a href="">Facebook</a></li>
-<li><a href="https://bsky.app/profile/fastlerner.bsky.social">Bluesky</a></li>
-<li><a href="https://www.linkedin.com/in/sharon-lerner-5550ab90/">LinkedIn</a></li>
-</ul>
-</li>
-</ul>
-
-<h3><a href="https://www.propublica.org/people/sharon-lerner">Sharon Lerner</a></h3>
-<ul>
-<li><a href="">Facebook</a></li>
-<li><a href="https://bsky.app/profile/fastlerner.bsky.social">Bluesky</a></li>
-<li><a href="https://www.linkedin.com/in/sharon-lerner-5550ab90/">LinkedIn</a></li>
-</ul>
-
-<p> I cover health and the environment and the agencies that govern them, as well as government oversight.</p>
-
-<p>[Form omitted]</p>
-
-<p>I write about health, science, environmental regulation, government oversight and corruption. I’d like to speak with workers in inspector general offices or in science- and health-related agencies. I take confidentiality seriously.</p>
+<p>Got a story we should hear? Are you down to be a background source on a story about your community, your schools or your workplace? Get in touch.</p>
 
 </div>
 </body>
