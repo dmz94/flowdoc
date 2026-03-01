@@ -1,0 +1,102 @@
+[
+  {
+    "idx": "01",
+    "url": "https://www.nhs.uk/conditions/dyslexia/",
+    "final_url": "https://www.nhs.uk/conditions/dyslexia/",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "01_nhs_dyslexia.html",
+    "bytes": 30606
+  },
+  {
+    "idx": "02",
+    "url": "https://www.nhs.uk/conditions/attention-deficit-hyperactivity-disorder-adhd/symptoms/",
+    "final_url": "https://www.nhs.uk/conditions/adhd-children-teenagers/",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "02_nhs_adhd_symptoms.html",
+    "bytes": 50020
+  },
+  {
+    "idx": "03",
+    "url": "https://www.cdc.gov/child-development/milestones/",
+    "final_url": "https://www.cdc.gov/child-development/milestones/",
+    "status_code": 404,
+    "ok": false,
+    "error": "HTTP error: 404 Client Error: Not Found for url: https://www.cdc.gov/child-development/milestones/",
+    "filename": "03_cdc_milestones.html",
+    "bytes": 0
+  },
+  {
+    "idx": "04",
+    "url": "https://www.bbc.co.uk/bitesize/articles/znm2kmn",
+    "final_url": "https://www.bbc.co.uk/bitesize/articles/znm2kmn",
+    "status_code": 404,
+    "ok": false,
+    "error": "HTTP error: 404 Client Error: Not Found for url: https://www.bbc.co.uk/bitesize/articles/znm2kmn",
+    "filename": "04_bbc_bitesize_znm2kmn.html",
+    "bytes": 0
+  },
+  {
+    "idx": "05",
+    "url": "https://en.wikipedia.org/wiki/Photosynthesis",
+    "final_url": "https://en.wikipedia.org/wiki/Photosynthesis",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "05_wikipedia_photosynthesis.html",
+    "bytes": 660746
+  },
+  {
+    "idx": "06",
+    "url": "https://www.theguardian.com/food/2020/feb/13/how-ultra-processed-food-took-over-your-shopping-basket-brazil-carlos-monteiro",
+    "final_url": "https://www.theguardian.com/food/2020/feb/13/how-ultra-processed-food-took-over-your-shopping-basket-brazil-carlos-monteiro",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "06_guardian_ultra_processed_food_brazil_monteiro.html",
+    "bytes": 539994
+  },
+  {
+    "idx": "07",
+    "url": "https://www.understood.org/en/articles/what-is-dyslexia",
+    "final_url": "https://www.understood.org/en/articles/what-is-dyslexia",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "07_understood_what_is_dyslexia.html",
+    "bytes": 275429
+  },
+  {
+    "idx": "08",
+    "url": "https://www.bdadyslexia.org.uk/advice/children/how-can-i-support-my-child",
+    "final_url": "https://www.bdadyslexia.org.uk/advice/children/how-can-i-support-my-child",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "08_bdadyslexia_support_my_child.html",
+    "bytes": 32307
+  },
+  {
+    "idx": "09",
+    "url": "https://dyslexiaida.org/dyslexia-basics/",
+    "final_url": "https://dyslexiaida.org/dyslexia-basics/",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "09_dyslexiaida_dyslexia_basics.html",
+    "bytes": 76673
+  },
+  {
+    "idx": "10",
+    "url": "https://en.wikipedia.org/wiki/World_War_I",
+    "final_url": "https://en.wikipedia.org/wiki/World_War_I",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "10_wikipedia_world_war_i.html",
+    "bytes": 1032792
+  }
+]

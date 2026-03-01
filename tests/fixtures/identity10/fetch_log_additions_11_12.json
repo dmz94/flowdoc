@@ -1,0 +1,22 @@
+[
+  {
+    "idx": "11",
+    "url": "https://dyslexia.yale.edu/dyslexia/what-is-dyslexia/",
+    "final_url": "https://dyslexia.yale.edu/dyslexia/what-is-dyslexia/",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "11_yale_what_is_dyslexia.html",
+    "bytes": 34543
+  },
+  {
+    "idx": "12",
+    "url": "https://www.understood.org/en/articles/what-is-dyslexia",
+    "final_url": "https://www.understood.org/en/articles/what-is-dyslexia",
+    "status_code": 200,
+    "ok": true,
+    "error": null,
+    "filename": "12_understood_what_is_dyslexia.html",
+    "bytes": 277382
+  }
+]

@@ -134,13 +134,18 @@ def drop_trailing_orphan_section(sections: list[Section]) -> list[Section]:
     return sections
 
 
+def _normalize_str(s: str) -> str:
+    """Collapse whitespace, strip, and lowercase a plain text string."""
+    return re.sub(r'\s+', ' ', s).strip().lower()
+
+
 def _normalize_heading_text(heading) -> str:
     """
     Return normalized heading text: strip, collapse internal whitespace,
     lowercase.  Used for consecutive duplicate detection.
     """
     raw = "".join(_inline_to_text(il) for il in heading.inlines)
-    return re.sub(r'\s+', ' ', raw).strip().lower()
+    return _normalize_str(raw)
 
 
 def drop_duplicate_consecutive_sections(sections: list[Section]) -> list[Section]:
@@ -260,6 +265,39 @@ def _extract_title_string(html: str) -> str:
     return re.sub(r'\s+', ' ', m.group(1)).strip()
 
 
+def _strip_title_branding(title: str | None) -> str | None:
+    """
+    Strip site-branding suffix from a page title string.
+
+    Tries delimiters in priority order: ' | ', ' - ', ' -- '.
+    For the first delimiter found, splits on its last (rightmost) occurrence
+    and returns the left part, whitespace-stripped.
+    Returns None for None/empty input; returns the original stripped string
+    if no delimiter matches.
+    """
+    if not title:
+        return None
+    for delim in (" | ", " - ", " -- "):
+        if delim in title:
+            return title.rsplit(delim, 1)[0].strip()
+    return title.strip()
+
+
+def _first_heading_text(html_string: str) -> str | None:
+    """
+    Return the plain text of the first h1-h6 element in an HTML string, or
+    None if no heading is found or the text is empty/whitespace-only.
+
+    Used by the H1-injection guard to compare the candidate synthetic title
+    against the first real heading already present in Trafilatura output.
+    """
+    m = re.search(r'<h[1-6][^>]*>(.*?)</h[1-6]>', html_string, re.IGNORECASE | re.DOTALL)
+    if not m:
+        return None
+    text = re.sub(r'<[^>]+>', '', m.group(1)).strip()
+    return text if text else None
+
+
 def extract_with_trafilatura(
     html: str,
     extraction_mode: ExtractionMode = "baseline",
@@ -332,14 +370,20 @@ def extract_with_trafilatura(
         **traf_kwargs,
     )
 
-    has_h1_h3 = extracted and any(f"<h{i}" in extracted for i in range(1, 4))
+    has_h1 = extracted and "<h1" in extracted
     has_any_heading = extracted and any(f"<h{i}" in extracted for i in range(1, 7))
 
     if has_any_heading:
         cleaned = re.sub(r'<p>\s*Advertisement\s*</p>', '', extracted)
-        if not has_h1_h3:
-            title = original_title or _extract_title_string(html)
+        if not has_h1:
+            title = _strip_title_branding(original_title or _extract_title_string(html))
             h1 = f"<h1>{title}</h1>\n" if title else "<h1>Article</h1>\n"
+            # Guard: skip injection if the title duplicates the first real heading.
+            # Uses the same normalization as drop_duplicate_consecutive_sections().
+            first_h = _first_heading_text(cleaned)
+            if first_h is not None and title:
+                if _normalize_str(title) == _normalize_str(first_h):
+                    return cleaned
             return h1 + cleaned
         return cleaned
 
@@ -348,7 +392,7 @@ def extract_with_trafilatura(
         prose_chars = len(re.sub(r'<[^>]+>', '', extracted).strip())
         if prose_chars >= _MIN_PROSE_CHARS:
             cleaned = re.sub(r'<p>\s*Advertisement\s*</p>', '', extracted)
-            title = original_title or _extract_title_string(html)
+            title = _strip_title_branding(original_title or _extract_title_string(html))
             h1 = f"<h1>{title}</h1>\n" if title else "<h1>Article</h1>\n"
             return h1 + cleaned
 
