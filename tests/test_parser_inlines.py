@@ -48,7 +48,7 @@ def test_parses_inline_code():
 
 def test_parses_links():
     """A tags become Link objects."""
-    html = '<body><h1>Title</h1><p>Visit <a href="https://example.com">our site</a></p></body>'
+    html = '<body><h1>Title</h1><p>Visit <a href="https://example.com">our site</a> for more information about this topic and other details</p></body>'
     doc = parse(html)
     para = doc.sections[0].blocks[0]
     link = para.inlines[1]

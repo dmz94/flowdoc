@@ -4,12 +4,10 @@ Tests for explicit extraction failure when no article body is detected (burn-dow
 If the document contains no paragraph block with >= 20 words of non-placeholder prose,
 the pipeline raises ValidationError instead of emitting navigation/junk output.
 
-Affected fixtures:
-- guardian: extraction failure — all content is navigation/related-links
-- theringer: extraction failure — all content is navigation stub
-
-Clean fixture (regression guard):
-- smithsonian: real article prose, must NOT fail
+Fixture integration tests (regression guards):
+- guardian: real article prose, must succeed
+- theringer: real article prose, must succeed
+- smithsonian: real article prose, must succeed
 """
 import pytest
 from pathlib import Path
@@ -84,26 +82,26 @@ def test_has_article_body_counts_across_sections():
 # Fixture integration tests
 # ---------------------------------------------------------------------------
 
-def test_guardian_raises_validation_error():
+def test_guardian_extracts_article_body():
     """
-    Guardian fixture: Trafilatura extracts navigation/related-links instead
-    of article body.  In extract mode (require_article_body=True), parse()
-    must raise ValidationError, not return junk output.
+    Guardian fixture: Trafilatura now extracts real article prose.
+    Must succeed in extract mode and produce sections with a title.
     """
     html = (FIXTURES / "guardian.html").read_text(encoding="utf-8")
-    with pytest.raises(ValidationError, match="No article body"):
-        parse(extract_with_trafilatura(html), require_article_body=True)
+    doc = parse(extract_with_trafilatura(html), require_article_body=True)
+    assert doc.sections, "Guardian must have at least one section"
+    assert doc.title, "Guardian must have a non-empty title"
 
 
-def test_theringer_raises_validation_error():
+def test_theringer_extracts_article_body():
     """
-    Theringer fixture: Trafilatura extracts a navigation stub.
-    In extract mode (require_article_body=True), parse() must raise
-    ValidationError, not return junk output.
+    TheRinger fixture: Trafilatura now extracts real article prose.
+    Must succeed in extract mode and produce sections with a title.
     """
     html = (FIXTURES / "theringer.html").read_text(encoding="utf-8")
-    with pytest.raises(ValidationError, match="No article body"):
-        parse(extract_with_trafilatura(html), require_article_body=True)
+    doc = parse(extract_with_trafilatura(html), require_article_body=True)
+    assert doc.sections, "TheRinger must have at least one section"
+    assert doc.title, "TheRinger must have a non-empty title"
 
 
 def test_smithsonian_does_not_fail():

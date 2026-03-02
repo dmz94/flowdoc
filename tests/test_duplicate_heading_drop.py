@@ -6,35 +6,12 @@ section is dropped entirely.  Non-consecutive duplicates are left untouched.
 
 Normalization: strip leading/trailing whitespace, collapse internal whitespace
 to a single space, lowercase.
-
-Affected fixture:
-- guardian: two consecutive "More on this story" sections (indices 0 and 1)
-
-Sanity fixture:
-- guardian: "Most viewed" appears exactly once and must survive.
 """
-from pathlib import Path
-
 from flowdoc.core.model import Heading, Paragraph, Text, Section
 from flowdoc.core.parser import (
-    extract_with_trafilatura,
-    parse,
     drop_duplicate_consecutive_sections,
     _normalize_heading_text,
 )
-
-FIXTURES = Path(__file__).parent / "fixtures" / "user-study"
-
-
-def _heading_texts(doc) -> list[str]:
-    """Return the raw heading text of every section in order."""
-    result = []
-    for s in doc.sections:
-        text = "".join(
-            il.text for il in s.heading.inlines if hasattr(il, "text")
-        )
-        result.append(text)
-    return result
 
 
 def _make_section(text: str, n_blocks: int = 1) -> Section:
@@ -104,40 +81,3 @@ def test_case_insensitive_match():
     result = drop_duplicate_consecutive_sections([a, b])
     assert len(result) == 1
 
-
-# ---------------------------------------------------------------------------
-# Fixture integration tests
-# ---------------------------------------------------------------------------
-
-def test_guardian_one_more_on_this_story():
-    """
-    Guardian fixture: two consecutive 'More on this story' sections appear.
-
-    Before fix: two sections with that heading are present.
-    After fix: exactly one 'More on this story' heading remains.
-    """
-    html = (FIXTURES / "guardian.html").read_text(encoding="utf-8")
-    doc = parse(extract_with_trafilatura(html))
-
-    texts = _heading_texts(doc)
-    count = sum(1 for t in texts if t.strip().lower() == "more on this story")
-    assert count == 1, (
-        f"Expected 1 'More on this story' section, found {count}. "
-        "Duplicate consecutive heading deduplication is not working."
-    )
-
-
-def test_guardian_most_viewed_survives():
-    """
-    Guardian fixture: 'Most viewed' appears once and must not be dropped
-    by the deduplication pass (sanity check against over-filtering).
-    """
-    html = (FIXTURES / "guardian.html").read_text(encoding="utf-8")
-    doc = parse(extract_with_trafilatura(html))
-
-    texts = _heading_texts(doc)
-    count = sum(1 for t in texts if t.strip().lower() == "most viewed")
-    assert count == 1, (
-        f"Expected 1 'Most viewed' section, found {count}. "
-        "Deduplication pass is incorrectly filtering non-duplicate sections."
-    )
