@@ -1,0 +1,50 @@
+{
+  "fixture": "smithsonian",
+  "corpus": "main",
+  "baselined_at": "2026-03-02T22:43:10.783787+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 7,
+    "headings": [
+      "An Evolutionary Timeline of Homo Sapiens",
+      "550,000 to 750,000 Years Ago: The Beginning of the Homo sapiens Lineage",
+      "300,000 Years Ago: Fossils Found of Oldest Homo sapiens",
+      "300,000 Years Ago: Artifacts Show a Revolution in Tools",
+      "100,000 to 210,000 Years Ago: Fossils Show Homo sapiens Lived Outside of Africa",
+      "50,000 to 60,000 Years Ago: Genes and Climate Reconstructions Show a Migration Out of Africa",
+      "15,000 to 40,000 Years Ago: Genetics and Fossils Show Homo sapiens Became the Only Surviving Human Species"
+    ],
+    "output_word_count": 2602,
+    "source_plain_word_count": 4076,
+    "word_count_ratio": 0.6383709519136408,
+    "paragraph_count": 44,
+    "avg_paragraph_words": 59.13636363636363,
+    "shortest_paragraph_words": [
+      4,
+      7,
+      25
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 142,
+    "prose_word_count": 2602,
+    "link_to_prose_ratio": 0.054573405073020755,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

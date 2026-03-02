@@ -1,0 +1,49 @@
+{
+  "fixture": "article-15-quantamagazine",
+  "corpus": "main",
+  "baselined_at": "2026-03-02T22:43:11.394184+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 6,
+    "headings": [
+      "How Smell Guides Our Inner World",
+      "Introduction",
+      "Anosmatique",
+      "Single-Molecule Smells",
+      "The Brain Makes Scents",
+      "Surely Osmatique"
+    ],
+    "output_word_count": 3277,
+    "source_plain_word_count": 4832,
+    "word_count_ratio": 0.6781870860927153,
+    "paragraph_count": 54,
+    "avg_paragraph_words": 60.68518518518518,
+    "shortest_paragraph_words": [
+      3,
+      3,
+      3
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 51,
+    "prose_word_count": 3277,
+    "link_to_prose_ratio": 0.01556301495270064,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "fixture": "article-18-undark",
+  "corpus": "main",
+  "baselined_at": "2026-03-02T22:43:11.931897+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "As Brain Organoid Science Grows More Complex, So Do the Questions"
+    ],
+    "output_word_count": 3628,
+    "source_plain_word_count": 8373,
+    "word_count_ratio": 0.43329750388152394,
+    "paragraph_count": 64,
+    "avg_paragraph_words": 56.6875,
+    "shortest_paragraph_words": [
+      3,
+      13,
+      15
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 32,
+    "prose_word_count": 3628,
+    "link_to_prose_ratio": 0.008820286659316428,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

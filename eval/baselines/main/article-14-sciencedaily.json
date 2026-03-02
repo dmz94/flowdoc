@@ -1,0 +1,46 @@
+{
+  "fixture": "article-14-sciencedaily",
+  "corpus": "main",
+  "baselined_at": "2026-03-02T22:43:11.075190+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 3,
+    "headings": [
+      "Why some memories last a lifetime while others fade fast",
+      "Memory lasts when a network of molecular timers strengthens key experiences over time.",
+      "Explore More"
+    ],
+    "output_word_count": 1073,
+    "source_plain_word_count": 2228,
+    "word_count_ratio": 0.48159784560143626,
+    "paragraph_count": 35,
+    "avg_paragraph_words": 28.6,
+    "shortest_paragraph_words": [
+      2,
+      2,
+      2
+    ],
+    "placeholder_count": 6,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 6
+    },
+    "placeholder_density": 0.14634146341463414,
+    "link_word_count": 93,
+    "prose_word_count": 1073,
+    "link_to_prose_ratio": 0.08667287977632805,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}
