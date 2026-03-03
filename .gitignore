@@ -61,4 +61,4 @@ extraction_trial_output.txt
 project_files.txt
 
 # Generated review outputs (regenerate from fixtures; not source)
-tests/fixtures/user-study/output/
+tests/fixtures/user-study/output/tests/fixtures/staging/
