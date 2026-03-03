@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Flowdoc Preview</title>
+<style>
+  /* Page layout */
+  body { font-family: Arial, sans-serif; margin: 0; padding: 16px; background: #f0f0f0; }
+
+  /* Drag-drop target zone */
+  #drop { border: 2px dashed #888; border-radius: 6px; padding: 32px;
+          text-align: center; color: #555; background: #fff;
+          cursor: pointer; margin-bottom: 12px; }
+  #drop.over { background: #e8f0fe; border-color: #4285f4; }
+
+  /* Font toggle row */
+  #controls { margin-bottom: 12px; }
+
+  /* Status line */
+  #status { font-size: 13px; color: #666; margin-bottom: 8px; }
+
+  /* Output iframe - fills remaining viewport height */
+  #frame { width: 100%; height: calc(100vh - 180px);
+           border: 1px solid #ccc; background: #fff; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div id="drop">Drop an HTML file here</div>
+
+<div id="controls">
+  <label>
+    <input type="checkbox" id="opendyslexic"> Use OpenDyslexic font
+  </label>
+</div>
+
+<div id="status"></div>
+
+<!-- Sandboxed so output HTML cannot run scripts -->
+<iframe id="frame" sandbox="allow-same-origin"></iframe>
+
+<script>
+  const drop = document.getElementById("drop");
+  const frame = document.getElementById("frame");
+  const status = document.getElementById("status");
+  const fontToggle = document.getElementById("opendyslexic");
+
+  // Track the currently loaded file for re-conversion on toggle change
+  let currentFile = null;
+
+  // Highlight drop zone while dragging over it
+  drop.addEventListener("dragover", e => {
+    e.preventDefault();
+    drop.classList.add("over");
+  });
+
+  drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+
+  // Handle dropped file
+  drop.addEventListener("drop", e => {
+    e.preventDefault();
+    drop.classList.remove("over");
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    currentFile = file;
+    drop.textContent = file.name;
+    convertFile(file);
+  });
+
+  function convertFile(file) {
+    status.textContent = "Converting...";
+    const fd = new FormData();
+    fd.append("file", file);
+    if (fontToggle.checked) fd.append("font", "opendyslexic");
+
+    fetch("/convert", { method: "POST", body: fd })
+      .then(r => {
+        if (!r.ok) return r.text().then(t => { throw new Error(t); });
+        return r.text();
+      })
+      .then(html => {
+        // Write converted HTML into sandboxed iframe
+        frame.srcdoc = html;
+        status.textContent = "Done - " + file.name;
+      })
+      .catch(err => {
+        status.textContent = "Error";
+        frame.srcdoc = "<pre>" + err.message + "</pre>";
+      });
+  }
+
+  // Re-convert when font toggle changes if a file is already loaded
+  fontToggle.addEventListener("change", () => {
+    if (currentFile) convertFile(currentFile);
+  });
+</script>
+
+</body>
+</html>

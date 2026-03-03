@@ -58,7 +58,6 @@ package-lock.json
 *.flowdoc.html
 repo_snapshot.txt
 extraction_trial_output.txt
-preview.html
 project_files.txt
 
 # Generated review outputs (regenerate from fixtures; not source)
