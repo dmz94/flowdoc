@@ -1,0 +1,45 @@
+{
+  "fixture": "genesis-news-gabriel-bio",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:48:33.066191+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 2,
+    "headings": [
+      "Peter Gabriel Biography : Genesis News Com [it]",
+      "\"MY NAME IS PETER GABRIELAND PRIMARILY I MAKE NOISES – AND IDEAS\""
+    ],
+    "output_word_count": 5201,
+    "source_plain_word_count": 6466,
+    "word_count_ratio": 0.8043612743581813,
+    "paragraph_count": 10,
+    "avg_paragraph_words": 520.1,
+    "shortest_paragraph_words": [
+      8,
+      156,
+      189
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 43,
+    "prose_word_count": 5201,
+    "link_to_prose_ratio": 0.008267640838300326,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

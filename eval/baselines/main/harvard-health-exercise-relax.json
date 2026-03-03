@@ -1,0 +1,50 @@
+{
+  "fixture": "harvard-health-exercise-relax",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:40:51.926478+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 7,
+    "headings": [
+      "Exercising to Relax - Harvard Health Publishing",
+      "How does exercise reduce stress? Surprising answers to this question and more.",
+      "How exercise reduces stress",
+      "Autoregulation exercise and stress relief",
+      "Breathing exercise reduces stress",
+      "Progressive muscular relaxation",
+      "Exercise, health, and stress"
+    ],
+    "output_word_count": 1635,
+    "source_plain_word_count": 3290,
+    "word_count_ratio": 0.4969604863221885,
+    "paragraph_count": 62,
+    "avg_paragraph_words": 26.370967741935484,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      1
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 7,
+    "prose_word_count": 1635,
+    "link_to_prose_ratio": 0.004281345565749235,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

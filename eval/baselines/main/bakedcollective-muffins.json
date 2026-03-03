@@ -1,0 +1,63 @@
+{
+  "fixture": "bakedcollective-muffins",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:43:57.042319+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 20,
+    "headings": [
+      "Sourdough Morning Glory Muffins",
+      "Jump to:",
+      "Ingredients",
+      "Ingredient Notes and Substitutions",
+      "Method",
+      "Top Tips",
+      "Recipe Notes",
+      "How to Store",
+      "FAQ",
+      "Is sourdough good for gut health?",
+      "Can you save sourdough discard to use later?",
+      "Can you use 2 week old sourdough discard?",
+      "Sourdough Morning Glory Muffins",
+      "Equipment",
+      "Ingredients",
+      "Dry Ingredients",
+      "Add-Ins",
+      "Wet Ingredients",
+      "Instructions",
+      "Nutrition"
+    ],
+    "output_word_count": 1030,
+    "source_plain_word_count": 13044,
+    "word_count_ratio": 0.07896350812634162,
+    "paragraph_count": 22,
+    "avg_paragraph_words": 25.181818181818183,
+    "shortest_paragraph_words": [
+      9,
+      10,
+      11
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 13,
+    "prose_word_count": 1030,
+    "link_to_prose_ratio": 0.01262135922330097,
+    "empty_sections": 6,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

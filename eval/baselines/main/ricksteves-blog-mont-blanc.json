@@ -1,0 +1,54 @@
+{
+  "fixture": "ricksteves-blog-mont-blanc",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:37:20.647167+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 11,
+    "headings": [
+      "Camerons Travels",
+      "Kinsale, Ireland",
+      "Cádiz, Spain",
+      "Ålesund, Norway",
+      "Palace District, Budapest, Hungary",
+      "Padua, Italy",
+      "Freiburg, Germany",
+      "Folegandros, Greece",
+      "Liverpool, England",
+      "Mikulov Wine Region, Czech Republic",
+      "Jutland, Denmark"
+    ],
+    "output_word_count": 3023,
+    "source_plain_word_count": 14825,
+    "word_count_ratio": 0.20391231028667792,
+    "paragraph_count": 64,
+    "avg_paragraph_words": 47.234375,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      9
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 50,
+    "prose_word_count": 3023,
+    "link_to_prose_ratio": 0.016539861065167052,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

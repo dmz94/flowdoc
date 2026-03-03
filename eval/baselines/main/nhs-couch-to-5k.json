@@ -1,0 +1,61 @@
+{
+  "fixture": "nhs-couch-to-5k",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:40:37.571154+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 18,
+    "headings": [
+      "Get running with Couch to 5K",
+      "What is Couch to 5K?",
+      "Did you know?",
+      "How does Couch to 5K work?",
+      "Who can do Couch to 5K?",
+      "Non-urgent advice: Speak to a GP if:",
+      "What are the benefits?",
+      "Download the free NHS Couch to 5K app",
+      "How do I get started?",
+      "Download the App",
+      "Pick your first run day",
+      "Plan your route",
+      "Wear comfy clothes",
+      "Stay safe",
+      "View the Couch to 5K plan",
+      "Real-life stories from people who use Couch to 5K",
+      "Join the Couch to 5K community",
+      "You can do this"
+    ],
+    "output_word_count": 960,
+    "source_plain_word_count": 1382,
+    "word_count_ratio": 0.6946454413892909,
+    "paragraph_count": 40,
+    "avg_paragraph_words": 22.0,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      2
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 8,
+    "prose_word_count": 960,
+    "link_to_prose_ratio": 0.008333333333333333,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

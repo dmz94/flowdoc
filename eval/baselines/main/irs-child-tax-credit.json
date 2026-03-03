@@ -1,0 +1,54 @@
+{
+  "fixture": "irs-child-tax-credit",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:44:52.511078+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 11,
+    "headings": [
+      "Child Tax Credit",
+      "Who qualifies for the Child Tax Credit/Additional Child Tax Credit",
+      "Who qualifies for the Credit for Other Dependents",
+      "How to determine eligibility and claim the credits",
+      "Information if we audit or deny your claim:",
+      "Other tax credits for families",
+      "Resources",
+      "Child Tax Credit",
+      "Useful forms and publications",
+      "Child Tax Credit marketing materials",
+      "Tax tip"
+    ],
+    "output_word_count": 698,
+    "source_plain_word_count": 1589,
+    "word_count_ratio": 0.4392699811202014,
+    "paragraph_count": 11,
+    "avg_paragraph_words": 36.27272727272727,
+    "shortest_paragraph_words": [
+      15,
+      16,
+      17
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 98,
+    "prose_word_count": 698,
+    "link_to_prose_ratio": 0.14040114613180515,
+    "empty_sections": 3,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

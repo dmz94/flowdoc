@@ -1,0 +1,53 @@
+{
+  "fixture": "ghost-accessibility-blog",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:45:36.066581+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "My Journey To Ghost",
+      "Publishing from iPad 🔗",
+      "Migrating from WordPress 🔗",
+      "Match the author 🔗",
+      "Check your image paths 🔗",
+      "Permalink redirects 🔗",
+      "Tags and categories 🔗",
+      "And then there was CodeMirror 🔗",
+      "A special thank you 🔗",
+      "In conclusion 🔗"
+    ],
+    "output_word_count": 1968,
+    "source_plain_word_count": 2478,
+    "word_count_ratio": 0.7941888619854721,
+    "paragraph_count": 31,
+    "avg_paragraph_words": 62.483870967741936,
+    "shortest_paragraph_words": [
+      7,
+      7,
+      18
+    ],
+    "placeholder_count": 1,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 1
+    },
+    "placeholder_density": 0.03125,
+    "link_word_count": 31,
+    "prose_word_count": 1968,
+    "link_to_prose_ratio": 0.015752032520325202,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

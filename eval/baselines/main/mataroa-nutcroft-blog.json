@@ -1,0 +1,46 @@
+{
+  "fixture": "mataroa-nutcroft-blog",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:45:58.623862+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 3,
+    "headings": [
+      "The ideal blog platform",
+      "Self hosted blogs",
+      "Addendum on hosting"
+    ],
+    "output_word_count": 625,
+    "source_plain_word_count": 1987,
+    "word_count_ratio": 0.3145445395067942,
+    "paragraph_count": 15,
+    "avg_paragraph_words": 38.0,
+    "shortest_paragraph_words": [
+      8,
+      8,
+      8
+    ],
+    "placeholder_count": 1,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 1,
+      "other": 0
+    },
+    "placeholder_density": 0.0625,
+    "link_word_count": 8,
+    "prose_word_count": 625,
+    "link_to_prose_ratio": 0.0128,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

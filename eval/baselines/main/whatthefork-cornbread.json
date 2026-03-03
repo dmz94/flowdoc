@@ -1,0 +1,63 @@
+{
+  "fixture": "whatthefork-cornbread",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:43:32.197264+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 20,
+    "headings": [
+      "Gluten Free Sourdough Cornbread",
+      "Did you make this recipe? Leave a star rating and let me know in the comments! You can also leave a photo/comment on this pin for others to see.",
+      "What You Need To Know About This Gluten Free Cornbread Recipe:",
+      "Sourdough Discard Cornbread Ingredients",
+      "Dairy Free Cornbread",
+      "As an Amazon Associate I earn from qualifying purchases.",
+      "Is cornmeal gluten free?",
+      "Equipment Needed to Make Homemade Cornbread",
+      "How to Make Cornbread with Sourdough Discard",
+      "Tips for Making Cornbread from Scratch",
+      "Other Gluten-Free Quick Bread Recipes To Try",
+      "Be sure to follow me on Instagram and hashtag #whattheforkfoodblog or tag @whattheforkfoodblog – I love seeing what you make!",
+      "If you love this easy cornbread recipe, be sure to follow me on social media so you never miss a post:",
+      "Gluten Free Sourdough Cornbread Recipe",
+      "Ingredients",
+      "Instructions",
+      "Notes",
+      "Recommended Products",
+      "Nutrition Information",
+      "Disclaimers"
+    ],
+    "output_word_count": 1143,
+    "source_plain_word_count": 4237,
+    "word_count_ratio": 0.26976634411139955,
+    "paragraph_count": 25,
+    "avg_paragraph_words": 22.44,
+    "shortest_paragraph_words": [
+      0,
+      0,
+      12
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 64,
+    "prose_word_count": 1143,
+    "link_to_prose_ratio": 0.05599300087489064,
+    "empty_sections": 6,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

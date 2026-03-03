@@ -1,0 +1,54 @@
+{
+  "fixture": "understood-what-is-dyslexia",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:34:26.739508+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 11,
+    "headings": [
+      "What is dyslexia?",
+      "Causes of dyslexia",
+      "Symptoms of dyslexia",
+      "Symptoms in kids",
+      "Signs in adults",
+      "Diagnosing dyslexia",
+      "Treatment",
+      "Co-occurring conditions",
+      "Next steps",
+      "Summary",
+      "Related resources"
+    ],
+    "output_word_count": 1295,
+    "source_plain_word_count": 5930,
+    "word_count_ratio": 0.21838111298482293,
+    "paragraph_count": 45,
+    "avg_paragraph_words": 26.8,
+    "shortest_paragraph_words": [
+      3,
+      3,
+      5
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 36,
+    "prose_word_count": 1295,
+    "link_to_prose_ratio": 0.027799227799227798,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

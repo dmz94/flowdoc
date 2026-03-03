@@ -1,0 +1,53 @@
+{
+  "fixture": "mayoclinic-dyslexia",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:35:11.851841+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "Dyslexia - Symptoms and causes",
+      "Overview",
+      "Symptoms",
+      "Before school",
+      "School age",
+      "Teens and adults",
+      "When to see a doctor",
+      "Causes",
+      "Risk factors",
+      "Complications"
+    ],
+    "output_word_count": 619,
+    "source_plain_word_count": 5301,
+    "word_count_ratio": 0.11677042067534428,
+    "paragraph_count": 14,
+    "avg_paragraph_words": 26.714285714285715,
+    "shortest_paragraph_words": [
+      0,
+      7,
+      12
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 0,
+    "prose_word_count": 619,
+    "link_to_prose_ratio": 0.0,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

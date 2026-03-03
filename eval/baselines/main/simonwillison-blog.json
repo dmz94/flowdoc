@@ -1,0 +1,63 @@
+{
+  "fixture": "simonwillison-blog",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:40:22.788424+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 20,
+    "headings": [
+      "Simon Willison’s Weblog",
+      "AI for Data Journalism: demonstrating what we can do with this stuff right now",
+      "What’s new in LLMs?",
+      "Opus at the top of the Chatbot Arena",
+      "Haikus from images with Claude 3 Haiku",
+      "Pasting data from Google Sheets into Datasette Cloud",
+      "AI-assisted SQL queries with datasette-query-assistant",
+      "Scraping data with shot-scraper",
+      "Enriching data in a table",
+      "Command-line tools for working with LLMs",
+      "Structured data extraction",
+      "Code Interpreter and access to tools",
+      "Running queries in Datasette from ChatGPT using a GPT",
+      "Semantic search with embeddings",
+      "Datasette Scribe: searchable Whisper transcripts",
+      "Trying and failing to analyze hand-written campaign finance documents",
+      "Get this for your newsroom",
+      "Colophon",
+      "More recent articles",
+      "Monthly briefing"
+    ],
+    "output_word_count": 4235,
+    "source_plain_word_count": 4895,
+    "word_count_ratio": 0.8651685393258427,
+    "paragraph_count": 185,
+    "avg_paragraph_words": 19.81081081081081,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      1
+    ],
+    "placeholder_count": 45,
+    "placeholder_types": {
+      "image": 45,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.1956521739130435,
+    "link_word_count": 479,
+    "prose_word_count": 4235,
+    "link_to_prose_ratio": 0.11310507674144038,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

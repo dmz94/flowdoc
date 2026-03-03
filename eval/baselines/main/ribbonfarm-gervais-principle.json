@@ -1,0 +1,44 @@
+{
+  "fixture": "ribbonfarm-gervais-principle",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:41:31.509691+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "The Gervais Principle, Or The Office According to “The Office”"
+    ],
+    "output_word_count": 4059,
+    "source_plain_word_count": 19482,
+    "word_count_ratio": 0.20834616569140746,
+    "paragraph_count": 53,
+    "avg_paragraph_words": 76.58490566037736,
+    "shortest_paragraph_words": [
+      0,
+      0,
+      1
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 10,
+    "prose_word_count": 4059,
+    "link_to_prose_ratio": 0.002463661000246366,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

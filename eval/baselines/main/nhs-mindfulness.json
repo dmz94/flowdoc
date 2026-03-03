@@ -1,0 +1,56 @@
+{
+  "fixture": "nhs-mindfulness",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:43:10.973205+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 13,
+    "headings": [
+      "Mindfulness",
+      "What is mindfulness?",
+      "How mindfulness helps mental wellbeing",
+      "How to be more mindful",
+      "Notice the everyday",
+      "Keep it regular",
+      "Try something new",
+      "Watch your thoughts",
+      "Name thoughts and feelings",
+      "Free yourself from the past and future",
+      "Different mindfulness practices",
+      "Is mindfulness helpful for everyone?",
+      "More tips for wellbeing"
+    ],
+    "output_word_count": 837,
+    "source_plain_word_count": 1230,
+    "word_count_ratio": 0.6804878048780488,
+    "paragraph_count": 31,
+    "avg_paragraph_words": 27.0,
+    "shortest_paragraph_words": [
+      12,
+      13,
+      16
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 18,
+    "prose_word_count": 837,
+    "link_to_prose_ratio": 0.021505376344086023,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

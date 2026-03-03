@@ -1,0 +1,54 @@
+{
+  "fixture": "govuk-pip",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:45:08.317634+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 11,
+    "headings": [
+      "Personal Independence Payment (PIP): What PIP is for",
+      "How PIP works",
+      "Daily living part",
+      "Mobility part",
+      "How difficulty with tasks is assessed",
+      "How often your condition affects tasks",
+      "Help with PIP",
+      "If you live in Scotland",
+      "If you move from Scotland to England or Wales",
+      "If you move from England or Wales to Scotland",
+      "If you get Disability Living Allowance (DLA)"
+    ],
+    "output_word_count": 499,
+    "source_plain_word_count": 5998,
+    "word_count_ratio": 0.0831943981327109,
+    "paragraph_count": 19,
+    "avg_paragraph_words": 19.789473684210527,
+    "shortest_paragraph_words": [
+      6,
+      11,
+      11
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 20,
+    "prose_word_count": 499,
+    "link_to_prose_ratio": 0.04008016032064128,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

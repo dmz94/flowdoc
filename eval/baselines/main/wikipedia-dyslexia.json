@@ -1,0 +1,67 @@
+{
+  "fixture": "wikipedia-dyslexia",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:44:18.450302+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 24,
+    "headings": [
+      "Dyslexia",
+      "Classification",
+      "Signs and symptoms",
+      "Associated conditions",
+      "Causes",
+      "Neuroanatomy",
+      "Genetics",
+      "Language",
+      "Pathophysiology",
+      "Dual route theory",
+      "Diagnosis",
+      "Assessment",
+      "Assessment tests",
+      "Screening",
+      "Management",
+      "Prognosis",
+      "Epidemiology",
+      "History",
+      "Society and culture",
+      "Stigma and success",
+      "Research",
+      "See also",
+      "References",
+      "Further reading"
+    ],
+    "output_word_count": 5054,
+    "source_plain_word_count": 9569,
+    "word_count_ratio": 0.5281638624725676,
+    "paragraph_count": 167,
+    "avg_paragraph_words": 18.87425149700599,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      1
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 731,
+    "prose_word_count": 5054,
+    "link_to_prose_ratio": 0.1446379105658884,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

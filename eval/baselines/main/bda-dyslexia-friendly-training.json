@@ -1,0 +1,46 @@
+{
+  "fixture": "bda-dyslexia-friendly-training",
+  "corpus": "main",
+  "baselined_at": "2026-03-03T23:33:55.393240+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 3,
+    "headings": [
+      "Dyslexia friendly training",
+      "Dyslexia friendly teaching",
+      "Resources"
+    ],
+    "output_word_count": 741,
+    "source_plain_word_count": 1956,
+    "word_count_ratio": 0.37883435582822084,
+    "paragraph_count": 5,
+    "avg_paragraph_words": 32.6,
+    "shortest_paragraph_words": [
+      19,
+      23,
+      35
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 4,
+    "prose_word_count": 741,
+    "link_to_prose_ratio": 0.005398110661268556,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_min": 0.3,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}
