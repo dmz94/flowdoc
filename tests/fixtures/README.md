@@ -1,21 +1,16 @@
-# Fixtures Structure
+# Test Fixtures
 
-This directory contains structured fixture inputs and outputs
-used for deterministic testing.
+## main/
+Active evaluation corpus for the Flowdoc pipeline. HTML source files,
+manifest, and eval baselines. Managed by the eval harness
+(eval/run_metrics.py). See docs/flowdoc-eval-cheatsheet.md for usage.
 
-## input/
-Raw HTML inputs used for core extraction and transformation tests.
+## input/ (legacy)
+Original 10 exploratory fixtures from early development (identity10).
+Superseded by main/ for eval purposes. Retained because unit tests
+reference these files directly.
 
-Only source HTML files belong here.
-No generated `.flowdoc.html` files should exist in this directory.
-
-## user-study/
-HTML inputs used for dyslexia validation testing.
-
-### output/
-Generated Flowdoc artifacts corresponding to user-study inputs.
-These are version-pinned outputs used for regression awareness.
-
-## scripts/
-Helper scripts related to fixture generation or fetching
-are located in `tests/scripts/`, not inside fixture directories.
+## user-study/ (legacy)
+10 fixtures from Phase 2 evaluation (eval20). Superseded by main/
+for eval purposes. Retained because unit tests reference these files
+directly.

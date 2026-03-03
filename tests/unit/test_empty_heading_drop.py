@@ -38,7 +38,7 @@ def test_theringer_no_empty_heading_sections():
     (the 'Keep Exploring' section, which has 1 paragraph).
     """
     fixture_path = (
-        Path(__file__).parent / "fixtures" / "user-study" / "theringer.html"
+        Path(__file__).resolve().parent.parent / "fixtures" / "user-study" / "theringer.html"
     )
     html = fixture_path.read_text(encoding="utf-8")
     extracted = extract_with_trafilatura(html)

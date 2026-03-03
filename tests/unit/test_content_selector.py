@@ -90,7 +90,7 @@ def test_detect_mode_defaults_to_transform_when_ambiguous():
 def test_detect_mode_simple_article_is_transform():
     """simple_article.html fixture is detected as transform mode."""
     from pathlib import Path
-    fixture_path = Path(__file__).parent / "fixtures" / "input" / "simple_article.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "input" / "simple_article.html"
     html = fixture_path.read_text(encoding='utf-8')
     assert detect_mode(html) == "transform"
 
@@ -98,6 +98,6 @@ def test_detect_mode_simple_article_is_transform():
 def test_detect_mode_wikipedia_is_extract():
     """Wikipedia fixture is detected as extract mode."""
     from pathlib import Path
-    fixture_path = Path(__file__).parent / "fixtures" / "input" / "wikipedia_dyslexia.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "input" / "wikipedia_dyslexia.html"
     html = fixture_path.read_text(encoding='utf-8')
     assert detect_mode(html) == "extract"

@@ -32,7 +32,7 @@ def test_guardian_no_zero_item_lists():
     Before fix: ListBlocks with items=[] are present in the model.
     After fix: no ListBlock in the document has zero items.
     """
-    fixture_path = Path(__file__).parent / "fixtures" / "user-study" / "guardian.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "user-study" / "guardian.html"
     html = fixture_path.read_text(encoding="utf-8")
     extracted = extract_with_trafilatura(html)
     doc = parse(extracted)

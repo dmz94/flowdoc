@@ -5,7 +5,7 @@ Automated metrics runner. Separate from pytest.
 ## Usage
 
   python eval/run_metrics.py --corpus main
-  python eval/run_metrics.py --corpus main --fixture 01_nhs_dyslexia
+  python eval/run_metrics.py --corpus main --fixture nhs-dyslexia
   python eval/run_metrics.py --corpus main --baseline
   python eval/run_metrics.py --corpus main --report
 

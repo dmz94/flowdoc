@@ -30,7 +30,7 @@ def test_clevelandclinic_trailing_cms_boilerplate_is_removed():
     This test FAILS today because the heuristic has not been implemented.
     """
     fixture_path = (
-        Path(__file__).parent / "fixtures" / "input" / "clevelandclinic_dyslexia.html"
+        Path(__file__).resolve().parent.parent / "fixtures" / "input" / "clevelandclinic_dyslexia.html"
     )
     html = fixture_path.read_text(encoding="utf-8")
 

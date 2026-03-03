@@ -232,7 +232,7 @@ When you see a REGRESSION in the output:
    - Change thresholds.py?
 
 3. Open the converted output visually:
-   python convert_fixtures.py
+   python scripts/preview/convert_fixtures.py
    Open tests/fixtures/main/{name}.flowdoc.html in a browser
 
 4. Decide:

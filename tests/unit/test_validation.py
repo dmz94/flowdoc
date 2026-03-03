@@ -83,7 +83,7 @@ def test_exact_error_message():
 
 def test_paulgraham_identity_rejected():
     """Real-world non-semantic HTML fixture is rejected with correct error."""
-    fixture_path = Path(__file__).parent / "fixtures" / "input" / "paulgraham_identity.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "input" / "paulgraham_identity.html"
     html = fixture_path.read_text(encoding='utf-8')
     with pytest.raises(ValidationError) as exc_info:
         parse(html)

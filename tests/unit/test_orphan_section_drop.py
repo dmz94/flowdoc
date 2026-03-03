@@ -38,7 +38,7 @@ def test_eater_trailing_orphan_section_is_removed():
     This test FAILS today because the heuristic has not been implemented.
     """
     fixture_path = (
-        Path(__file__).parent / "fixtures" / "user-study" / "eater.html"
+        Path(__file__).resolve().parent.parent / "fixtures" / "user-study" / "eater.html"
     )
     html = fixture_path.read_text(encoding="utf-8")
 
