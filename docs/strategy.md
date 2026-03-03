@@ -19,27 +19,46 @@ Status: For structured review and critique
 
 ## 1. Core Identity
 
-Flowdoc is a free, open-source command-line tool that converts web articles
-into clean, accessible, self-contained HTML files styled for readers with
-dyslexia and related conditions.
+Flowdoc is a free, open-source accessible HTML compiler. It transforms semantic
+web articles into clean, portable, printable HTML documents formatted for readers
+with dyslexia and related conditions.
 
-It transforms semantic HTML into portable, printable, offline-readable
-documents using a deterministic, security-bounded transformation pipeline
-with BDA-recommended typography.
+It is not a browser reader mode. It is not a consumer app. It is not a platform
+or business.
 
-Flowdoc is not:
-- A browser reader mode replacement
-- A layout-preserving renderer
-- A platform, SaaS product, or business
-- A consumer app or browser extension
+It is an engine that developers and technical users can build on, with a hosted
+reference implementation that demonstrates what the engine does.
 
-It is a focused utility for parents, teachers, SEN coordinators, and
-accessibility practitioners who need actual documents -- portable,
-printable, readable offline -- prepared from web content.
+End beneficiaries are readers with dyslexia. Primary users of the tool itself are
+developers and technically capable practitioners. Parents, teachers, and SEN
+coordinators are reached through surfaces built on top of the engine -- not
+through the CLI directly.
 
 ---
 
-## 2. Problem Definition
+## 2. Product Architecture
+
+Flowdoc is structured as three layers:
+
+**Engine** -- the core conversion pipeline. Semantic HTML in, accessible HTML out.
+Deterministic, security-bounded, model-driven. This is the primary development focus.
+
+**PyPI package** -- the engine exposed as a clean Python API. Enables developers
+to integrate Flowdoc into their own tools, plugins, and surfaces without
+maintaining the engine themselves.
+
+**Reference surface** -- a hosted implementation demonstrating the engine.
+Initially on a temporary domain for testing and demos. Accepts a URL or uploaded
+HTML file, returns a converted document. Primary purpose is validation and
+demonstration, not scale.
+
+All three layers are the responsibility of this project. Surfaces built on top of
+the PyPI package -- browser extensions, CMS plugins, educational platform
+integrations -- are community responsibility, not this project's.
+
+---
+
+## 3. Problem Definition
 
 A parent gets their child's dyslexia diagnosis. They search NHS, BDA,
 Understood.org. The content is there but buried in site chrome, cramped
@@ -60,7 +79,7 @@ unnecessary barriers for dyslexic readers.
 
 ---
 
-## 3. System Architecture (Conceptual)
+## 4. System Architecture (Conceptual)
 
 Flowdoc behaves like a compiler:
 
@@ -82,7 +101,7 @@ Key properties:
 
 ---
 
-## 4. v1 Scope (Intentionally Narrow)
+## 5. v1 Scope (Intentionally Narrow)
 
 Supported inputs:
 - Article-like prose documents
@@ -103,7 +122,7 @@ This constraint preserves determinism and clarity.
 
 ---
 
-## 5. Accessibility Focus
+## 6. Accessibility Focus
 
 Initial focus: dyslexia-informed readability principles.
 
@@ -121,23 +140,31 @@ Validation must be empirical.
 
 ---
 
-## 6. Differentiation
+## 7. Differentiation
 
-Flowdoc differs from browser reader modes by providing:
+The primary differentiator is artifact output, not features.
 
-1. Portable artifact output
-2. Deterministic, reproducible results
-3. Server-side embeddable engine
-4. Explicit degradation contracts
-5. Security-bounded transformation
-6. Version-pinned stability
+Browser reader modes (Edge Immersive Reader, Chrome, Safari) provide a better
+in-session reading experience. Flowdoc does not compete on that ground.
 
-It differs from accessibility overlays by transforming structure,
-not merely applying CSS.
+Flowdoc produces a file. That file can be printed, emailed, saved offline, handed
+to a student, or built into a resource pack. It exists outside the browser session
+and outside the original website. That is a categorically different use case, not
+a feature gap.
+
+Secondary differentiators:
+- BDA-aligned typography defaults, not user-configured guesswork
+- Deterministic, reproducible output -- same input always produces the same file
+- Security-bounded transformation -- strict sanitization before parsing
+- No external dependencies in output -- single self-contained HTML file
+
+The portable artifact use case is currently unvalidated with real users. This is a
+known gap to be addressed through early tester recruitment before any surface
+investment.
 
 ---
 
-## 7. Intended Users
+## 8. Intended Users
 
 End beneficiaries:
 Readers with dyslexia or related conditions who benefit from improved
@@ -155,7 +182,7 @@ No monetization. No institutional sales dependency.
 
 ---
 
-## 8. User-Facing Surface
+## 9. User-Facing Surface
 
 Flowdoc ships as a CLI tool. A minimal local preview capability exists
 for testing and demonstration.
@@ -169,7 +196,7 @@ must not compromise input constraints, determinism, or security boundary.
 
 ---
 
-## 9. Quality Model
+## 10. Quality Model
 
 Flowdoc follows a compiler-style quality model:
 
@@ -191,7 +218,7 @@ Expansion deepens prose quality before broadening scope.
 
 ---
 
-## 10. Known Limitations (v1)
+## 11. Known Limitations (v1)
 
 - Dependent on extraction engine behavior
 - CMS boilerplate may leak
@@ -203,7 +230,7 @@ These are documented boundaries, not defects.
 
 ---
 
-## 11. Validation Plan
+## 12. Validation Plan
 
 Before expansion:
 
@@ -223,7 +250,7 @@ scope expansion is premature.
 
 ---
 
-## 12. Strategic Expansion Path
+## 13. Strategic Expansion Path
 
 Phase 2:
 - Improve extraction repair quality
@@ -243,7 +270,7 @@ All expansion must preserve:
 
 ---
 
-## 13. Open Questions
+## 14. Open Questions
 
 - Is the CLI sufficient for the target audience, or is a simpler interface
   needed for non-technical users (parents, teachers)?
@@ -255,7 +282,7 @@ All expansion must preserve:
 
 ---
 
-## 14. Long-Term Identity
+## 15. Long-Term Identity
 
 Flowdoc aims to be:
 
