@@ -3,8 +3,8 @@
   "corpus": "main",
   "baselined_at": "2026-03-03T23:39:36.307591+00:00",
   "flowdoc_version": "0.1.0",
-  "status": "PASS",
-  "notes": "",
+  "status": "MARGINAL",
+  "notes": "Empty section(s): stable trafilatura extraction artifact",
   "metrics": {
     "section_count": 2,
     "headings": [
