@@ -20,17 +20,15 @@ from flowdoc.core.model import (
     Document, Paragraph, ListBlock, Quote, Preformatted,
     Text, Emphasis, Strong, Code, Link,
 )
-from thresholds import (
+from audit_config import (
     WORD_COUNT_RATIO_MIN, AVG_PARAGRAPH_WORDS_MIN,
     PLACEHOLDER_DENSITY_MAX, LINK_TO_PROSE_RATIO_MAX,
 )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+AUDIT_DIR = Path(__file__).resolve().parent
 FIXTURE_DIRS = {
-    "identity10": PROJECT_ROOT / "tests" / "fixtures" / "identity10",
-    "eval20": PROJECT_ROOT / "tests" / "fixtures" / "eval20",
-    "main": PROJECT_ROOT / "tests" / "fixtures" / "main",
+    "main": AUDIT_DIR / "test-pages",
 }
 
 
@@ -308,20 +306,20 @@ def compute_metrics(doc: Document, source_html: str, rendered_html: str) -> dict
 # Baseline save / load
 # ---------------------------------------------------------------------------
 
-BASELINE_DIR = Path(__file__).resolve().parent / "baselines"
+BASELINE_DIR = Path(__file__).resolve().parent / "expected-results"
 
 
 def load_baseline(corpus: str, fixture_name: str) -> dict | None:
     """Load a saved baseline for a fixture. Returns None if not found."""
-    path = BASELINE_DIR / corpus / f"{fixture_name}.json"
+    path = BASELINE_DIR / f"{fixture_name}.json"
     if not path.exists():
         return None
     return json.loads(path.read_text(encoding="utf-8"))
 
 
 def save_baseline(corpus: str, fixture_name: str, data: dict) -> None:
-    """Write a baseline record to eval/baselines/{corpus}/{fixture_name}.json."""
-    path = BASELINE_DIR / corpus / f"{fixture_name}.json"
+    """Write a baseline record to expected-results/{fixture_name}.json."""
+    path = BASELINE_DIR / f"{fixture_name}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(data, indent=2, ensure_ascii=False) + "\n",
@@ -474,7 +472,7 @@ def print_fail_review_block(fixture_name: str, error: str, fixture_num: int = 0,
 # Report generation
 # ---------------------------------------------------------------------------
 
-REPORT_DIR = Path(__file__).resolve().parent / "reports"
+REPORT_DIR = AUDIT_DIR.parent.parent / "eval" / "reports"
 
 
 def classify_fixture(metrics: dict, baseline: dict | None) -> str:
@@ -502,7 +500,7 @@ def classify_fixture(metrics: dict, baseline: dict | None) -> str:
 
 
 def save_report(corpus: str, fixture_results: list[dict]) -> Path:
-    """Write a JSON report to eval/reports/{timestamp}/report.json."""
+    """Write a JSON report to eval/reports/{timestamp}/report.json (ephemeral)."""
     ts = datetime.now(timezone.utc)
     timestamp_dir = ts.strftime("%Y%m%d_%H%M%S")
     report_dir = REPORT_DIR / timestamp_dir
@@ -563,7 +561,7 @@ def main():
     args = parser.parse_args()
 
     fixture_dir = FIXTURE_DIRS[args.corpus]
-    manifest_path = fixture_dir / "manifest.md"
+    manifest_path = AUDIT_DIR / "manifest.md"
 
     if not manifest_path.exists():
         print(f"ERROR: manifest not found: {manifest_path}", file=sys.stderr)

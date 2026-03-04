@@ -1,7 +1,7 @@
 # Flowdoc Eval Harness -- Reference
 
 **Status:** Current as of 2026-03-03
-**Source of truth:** eval/run_metrics.py, eval/thresholds.py
+**Source of truth:** tests/pipeline-audit/run_metrics.py, tests/pipeline-audit/audit_config.py
 
 This document describes the eval harness: what it does, how it works,
 and how to use it. For quick-reference commands, see
@@ -27,13 +27,13 @@ output well-structured? has anything regressed?).
 
 ## File Locations
 
-  eval/run_metrics.py               Main runner script
-  eval/thresholds.py                Anomaly threshold constants
-  eval/baselines/main/*.json        Human-reviewed baseline records
+  tests/pipeline-audit/run_metrics.py               Main runner script
+  tests/pipeline-audit/audit_config.py                Anomaly threshold constants
+  tests/pipeline-audit/expected-results/*.json        Human-reviewed baseline records
   eval/reports/                     Ephemeral run reports (gitignored)
-  eval/README.md                    Short usage reference
-  tests/fixtures/main/*.html        Source HTML fixture files
-  tests/fixtures/main/manifest.md   Corpus manifest (defines fixture list)
+  tests/pipeline-audit/README.md                    Short usage reference
+  tests/pipeline-audit/test-pages/*.html        Source HTML fixture files
+  tests/pipeline-audit/test-pages/manifest.md   Corpus manifest (defines fixture list)
   docs/flowdoc-eval-cheatsheet.md   Quick-reference cheat sheet
 
 ---
@@ -100,7 +100,7 @@ The runner computes these for each fixture:
 
 ## Thresholds
 
-Defined in eval/thresholds.py. These determine what counts as an
+Defined in tests/pipeline-audit/audit_config.py. These determine what counts as an
 anomaly:
 
   WORD_COUNT_RATIO_MIN      0.30
@@ -123,7 +123,7 @@ Additional anomaly checks (not threshold-configurable):
 - empty_sections > 0
 - stub_sections > 0
 
-To adjust sensitivity, edit thresholds.py and re-run --baseline to
+To adjust sensitivity, edit audit_config.py and re-run --baseline to
 regenerate baselines.
 
 ---
@@ -162,18 +162,18 @@ before classification runs.
 ## Commands
 
 ### Run all fixtures (routine check)
-  python eval/run_metrics.py --corpus main
+  python tests/pipeline-audit/run_metrics.py --corpus main
 
 ### Run a single fixture
-  python eval/run_metrics.py --corpus main --fixture nhs-dyslexia
+  python tests/pipeline-audit/run_metrics.py --corpus main --fixture nhs-dyslexia
 
 ### Generate a JSON report
-  python eval/run_metrics.py --corpus main --report
+  python tests/pipeline-audit/run_metrics.py --corpus main --report
 
 Writes to eval/reports/{timestamp}/report.json.
 
 ### Interactive baseline review
-  python eval/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
 
 Requires an interactive terminal (TTY). Presents each fixture without
 a baseline and prompts for a decision:
@@ -244,7 +244,7 @@ baseline review session.
 
 ### Manifest
 
-The corpus is defined in tests/fixtures/main/manifest.md. Each row
+The corpus is defined in tests/pipeline-audit/test-pages/manifest.md. Each row
 specifies a fixture number, filename, source URL, scope (in-scope or
 out-of-scope), and notes. Only in-scope fixtures are evaluated by the
 runner.

@@ -14,25 +14,25 @@ It DOES replace human judgment for routine regression checking.
 ## Daily Commands
 
 ### Check everything is still working (30 seconds)
-  python eval/run_metrics.py --corpus main
+  python tests/pipeline-audit/run_metrics.py --corpus main
 
 Run this after any pipeline change. If you see only PASS and MARGINAL,
 nothing has regressed. If you see REGRESSION or FAIL, investigate
 before committing.
 
 ### Full report with JSON output
-  python eval/run_metrics.py --corpus main --report
+  python tests/pipeline-audit/run_metrics.py --corpus main --report
 
 Writes to eval/reports/{timestamp}/report.json. Use when you want
 a permanent record, e.g. before a release or after a significant change.
 
 ### Check one fixture
-  python eval/run_metrics.py --corpus main --fixture nhs-dyslexia
+  python tests/pipeline-audit/run_metrics.py --corpus main --fixture nhs-dyslexia
 
 Use when you're debugging a specific article or investigating an anomaly.
 
 ### Add baselines for new fixtures
-  python eval/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
 
 Only presents fixtures that don't have a baseline yet. Existing
 baselines are skipped. See "Adding New Fixtures" below.
@@ -61,7 +61,7 @@ NEW         No baseline exists yet. Run --baseline to review and save.
 
 ---
 
-## Thresholds (eval/thresholds.py)
+## Thresholds (tests/pipeline-audit/audit_config.py)
 
 These define what counts as an anomaly:
 
@@ -83,7 +83,7 @@ These define what counts as an anomaly:
                                     suggests navigation-heavy page,
                                     not article prose.
 
-To adjust sensitivity, edit the values in eval/thresholds.py and
+To adjust sensitivity, edit the values in tests/pipeline-audit/audit_config.py and
 re-run --baseline to regenerate baselines.
 
 ---
@@ -170,7 +170,7 @@ Avoid:
 ### Step 2: Save the HTML
 Open the article in a browser.
 File > Save As > Web Page, HTML Only.
-Save to: tests/fixtures/main/{site}-{slug}.html
+Save to: tests/pipeline-audit/test-pages/{site}-{slug}.html
 
 Filename convention: {site}-{slug}.html -- lowercase, hyphens only, no numeric prefixes.
   bda-style-guide-overview.html
@@ -178,7 +178,7 @@ Filename convention: {site}-{slug}.html -- lowercase, hyphens only, no numeric p
   nhs-irlen-syndrome.html
 
 ### Step 3: Add to manifest
-Open tests/fixtures/main/manifest.md.
+Open tests/pipeline-audit/test-pages/manifest.md.
 Add a row at the bottom:
 
   | 18 | bda-style-guide-overview.html | https://... | in-scope | |
@@ -187,7 +187,7 @@ Column format: # | filename | source_url | scope | notes
 scope must be "in-scope" (add out-of-scope only for boundary test cases)
 
 ### Step 4: Run baseline review
-  python eval/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
 
 The runner presents only the new fixture(s). For each:
 
@@ -198,7 +198,7 @@ The runner presents only the new fixture(s). For each:
     and go fix the fixture or choose a different article
 
 ### Step 5: Commit
-  git add tests/fixtures/main/ eval/baselines/main/
+  git add tests/pipeline-audit/test-pages/ tests/pipeline-audit/expected-results/
   git commit -m "Add fixture: bda-style-guide-overview"
 
 ---
@@ -208,8 +208,8 @@ The runner presents only the new fixture(s). For each:
 When a fixture is consistently MARGINAL due to poor source quality
 (not pipeline problems), replace it with a better article.
 
-1. Delete the HTML file from tests/fixtures/main/
-2. Delete the baseline JSON from eval/baselines/main/
+1. Delete the HTML file from tests/pipeline-audit/test-pages/
+2. Delete the baseline JSON from tests/pipeline-audit/expected-results/
 3. Remove the manifest row
 4. Add replacement following "Adding New Fixtures" above
 5. Commit both the removal and the addition together
@@ -224,7 +224,7 @@ them if the source article is a poor representative of the use case.
 When you see a REGRESSION in the output:
 
 1. Run the single fixture to see full anomaly detail:
-   python eval/run_metrics.py --corpus main --fixture {name}
+   python tests/pipeline-audit/run_metrics.py --corpus main --fixture {name}
 
 2. Check what changed. Did you recently:
    - Update Trafilatura?
@@ -232,8 +232,8 @@ When you see a REGRESSION in the output:
    - Change thresholds.py?
 
 3. Open the converted output visually:
-   python scripts/preview/convert_fixtures.py
-   Open tests/fixtures/main/{name}.flowdoc.html in a browser
+   python tests/pipeline-audit/visual-review/convert_fixtures.py
+   Open tests/pipeline-audit/test-pages/{name}.flowdoc.html in a browser
 
 4. Decide:
    - Pipeline problem: fix the code, re-run, confirm PASS
@@ -247,10 +247,10 @@ When you see a REGRESSION in the output:
 
 ## File Locations
 
-  eval/run_metrics.py               Main runner script
-  eval/thresholds.py                Anomaly threshold constants
-  eval/baselines/main/*.json        Committed baseline records
+  tests/pipeline-audit/run_metrics.py               Main runner script
+  tests/pipeline-audit/audit_config.py                Anomaly threshold constants
+  tests/pipeline-audit/expected-results/*.json        Committed baseline records
   eval/reports/                     Ephemeral run reports (gitignored)
-  eval/README.md                    Short usage reference
-  tests/fixtures/main/*.html        Source HTML files
-  tests/fixtures/main/manifest.md   Corpus manifest
+  tests/pipeline-audit/README.md                    Short usage reference
+  tests/pipeline-audit/test-pages/*.html        Source HTML files
+  tests/pipeline-audit/test-pages/manifest.md   Corpus manifest

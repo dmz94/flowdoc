@@ -5,9 +5,9 @@ Downloads pages from their source URLs and saves them as HTML fixtures.
 Supports multiple corpora via the --corpus argument.
 
 Usage (from project root with venv active):
-    python scripts/corpus/fetch_corpus.py                  # fetch all corpora
-    python scripts/corpus/fetch_corpus.py --corpus input   # fetch one corpus
-    python scripts/corpus/fetch_corpus.py --corpus candidates  # fetch candidate URLs
+    python tests/pipeline-audit/fetch_corpus.py                  # fetch all corpora
+    python tests/pipeline-audit/fetch_corpus.py --corpus input   # fetch one corpus
+    python tests/pipeline-audit/fetch_corpus.py --corpus candidates  # fetch candidate URLs
 
 Requires: pip install requests
 """
@@ -25,6 +25,7 @@ except ImportError:
     sys.exit(1)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+AUDIT_DIR = Path(__file__).resolve().parent
 
 HEADERS = {
     "User-Agent": (
@@ -146,9 +147,9 @@ CORPORA = {
     },
 }
 
-CANDIDATES_MD = Path(__file__).resolve().parent / "candidates.md"
-STAGING_DIR = PROJECT_ROOT / "tests" / "fixtures" / "staging"
-FETCH_RESULTS_PATH = Path(__file__).resolve().parent / "fetch-results.txt"
+CANDIDATES_MD = AUDIT_DIR / "candidates.md"
+STAGING_DIR = AUDIT_DIR / "staging"
+FETCH_RESULTS_PATH = AUDIT_DIR / "fetch-results.txt"
 
 MIN_SIZE = 10 * 1024  # 10 KB
 

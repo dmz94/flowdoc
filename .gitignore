@@ -60,5 +60,5 @@ repo_snapshot.txt
 extraction_trial_output.txt
 project_files.txt
 
-# Generated review outputs (regenerate from fixtures; not source)
-tests/fixtures/user-study/output/tests/fixtures/staging/
+# Staging area for corpus expansion
+tests/pipeline-audit/staging/

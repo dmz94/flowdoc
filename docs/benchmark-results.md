@@ -163,7 +163,7 @@ crashing. They do not measure:
 - **User value**: Whether the output is genuinely easier to read for
   someone with dyslexia
 
-The internal eval harness (`eval/run_metrics.py`) addresses rendering
+The internal eval harness (`tests/pipeline-audit/run_metrics.py`) addresses rendering
 quality through 16 structural metrics against a human-reviewed corpus.
 Print quality and user value require manual testing.
 

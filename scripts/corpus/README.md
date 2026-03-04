@@ -1,13 +1,8 @@
 # scripts/corpus/
 
-Tools for managing Flowdoc test fixture corpora.
+Corpus fetch tool moved to tests/pipeline-audit/fetch_corpus.py.
 
-## Scripts
+## Remaining Scripts
 
-**fetch_corpus.py** -- Download HTML fixtures from their source URLs.
-
-    python scripts/corpus/fetch_corpus.py                  # fetch all corpora
-    python scripts/corpus/fetch_corpus.py --corpus input   # fetch one corpus
-
-Available corpora: `input`, `user-study`. Includes polite 1-second
-delay between requests. Requires `pip install requests`.
+**run_benchmark.py** -- Benchmark runner for extraction comparison.
+**run_wceb.py** -- WCEB benchmark runner.

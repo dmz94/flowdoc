@@ -5,7 +5,7 @@ Runs the Flowdoc pipeline on uploaded HTML files and returns
 converted output for visual inspection in a browser.
 
 Usage (from project root):
-    python scripts/preview/preview_server.py
+    python tests/pipeline-audit/visual-review/preview_server.py
 Then open http://localhost:5000 in a browser.
 """
 from flask import Flask, request

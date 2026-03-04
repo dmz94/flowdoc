@@ -1,13 +1,13 @@
 """
 Dev tool: batch convert all fixture HTML files.
 
-Runs the full Flowdoc pipeline on every .html file in tests/fixtures/main/
+Runs the full Flowdoc pipeline on every .html file in tests/pipeline-audit/test-pages/
 and writes .flowdoc.html output alongside each input file.
 
 Usage (from project root with venv active):
-    python scripts/preview/convert_fixtures.py
+    python tests/pipeline-audit/visual-review/convert_fixtures.py
 
-Output files are written to tests/fixtures/main/ alongside inputs.
+Output files are written to tests/pipeline-audit/test-pages/ alongside inputs.
 Open them directly in a browser to inspect visually.
 """
 from pathlib import Path
@@ -17,8 +17,7 @@ from flowdoc.core.content_selector import detect_mode
 from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
 from flowdoc.core.renderer import render
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-FIXTURE_DIR = PROJECT_ROOT / "tests" / "fixtures" / "main"
+FIXTURE_DIR = Path(__file__).resolve().parent.parent / "test-pages"
 
 
 def convert_fixture(input_path: Path) -> None:
