@@ -5,9 +5,9 @@ Iterates over 3985 HTML files across 8 datasets and reports pass/fail
 rates per dataset and overall.
 
 Usage (from project root):
-    python scripts/corpus/run_wceb.py --benchmark-dir ../web-content-extraction-benchmark/datasets/combined
+    python tests/benchmark-wceb/run_wceb.py --benchmark-dir ../web-content-extraction-benchmark/datasets/combined
 
-Writes detailed results to eval/reports/benchmark/wceb_results.json.
+Writes detailed results to eval/reports/benchmark/wceb_results.json (ephemeral).
 """
 
 import argparse

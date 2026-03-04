@@ -5,12 +5,12 @@ Iterates over 181 gzip-compressed HTML files from the benchmark repo,
 runs the full Flowdoc pipeline on each, and reports pass/fail rates.
 
 Usage (from project root):
-    python scripts/corpus/run_benchmark.py
+    python tests/benchmark-scrapinghub/run_benchmark.py
 
 Requires the benchmark repo cloned as a sibling directory:
     git clone https://github.com/scrapinghub/article-extraction-benchmark.git ../article-extraction-benchmark
 
-Writes detailed results to eval/reports/benchmark/results.json.
+Writes detailed results to eval/reports/benchmark/results.json (ephemeral).
 """
 
 import gzip
