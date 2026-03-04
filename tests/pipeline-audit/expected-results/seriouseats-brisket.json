@@ -1,0 +1,62 @@
+{
+  "fixture": "seriouseats-brisket",
+  "corpus": "main",
+  "baselined_at": "2026-03-04T22:10:39.734590+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "Empty section(s): stable trafilatura extraction artifact",
+  "metrics": {
+    "section_count": 19,
+    "headings": [
+      "Sous Vide Smoked Brisket Recipe",
+      "Why It Works",
+      "Why Cook Brisket Sous Vide?",
+      "What Temperature and Timing Should I Use?",
+      "Flat Cut or Point Cut?",
+      "What Rub Should I Use?",
+      "Should I Inject a Brine?",
+      "To Smoke or Not to Smoke?",
+      "Method 1: Using Liquid Smoke",
+      "Method 2: Using Live Smoke",
+      "What About the Smoke Ring?",
+      "How to Sous Vide Brisket",
+      "Apply the Rub Evenly",
+      "Seal the Brisket With Liquid Smoke",
+      "Slice and Serve",
+      "August 2016",
+      "Sous Vide Smoked Brisket Recipe",
+      "Special Equipment",
+      "Notes"
+    ],
+    "output_word_count": 2569,
+    "source_plain_word_count": 2871,
+    "word_count_ratio": 0.8948101706722397,
+    "paragraph_count": 39,
+    "avg_paragraph_words": 48.87179487179487,
+    "shortest_paragraph_words": [
+      2,
+      18,
+      20
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 75,
+    "prose_word_count": 2569,
+    "link_to_prose_ratio": 0.02919423900350331,
+    "empty_sections": 2,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

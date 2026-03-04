@@ -1,0 +1,63 @@
+{
+  "fixture": "additude-adhd-in-children",
+  "corpus": "main",
+  "baselined_at": "2026-03-04T22:10:39.275834+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 20,
+    "headings": [
+      "What Is ADHD? Symptoms, Subtypes & Treatments",
+      "What Is ADHD (Attention Deficit Hyperactivity Disorder)?",
+      "ADHD Symptoms",
+      "What Are the 3 Types of ADHD?",
+      "Primarily Hyperactive-Impulsive ADHD",
+      "Primarily Inattentive ADHD (Formerly ADD)",
+      "Primarily Combined Type ADHD",
+      "How Do Physicians Diagnose the Type of ADHD?",
+      "What Are the Symptoms of Each ADHD Subtype?",
+      "What Causes ADHD?",
+      "How is ADHD Diagnosed?",
+      "ADHD Diagnosis in Children",
+      "ADHD Diagnosis in Adults",
+      "ADHD in Children",
+      "Adult ADHD",
+      "ADHD Treatment",
+      "ADHD Medication",
+      "What Is the Definition of ADHD?",
+      "Understanding ADHD: Next Steps",
+      "Sources"
+    ],
+    "output_word_count": 2502,
+    "source_plain_word_count": 2811,
+    "word_count_ratio": 0.8900747065101388,
+    "paragraph_count": 43,
+    "avg_paragraph_words": 45.395348837209305,
+    "shortest_paragraph_words": [
+      3,
+      11,
+      11
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 137,
+    "prose_word_count": 2502,
+    "link_to_prose_ratio": 0.054756195043964825,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

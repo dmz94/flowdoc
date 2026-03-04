@@ -48,3 +48,6 @@ Fixed set -- do not change filenames or scoring criteria mid-run.
 | 41 | substack-dyslexia-myths.html | https://readwritejen.substack.com/p/why-dyslexia-myths-persist | in-scope | |
 | 42 | ghost-accessibility-blog.html | https://www.marcozehe.de/my-journey-to-ghost/ | in-scope | |
 | 43 | mataroa-nutcroft-blog.html | https://nutcroft.mataroa.blog/blog/the-ideal-blog-platform/ | in-scope | |
+| 44 | additude-adhd-in-children.html | https://www.additudemag.com/what-is-adhd-symptoms-causes-treatments/ | in-scope | |
+| 45 | golf-greenside-bunker.html | https://golf.com/instruction/bunker-shots/10-ways-greenside-bunker-kellie-stenzel/ | in-scope | |
+| 46 | seriouseats-brisket.html | https://www.seriouseats.com/sous-vide-barbecue-smoked-bbq-brisket-texas-recipe | in-scope | |

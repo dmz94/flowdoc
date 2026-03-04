@@ -1,0 +1,56 @@
+{
+  "fixture": "golf-greenside-bunker",
+  "corpus": "main",
+  "baselined_at": "2026-03-04T22:10:39.413499+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "Empty section(s): stable trafilatura extraction artifact",
+  "metrics": {
+    "section_count": 13,
+    "headings": [
+      "10 ways to guarantee you get out of a greenside bunker",
+      "10 tips for getting out of greenside bunkers",
+      "1. Use the right tool",
+      "2. Use the bounce",
+      "3. Move the ball position forward",
+      "4. Dig in your feet",
+      "5. Make a full swing",
+      "6. Match your technique with your club speed",
+      "7. Get really good at throwing sand",
+      "8. Speed control",
+      "9. Take the path of least resistance",
+      "10. A little practice won’t hurt",
+      "Cleveland Golf CBX Full-Face Custom Wedge"
+    ],
+    "output_word_count": 973,
+    "source_plain_word_count": 1278,
+    "word_count_ratio": 0.7613458528951487,
+    "paragraph_count": 30,
+    "avg_paragraph_words": 32.43333333333333,
+    "shortest_paragraph_words": [
+      12,
+      17,
+      18
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 82,
+    "prose_word_count": 973,
+    "link_to_prose_ratio": 0.0842754367934224,
+    "empty_sections": 1,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}
