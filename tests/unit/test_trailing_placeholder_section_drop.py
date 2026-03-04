@@ -18,7 +18,7 @@ from flowdoc.core.parser import (
     _is_placeholder_paragraph,
 )
 
-FIXTURES = Path(__file__).resolve().parent.parent / "fixtures" / "user-study"
+FIXTURES = Path(__file__).resolve().parent / "test-data"
 
 
 def _make_heading(text: str = "Section") -> Heading:

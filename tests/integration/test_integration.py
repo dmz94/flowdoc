@@ -11,7 +11,7 @@ from flowdoc.core.renderer import render
 def test_simple_article_conversion():
     """Converts simple article HTML end-to-end."""
     # Read fixture
-    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "input" / "simple_article.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "unit" / "test-data" / "simple_article.html"
     html_input = fixture_path.read_text(encoding='utf-8')
     
     # Parse
@@ -66,7 +66,7 @@ def test_simple_article_conversion():
 
 def test_renders_valid_html():
     """Output is valid HTML5."""
-    fixture_path = Path(__file__).resolve().parent.parent / "fixtures" / "input" / "simple_article.html"
+    fixture_path = Path(__file__).resolve().parent.parent / "unit" / "test-data" / "simple_article.html"
     html_input = fixture_path.read_text(encoding='utf-8')
     
     document = parse(html_input)

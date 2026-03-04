@@ -20,7 +20,7 @@ from flowdoc.core.parser import (
 )
 from flowdoc.core.model import Paragraph, Text, Section, Heading
 
-FIXTURES = Path(__file__).resolve().parent.parent / "fixtures" / "user-study"
+FIXTURES = Path(__file__).resolve().parent / "test-data"
 
 
 def _make_section(blocks) -> Section:
