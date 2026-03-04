@@ -23,6 +23,14 @@ Release gate percentage:
 - Deferred until test corpus is defined. Cannot be evaluated until
   corpus categories, composition, and user-facing surface exist.
 
+Release gate (set 2026-03-04):
+- Non-negotiable: 0 REGRESSION, 0 FAIL
+- Minimum thresholds: PASS >= 60%, MARGINAL <= 40%
+- Current state: 46 fixtures, 28 PASS (61%), 18 MARGINAL (39%),
+  0 REGRESSION, 0 FAIL
+- Thresholds will be revisited after tasks 2a-7 to determine if
+  pipeline improvements have raised PASS rates above the minimum.
+
 Engine + surface:
 - Both are required for v1 ship. The engine alone is not a product.
 

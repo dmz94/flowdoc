@@ -151,6 +151,22 @@ Gate cannot be evaluated until:
 - Test corpus is defined (categories and composition).
 - User-facing surface exists for non-technical tester access.
 
+## Release Gate
+
+Non-negotiable:
+- 0 REGRESSION
+- 0 FAIL
+
+Minimum thresholds:
+- PASS >= 60%
+- MARGINAL <= 40%
+
+Current state (2026-03-04): 46 fixtures, 28 PASS (61%),
+18 MARGINAL (39%), 0 REGRESSION, 0 FAIL.
+
+These thresholds will be revisited after tasks 2a-7 to determine
+if pipeline improvements have raised PASS rates above the minimum.
+
 ## 10) Test Surface (Pre-Release)
 
 A disposable web page used to validate the product before v1 ships. Serves double duty as the prototype for the eventual production surface.
