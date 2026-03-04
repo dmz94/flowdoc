@@ -1,5 +1,24 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(cd *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(mkdir *)",
+      "Bash(pytest*)",
+      "Bash(python *)",
+      "Bash(wc *)",
+      "Bash(rm *)",
+      "Bash(sort *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)"
+    ],
     "deny": [
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~*)",
