@@ -1,10 +1,10 @@
 {
   "fixture": "pbs",
   "corpus": "main",
-  "baselined_at": "2026-03-03T12:10:18.991606+00:00",
+  "baselined_at": "2026-03-05T09:44:24.986292+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
-  "notes": "",
+  "notes": "Parser fix extracts slightly more content and image placeholders.",
   "metrics": {
     "section_count": 10,
     "headings": [
@@ -19,33 +19,33 @@
       "Go Deeper",
       "Educate your inbox"
     ],
-    "output_word_count": 903,
+    "output_word_count": 1015,
     "source_plain_word_count": 1620,
-    "word_count_ratio": 0.5574074074074075,
-    "paragraph_count": 24,
-    "avg_paragraph_words": 31.75,
+    "word_count_ratio": 0.6265432098765432,
+    "paragraph_count": 29,
+    "avg_paragraph_words": 32.206896551724135,
     "shortest_paragraph_words": [
+      5,
       6,
-      8,
-      8
+      6
     ],
-    "placeholder_count": 1,
+    "placeholder_count": 5,
     "placeholder_types": {
-      "image": 0,
-      "form": 1,
+      "image": 3,
+      "form": 2,
       "table": 0,
       "hr": 0,
       "other": 0
     },
-    "placeholder_density": 0.04,
-    "link_word_count": 47,
-    "prose_word_count": 903,
-    "link_to_prose_ratio": 0.05204872646733112,
+    "placeholder_density": 0.14705882352941177,
+    "link_word_count": 36,
+    "prose_word_count": 1015,
+    "link_to_prose_ratio": 0.035467980295566505,
     "empty_sections": 0,
     "stub_sections": 0
   },
   "thresholds_applied": {
-    "word_count_ratio_min": 0.3,
+    "word_count_ratio_max": 1.5,
     "avg_paragraph_words_min": 8.0,
     "placeholder_density_max": 0.2,
     "link_to_prose_ratio_max": 0.5

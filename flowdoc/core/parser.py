@@ -571,7 +571,10 @@ def build_sections(content: Tag) -> list[Section]:
     - Each heading starts a new section
     - Section continues until next heading (any level)
 
-    v2 consideration: Could preserve pre-heading content as preamble with warning.
+    Uses a flatten-then-assign approach: all headings and block-level
+    elements are collected in document order, then each block is assigned
+    to the most recent heading.  This avoids content duplication when
+    headings are nested at different DOM depths (e.g. h2 → div → h3).
 
     Args:
         content: Selected content subtree
@@ -580,42 +583,59 @@ def build_sections(content: Tag) -> list[Section]:
         List of Section objects
     """
     # Find all headings (h1-h6)
-    headings = content.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])
+    heading_tags = set(["h1", "h2", "h3", "h4", "h5", "h6"])
+    headings = content.find_all(heading_tags)
 
     if not headings:
         # No headings found - will fail validation later
         return []
 
-    sections = []
+    heading_set = set(id(h) for h in headings)
 
-    for i, heading_elem in enumerate(headings):
-        # Parse the heading
-        heading = parse_heading(heading_elem)
+    # Flatten: walk content descendants in document order, collecting
+    # headings and parseable block elements.  Skip any element whose
+    # ancestor is already a collected block (prevents duplication).
+    ordered: list[tuple[str, Tag]] = []  # ("heading"|"block", element)
+    collected_ids: set[int] = set()
 
-        # Collect blocks until next heading
-        blocks = []
-        current = heading_elem.next_sibling
+    for elem in content.descendants:
+        if not isinstance(elem, Tag):
+            continue
 
-        # Find next heading element (or None if last section)
-        next_heading = headings[i + 1] if i + 1 < len(headings) else None
+        # Skip elements inside an already-collected block
+        if any(id(p) in collected_ids for p in elem.parents):
+            continue
 
-        while current:
-            # Stop if we hit the next heading
-            if next_heading and current == next_heading:
-                break
+        if id(elem) in heading_set:
+            ordered.append(("heading", elem))
+            collected_ids.add(id(elem))
+        elif elem.name not in heading_tags:
+            block = parse_block(elem)
+            if block:
+                ordered.append(("block", elem))
+                collected_ids.add(id(elem))
 
-            if isinstance(current, Tag):
-                block = parse_block(current)
+    # Assign: each block goes to the most recent heading.
+    sections: list[Section] = []
+    current_heading: Heading | None = None
+    current_blocks: list[Block] = []
+
+    for kind, elem in ordered:
+        if kind == "heading":
+            # Flush previous section
+            if current_heading is not None and _heading_has_text(current_heading):
+                sections.append(Section(heading=current_heading, blocks=current_blocks))
+            current_heading = parse_heading(elem)
+            current_blocks = []
+        else:
+            if current_heading is not None:
+                block = parse_block(elem)
                 if block:
-                    blocks.append(block)
+                    current_blocks.append(block)
 
-            current = current.next_sibling
-
-        # Drop sections whose heading has no text content — structural artifact.
-        # Legitimate headings always have text; an empty heading is an
-        # extraction stub (e.g. <h1></h1>) with no renderable content.
-        if _heading_has_text(heading):
-            sections.append(Section(heading=heading, blocks=blocks))
+    # Flush last section
+    if current_heading is not None and _heading_has_text(current_heading):
+        sections.append(Section(heading=current_heading, blocks=current_blocks))
 
     return sections
 

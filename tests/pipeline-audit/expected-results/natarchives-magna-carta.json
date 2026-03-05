@@ -1,15 +1,16 @@
 {
   "fixture": "natarchives-magna-carta",
   "corpus": "main",
-  "baselined_at": "2026-03-03T23:42:15.358520+00:00",
+  "baselined_at": "2026-03-05T09:44:51.289186+00:00",
   "flowdoc_version": "0.1.0",
   "status": "MARGINAL",
   "notes": "Empty section(s): stable trafilatura extraction artifact",
   "metrics": {
-    "section_count": 2,
+    "section_count": 3,
     "headings": [
       "Magna Carta, 1215 and beyond",
-      "Introduction"
+      "Introduction",
+      "By Dr Matthew Phillips"
     ],
     "output_word_count": 1197,
     "source_plain_word_count": 1924,
@@ -37,7 +38,7 @@
     "stub_sections": 0
   },
   "thresholds_applied": {
-    "word_count_ratio_min": 0.3,
+    "word_count_ratio_max": 1.5,
     "avg_paragraph_words_min": 8.0,
     "placeholder_density_max": 0.2,
     "link_to_prose_ratio_max": 0.5

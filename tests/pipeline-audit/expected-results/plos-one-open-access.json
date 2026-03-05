@@ -1,12 +1,12 @@
 {
   "fixture": "plos-one-open-access",
   "corpus": "main",
-  "baselined_at": "2026-03-03T23:44:38.312066+00:00",
+  "baselined_at": "2026-03-05T09:42:48.628423+00:00",
   "flowdoc_version": "0.1.0",
   "status": "MARGINAL",
-  "notes": "",
+  "notes": "Empty section(s): stable trafilatura extraction artifact. Parser fix eliminated content duplication (wcr 2.04 -> 0.84).",
   "metrics": {
-    "section_count": 55,
+    "section_count": 56,
     "headings": [
       "Intense pulsed light improves signs and symptoms of dry eye disease due to meibomian gland dysfunction: A randomized controlled study",
       "Figures",
@@ -62,13 +62,14 @@
       "Limitations of the study",
       "Conclusions",
       "Supporting information",
-      "Acknowledgments"
+      "Acknowledgments",
+      "References"
     ],
-    "output_word_count": 22292,
+    "output_word_count": 9246,
     "source_plain_word_count": 10947,
-    "word_count_ratio": 2.036356992783411,
-    "paragraph_count": 252,
-    "avg_paragraph_words": 68.98412698412699,
+    "word_count_ratio": 0.8446149630035626,
+    "paragraph_count": 132,
+    "avg_paragraph_words": 60.75,
     "shortest_paragraph_words": [
       0,
       0,
@@ -83,14 +84,14 @@
       "other": 0
     },
     "placeholder_density": 0.0,
-    "link_word_count": 6923,
-    "prose_word_count": 22292,
-    "link_to_prose_ratio": 0.3105598420958191,
-    "empty_sections": 17,
+    "link_word_count": 1963,
+    "prose_word_count": 9246,
+    "link_to_prose_ratio": 0.21230802509193164,
+    "empty_sections": 3,
     "stub_sections": 0
   },
   "thresholds_applied": {
-    "word_count_ratio_min": 0.3,
+    "word_count_ratio_max": 1.5,
     "avg_paragraph_words_min": 8.0,
     "placeholder_density_max": 0.2,
     "link_to_prose_ratio_max": 0.5
