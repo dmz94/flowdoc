@@ -168,6 +168,21 @@ def drop_duplicate_consecutive_sections(sections: list[Section]) -> list[Section
     return result
 
 
+def drop_empty_sections(sections: list[Section]) -> list[Section]:
+    """
+    Remove any section with zero content blocks.
+
+    A heading with no paragraphs, lists, images, or other
+    blocks beneath it is structural noise — either a
+    title-duplicate artifact (section 0 matching <title>)
+    or a source heading whose content was lost in extraction.
+
+    Applied globally, not just end-anchored. Safe because
+    empty sections by definition contain no prose or media.
+    """
+    return [s for s in sections if len(s.blocks) > 0]
+
+
 def _is_placeholder_paragraph(block) -> bool:
     """
     Return True if block is a single-inline Paragraph whose text is a known
@@ -461,6 +476,9 @@ def parse(html: str, original_title=None, require_article_body: bool = False) ->
 
     # Step 5.8: Drop consecutive duplicate-heading sections
     sections = drop_duplicate_consecutive_sections(sections)
+
+    # Step 5.85: Drop all empty sections (heading-only, no content blocks)
+    sections = drop_empty_sections(sections)
 
     # Step 5.9: Guard against extraction failure — no article body (extract mode only)
     if require_article_body and not _has_article_body(sections):
