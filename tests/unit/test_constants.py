@@ -55,7 +55,7 @@ def test_layout_constants_valid():
     assert PRINT_MIN_FONT_SIZE.endswith("pt")
 
 
-def test_opendyslexic_placeholder_exists():
-    """OpenDyslexic placeholder exists (empty string for v1)."""
+def test_opendyslexic_base64_exists():
+    """OpenDyslexic base64 font data is present and non-empty."""
     assert isinstance(OPENDYSLEXIC_BASE64, str)
-    # v1 placeholder is empty - will be filled before release
+    assert len(OPENDYSLEXIC_BASE64) > 0

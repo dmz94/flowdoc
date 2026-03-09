@@ -44,3 +44,18 @@ def test_guardian_no_zero_item_lists():
         f"Found {len(zero_item)} ListBlock(s) with zero items; "
         "empty list filtering is not working."
     )
+
+
+def test_list_with_items_not_dropped():
+    """
+    A list that has real items must NOT be filtered out.
+    Simple article fixture has lists with actual content.
+    """
+    fixture_path = Path(__file__).resolve().parent / "test-data" / "simple_article.html"
+    html = fixture_path.read_text(encoding="utf-8")
+    doc = parse(html)
+
+    list_blocks = _all_listblocks(doc)
+    assert len(list_blocks) > 0, "Simple article should have at least one list"
+    for lb in list_blocks:
+        assert len(lb.items) > 0, "Lists with content must not be dropped"

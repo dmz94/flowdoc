@@ -49,3 +49,22 @@ def test_clevelandclinic_trailing_cms_boilerplate_is_removed():
         "Trailing CMS boilerplate 'Follow Cleveland Clinic' should be stripped "
         "by the boilerplate trim heuristic, but it is still present in the output."
     )
+
+
+def test_clean_fixture_not_trimmed():
+    """
+    CDC fixture: a clean article with no trailing CMS boilerplate.
+    The boilerplate trim heuristic must not remove legitimate content.
+    """
+    fixture_path = (
+        Path(__file__).resolve().parent / "test-data" / "cdc.html"
+    )
+    html = fixture_path.read_text(encoding="utf-8")
+
+    extracted = extract_with_trafilatura(html)
+    doc = parse(extracted)
+    rendered = render(doc)
+
+    # The fixture should produce non-trivial output with sections intact.
+    assert len(doc.sections) > 0, "Clean CDC fixture should produce sections"
+    assert "<!DOCTYPE html>" in rendered

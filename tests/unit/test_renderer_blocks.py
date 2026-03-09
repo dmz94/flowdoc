@@ -157,3 +157,25 @@ def test_renders_image_escapes_attributes():
     html = render(doc)
     assert "https://example.com/a&amp;b.jpg" in html
     assert "Photo &quot;1&quot;" in html
+
+
+def test_render_complete_document():
+    """render() produces a complete HTML5 document with all structural elements."""
+    doc = Document(
+        title="My Document",
+        sections=[
+            Section(
+                heading=Heading(level=1, inlines=[Text(text="My Document")]),
+                blocks=[Paragraph(inlines=[Text(text="Hello world.")])]
+            )
+        ]
+    )
+    html = render(doc)
+    assert "<!DOCTYPE html>" in html
+    assert '<html lang="en">' in html
+    assert '<meta charset="utf-8">' in html
+    assert "<title>My Document</title>" in html
+    assert "<style>" in html
+    assert '<div class="container">' in html
+    assert "Hello world." in html
+    assert "</html>" in html

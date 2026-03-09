@@ -137,3 +137,22 @@ def test_cli_verbose_flag(tmp_path, capsys):
 
     captured = capsys.readouterr()
     assert "Mode:" in captured.err
+
+
+def test_cli_font_opendyslexic(tmp_path):
+    """--font opendyslexic embeds the OpenDyslexic @font-face."""
+    input_file = tmp_path / "input.html"
+    input_file.write_text("<html><body><h1>Test</h1><p>Content</p></body></html>")
+
+    output_file = tmp_path / "output.html"
+
+    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--font', 'opendyslexic']
+
+    try:
+        main()
+    except SystemExit as e:
+        assert e.code == 0
+
+    output_html = output_file.read_text(encoding="utf-8")
+    assert "@font-face" in output_html
+    assert "OpenDyslexic" in output_html

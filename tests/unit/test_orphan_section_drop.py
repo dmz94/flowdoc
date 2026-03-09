@@ -61,3 +61,24 @@ def test_eater_trailing_orphan_section_is_removed():
         "Trailing orphan section 'The Latest' (0 blocks) should be dropped "
         "by the orphan section heuristic, but it is still present in the output."
     )
+
+
+def test_section_with_content_not_dropped():
+    """
+    A section with real body content must NOT be dropped, even if it is the
+    last section in the document.
+    """
+    fixture_path = (
+        Path(__file__).resolve().parent / "test-data" / "cdc.html"
+    )
+    html = fixture_path.read_text(encoding="utf-8")
+
+    extracted = extract_with_trafilatura(html)
+    doc = parse(extracted)
+
+    # Every section should have blocks — none should be orphaned away
+    # if they contain real content.
+    last_section = doc.sections[-1]
+    assert len(last_section.blocks) > 0, (
+        "Last section of a clean fixture has content and must not be dropped"
+    )
