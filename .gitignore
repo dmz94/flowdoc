@@ -63,3 +63,6 @@ eval/reports/
 
 # Staging area for corpus expansion
 tests/pipeline-audit/staging/
+
+# Generated review pack (zipped and sent to reviewers)
+tests/pipeline-audit/visual-review/review-pack/
