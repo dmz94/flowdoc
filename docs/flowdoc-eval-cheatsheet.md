@@ -14,25 +14,25 @@ It DOES replace human judgment for routine regression checking.
 ## Daily Commands
 
 ### Check everything is still working (30 seconds)
-  python tests/pipeline-audit/run_metrics.py --corpus main
+  python tests/pipeline-audit/run_metrics.py --select-corpus main
 
 Run this after any pipeline change. If you see only PASS and MARGINAL,
 nothing has regressed. If you see REGRESSION or FAIL, investigate
 before committing.
 
 ### Full report with JSON output
-  python tests/pipeline-audit/run_metrics.py --corpus main --report
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --quality-json-report
 
 Writes to eval/reports/{timestamp}/report.json. Use when you want
 a permanent record, e.g. before a release or after a significant change.
 
 ### Check one fixture
-  python tests/pipeline-audit/run_metrics.py --corpus main --fixture nhs-dyslexia
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --select-fixture nhs-dyslexia
 
 Use when you're debugging a specific article or investigating an anomaly.
 
 ### Add baselines for new fixtures
-  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --interactive-baseline
 
 Only presents fixtures that don't have a baseline yet. Existing
 baselines are skipped. See "Adding New Fixtures" below.
@@ -57,7 +57,7 @@ REGRESSION  Something got worse. Either:
 FAIL        Pipeline threw an error. The article could not be processed.
             Check the error message in the output.
 
-NEW         No baseline exists yet. Run --baseline to review and save.
+NEW         No baseline exists yet. Run --interactive-baseline to review and save.
 
 ---
 
@@ -84,7 +84,7 @@ These define what counts as an anomaly:
                                     not article prose.
 
 To adjust sensitivity, edit the values in tests/pipeline-audit/audit_config.py and
-re-run --baseline to regenerate baselines.
+re-run --interactive-baseline to regenerate baselines.
 
 ---
 
@@ -114,7 +114,7 @@ The runner computes these for each fixture:
 
 ### Always required: new fixtures
 Every new article added to the corpus must be reviewed by a human
-before its baseline is committed. The --baseline interactive mode
+before its baseline is committed. The --interactive-baseline interactive mode
 walks you through this. You must:
 
   1. Look at the metrics presented
@@ -187,7 +187,7 @@ Column format: # | filename | source_url | scope | notes
 scope must be "in-scope" (add out-of-scope only for boundary test cases)
 
 ### Step 4: Run baseline review
-  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --interactive-baseline
 
 The runner presents only the new fixture(s). For each:
 
@@ -224,7 +224,7 @@ them if the source article is a poor representative of the use case.
 When you see a REGRESSION in the output:
 
 1. Run the single fixture to see full anomaly detail:
-   python tests/pipeline-audit/run_metrics.py --corpus main --fixture {name}
+   python tests/pipeline-audit/run_metrics.py --select-corpus main --select-fixture {name}
 
 2. Check what changed. Did you recently:
    - Update Trafilatura?

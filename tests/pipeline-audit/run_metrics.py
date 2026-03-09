@@ -527,6 +527,43 @@ def save_report(corpus: str, fixture_results: list[dict]) -> Path:
     return report_path
 
 
+def print_quality_report(fixture_results: list[dict]) -> None:
+    """Print a human-readable quality status table to the terminal."""
+    # Sort by status priority: FAIL, REGRESSION, MARGINAL, NEW, PASS
+    status_order = {"FAIL": 0, "REGRESSION": 1, "MARGINAL": 2, "NEW": 3, "PASS": 4}
+    sorted_results = sorted(
+        fixture_results,
+        key=lambda r: (status_order.get(r["status"], 5), r["fixture"]),
+    )
+
+    # Print header
+    print()
+    print(f"  {'STATUS':<12}{'FIXTURE':<42}ANOMALIES")
+    print(f"  {'--------':<12}{'---------------------------------------':<42}{'----------------------------------------'}")
+
+    for r in sorted_results:
+        status = r["status"]
+        fixture = r["fixture"]
+        if status == "FAIL":
+            anomaly_str = f"pipeline error: {r.get('error', 'unknown')}"
+        elif status == "PASS":
+            anomaly_str = "none"
+        elif r.get("anomalies"):
+            anomaly_str = ", ".join(r["anomalies"])
+        else:
+            anomaly_str = "none"
+        print(f"  {status:<12}{fixture:<42}{anomaly_str}")
+
+    # Summary counts
+    summary = {"PASS": 0, "REGRESSION": 0, "MARGINAL": 0, "FAIL": 0, "NEW": 0}
+    for r in fixture_results:
+        summary[r["status"]] += 1
+    print()
+    parts = [f"{k}: {v}" for k, v in summary.items()]
+    print(f"  {('  ').join(parts)}")
+    print()
+
+
 def prompt_action() -> str:
     """Prompt for baseline review action. Returns 'a', 'm', 's', or 'q'."""
     while True:
@@ -538,29 +575,39 @@ def prompt_action() -> str:
 def main():
     parser = argparse.ArgumentParser(description="Flowdoc eval metrics runner")
     parser.add_argument(
-        "--corpus",
+        "--select-corpus",
         required=True,
         choices=["main"],
+        dest="select_corpus",
         help="Which fixture corpus to evaluate",
     )
     parser.add_argument(
-        "--fixture",
+        "--select-fixture",
         default=None,
+        dest="select_fixture",
         help="Run on a single fixture (name without .html)",
     )
     parser.add_argument(
-        "--baseline",
+        "--interactive-baseline",
         action="store_true",
-        help="Save current metrics as baseline",
+        dest="interactive_baseline",
+        help="Interactive review session to save baselines for new fixtures",
     )
     parser.add_argument(
-        "--report",
+        "--quality-json-report",
         action="store_true",
-        help="Compare current metrics against baseline",
+        dest="quality_json_report",
+        help="Write a JSON report comparing current metrics against baselines",
+    )
+    parser.add_argument(
+        "--quality-report",
+        action="store_true",
+        dest="quality_report",
+        help="Print a human-readable quality status table to the terminal",
     )
     args = parser.parse_args()
 
-    fixture_dir = FIXTURE_DIRS[args.corpus]
+    fixture_dir = FIXTURE_DIRS[args.select_corpus]
     manifest_path = AUDIT_DIR / "manifest.md"
 
     if not manifest_path.exists():
@@ -573,29 +620,30 @@ def main():
     fixtures = [f for f in fixtures if f["scope"] == "in-scope"]
 
     # Filter to single fixture if requested
-    if args.fixture:
-        fixtures = [f for f in fixtures if f["filename"] == f"{args.fixture}.html"]
+    if args.select_fixture:
+        fixtures = [f for f in fixtures if f["filename"] == f"{args.select_fixture}.html"]
         if not fixtures:
             print(
-                f"ERROR: fixture '{args.fixture}' not found in {args.corpus} manifest",
+                f"ERROR: fixture '{args.select_fixture}' not found in {args.select_corpus} manifest",
                 file=sys.stderr,
             )
             sys.exit(1)
 
     # Header
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"Flowdoc Eval -- {args.corpus} -- {now}")
+    print(f"Flowdoc Eval -- {args.select_corpus} -- {now}")
     print()
 
     # Process each fixture
-    if args.baseline and not sys.stdin.isatty():
+    if args.interactive_baseline and not sys.stdin.isatty():
         print(
-            "--baseline requires an interactive terminal (TTY). "
+            "--interactive-baseline requires an interactive terminal (TTY). "
             "Cannot run in non-interactive mode.",
             file=sys.stderr,
         )
         sys.exit(1)
-    interactive_baseline = args.baseline
+    interactive_baseline = args.interactive_baseline
+    collect_results = args.quality_json_report or args.quality_report
     saved_count = 0
     skipped_count = 0
     fixture_results = []
@@ -619,7 +667,7 @@ def main():
             continue
 
         # Interactive baseline: skip fixtures that already have a baseline
-        if interactive_baseline and load_baseline(args.corpus, name) is not None:
+        if interactive_baseline and load_baseline(args.select_corpus, name) is not None:
             continue
 
         try:
@@ -630,14 +678,14 @@ def main():
                 print_review_block(name, metrics, i, total_fixtures)
                 action = prompt_action()
                 if action == "a":
-                    record = build_baseline_record(name, args.corpus, metrics)
-                    save_baseline(args.corpus, name, record)
+                    record = build_baseline_record(name, args.select_corpus, metrics)
+                    save_baseline(args.select_corpus, name, record)
                     print(f"  -> saved ({record['status']})")
                     saved_count += 1
                 elif action == "m":
-                    record = build_baseline_record(name, args.corpus, metrics)
+                    record = build_baseline_record(name, args.select_corpus, metrics)
                     record["status"] = "MARGINAL"
-                    save_baseline(args.corpus, name, record)
+                    save_baseline(args.select_corpus, name, record)
                     print(f"  -> saved ({record['status']})")
                     saved_count += 1
                 elif action == "s":
@@ -654,8 +702,8 @@ def main():
                     f"r={metrics['word_count_ratio']:.2f}  "
                     f"p={metrics['placeholder_count']}"
                 )
-                if args.report:
-                    baseline = load_baseline(args.corpus, name)
+                if collect_results:
+                    baseline = load_baseline(args.select_corpus, name)
                     anomalies = _collect_anomalies(metrics)
                     status = classify_fixture(metrics, baseline)
                     baseline_metrics = baseline.get("metrics") if baseline else None
@@ -673,10 +721,10 @@ def main():
                 print_fail_review_block(name, str(e), i, total_fixtures)
                 action = prompt_action()
                 if action == "a":
-                    record = build_baseline_record(name, args.corpus, {})
+                    record = build_baseline_record(name, args.select_corpus, {})
                     record["status"] = "FAIL"
                     record["notes"] = str(e)
-                    save_baseline(args.corpus, name, record)
+                    save_baseline(args.select_corpus, name, record)
                     print("  -> saved")
                     saved_count += 1
                 elif action == "s":
@@ -687,8 +735,8 @@ def main():
                     break
             else:
                 print(f"  {f['num']:02d}  {name:<40}  FAIL        {e}")
-                if args.report:
-                    baseline = load_baseline(args.corpus, name)
+                if collect_results:
+                    baseline = load_baseline(args.select_corpus, name)
                     baseline_metrics = baseline.get("metrics") if baseline else None
                     fixture_results.append({
                         "fixture": name,
@@ -699,9 +747,12 @@ def main():
                         "error": str(e),
                     })
 
-    if args.report and fixture_results:
-        report_path = save_report(args.corpus, fixture_results)
+    if args.quality_json_report and fixture_results:
+        report_path = save_report(args.select_corpus, fixture_results)
         print(f"  Report: {report_path}")
+
+    if args.quality_report and fixture_results:
+        print_quality_report(fixture_results)
 
     print()
     if interactive_baseline:

@@ -123,7 +123,7 @@ Additional anomaly checks (not threshold-configurable):
 - empty_sections > 0
 - stub_sections > 0
 
-To adjust sensitivity, edit audit_config.py and re-run --baseline to
+To adjust sensitivity, edit audit_config.py and re-run --interactive-baseline to
 regenerate baselines.
 
 ---
@@ -145,7 +145,7 @@ REGRESSION  A metric crossed a threshold that was previously OK,
 FAIL        Pipeline threw an exception. The fixture could not be
             processed.
 
-NEW         No baseline exists yet. Run --baseline to review and save.
+NEW         No baseline exists yet. Run --interactive-baseline to review and save.
 
 ### Classification Logic
 
@@ -162,18 +162,18 @@ before classification runs.
 ## Commands
 
 ### Run all fixtures (routine check)
-  python tests/pipeline-audit/run_metrics.py --corpus main
+  python tests/pipeline-audit/run_metrics.py --select-corpus main
 
 ### Run a single fixture
-  python tests/pipeline-audit/run_metrics.py --corpus main --fixture nhs-dyslexia
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --select-fixture nhs-dyslexia
 
 ### Generate a JSON report
-  python tests/pipeline-audit/run_metrics.py --corpus main --report
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --quality-json-report
 
 Writes to eval/reports/{timestamp}/report.json.
 
 ### Interactive baseline review
-  python tests/pipeline-audit/run_metrics.py --corpus main --baseline
+  python tests/pipeline-audit/run_metrics.py --select-corpus main --interactive-baseline
 
 Requires an interactive terminal (TTY). Presents each fixture without
 a baseline and prompts for a decision:
@@ -191,7 +191,7 @@ The review block shows a [N of total] counter in the header.
 ## When Human Review Is Required
 
 ### Always: new fixtures
-Every new fixture must be reviewed by a human via --baseline before
+Every new fixture must be reviewed by a human via --interactive-baseline before
 its baseline is committed. Metrics tell you numbers; only a human can
 tell if the content makes sense.
 
