@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 
 from flowdoc.core.model import (
     Document, Section, Heading, Block, Inline,
-    Paragraph, ListBlock, ListItem, Quote, Preformatted, Image,
+    Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table,
     Text, Emphasis, Strong, Code, Link, LineBreak
 )
 from flowdoc.core.sanitizer import sanitize

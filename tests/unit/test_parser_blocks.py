@@ -4,7 +4,7 @@ Tests for parser block-level element parsing.
 Part 3 of parser tests - validates block element conversion.
 """
 from flowdoc.core.parser import parse
-from flowdoc.core.model import Paragraph, ListBlock, Quote, Preformatted, Image
+from flowdoc.core.model import Paragraph, ListBlock, Quote, Preformatted, Image, Table
 
 
 def test_parses_paragraph():
@@ -65,8 +65,25 @@ def test_parses_preformatted():
     assert "Code here" in block.text
 
 
+def test_parses_simple_table():
+    """Simple tables become Table objects."""
+    html = "<body><h1>Title</h1><table><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table><p>Text</p></body>"
+    doc = parse(html)
+    block = doc.sections[0].blocks[0]
+    assert isinstance(block, Table)
+
+
+def test_degrades_complex_table():
+    """Complex tables (colspan) become placeholder paragraphs."""
+    html = '<body><h1>Title</h1><table><tr><td colspan="2">Wide</td></tr><tr><td>A</td><td>B</td></tr></table><p>Text</p></body>'
+    doc = parse(html)
+    block = doc.sections[0].blocks[0]
+    assert isinstance(block, Paragraph)
+    assert "Table omitted" in block.inlines[0].text
+
+
 def test_degrades_table():
-    """Tables become placeholder paragraphs."""
+    """Single-cell tables become placeholder paragraphs."""
     html = "<body><h1>Title</h1><table><tr><td>A</td></tr></table><p>Text</p></body>"
     doc = parse(html)
     block = doc.sections[0].blocks[0]

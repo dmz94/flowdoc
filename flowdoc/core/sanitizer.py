@@ -28,6 +28,8 @@ ALLOWED_ATTRIBUTES = {
     "a": {"href"},
     "img": {"alt", "src"},
     "graphic": {"alt", "src"},
+    "td": {"colspan", "rowspan"},
+    "th": {"colspan", "rowspan"},
 }
 
 # Allowed URL schemes (blocks javascript:, data:, etc.)

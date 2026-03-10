@@ -9,7 +9,7 @@ import html as html_module
 
 from flowdoc.core.model import (
     Document, Section, Heading,
-    Paragraph, ListBlock, ListItem, Quote, Preformatted, Image,
+    Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table,
     Text, Emphasis, Strong, Code, Link, LineBreak
 )
 from flowdoc.core.constants import (
@@ -178,6 +178,12 @@ em {
 .placeholder {
     font-style: normal;
 }
+
+.flowdoc-table th,
+.flowdoc-table td {
+    padding: 0.6em 0.85em;
+    line-height: 1.6;
+}
 """
 
     # Generate heading styles
@@ -310,6 +316,29 @@ figcaption {{
     margin-left: 0.3em;
 }}
 
+.flowdoc-table {{
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  margin: 1.2em 0;
+  font-size: 0.95em;
+  overflow-x: auto;
+}}
+.flowdoc-table th,
+.flowdoc-table td {{
+  border: 1px solid #ccc;
+  padding: 0.5em 0.75em;
+  text-align: left;
+  vertical-align: top;
+}}
+.flowdoc-table th {{
+  background-color: #f5f5f5;
+  font-weight: bold;
+}}
+.flowdoc-table tr:nth-child(even) td {{
+  background-color: #fafafa;
+}}
+
 {em_restyle}
 @media print {{
     body {{
@@ -324,6 +353,19 @@ figcaption {{
     }}
     .flowdoc-notice {{
         border-left-color: #999;
+    }}
+    .flowdoc-table {{
+      font-size: 0.9em;
+    }}
+    .flowdoc-table th,
+    .flowdoc-table td {{
+      border: 1px solid #999;
+    }}
+    .flowdoc-table th {{
+      background-color: #eee !important;
+    }}
+    .flowdoc-table tr:nth-child(even) td {{
+      background-color: transparent !important;
     }}
 }}
 """
@@ -377,6 +419,8 @@ def render_block(block, source_url: str = "") -> str:
         return render_preformatted(block)
     elif isinstance(block, Image):
         return render_image(block)
+    elif isinstance(block, Table):
+        return render_table(block)
     else:
         # Unknown block type - skip
         return ""
@@ -462,6 +506,20 @@ def render_preformatted(pre: Preformatted) -> str:
     """
     escaped_text = html_module.escape(pre.text)
     return f"<pre>{escaped_text}</pre>\n"
+
+
+def render_table(table: Table) -> str:
+    """Render Table to styled HTML table."""
+    parts = ['<table class="flowdoc-table">\n']
+    for row in table.rows:
+        parts.append("<tr>\n")
+        for cell in row.cells:
+            tag = "th" if cell.is_header else "td"
+            content = render_inlines(cell.inlines)
+            parts.append(f"<{tag}>{content}</{tag}>\n")
+        parts.append("</tr>\n")
+    parts.append("</table>\n")
+    return "".join(parts)
 
 
 def render_image(image: Image) -> str:

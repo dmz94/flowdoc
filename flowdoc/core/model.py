@@ -92,8 +92,27 @@ class Image:
     caption: str = ""
 
 
+@dataclass
+class TableCell:
+    """Single cell in a table. May be header (th) or data (td)."""
+    inlines: list[Inline]
+    is_header: bool = False
+
+
+@dataclass
+class TableRow:
+    """Single row in a table."""
+    cells: list[TableCell]
+
+
+@dataclass
+class Table:
+    """Simple data table. Rows contain cells with inline content."""
+    rows: list[TableRow]
+
+
 # Type alias for any block element
-Block = Paragraph | ListBlock | Quote | Preformatted | Image
+Block = Paragraph | ListBlock | Quote | Preformatted | Image | Table
 
 
 # === Document structure ===

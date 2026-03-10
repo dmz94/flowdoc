@@ -161,8 +161,10 @@ Supported inline elements:
 - a[href] -> Link (href retained subject to URL policy)
 
 Degraded with placeholders (deterministic):
-- table -> a single Paragraph WARN placeholder:
-    `[Table not included. View original](<source URL if known>)`
+- table -> simple tables (<=10 rows, no colspan, no rowspan, no
+  nesting, >1 cell) are rendered as styled HTML tables. Complex
+  tables degrade to a Paragraph WARN placeholder:
+    `[Table omitted - N rows, M columns]`
   Always link to original source when source URL is available.
 - img -> preserved as inline image when src URL is available:
   - if src is http/https: render as `<img src="{src}" alt="{alt}">`

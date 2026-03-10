@@ -5,30 +5,120 @@ Validates placeholder generation for unsupported elements
 and image preservation for images with external URLs.
 """
 from bs4 import BeautifulSoup
-from flowdoc.core.degradation import degrade_table, degrade_image, degrade_form, degrade_hr
-from flowdoc.core.model import Image, Paragraph, Text
+from flowdoc.core.degradation import degrade_table, degrade_image, degrade_form, degrade_hr, _is_simple_table
+from flowdoc.core.model import Image, Paragraph, Text, Table, TableRow, TableCell
 
 
 def test_table_counts_rows_and_columns():
-    """Table placeholder includes correct dimensions."""
+    """Simple 2x2 table returns Table model (not placeholder)."""
     html = "<table><tr><td>A</td><td>B</td></tr><tr><td>C</td><td>D</td></tr></table>"
     soup = BeautifulSoup(html, "lxml")
     element = soup.find("table")
     result = degrade_table(element)
 
-    assert isinstance(result, Paragraph)
-    assert len(result.inlines) == 1
-    assert result.inlines[0].text == "[Table omitted - 2 rows, 2 columns]"
+    assert isinstance(result, Table)
+    assert len(result.rows) == 2
+    assert len(result.rows[0].cells) == 2
 
 
 def test_table_handles_uneven_columns():
-    """Table uses max column count across rows."""
+    """Simple table with uneven columns returns Table model."""
     html = "<table><tr><td>A</td></tr><tr><td>B</td><td>C</td><td>D</td></tr></table>"
     soup = BeautifulSoup(html, "lxml")
     element = soup.find("table")
     result = degrade_table(element)
 
-    assert result.inlines[0].text == "[Table omitted - 2 rows, 3 columns]"
+    assert isinstance(result, Table)
+    assert len(result.rows) == 2
+
+
+# --- Simple table rendering tests ---
+
+def test_simple_table_returns_table_model():
+    """Simple 2x2 table with headers returns Table, not placeholder."""
+    html = "<table><tr><th>A</th><th>B</th></tr><tr><td>1</td><td>2</td></tr></table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Table)
+    assert len(result.rows) == 2
+    assert result.rows[0].cells[0].is_header is True
+    assert result.rows[1].cells[0].is_header is False
+
+
+def test_simple_table_preserves_cell_text():
+    """Cell inline content is parsed correctly."""
+    html = "<table><tr><td>Hello</td><td>World</td></tr></table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Table)
+    assert result.rows[0].cells[0].inlines[0].text == "Hello"
+
+
+def test_complex_table_colspan_returns_placeholder():
+    """Table with colspan degrades to placeholder."""
+    html = '<table><tr><td colspan="2">Wide</td></tr><tr><td>A</td><td>B</td></tr></table>'
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Paragraph)
+
+
+def test_complex_table_rowspan_returns_placeholder():
+    """Table with rowspan degrades to placeholder."""
+    html = '<table><tr><td rowspan="2">Tall</td><td>A</td></tr><tr><td>B</td></tr></table>'
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Paragraph)
+
+
+def test_complex_table_nested_returns_placeholder():
+    """Nested table degrades to placeholder."""
+    html = "<table><tr><td><table><tr><td>Inner</td></tr></table></td></tr></table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Paragraph)
+
+
+def test_complex_table_too_many_rows_returns_placeholder():
+    """Table with 11 rows degrades to placeholder."""
+    rows = "".join(f"<tr><td>{i}</td></tr>" for i in range(11))
+    html = f"<table>{rows}</table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Paragraph)
+
+
+def test_boundary_table_10_rows_returns_table():
+    """Table with exactly 10 rows is simple."""
+    rows = "".join(f"<tr><td>{i}</td><td>x</td></tr>" for i in range(10))
+    html = f"<table>{rows}</table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Table)
+    assert len(result.rows) == 10
+
+
+def test_single_cell_table_returns_placeholder():
+    """Table with only 1 cell is not a real table."""
+    html = "<table><tr><td>Only</td></tr></table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    result = degrade_table(element)
+    assert isinstance(result, Paragraph)
+
+
+def test_is_simple_table_empty_returns_false():
+    """Empty table is not simple."""
+    html = "<table></table>"
+    soup = BeautifulSoup(html, "lxml")
+    element = soup.find("table")
+    assert _is_simple_table(element) is False
 
 
 # --- Image preservation (http/https src) ---

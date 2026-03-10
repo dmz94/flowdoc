@@ -17,7 +17,7 @@ from flowdoc.core.content_selector import detect_mode
 from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
 from flowdoc.core.renderer import render
 from flowdoc.core.model import (
-    Document, Paragraph, ListBlock, Quote, Preformatted,
+    Document, Paragraph, ListBlock, Quote, Preformatted, Table,
     Text, Emphasis, Strong, Code, Link,
 )
 from audit_config import (
@@ -226,6 +226,13 @@ def compute_metrics(doc: Document, source_html: str, rendered_html: str) -> dict
                     paragraph_word_counts.append(wc)
                     total_output_words += wc
                     total_link_words += _count_link_words(block.inlines)
+            elif isinstance(block, Table):
+                for row in block.rows:
+                    for cell in row.cells:
+                        wc = _count_words(cell.inlines)
+                        total_output_words += wc
+                        lw = _count_link_words(cell.inlines)
+                        total_link_words += lw
             elif isinstance(block, ListBlock):
                 _walk_list(block)
             elif isinstance(block, Quote):

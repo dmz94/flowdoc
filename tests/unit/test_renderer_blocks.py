@@ -3,7 +3,7 @@ Tests for renderer block-level element rendering.
 
 Part 2 of renderer tests - validates block element HTML generation.
 """
-from flowdoc.core.model import Document, Section, Heading, Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Text
+from flowdoc.core.model import Document, Section, Heading, Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table, TableRow, TableCell, Text
 from flowdoc.core.renderer import render
 
 
@@ -212,3 +212,77 @@ def test_default_em_not_restyled():
     """Default rendering does not restyle em to bold."""
     html = render(_minimal_doc(), use_opendyslexic=False)
     assert "em {" not in html
+
+
+def test_renders_simple_table():
+    """Simple table renders as HTML table with correct structure."""
+    doc = Document(
+        title="Test",
+        sections=[
+            Section(
+                heading=Heading(level=1, inlines=[Text(text="Title")]),
+                blocks=[
+                    Table(rows=[
+                        TableRow(cells=[
+                            TableCell(inlines=[Text(text="Name")], is_header=True),
+                            TableCell(inlines=[Text(text="Value")], is_header=True),
+                        ]),
+                        TableRow(cells=[
+                            TableCell(inlines=[Text(text="A")]),
+                            TableCell(inlines=[Text(text="1")]),
+                        ]),
+                    ])
+                ]
+            )
+        ]
+    )
+    html = render(doc)
+    assert '<table class="flowdoc-table">' in html
+    assert "<th>Name</th>" in html
+    assert "<td>A</td>" in html
+
+
+def test_renders_table_escapes_content():
+    """Table cell content is HTML-escaped."""
+    doc = Document(
+        title="Test",
+        sections=[
+            Section(
+                heading=Heading(level=1, inlines=[Text(text="Title")]),
+                blocks=[
+                    Table(rows=[
+                        TableRow(cells=[
+                            TableCell(inlines=[Text(text="<script>")]),
+                            TableCell(inlines=[Text(text="A&B")]),
+                        ]),
+                    ])
+                ]
+            )
+        ]
+    )
+    html = render(doc)
+    assert "&lt;script&gt;" in html
+    assert "A&amp;B" in html
+
+
+def test_table_css_present():
+    """Rendered output includes table CSS."""
+    doc = Document(
+        title="Test",
+        sections=[
+            Section(
+                heading=Heading(level=1, inlines=[Text(text="Title")]),
+                blocks=[
+                    Table(rows=[
+                        TableRow(cells=[
+                            TableCell(inlines=[Text(text="A")]),
+                            TableCell(inlines=[Text(text="B")]),
+                        ]),
+                    ])
+                ]
+            )
+        ]
+    )
+    html = render(doc)
+    assert ".flowdoc-table" in html
+    assert "border-collapse" in html
