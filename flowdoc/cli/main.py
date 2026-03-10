@@ -7,7 +7,7 @@ import argparse
 import sys
 
 from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
+from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError, harvest_captions
 from flowdoc.core.renderer import render
 from flowdoc.io.reader import read_html
 from flowdoc.io.writer import write_html
@@ -95,11 +95,15 @@ def main():
 
         # Route to appropriate pipeline
         original_title = None
+        caption_map = None
         if mode == 'extract':
             # Capture title before Trafilatura strips <head>
             from bs4 import BeautifulSoup
             original_soup = BeautifulSoup(html_input, "lxml")
             original_title = original_soup.find("title")
+
+            # Harvest captions before Trafilatura strips figcaptions
+            caption_map = harvest_captions(html_input)
 
             if args.verbose:
                 print("Extract mode: running Trafilatura boilerplate removal", file=sys.stderr)
@@ -117,6 +121,7 @@ def main():
             html_input,
             original_title=original_title,
             require_article_body=(mode == "extract"),
+            caption_map=caption_map,
         )
 
         # Render to readable HTML

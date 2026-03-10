@@ -33,6 +33,39 @@ class ValidationError(Exception):
     pass
 
 
+def harvest_captions(html: str) -> dict[str, str]:
+    """
+    Scan raw HTML before Trafilatura runs, build a map of
+    img src URL -> figcaption plain text.
+
+    Rules:
+    - Only considers <figure> elements containing exactly one <img>
+      with an http/https src and a non-empty <figcaption>.
+    - Ambiguous figures (multiple images, no image, data URIs) are skipped.
+    - Safe to call on any HTML. No exceptions, no side effects.
+    """
+    from urllib.parse import urlparse
+    soup = BeautifulSoup(html, "lxml")
+    result: dict[str, str] = {}
+    for figure in soup.find_all("figure"):
+        figcaption = figure.find("figcaption")
+        if not figcaption:
+            continue
+        caption_text = figcaption.get_text(separator=" ", strip=True)
+        if not caption_text:
+            continue
+        imgs = figure.find_all("img")
+        http_imgs = [
+            img for img in imgs
+            if img.get("src", "").strip()
+            and urlparse(img["src"].strip()).scheme in ("http", "https")
+        ]
+        if len(http_imgs) != 1:
+            continue
+        result[http_imgs[0]["src"].strip()] = caption_text
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Tail boilerplate trim (end-anchored)
 # ---------------------------------------------------------------------------
@@ -415,7 +448,8 @@ def extract_with_trafilatura(
     return html
 
 
-def parse(html: str, original_title=None, require_article_body: bool = False) -> Document:
+def parse(html: str, original_title=None, require_article_body: bool = False,
+          caption_map: dict[str, str] | None = None) -> Document:
     """
     Parse HTML string to Document model.
 
@@ -463,7 +497,7 @@ def parse(html: str, original_title=None, require_article_body: bool = False) ->
     preflight_scope_check(content)
 
     # Step 5: Build sections
-    sections = build_sections(content)
+    sections = build_sections(content, caption_map=caption_map)
 
     # Step 5.5: Trim trailing CMS boilerplate paragraphs (end-anchored)
     sections = trim_trailing_boilerplate(sections)
@@ -590,7 +624,7 @@ def preflight_scope_check(content: Tag) -> None:
         raise ValidationError("Out of scope: navigation/reference page.")
 
 
-def build_sections(content: Tag) -> list[Section]:
+def build_sections(content: Tag, caption_map: dict[str, str] | None = None) -> list[Section]:
     """
     Build sections from headings in content.
 
@@ -638,7 +672,7 @@ def build_sections(content: Tag) -> list[Section]:
             ordered.append(("heading", elem))
             collected_ids.add(id(elem))
         elif elem.name not in heading_tags:
-            block = parse_block(elem)
+            block = parse_block(elem, caption_map=caption_map)
             if block:
                 ordered.append(("block", elem))
                 collected_ids.add(id(elem))
@@ -657,7 +691,7 @@ def build_sections(content: Tag) -> list[Section]:
             current_blocks = []
         else:
             if current_heading is not None:
-                block = parse_block(elem)
+                block = parse_block(elem, caption_map=caption_map)
                 if block:
                     current_blocks.append(block)
 
@@ -703,7 +737,34 @@ def _listblock_has_content(block: "ListBlock") -> bool:
     )
 
 
-def parse_block(element: Tag) -> Block | None:
+def parse_figure(element: Tag, caption_map: dict[str, str] | None = None) -> Block | None:
+    """
+    Parse <figure> element to Block model.
+
+    If the figure contains an image, preserves it with figcaption as caption.
+    If no image but figcaption text exists, returns as Paragraph.
+    """
+    imgs = element.find_all(["img", "graphic"])
+    figcaption = element.find("figcaption")
+    caption_text = ""
+    if figcaption:
+        caption_text = figcaption.get_text(separator=" ", strip=True)
+
+    if not imgs:
+        if caption_text:
+            return Paragraph(inlines=[Text(text=caption_text)])
+        return None
+
+    result = degrade_image(imgs[0])
+    if isinstance(result, Image):
+        if caption_text:
+            result.caption = caption_text
+        return result
+    # Placeholder Text — wrap in Paragraph
+    return Paragraph(inlines=[result])
+
+
+def parse_block(element: Tag, caption_map: dict[str, str] | None = None) -> Block | None:
     """
     Parse block-level element to Block model.
 
@@ -712,6 +773,7 @@ def parse_block(element: Tag) -> Block | None:
 
     Args:
         element: BeautifulSoup Tag for block element
+        caption_map: Optional map of img src -> caption text (extract mode)
 
     Returns:
         Block model object or None if unsupported
@@ -730,9 +792,13 @@ def parse_block(element: Tag) -> Block | None:
         return parse_preformatted(element)
     elif tag_name == "table":
         return degrade_table(element)
+    elif tag_name == "figure":
+        return parse_figure(element, caption_map=caption_map)
     elif tag_name in ("img", "graphic"):
         result = degrade_image(element)
         if isinstance(result, Image):
+            if caption_map and result.src in caption_map:
+                result.caption = caption_map[result.src]
             return result
         # Placeholder Text — wrap in Paragraph
         return Paragraph(inlines=[result])

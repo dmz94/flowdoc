@@ -89,6 +89,7 @@ class Image:
     """Preserved image with external URL. No raw HTML."""
     src: str
     alt: str
+    caption: str = ""
 
 
 # Type alias for any block element

@@ -173,8 +173,16 @@ Degraded with placeholders (deterministic):
   Implementation pending -- code changes tracked separately.
 - form/input/textarea/select/button -> Paragraph: `[Form omitted]`
 - figure/figcaption:
-  - figcaption text is preserved as Paragraph(s)
-  - embedded images handled by img rule
+  - In transform mode: <figure> is parsed directly.
+    If it contains an image, the image is preserved with
+    figcaption text as a visible caption.
+    If it contains no image, figcaption text is preserved
+    as Paragraph(s).
+  - In extract mode: captions are harvested from the raw
+    HTML before Trafilatura extraction. Captions are matched
+    to images by exact src URL. When a match is found, the
+    caption is rendered below the image in a <figcaption>.
+  - Images without captions render as bare <img> (unchanged).
 
 Dropped (removed from consideration entirely):
 - nav, header, footer, aside

@@ -195,6 +195,24 @@ a:visited {{
     color: {LINK_VISITED_COLOR};
 }}
 
+figure {{
+    margin: 1.5em 0;
+    padding: 0;
+}}
+
+figure img {{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}}
+
+figcaption {{
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 0.5em;
+    line-height: 1.4;
+}}
+
 {em_restyle}
 @media print {{
     body {{
@@ -203,6 +221,9 @@ a:visited {{
     img {{
         max-width: 100%;
         page-break-inside: avoid;
+    }}
+    figcaption {{
+        color: #333;
     }}
 }}
 """
@@ -326,10 +347,14 @@ def render_preformatted(pre: Preformatted) -> str:
 
 
 def render_image(image: Image) -> str:
-    """Render Image to HTML <img> tag."""
+    """Render Image to HTML <img> tag, wrapped in <figure> if captioned."""
     escaped_src = html_module.escape(image.src)
     escaped_alt = html_module.escape(image.alt)
-    return f'<img src="{escaped_src}" alt="{escaped_alt}">\n'
+    img_tag = f'<img src="{escaped_src}" alt="{escaped_alt}">'
+    if image.caption:
+        escaped_caption = html_module.escape(image.caption)
+        return f'<figure>{img_tag}\n<figcaption>{escaped_caption}</figcaption></figure>\n'
+    return img_tag + '\n'
 
 
 def render_inlines(inlines: list) -> str:
