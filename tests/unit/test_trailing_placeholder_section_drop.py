@@ -105,7 +105,7 @@ def test_section_with_prose_not_dropped():
 def test_section_with_mixed_content_not_dropped():
     """Final section with prose mixed among placeholders is NOT dropped."""
     anchor = _make_section("Article", [_prose_para()])
-    mixed = _make_section("Newsletter", [
+    mixed = _make_section("Further Reading", [
         _placeholder_para("[Form omitted]"),
         _prose_para("Subscribe for updates."),
     ])

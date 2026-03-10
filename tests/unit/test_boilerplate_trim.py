@@ -10,8 +10,21 @@ Documented in known-limitations.md as "Trailing CMS boilerplate".
 """
 from pathlib import Path
 
-from flowdoc.core.parser import extract_with_trafilatura, parse
+from flowdoc.core.model import Heading, Paragraph, Text, Section
+from flowdoc.core.parser import extract_with_trafilatura, parse, trim_trailing_boilerplate
 from flowdoc.core.renderer import render
+
+
+def _make_heading(text: str = "Section") -> Heading:
+    return Heading(level=2, inlines=[Text(text=text)])
+
+
+def _prose_para(text: str = "Some article content.") -> Paragraph:
+    return Paragraph(inlines=[Text(text=text)])
+
+
+def _make_section(heading_text: str, blocks) -> Section:
+    return Section(heading=_make_heading(heading_text), blocks=list(blocks))
 
 
 def test_clevelandclinic_trailing_cms_boilerplate_is_removed():
@@ -68,3 +81,45 @@ def test_clean_fixture_not_trimmed():
     # The fixture should produce non-trivial output with sections intact.
     assert len(doc.sections) > 0, "Clean CDC fixture should produce sections"
     assert "<!DOCTYPE html>" in rendered
+
+
+def test_anchor_learn_more_health_library():
+    """Anchor 'Learn more about the Health Library' triggers trim."""
+    sections = [_make_section("Article", [
+        _prose_para("Real content."),
+        _prose_para("Learn more about the Health Library and how we ensure accuracy."),
+        _prose_para("More footer stuff."),
+    ])]
+    result = trim_trailing_boilerplate(sections)
+    assert len(result[0].blocks) == 1
+    assert "Real content" in result[0].blocks[0].inlines[0].text
+
+
+def test_anchor_back_to_top():
+    """Anchor 'Back to top' triggers trim."""
+    sections = [_make_section("Article", [
+        _prose_para("Content."),
+        _prose_para("Back to top"),
+    ])]
+    result = trim_trailing_boilerplate(sections)
+    assert len(result[0].blocks) == 1
+
+
+def test_anchor_got_a_story():
+    """Anchor 'Got a story we should hear' triggers trim."""
+    sections = [_make_section("Article", [
+        _prose_para("Content."),
+        _prose_para("Got a story we should hear? Email us."),
+    ])]
+    result = trim_trailing_boilerplate(sections)
+    assert len(result[0].blocks) == 1
+
+
+def test_anchor_does_not_match_substring_in_prose():
+    """Anchor match uses 'in', so substring in longer text still triggers."""
+    sections = [_make_section("Article", [
+        _prose_para("Content."),
+        _prose_para("For more information, Follow Cleveland Clinic on social media."),
+    ])]
+    result = trim_trailing_boilerplate(sections)
+    assert len(result[0].blocks) == 1

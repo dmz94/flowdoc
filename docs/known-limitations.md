@@ -1,7 +1,7 @@
 # Flowdoc v1 - Known Limitations
 
 **Status:** Reference document for v2 planning
-**Last updated:** February 25, 2026
+**Last updated:** March 10, 2026
 Architecture terminology follows docs/architecture.md and docs/decisions.md.
 
 Known limitations identified during visual validation of the conversion pipeline. These are not bugs - they are documented boundaries of v1 scope.
@@ -12,9 +12,12 @@ Known limitations identified during visual validation of the conversion pipeline
 
 These affect Trafilatura-based extraction in the conversion pipeline.
 
-**Trailing CMS boilerplate** - Some sites (Cleveland Clinic, WikiHow) have
-CMS footer patterns that Trafilatura does not strip. Legitimate article content
-is intact but followed by footer noise. Too site-specific to fix generally in v1.
+**Trailing CMS boilerplate** - Three end-anchored heuristics trim common
+trailing noise: anchor-string matching for known CMS fragments, pattern-based
+removal of photo credits / copyright / license / date stamps / trivial lines,
+and heading-text matching for boilerplate sections (Newsletter, Subscribe,
+Related Articles, etc.). Edge cases not covered by these heuristics may
+remain; ML-based extraction deferred to v2.
 
 **Inline code promoted to pre blocks** - Trafilatura promotes inline code tags
 to block-level pre in some cases, fragmenting surrounding sentences. Not fixable
@@ -60,4 +63,5 @@ italic overuse in specific document types.
 
 **Wikipedia dense link fragmentation** - Needs smarter paragraph merging logic.
 
-**Trailing boilerplate** - Needs site-specific rules or ML-based extraction.
+**Trailing boilerplate (remaining)** - Edge cases beyond the three end-anchored
+heuristics may need ML-based extraction or site-specific rules.

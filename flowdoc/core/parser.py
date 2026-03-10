@@ -67,18 +67,32 @@ def harvest_captions(html: str) -> dict[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Tail boilerplate trim (end-anchored)
+# Site-specific anchor strings. These are an escape hatch for CMS
+# footer phrases that don't match any structural pattern in
+# trim_trailing_noise(). The generic mechanisms (noise patterns,
+# heading detection) do the heavy lifting. Add strings here only
+# when a specific site's boilerplate cannot be caught structurally.
 # ---------------------------------------------------------------------------
-# CMS sites sometimes append footer/social paragraphs after legitimate article
-# content that Trafilatura does not strip (e.g. Cleveland Clinic: "Follow
-# Cleveland Clinic", "Blog, News & Apps", "Site Information & Policies").
-#
-# Heuristic: scan the last _TAIL_SCAN_LIMIT blocks of the final section.
-# When an anchor pattern is found, remove that block AND everything after it.
-# End-anchored by construction: blocks before the anchor are never touched.
 
 _TAIL_BOILERPLATE_ANCHORS = frozenset([
     "Follow Cleveland Clinic",
+    "Learn more about the Health Library",
+    "Got a story we should hear",
+    "Back to top",
+    "Educate your inbox",
+])
+
+_BOILERPLATE_SECTION_HEADINGS = frozenset([
+    "educate your inbox",
+    "newsletter",
+    "subscribe",
+    "comments",
+    "related stories",
+    "related articles",
+    "more stories",
+    "recommended",
+    "advertisement",
+    "sponsored content",
 ])
 
 _TAIL_SCAN_LIMIT = 10  # never scan further than this from the end
@@ -140,6 +154,80 @@ def trim_trailing_boilerplate(sections: list[Section]) -> list[Section]:
     return sections
 
 
+_TRAILING_NOISE_DATE_RE = re.compile(
+    r'^(?:\d{4}[-/]\d{2}[-/]\d{2}'
+    r'|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z.]*\s+\d{1,2},?\s+\d{4}'
+    r'|\d{1,2}/\d{1,2}/\d{4})$',
+    re.IGNORECASE,
+)
+
+
+def _is_trailing_noise(text: str) -> bool:
+    """Return True if a paragraph's plain text matches a trailing noise pattern."""
+    t = text.strip()
+    if not t:
+        return False
+    tl = t.lower()
+
+    # Photo/image/visual/credit prefix
+    if tl.startswith(("image:", "photo:", "visual:", "credit:")):
+        return True
+
+    # Copyright symbol or (c)
+    if t.startswith("\u00a9") or tl.startswith("(c)"):
+        return True
+
+    # License boilerplate
+    if "cc by" in tl or "creative commons" in tl:
+        return True
+
+    # Trivial noise (3 chars or fewer)
+    if len(t) <= 3:
+        return True
+
+    # Bare date stamp
+    if _TRAILING_NOISE_DATE_RE.match(t):
+        return True
+
+    return False
+
+
+def trim_trailing_noise(sections: list[Section]) -> list[Section]:
+    """
+    Remove trailing noise paragraphs from the last section.
+
+    Scans backwards from the end. Removes paragraphs matching structural
+    noise patterns (photo credits, license text, date stamps, trivial noise).
+    Stops at the first non-matching block (end-anchored).
+    """
+    if not sections:
+        return sections
+
+    last = sections[-1]
+    blocks = last.blocks
+    if not blocks:
+        return sections
+
+    # Scan backwards, find how many trailing blocks to remove
+    trim_count = 0
+    for i in range(len(blocks) - 1, -1, -1):
+        block = blocks[i]
+        if not isinstance(block, Paragraph):
+            break
+        text = _paragraph_plain_text(block)
+        if _is_trailing_noise(text):
+            trim_count += 1
+        else:
+            break
+
+    if trim_count > 0:
+        sections = list(sections)
+        new_blocks = list(blocks[:len(blocks) - trim_count])
+        sections[-1] = Section(heading=last.heading, blocks=new_blocks)
+
+    return sections
+
+
 def drop_trailing_orphan_section(sections: list[Section]) -> list[Section]:
     """
     Drop the final section if it meets either of two end-anchored conditions:
@@ -163,6 +251,8 @@ def drop_trailing_orphan_section(sections: list[Section]) -> list[Section]:
     if len(last.blocks) == 0:
         return sections[:-1]
     if last.blocks and all(_is_placeholder_paragraph(b) for b in last.blocks):
+        return sections[:-1]
+    if _normalize_heading_text(last.heading) in _BOILERPLATE_SECTION_HEADINGS:
         return sections[:-1]
     return sections
 
@@ -501,6 +591,9 @@ def parse(html: str, original_title=None, require_article_body: bool = False,
 
     # Step 5.5: Trim trailing CMS boilerplate paragraphs (end-anchored)
     sections = trim_trailing_boilerplate(sections)
+
+    # Step 5.55: Trim trailing noise paragraphs (end-anchored)
+    sections = trim_trailing_noise(sections)
 
     # Step 5.6: Drop final orphan section (heading with zero content blocks)
     sections = drop_trailing_orphan_section(sections)

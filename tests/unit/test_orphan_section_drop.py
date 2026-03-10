@@ -16,8 +16,25 @@ Documented in known-limitations.md as "Orphan trailing section".
 """
 from pathlib import Path
 
-from flowdoc.core.parser import extract_with_trafilatura, parse
+from flowdoc.core.model import Heading, Paragraph, Text, Section
+from flowdoc.core.parser import (
+    drop_trailing_orphan_section,
+    extract_with_trafilatura,
+    parse,
+)
 from flowdoc.core.renderer import render
+
+
+def _make_heading(text: str, level: int = 2) -> Heading:
+    return Heading(level=level, inlines=[Text(text=text)])
+
+
+def _prose_para(text: str = "Some article content.") -> Paragraph:
+    return Paragraph(inlines=[Text(text=text)])
+
+
+def _make_section(heading_text: str, blocks=None) -> Section:
+    return Section(heading=_make_heading(heading_text), blocks=list(blocks or []))
 
 
 def test_eater_trailing_orphan_section_is_removed():
@@ -82,3 +99,68 @@ def test_section_with_content_not_dropped():
     assert len(last_section.blocks) > 0, (
         "Last section of a clean fixture has content and must not be dropped"
     )
+
+
+# ---------------------------------------------------------------------------
+# Mechanism C: Boilerplate heading detection
+# ---------------------------------------------------------------------------
+
+def test_boilerplate_heading_newsletter_dropped():
+    """Last section heading is 'Newsletter' — dropped."""
+    sections = [
+        _make_section("Article", [_prose_para("Content.")]),
+        _make_section("Newsletter", [_prose_para("Sign up for updates.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 1
+    assert result[0].heading.inlines[0].text == "Article"
+
+
+def test_boilerplate_heading_subscribe_dropped():
+    """Last section heading is 'Subscribe' — dropped."""
+    sections = [
+        _make_section("Article", [_prose_para("Content.")]),
+        _make_section("Subscribe", [_prose_para("Get our emails.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 1
+
+
+def test_boilerplate_heading_case_insensitive():
+    """Heading match is case-insensitive."""
+    sections = [
+        _make_section("Article", [_prose_para("Content.")]),
+        _make_section("RELATED ARTICLES", [_prose_para("More reading.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 1
+
+
+def test_boilerplate_heading_with_whitespace():
+    """Extra whitespace in heading is normalized before matching."""
+    sections = [
+        _make_section("Article", [_prose_para("Content.")]),
+        _make_section("  Related   Stories  ", [_prose_para("More.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 1
+
+
+def test_legitimate_heading_not_dropped():
+    """A section with a non-boilerplate heading is kept."""
+    sections = [
+        _make_section("Introduction", [_prose_para("First part.")]),
+        _make_section("Conclusion", [_prose_para("Final thoughts.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 2
+
+
+def test_non_trailing_boilerplate_heading_kept():
+    """A boilerplate heading that is NOT the last section is kept."""
+    sections = [
+        _make_section("Newsletter", [_prose_para("Sign up.")]),
+        _make_section("Article", [_prose_para("Content.")]),
+    ]
+    result = drop_trailing_orphan_section(sections)
+    assert len(result) == 2

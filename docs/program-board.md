@@ -129,8 +129,10 @@ surface exists -- nothing to test before then.
 3. Niggle inventory + burn-down plan.
    Completion Criteria: Single consolidated artifact list created; issues classified (boundary / model / sanitization); prioritized remediation plan agreed.
 
-4. Deterministic tail boilerplate trimming.
-   Completion Criteria: Trailing CMS artifacts removed without breaking clean fixtures; covered by regression tests.
+4. ~~Deterministic tail boilerplate trimming.~~ **COMPLETE.**
+   Three end-anchored heuristics: anchor-string matching, trailing noise
+   pattern removal (credits/copyright/dates/trivial), boilerplate heading
+   detection. Covered by regression tests.
 
 5. Intro/title recovery improvements (top-section extraction refinement).
    Completion Criteria: Titles and opening paragraphs preserved where present; no new leading junk introduced; covered by regression tests.
