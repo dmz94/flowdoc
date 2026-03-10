@@ -1,7 +1,7 @@
 {
   "fixture": "ricksteves-blog-mont-blanc",
   "corpus": "main",
-  "baselined_at": "2026-03-04T14:19:09.690887+00:00",
+  "baselined_at": "2026-03-10T11:32:58.112958+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -20,15 +20,15 @@
       "Mikulov Wine Region, Czech Republic",
       "Jutland, Denmark"
     ],
-    "output_word_count": 3023,
+    "output_word_count": 3022,
     "source_plain_word_count": 14825,
-    "word_count_ratio": 0.20391231028667792,
-    "paragraph_count": 64,
-    "avg_paragraph_words": 47.234375,
+    "word_count_ratio": 0.20384485666104554,
+    "paragraph_count": 63,
+    "avg_paragraph_words": 47.96825396825397,
     "shortest_paragraph_words": [
       1,
-      1,
-      9
+      9,
+      10
     ],
     "placeholder_count": 0,
     "placeholder_types": {
@@ -40,8 +40,8 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 50,
-    "prose_word_count": 3023,
-    "link_to_prose_ratio": 0.016539861065167052,
+    "prose_word_count": 3022,
+    "link_to_prose_ratio": 0.01654533421575116,
     "empty_sections": 0,
     "stub_sections": 0
   },

@@ -1,7 +1,7 @@
 {
   "fixture": "cdc-west-nile",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:44:31.806126+00:00",
+  "baselined_at": "2026-03-10T11:32:52.844981+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",

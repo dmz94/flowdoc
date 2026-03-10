@@ -1,7 +1,7 @@
 {
   "fixture": "natarchives-magna-carta",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:47:55.784761+00:00",
+  "baselined_at": "2026-03-10T11:33:00.847693+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -11,15 +11,15 @@
       "Magna Carta, 1215 and beyond",
       "By Dr Matthew Phillips"
     ],
-    "output_word_count": 1197,
+    "output_word_count": 1194,
     "source_plain_word_count": 1924,
-    "word_count_ratio": 0.6221413721413721,
-    "paragraph_count": 11,
-    "avg_paragraph_words": 90.0,
+    "word_count_ratio": 0.6205821205821206,
+    "paragraph_count": 10,
+    "avg_paragraph_words": 98.7,
     "shortest_paragraph_words": [
       0,
-      3,
-      33
+      33,
+      38
     ],
     "placeholder_count": 0,
     "placeholder_types": {
@@ -30,9 +30,9 @@
       "other": 0
     },
     "placeholder_density": 0.0,
-    "link_word_count": 150,
-    "prose_word_count": 1197,
-    "link_to_prose_ratio": 0.12531328320802004,
+    "link_word_count": 147,
+    "prose_word_count": 1194,
+    "link_to_prose_ratio": 0.12311557788944724,
     "empty_sections": 0,
     "stub_sections": 0
   },

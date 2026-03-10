@@ -1,7 +1,7 @@
 {
   "fixture": "nhs-mindfulness",
   "corpus": "main",
-  "baselined_at": "2026-03-03T23:43:10.973205+00:00",
+  "baselined_at": "2026-03-10T11:33:01.097901+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -48,7 +48,7 @@
     "stub_sections": 0
   },
   "thresholds_applied": {
-    "word_count_ratio_min": 0.3,
+    "word_count_ratio_max": 1.5,
     "avg_paragraph_words_min": 8.0,
     "placeholder_density_max": 0.2,
     "link_to_prose_ratio_max": 0.5

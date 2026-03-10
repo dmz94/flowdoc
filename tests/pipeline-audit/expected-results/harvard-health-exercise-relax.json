@@ -1,7 +1,7 @@
 {
   "fixture": "harvard-health-exercise-relax",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:47:20.451098+00:00",
+  "baselined_at": "2026-03-10T11:32:59.979174+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -15,11 +15,11 @@
       "Progressive muscular relaxation",
       "Exercise, health, and stress"
     ],
-    "output_word_count": 1638,
+    "output_word_count": 1633,
     "source_plain_word_count": 3290,
-    "word_count_ratio": 0.4978723404255319,
-    "paragraph_count": 63,
-    "avg_paragraph_words": 26.0,
+    "word_count_ratio": 0.49635258358662615,
+    "paragraph_count": 62,
+    "avg_paragraph_words": 26.338709677419356,
     "shortest_paragraph_words": [
       1,
       1,
@@ -35,8 +35,8 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 7,
-    "prose_word_count": 1638,
-    "link_to_prose_ratio": 0.004273504273504274,
+    "prose_word_count": 1633,
+    "link_to_prose_ratio": 0.004286589099816289,
     "empty_sections": 0,
     "stub_sections": 0
   },

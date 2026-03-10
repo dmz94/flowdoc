@@ -1,7 +1,7 @@
 {
   "fixture": "dyslexiaida-dyslexia-basics",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:44:12.231628+00:00",
+  "baselined_at": "2026-03-10T11:32:52.693146+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -18,15 +18,15 @@
       "What are the rights of a person with dyslexia?",
       "Suggested Readings"
     ],
-    "output_word_count": 1486,
+    "output_word_count": 1472,
     "source_plain_word_count": 2679,
-    "word_count_ratio": 0.5546845837999254,
-    "paragraph_count": 22,
-    "avg_paragraph_words": 65.86363636363636,
+    "word_count_ratio": 0.5494587532661441,
+    "paragraph_count": 21,
+    "avg_paragraph_words": 68.33333333333333,
     "shortest_paragraph_words": [
-      14,
       15,
-      20
+      20,
+      21
     ],
     "placeholder_count": 0,
     "placeholder_types": {
@@ -38,8 +38,8 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 4,
-    "prose_word_count": 1486,
-    "link_to_prose_ratio": 0.0026917900403768506,
+    "prose_word_count": 1472,
+    "link_to_prose_ratio": 0.002717391304347826,
     "empty_sections": 0,
     "stub_sections": 0
   },

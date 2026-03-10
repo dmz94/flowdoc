@@ -1,7 +1,7 @@
 {
   "fixture": "clevelandclinic-dyslexia",
   "corpus": "main",
-  "baselined_at": "2026-03-06T21:57:23.677145+00:00",
+  "baselined_at": "2026-03-10T11:32:57.138159+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -10,11 +10,11 @@
     "headings": [
       "Dyslexia: What It Is, Symptoms, Treatment & Types"
     ],
-    "output_word_count": 1129,
+    "output_word_count": 1051,
     "source_plain_word_count": 10035,
-    "word_count_ratio": 0.11250622820129547,
-    "paragraph_count": 51,
-    "avg_paragraph_words": 22.137254901960784,
+    "word_count_ratio": 0.10473343298455406,
+    "paragraph_count": 47,
+    "avg_paragraph_words": 22.361702127659573,
     "shortest_paragraph_words": [
       3,
       4,
@@ -29,9 +29,9 @@
       "other": 0
     },
     "placeholder_density": 0.0,
-    "link_word_count": 9,
-    "prose_word_count": 1129,
-    "link_to_prose_ratio": 0.007971656333038087,
+    "link_word_count": 6,
+    "prose_word_count": 1051,
+    "link_to_prose_ratio": 0.005708848715509039,
     "empty_sections": 0,
     "stub_sections": 0
   },

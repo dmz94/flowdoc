@@ -1,12 +1,12 @@
 {
-  "fixture": "pbs",
+  "fixture": "pbs-crowd-surges",
   "corpus": "main",
-  "baselined_at": "2026-03-05T10:31:47.802859+00:00",
+  "baselined_at": "2026-03-10T11:32:53.298127+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
-  "notes": "Images preserved as img tags; form placeholders remain.",
+  "notes": "",
   "metrics": {
-    "section_count": 10,
+    "section_count": 9,
     "headings": [
       "Explainer: Here is why crowd surges can kill people",
       "How are people dying in these events?",
@@ -16,31 +16,30 @@
       "How has the pandemic affected things?",
       "Why aren't people calling this a stampede?",
       "Related",
-      "Go Deeper",
-      "Educate your inbox"
+      "Go Deeper"
     ],
-    "output_word_count": 1009,
+    "output_word_count": 979,
     "source_plain_word_count": 1620,
-    "word_count_ratio": 0.6228395061728395,
-    "paragraph_count": 29,
-    "avg_paragraph_words": 32.206896551724135,
+    "word_count_ratio": 0.604320987654321,
+    "paragraph_count": 28,
+    "avg_paragraph_words": 32.82142857142857,
     "shortest_paragraph_words": [
       5,
       6,
       6
     ],
-    "placeholder_count": 2,
+    "placeholder_count": 1,
     "placeholder_types": {
       "image": 0,
-      "form": 2,
+      "form": 1,
       "table": 0,
       "hr": 0,
       "other": 0
     },
-    "placeholder_density": 0.06451612903225806,
-    "link_word_count": 30,
-    "prose_word_count": 1009,
-    "link_to_prose_ratio": 0.02973240832507433,
+    "placeholder_density": 0.034482758620689655,
+    "link_word_count": 15,
+    "prose_word_count": 979,
+    "link_to_prose_ratio": 0.015321756894790603,
     "empty_sections": 0,
     "stub_sections": 0
   },

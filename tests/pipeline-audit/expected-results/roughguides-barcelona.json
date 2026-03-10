@@ -1,7 +1,7 @@
 {
   "fixture": "roughguides-barcelona",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:45:51.548266+00:00",
+  "baselined_at": "2026-03-10T11:32:58.606543+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -71,11 +71,11 @@
       "#02 The city beaches",
       "#06 La Seu"
     ],
-    "output_word_count": 8010,
+    "output_word_count": 8007,
     "source_plain_word_count": 24834,
-    "word_count_ratio": 0.32254167673351053,
-    "paragraph_count": 119,
-    "avg_paragraph_words": 67.3109243697479,
+    "word_count_ratio": 0.3224208746073931,
+    "paragraph_count": 118,
+    "avg_paragraph_words": 67.85593220338983,
     "shortest_paragraph_words": [
       2,
       2,
@@ -91,8 +91,8 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 91,
-    "prose_word_count": 8010,
-    "link_to_prose_ratio": 0.01136079900124844,
+    "prose_word_count": 8007,
+    "link_to_prose_ratio": 0.011365055576370676,
     "empty_sections": 0,
     "stub_sections": 0
   },

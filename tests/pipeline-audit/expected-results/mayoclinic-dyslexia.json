@@ -1,7 +1,7 @@
 {
   "fixture": "mayoclinic-dyslexia",
   "corpus": "main",
-  "baselined_at": "2026-03-09T21:45:33.578616+00:00",
+  "baselined_at": "2026-03-10T11:32:56.913021+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -18,15 +18,15 @@
       "Risk factors",
       "Complications"
     ],
-    "output_word_count": 622,
+    "output_word_count": 619,
     "source_plain_word_count": 5301,
-    "word_count_ratio": 0.11733635163176759,
-    "paragraph_count": 15,
-    "avg_paragraph_words": 25.133333333333333,
+    "word_count_ratio": 0.11677042067534428,
+    "paragraph_count": 14,
+    "avg_paragraph_words": 26.714285714285715,
     "shortest_paragraph_words": [
       0,
-      3,
-      7
+      7,
+      12
     ],
     "placeholder_count": 0,
     "placeholder_types": {
@@ -38,7 +38,7 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 0,
-    "prose_word_count": 622,
+    "prose_word_count": 619,
     "link_to_prose_ratio": 0.0,
     "empty_sections": 0,
     "stub_sections": 0

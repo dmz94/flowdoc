@@ -1,7 +1,7 @@
 {
-  "fixture": "propublica",
+  "fixture": "propublica-3m-pfas",
   "corpus": "main",
-  "baselined_at": "2026-03-03T12:10:36.995441+00:00",
+  "baselined_at": "2026-03-10T11:32:53.832133+00:00",
   "flowdoc_version": "0.1.0",
   "status": "PASS",
   "notes": "",
@@ -10,14 +10,14 @@
     "headings": [
       "How 3M Execs Convinced a Scientist the Forever Chemicals She Found in Human Blood Were Safe — ProPublica"
     ],
-    "output_word_count": 7966,
+    "output_word_count": 7938,
     "source_plain_word_count": 18816,
-    "word_count_ratio": 0.42336309523809523,
-    "paragraph_count": 79,
-    "avg_paragraph_words": 100.83544303797468,
+    "word_count_ratio": 0.421875,
+    "paragraph_count": 78,
+    "avg_paragraph_words": 101.76923076923077,
     "shortest_paragraph_words": [
       27,
-      28,
+      44,
       44
     ],
     "placeholder_count": 0,
@@ -30,13 +30,13 @@
     },
     "placeholder_density": 0.0,
     "link_word_count": 25,
-    "prose_word_count": 7966,
-    "link_to_prose_ratio": 0.003138337936228973,
+    "prose_word_count": 7938,
+    "link_to_prose_ratio": 0.0031494079113126732,
     "empty_sections": 0,
     "stub_sections": 0
   },
   "thresholds_applied": {
-    "word_count_ratio_min": 0.3,
+    "word_count_ratio_max": 1.5,
     "avg_paragraph_words_min": 8.0,
     "placeholder_density_max": 0.2,
     "link_to_prose_ratio_max": 0.5
