@@ -179,3 +179,37 @@ def test_render_complete_document():
     assert '<div class="container">' in html
     assert "Hello world." in html
     assert "</html>" in html
+
+
+def _minimal_doc():
+    """Helper: minimal Document for CSS-focused tests."""
+    return Document(
+        title="Test",
+        sections=[
+            Section(
+                heading=Heading(level=1, inlines=[Text(text="Title")]),
+                blocks=[Paragraph(inlines=[Text(text="Content")])]
+            )
+        ]
+    )
+
+
+def test_opendyslexic_bold_font_face():
+    """OpenDyslexic mode embeds two @font-face blocks including bold."""
+    html = render(_minimal_doc(), use_opendyslexic=True)
+    assert html.count("@font-face") == 2
+    assert "font-weight: bold" in html
+
+
+def test_opendyslexic_em_restyled():
+    """OpenDyslexic mode restyles em as bold, not italic."""
+    html = render(_minimal_doc(), use_opendyslexic=True)
+    assert "font-style: normal" in html
+    assert "font-weight: bold" in html
+
+
+def test_default_em_not_restyled():
+    """Default rendering does not restyle em."""
+    html = render(_minimal_doc(), use_opendyslexic=False)
+    assert "em {" not in html
+    assert "font-style: normal" not in html

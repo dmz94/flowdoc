@@ -20,7 +20,8 @@ from flowdoc.core.constants import (
     BACKGROUND_COLOR, TEXT_COLOR, LINK_COLOR, LINK_HOVER_COLOR, LINK_VISITED_COLOR,
     MAX_LINE_WIDTH, CONTAINER_PADDING,
     PRINT_MIN_FONT_SIZE,
-    OPENDYSLEXIC_BASE64
+    OPENDYSLEXIC_BASE64,
+    OPENDYSLEXIC_BOLD_BASE64
 )
 
 
@@ -80,11 +81,28 @@ def generate_css(use_opendyslexic: bool) -> str:
     font-weight: normal;
     font-style: normal;
 }}
+
+@font-face {{
+    font-family: 'OpenDyslexic';
+    src: url(data:font/woff2;base64,{OPENDYSLEXIC_BOLD_BASE64}) format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}}
 """
     else:
         font_family = FONT_STACK
         font_face = ""
     
+    # Restyle <em> as bold (not italic) for dyslexic readers (BDA guidance)
+    em_restyle = ""
+    if use_opendyslexic and OPENDYSLEXIC_BASE64:
+        em_restyle = """
+em {
+    font-style: normal;
+    font-weight: bold;
+}
+"""
+
     # Generate heading styles
     heading_styles = ""
     for level in range(1, 7):
@@ -177,6 +195,7 @@ a:visited {{
     color: {LINK_VISITED_COLOR};
 }}
 
+{em_restyle}
 @media print {{
     body {{
         font-size: {PRINT_MIN_FONT_SIZE};

@@ -8,7 +8,8 @@ from flowdoc.core.constants import (
     LINE_HEIGHT, LETTER_SPACING, WORD_SPACING,
     BACKGROUND_COLOR, TEXT_COLOR, LINK_COLOR,
     MAX_LINE_WIDTH, CONTAINER_PADDING,
-    PRINT_MIN_FONT_SIZE, OPENDYSLEXIC_BASE64
+    PRINT_MIN_FONT_SIZE, OPENDYSLEXIC_BASE64,
+    OPENDYSLEXIC_BOLD_BASE64
 )
 
 
@@ -59,3 +60,9 @@ def test_opendyslexic_base64_exists():
     """OpenDyslexic base64 font data is present and non-empty."""
     assert isinstance(OPENDYSLEXIC_BASE64, str)
     assert len(OPENDYSLEXIC_BASE64) > 0
+
+
+def test_opendyslexic_bold_base64_exists():
+    """OpenDyslexic Bold base64 font data is present and non-empty."""
+    assert isinstance(OPENDYSLEXIC_BOLD_BASE64, str)
+    assert len(OPENDYSLEXIC_BOLD_BASE64) > 0
