@@ -141,9 +141,9 @@
     css.push("a { color: " + theme.link + " !important; }");
     css.push("a:visited { color: " + theme.visited + " !important; }");
 
-    // Font size (18px is the engine default body font size)
+    // Font size (percentage on html so headings scale proportionally)
     if (multiplier !== 1.0) {
-      css.push("body { font-size: " + (18 * multiplier) + "px !important; }");
+      css.push("html { font-size: " + (multiplier * 100) + "% !important; }");
     }
 
     // Font family
@@ -170,7 +170,12 @@
   function applyOuterTheme() {
     var theme = THEMES[settings.theme] || THEMES.light;
     document.body.style.backgroundColor = theme.bg;
-    pageWrapper.style.backgroundColor = theme.bg;
+    var els = document.querySelectorAll(
+      ".page-wrapper, .container, .output-zone, .result-bar, .site-header"
+    );
+    els.forEach(function (el) {
+      el.style.backgroundColor = theme.bg;
+    });
   }
 
   function applyToIframe() {
@@ -197,11 +202,13 @@
   function openPanel() {
     settingsPanel.classList.add("open");
     settingsOverlay.classList.remove("hidden");
+    outputSection.style.marginRight = "320px";
   }
 
   function closePanel() {
     settingsPanel.classList.remove("open");
     settingsOverlay.classList.add("hidden");
+    outputSection.style.marginRight = "0";
   }
 
   function togglePanel() {

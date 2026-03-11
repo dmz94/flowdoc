@@ -6,7 +6,7 @@
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
-  background: #fafafa;
+  background: #fafaf7;
   color: #333;
   margin: 0;
   padding: 0;
@@ -169,6 +169,7 @@ body {
 /* Output zone */
 .output-zone {
   margin-top: 1rem;
+  transition: margin-right 0.3s ease;
 }
 
 #output-frame {
