@@ -35,7 +35,7 @@
     width: "medium"
   };
 
-  var FONT_SIZE_MULTIPLIERS = [0.75, 0.875, 1.0, 1.2, 1.45];
+  var FONT_SIZE_MULTIPLIERS = [0.7, 0.85, 1.0, 1.25, 1.5];
 
   var THEMES = {
     light:    { bg: "#fafaf7", text: "#333",    link: "#1a0dab", visited: "#660099" },
