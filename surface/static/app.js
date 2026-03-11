@@ -41,28 +41,28 @@
     light: {
       bg: "#fafaf7", text: "#333", link: "#1a0dab", visited: "#660099",
       inputBg: "#fff", inputBorder: "#ccc", mutedText: "#999",
-      badgeBg: "#f0f0f0", buttonBorder: "#ddd",
+      badgeBg: "transparent", buttonBorder: "#ddd",
       convertBg: "#333", convertText: "#fff",
       errorBg: "#fff8f8", errorBorder: "#cc3333"
     },
     cream: {
       bg: "#f5f0e8", text: "#333", link: "#1a0dab", visited: "#660099",
       inputBg: "#fff", inputBorder: "#ccc", mutedText: "#999",
-      badgeBg: "#f0f0f0", buttonBorder: "#ddd",
+      badgeBg: "transparent", buttonBorder: "#ddd",
       convertBg: "#333", convertText: "#fff",
       errorBg: "#fff8f8", errorBorder: "#cc3333"
     },
     dark: {
       bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff",
       inputBg: "#2a2a2a", inputBorder: "#555", mutedText: "#888",
-      badgeBg: "#333", buttonBorder: "#666",
+      badgeBg: "#444", buttonBorder: "#666",
       convertBg: "#e0e0e0", convertText: "#1e1e1e",
       errorBg: "#2a1a1a", errorBorder: "#cc3333"
     },
     contrast: {
       bg: "#1a1a1a", text: "#ffd700", link: "#ffd700", visited: "#ff80ab",
       inputBg: "#2a2a2a", inputBorder: "#ffd700", mutedText: "#ccc",
-      badgeBg: "#333", buttonBorder: "#ffd700",
+      badgeBg: "rgba(255, 215, 0, 0.15)", buttonBorder: "#ffd700",
       convertBg: "#ffd700", convertText: "#1a1a1a",
       errorBg: "#2a1a1a", errorBorder: "#ffd700"
     }
