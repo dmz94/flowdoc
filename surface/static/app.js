@@ -189,6 +189,12 @@
     els.forEach(function (el) {
       el.style.backgroundColor = theme.bg;
     });
+
+    // Align result-bar width with content width
+    var resultBar = document.querySelector(".result-bar");
+    if (resultBar) {
+      resultBar.style.maxWidth = WIDTH_VALUES[settings.width] || WIDTH_VALUES.medium;
+    }
   }
 
   function applyToIframe() {
