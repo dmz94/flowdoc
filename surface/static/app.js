@@ -34,7 +34,7 @@
     light:    { bg: "#fafaf7", text: "#333",    link: "#1a0dab", visited: "#660099" },
     cream:    { bg: "#f5f0e8", text: "#333",    link: "#1a0dab", visited: "#660099" },
     dark:     { bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff" },
-    contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#ffd700", visited: "#ff80ab" }
+    contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#00e5ff", visited: "#ff80ab" }
   };
 
   var WIDTH_VALUES = { narrow: "38em", medium: "48em", wide: "60em" };
@@ -234,6 +234,7 @@
   function onSettingChange() {
     saveSettings();
     syncControlsToSettings();
+    applyOuterTheme();
     applyToIframe();
   }
 
@@ -273,6 +274,11 @@
   // Escape closes dropdowns
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeAllDropdowns();
+  });
+
+  // Close dropdowns when mouse enters the iframe (iframe eats click events)
+  outputFrame.addEventListener("mouseenter", function () {
+    closeAllDropdowns();
   });
 
   // --- Conversion ---

@@ -25,6 +25,9 @@ body {
   --popup-text: #1a1a1a;
   --tooltip-bg: rgb(207, 207, 216);
   --tooltip-text: rgb(91, 91, 102);
+  --input-bg: #ffffff;
+  --input-text: #333;
+  --input-border: rgba(0, 0, 0, 0.2);
 }
 
 .page-wrapper {
@@ -69,55 +72,65 @@ body {
   flex: 1;
   font-size: 1rem;
   padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-border);
   border-radius: 4px;
   outline: none;
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.url-form input[type="text"]::placeholder {
+  color: var(--input-text);
+  opacity: 0.5;
 }
 
 .url-form input[type="text"]:focus {
-  border-color: #666;
+  border-color: var(--icon-fill);
 }
 
 .url-form button {
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
-  background: #333;
-  color: #fff;
+  background: var(--icon-fill);
+  color: var(--toolbar-bg);
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .url-form button:hover {
-  background: #555;
+  opacity: 0.85;
 }
 
 /* Or divider */
 .or-divider {
   text-align: center;
-  color: #999;
+  color: var(--input-text);
+  opacity: 0.5;
   font-size: 0.85rem;
   margin: 1rem 0;
 }
 
 /* Drop zone */
 .drop-zone {
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--input-border);
   border-radius: 4px;
   padding: 2rem;
   text-align: center;
-  color: #999;
+  color: var(--input-text);
+  opacity: 0.6;
   cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
 }
 
 .drop-zone:hover {
-  border-color: #999;
+  opacity: 0.8;
+  border-color: var(--icon-fill);
 }
 
 .drop-zone.dragover {
-  border-color: #666;
-  background: #f0f0f0;
+  border-color: var(--icon-fill);
+  background: var(--toolbar-button-hover);
 }
 
 .drop-zone p {
@@ -171,7 +184,8 @@ body {
 .converting-status {
   text-align: center;
   padding: 2rem;
-  color: #666;
+  color: var(--input-text);
+  opacity: 0.7;
   font-size: 1rem;
 }
 
@@ -540,6 +554,9 @@ body.sepia {
   --popup-text: rgb(91, 70, 54);
   --tooltip-bg: rgba(91, 70, 54, 0.15);
   --tooltip-text: rgb(91, 70, 54);
+  --input-bg: #faf6ee;
+  --input-text: rgb(91, 70, 54);
+  --input-border: rgba(91, 70, 54, 0.3);
 }
 
 body.dark {
@@ -558,6 +575,9 @@ body.dark {
   --popup-text: rgb(251, 251, 254);
   --tooltip-bg: rgb(82, 82, 94);
   --tooltip-text: rgb(251, 251, 254);
+  --input-bg: rgb(50, 49, 61);
+  --input-text: rgb(251, 251, 254);
+  --input-border: rgba(249, 249, 250, 0.2);
 }
 
 body.contrast {
@@ -576,6 +596,9 @@ body.contrast {
   --popup-text: #ffffff;
   --tooltip-bg: #1a1a1a;
   --tooltip-text: #ffee32;
+  --input-bg: #000000;
+  --input-text: #ffffff;
+  --input-border: #ffee32;
 }
 
 /* Page elements that need to respond to theme */
@@ -593,25 +616,6 @@ body.contrast .site-header { border-bottom-color: #ffee32; }
 body.sepia .site-title { color: rgb(91, 70, 54); }
 body.dark .site-title { color: rgb(251, 251, 254); }
 body.contrast .site-title { color: #ffee32; }
-
-body.sepia .url-form input[type="text"] { background: #fff; border-color: rgba(91, 70, 54, 0.3); color: #333; }
-body.dark .url-form input[type="text"] { background: rgb(50, 50, 60); border-color: rgba(255, 255, 255, 0.2); color: #e0e0e0; }
-body.contrast .url-form input[type="text"] { background: #000; border-color: #ffee32; color: #ffd700; }
-
-body.dark .url-form button { background: rgb(82, 82, 94); color: #fff; }
-body.contrast .url-form button { background: #ffee32; color: #000; }
-
-body.sepia .or-divider { color: rgba(91, 70, 54, 0.6); }
-body.dark .or-divider { color: rgba(251, 251, 254, 0.5); }
-body.contrast .or-divider { color: #ffee32; }
-
-body.sepia .drop-zone { border-color: rgba(91, 70, 54, 0.3); color: rgba(91, 70, 54, 0.6); }
-body.dark .drop-zone { border-color: rgba(255, 255, 255, 0.2); color: rgba(251, 251, 254, 0.5); }
-body.contrast .drop-zone { border-color: #ffee32; color: #ffee32; }
-
-body.sepia .converting-status { color: rgb(91, 70, 54); }
-body.dark .converting-status { color: rgba(251, 251, 254, 0.7); }
-body.contrast .converting-status { color: #ffd700; }
 
 /* Smooth theme transition (added after page load to prevent flash) */
 body.loaded {
