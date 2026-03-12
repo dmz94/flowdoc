@@ -174,15 +174,20 @@
     return css.join("\n");
   }
 
+  // Map from THEMES key to body class name
+  var THEME_BODY_CLASS = {
+    light: "",
+    cream: "sepia",
+    dark: "dark",
+    contrast: "contrast"
+  };
+
   function applyOuterTheme() {
-    var theme = THEMES[settings.theme] || THEMES.light;
-    document.body.style.backgroundColor = theme.bg;
-    var bgEls = document.querySelectorAll(
-      ".page-wrapper, .container, .output-zone, .site-header"
-    );
-    bgEls.forEach(function (el) {
-      el.style.backgroundColor = theme.bg;
-    });
+    // Remove all theme classes
+    document.body.classList.remove("sepia", "dark", "contrast");
+    // Add the new one (light has no class)
+    var cls = THEME_BODY_CLASS[settings.theme];
+    if (cls) document.body.classList.add(cls);
   }
 
   function applyToIframe() {
@@ -388,6 +393,14 @@
     });
   });
 
+  // Theme swatches
+  document.querySelectorAll(".theme-swatch").forEach(function (el) {
+    el.addEventListener("click", function () {
+      settings.theme = el.getAttribute("data-theme");
+      onSettingChange();
+    });
+  });
+
   // Reset
   if (resetBtn) {
     resetBtn.addEventListener("click", function () {
@@ -398,7 +411,13 @@
 
   // --- Init ---
 
+  applyOuterTheme();
   syncControlsToSettings();
+
+  // Enable transitions after initial paint (prevents flash on load)
+  requestAnimationFrame(function () {
+    document.body.classList.add("loaded");
+  });
 
   if (window.__prefilled_url) {
     urlInput.value = window.__prefilled_url;

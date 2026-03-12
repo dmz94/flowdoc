@@ -473,6 +473,151 @@ body {
   /* default: visible; hidden via data-source in chunk 4e */
 }
 
+/* -----------------------------------------------
+   Theme grid (Colors popout)
+   ----------------------------------------------- */
+
+.theme-popup-body {
+  width: 260px;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.theme-swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.theme-swatch:hover {
+  border-color: var(--icon-fill);
+}
+
+.theme-swatch.active {
+  border-color: var(--icon-fill);
+  background-color: var(--toolbar-button-active);
+  font-weight: 600;
+}
+
+.swatch-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+/* -----------------------------------------------
+   Body theme class overrides
+   ----------------------------------------------- */
+
+body.sepia {
+  background: #f5f0e8;
+  color: #333;
+  --toolbar-bg: #f4ecd8;
+  --toolbar-border: rgb(91, 70, 54);
+  --toolbar-shadow: rgba(91, 70, 54, 0.15);
+  --toolbar-button-border: transparent;
+  --toolbar-button-hover: rgba(91, 70, 54, 0.1);
+  --toolbar-button-active: rgba(91, 70, 54, 0.15);
+  --icon-fill: rgb(91, 70, 54);
+  --popup-bg: #f4ecd8;
+  --popup-border: rgba(91, 70, 54, 0.3);
+  --popup-shadow: rgba(91, 70, 54, 0.2);
+  --popup-text: rgb(91, 70, 54);
+  --tooltip-bg: rgba(91, 70, 54, 0.15);
+  --tooltip-text: rgb(91, 70, 54);
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  --toolbar-bg: rgb(66, 65, 77);
+  --toolbar-border: rgba(249, 249, 250, 0.2);
+  --toolbar-shadow: rgba(0, 0, 0, 0.5);
+  --toolbar-button-border: transparent;
+  --toolbar-button-hover: rgb(82, 82, 94);
+  --toolbar-button-active: rgb(91, 91, 102);
+  --icon-fill: rgb(251, 251, 254);
+  --popup-bg: rgb(66, 65, 77);
+  --popup-border: rgba(255, 255, 255, 0.2);
+  --popup-shadow: rgba(0, 0, 0, 0.5);
+  --popup-text: rgb(251, 251, 254);
+  --tooltip-bg: rgb(82, 82, 94);
+  --tooltip-text: rgb(251, 251, 254);
+}
+
+body.contrast {
+  background: #1a1a1a;
+  color: #ffd700;
+  --toolbar-bg: #000000;
+  --toolbar-border: #ffee32;
+  --toolbar-shadow: rgba(0, 0, 0, 0.8);
+  --toolbar-button-border: transparent;
+  --toolbar-button-hover: rgba(255, 238, 50, 0.1);
+  --toolbar-button-active: rgba(255, 238, 50, 0.2);
+  --icon-fill: #ffee32;
+  --popup-bg: #1a1a1a;
+  --popup-border: #ffee32;
+  --popup-shadow: rgba(0, 0, 0, 0.8);
+  --popup-text: #ffffff;
+  --tooltip-bg: #1a1a1a;
+  --tooltip-text: #ffee32;
+}
+
+/* Page elements that need to respond to theme */
+body.sepia .page-wrapper,
+body.sepia .site-header { background: #f5f0e8; }
+body.dark .page-wrapper,
+body.dark .site-header { background: #1e1e1e; }
+body.contrast .page-wrapper,
+body.contrast .site-header { background: #1a1a1a; }
+
+body.sepia .site-header { border-bottom-color: rgba(91, 70, 54, 0.2); }
+body.dark .site-header { border-bottom-color: rgba(255, 255, 255, 0.1); }
+body.contrast .site-header { border-bottom-color: #ffee32; }
+
+body.sepia .site-title { color: rgb(91, 70, 54); }
+body.dark .site-title { color: rgb(251, 251, 254); }
+body.contrast .site-title { color: #ffee32; }
+
+body.sepia .url-form input[type="text"] { background: #fff; border-color: rgba(91, 70, 54, 0.3); color: #333; }
+body.dark .url-form input[type="text"] { background: rgb(50, 50, 60); border-color: rgba(255, 255, 255, 0.2); color: #e0e0e0; }
+body.contrast .url-form input[type="text"] { background: #000; border-color: #ffee32; color: #ffd700; }
+
+body.dark .url-form button { background: rgb(82, 82, 94); color: #fff; }
+body.contrast .url-form button { background: #ffee32; color: #000; }
+
+body.sepia .or-divider { color: rgba(91, 70, 54, 0.6); }
+body.dark .or-divider { color: rgba(251, 251, 254, 0.5); }
+body.contrast .or-divider { color: #ffee32; }
+
+body.sepia .drop-zone { border-color: rgba(91, 70, 54, 0.3); color: rgba(91, 70, 54, 0.6); }
+body.dark .drop-zone { border-color: rgba(255, 255, 255, 0.2); color: rgba(251, 251, 254, 0.5); }
+body.contrast .drop-zone { border-color: #ffee32; color: #ffee32; }
+
+body.sepia .converting-status { color: rgb(91, 70, 54); }
+body.dark .converting-status { color: rgba(251, 251, 254, 0.7); }
+body.contrast .converting-status { color: #ffd700; }
+
+/* Smooth theme transition (added after page load to prevent flash) */
+body.loaded {
+  transition: color 0.4s, background-color 0.4s;
+}
+
 /* Utility */
 .hidden {
   display: none;
