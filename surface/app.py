@@ -2,6 +2,7 @@
 Flask application for the Decant hosted surface.
 
 Routes:
+    GET  /healthz — Health check (no auth).
     GET  /        — Serve the index page.
     POST /convert — Accept URL or file, return converted HTML as JSON.
 """
@@ -75,6 +76,11 @@ def get_client_ip(req) -> str:
 # ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
+
+@app.route("/healthz")
+def healthz():
+    return "ok", 200
+
 
 @app.route("/")
 @requires_auth
