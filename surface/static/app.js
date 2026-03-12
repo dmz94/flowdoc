@@ -215,7 +215,18 @@
     try {
       var doc = outputFrame.contentDocument;
       if (!doc) return;
+
+      // Resolve relative hrefs against the source origin (URL conversions only)
+      var origin = "";
+      if (currentSourceUrl) {
+        try { origin = new URL(currentSourceUrl).origin; } catch (e) { /* malformed */ }
+      }
+
       doc.querySelectorAll("a[href]").forEach(function (a) {
+        var href = a.getAttribute("href");
+        if (origin && href && !/^https?:\/\/|^#|^mailto:/i.test(href)) {
+          a.setAttribute("href", origin + href);
+        }
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener noreferrer");
       });
