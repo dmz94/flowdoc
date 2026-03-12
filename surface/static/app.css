@@ -27,7 +27,7 @@ body {
   --tooltip-text: rgb(91, 91, 102);
   --input-bg: #ffffff;
   --input-text: #333;
-  --input-border: rgba(0, 0, 0, 0.2);
+  --input-border: rgba(0, 0, 0, 0.25);
 }
 
 .page-wrapper {
@@ -526,12 +526,17 @@ body {
 }
 
 .swatch-color {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* -----------------------------------------------
@@ -556,7 +561,7 @@ body.sepia {
   --tooltip-text: rgb(91, 70, 54);
   --input-bg: #faf6ee;
   --input-text: rgb(91, 70, 54);
-  --input-border: rgba(91, 70, 54, 0.3);
+  --input-border: rgba(91, 70, 54, 0.4);
 }
 
 body.dark {
@@ -577,7 +582,7 @@ body.dark {
   --tooltip-text: rgb(251, 251, 254);
   --input-bg: rgb(50, 49, 61);
   --input-text: rgb(251, 251, 254);
-  --input-border: rgba(249, 249, 250, 0.2);
+  --input-border: rgba(249, 249, 250, 0.3);
 }
 
 body.contrast {

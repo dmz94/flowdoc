@@ -31,8 +31,8 @@
   var FONT_SIZE_MULTIPLIERS = [0.7, 0.85, 1.0, 1.25, 1.5];
 
   var THEMES = {
-    light:    { bg: "#fafaf7", text: "#333",    link: "#1a0dab", visited: "#660099" },
-    cream:    { bg: "#f5f0e8", text: "#333",    link: "#1a0dab", visited: "#660099" },
+    light:    { bg: "#fafaf7", text: "#333",    link: "#1856a8", visited: "#694598" },
+    cream:    { bg: "#f5f0e8", text: "#333",    link: "#3a6ea5", visited: "#8b5e83" },
     dark:     { bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff" },
     contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#00e5ff", visited: "#ff80ab" }
   };
@@ -51,6 +51,7 @@
   var settings = loadSettings();
   var currentSourceUrl = "";
   var currentHtml = "";
+  var dropZoneDefault = dropZone.querySelector("p").textContent;
 
   // --- localStorage ---
 
@@ -308,12 +309,18 @@
   }
 
   function convertUrl(url) {
+    // Clear file input state, reset drop zone text
+    fileInput.value = "";
+    dropZone.querySelector("p").textContent = dropZoneDefault;
     var formData = new FormData();
     formData.append("url", url);
     handleConversion(formData, url);
   }
 
   function convertFile(file) {
+    // Clear URL input, show filename in drop zone
+    urlInput.value = "";
+    dropZone.querySelector("p").textContent = file.name;
     var formData = new FormData();
     formData.append("file", file);
     handleConversion(formData, "");
