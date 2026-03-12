@@ -38,34 +38,10 @@
   var FONT_SIZE_MULTIPLIERS = [0.7, 0.85, 1.0, 1.25, 1.5];
 
   var THEMES = {
-    light: {
-      bg: "#fafaf7", text: "#333", link: "#1a0dab", visited: "#660099",
-      inputBg: "#fff", inputBorder: "#ccc", mutedText: "#999",
-      badgeBg: "transparent", buttonBorder: "#ddd",
-      convertBg: "#333", convertText: "#fff",
-      errorBg: "#fff8f8", errorBorder: "#cc3333"
-    },
-    cream: {
-      bg: "#f5f0e8", text: "#333", link: "#1a0dab", visited: "#660099",
-      inputBg: "#fff", inputBorder: "#ccc", mutedText: "#999",
-      badgeBg: "transparent", buttonBorder: "#ddd",
-      convertBg: "#333", convertText: "#fff",
-      errorBg: "#fff8f8", errorBorder: "#cc3333"
-    },
-    dark: {
-      bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff",
-      inputBg: "#2a2a2a", inputBorder: "#555", mutedText: "#888",
-      badgeBg: "#444", buttonBorder: "#666",
-      convertBg: "#e0e0e0", convertText: "#1e1e1e",
-      errorBg: "#2a1a1a", errorBorder: "#cc3333"
-    },
-    contrast: {
-      bg: "#1a1a1a", text: "#ffd700", link: "#ffd700", visited: "#ff80ab",
-      inputBg: "#2a2a2a", inputBorder: "#ffd700", mutedText: "#ccc",
-      badgeBg: "rgba(255, 215, 0, 0.15)", buttonBorder: "#ffd700",
-      convertBg: "#ffd700", convertText: "#1a1a1a",
-      errorBg: "#2a1a1a", errorBorder: "#ffd700"
-    }
+    light:    { bg: "#fafaf7", text: "#333",    link: "#1a0dab", visited: "#660099" },
+    cream:    { bg: "#f5f0e8", text: "#333",    link: "#1a0dab", visited: "#660099" },
+    dark:     { bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff" },
+    contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#ffd700", visited: "#ff80ab" }
   };
 
   var WIDTH_VALUES = { narrow: "38em", medium: "48em", wide: "60em" };
@@ -206,8 +182,6 @@
 
   function applyOuterTheme() {
     var theme = THEMES[settings.theme] || THEMES.light;
-
-    // Background on body and wrapper elements
     document.body.style.backgroundColor = theme.bg;
     var bgEls = document.querySelectorAll(
       ".page-wrapper, .container, .output-zone, .result-bar, .site-header"
@@ -215,72 +189,6 @@
     bgEls.forEach(function (el) {
       el.style.backgroundColor = theme.bg;
     });
-
-    // Site title
-    var siteTitle = document.querySelector(".site-title");
-    if (siteTitle) siteTitle.style.color = theme.text;
-
-    // URL input
-    var urlField = document.querySelector(".url-form input[type='text']");
-    if (urlField) {
-      urlField.style.backgroundColor = theme.inputBg;
-      urlField.style.color = theme.text;
-      urlField.style.borderColor = theme.inputBorder;
-    }
-
-    // Convert button
-    var convertBtn = document.querySelector(".url-form button");
-    if (convertBtn) {
-      convertBtn.style.backgroundColor = theme.convertBg;
-      convertBtn.style.color = theme.convertText;
-    }
-
-    // Drop zone
-    var dz = document.querySelector(".drop-zone");
-    if (dz) {
-      dz.style.borderColor = theme.inputBorder;
-      dz.style.color = theme.mutedText;
-    }
-
-    // Or divider
-    var orDiv = document.querySelector(".or-divider");
-    if (orDiv) orDiv.style.color = theme.mutedText;
-
-    // Settings button (in header, NOT in panel)
-    var sb = document.querySelector(".settings-btn");
-    if (sb) {
-      sb.style.borderColor = theme.buttonBorder;
-      sb.style.color = theme.text;
-    }
-
-    // Settings badge
-    var badge = document.querySelector(".settings-badge");
-    if (badge) {
-      badge.style.backgroundColor = theme.badgeBg;
-      badge.style.color = theme.text;
-    }
-
-    // View Original link
-    var voLink = document.querySelector(".view-original-link");
-    if (voLink) {
-      voLink.style.borderColor = theme.buttonBorder;
-      voLink.style.color = theme.text;
-    }
-
-    // View Original badge
-    var voBadge = document.querySelector(".view-original-badge");
-    if (voBadge) voBadge.style.backgroundColor = theme.badgeBg;
-
-    // Error container
-    var errCont = document.querySelector(".error-container");
-    if (errCont) {
-      errCont.style.backgroundColor = theme.errorBg;
-      errCont.style.color = theme.text;
-      errCont.style.borderLeftColor = theme.errorBorder;
-    }
-
-    var errHint = document.querySelector(".error-hint");
-    if (errHint) errHint.style.color = theme.mutedText;
 
     // Align result-bar width with content width
     var resultBar = document.querySelector(".result-bar");
