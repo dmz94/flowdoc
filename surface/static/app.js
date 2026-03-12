@@ -445,6 +445,31 @@
     });
   }
 
+  // --- Save actions ---
+
+  document.getElementById("print-btn").addEventListener("click", function () {
+    if (!currentHtml) return;
+    var blob = new Blob([currentHtml], { type: "text/html" });
+    var url = URL.createObjectURL(blob);
+    window.open(url);
+    URL.revokeObjectURL(url);
+    closeAllDropdowns();
+  });
+
+  document.getElementById("download-html-btn").addEventListener("click", function () {
+    if (!currentHtml) return;
+    var blob = new Blob([currentHtml], { type: "text/html" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "decant.html";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    closeAllDropdowns();
+  });
+
   // --- Init ---
 
   applyOuterTheme();

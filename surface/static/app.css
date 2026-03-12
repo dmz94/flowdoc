@@ -540,6 +540,43 @@ body {
 }
 
 /* -----------------------------------------------
+   Save popout
+   ----------------------------------------------- */
+
+.save-popup-body {
+  width: 200px;
+}
+
+.save-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  margin-bottom: 6px;
+}
+
+.save-action-btn:last-child {
+  margin-bottom: 0;
+}
+
+.save-action-btn:hover:not(:disabled) {
+  border-color: var(--icon-fill);
+}
+
+.save-action-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* -----------------------------------------------
    Body theme class overrides
    ----------------------------------------------- */
 
