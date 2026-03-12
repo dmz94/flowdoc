@@ -47,15 +47,15 @@ body {
   color: #555;
 }
 
-/* Main container */
+/* Main container — left padding makes room for toolbar gutter */
 .container {
   margin: 0 auto;
   padding: 2rem;
+  padding-left: 72px;
 }
 
 .input-zone {
   max-width: 800px;
-  margin: 0 auto;
 }
 
 /* URL input form */
@@ -123,11 +123,10 @@ body {
   margin: 0;
 }
 
-/* Output zone — left padding makes room for toolbar */
+/* Output zone */
 .output-zone {
   margin-top: 1rem;
   position: relative;
-  padding-left: 56px;
 }
 
 #output-frame {
@@ -140,7 +139,7 @@ body {
 /* Error container */
 .error-container {
   max-width: 800px;
-  margin: 1.5rem auto 0;
+  margin: 1.5rem 0 0;
   background: #fff8f8;
   border-left: 4px solid #cc3333;
   padding: 1.25rem;
@@ -276,6 +275,164 @@ body {
 }
 
 /* -----------------------------------------------
+   Popup content (shared styles for popout panels)
+   ----------------------------------------------- */
+
+.popup-body {
+  padding: 16px 20px;
+  width: 320px;
+}
+
+.popup-group {
+  margin-bottom: 16px;
+}
+
+.popup-group:last-child {
+  margin-bottom: 0;
+}
+
+.popup-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--popup-text);
+  margin-bottom: 8px;
+}
+
+/* Font choice buttons */
+.font-btn-row {
+  display: flex;
+  gap: 6px;
+}
+
+.font-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.font-btn:hover {
+  border-color: var(--icon-fill);
+}
+
+.font-btn.active {
+  border-color: var(--icon-fill);
+  background-color: var(--toolbar-button-active);
+  font-weight: 600;
+}
+
+/* Font size slider */
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-label-sm {
+  font-size: 0.75rem;
+  color: var(--icon-fill);
+}
+
+.slider-label-lg {
+  font-size: 1.1rem;
+  color: var(--icon-fill);
+}
+
+.range-slider {
+  flex: 1;
+  accent-color: var(--icon-fill);
+}
+
+/* Width buttons */
+.width-btn-row {
+  display: flex;
+  gap: 6px;
+}
+
+.width-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.width-btn:hover {
+  border-color: var(--icon-fill);
+}
+
+.width-btn.active {
+  border-color: var(--icon-fill);
+  background-color: var(--toolbar-button-active);
+  font-weight: 600;
+}
+
+/* Spacing buttons */
+.spacing-btn-row {
+  display: flex;
+  gap: 6px;
+}
+
+.spacing-btn {
+  flex: 1;
+  padding: 6px 4px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s;
+}
+
+.spacing-btn:hover {
+  border-color: var(--icon-fill);
+}
+
+.spacing-btn.active {
+  border-color: var(--icon-fill);
+  background-color: var(--toolbar-button-active);
+  font-weight: 600;
+}
+
+/* Reset button */
+.popup-reset {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--popup-border);
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid var(--popup-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.reset-btn:hover {
+  border-color: var(--icon-fill);
+}
+
+/* -----------------------------------------------
    Tooltips
    ----------------------------------------------- */
 
@@ -305,9 +462,12 @@ body {
 }
 
 /* -----------------------------------------------
-   URL-only buttons (visibility controlled in 4e)
+   Action-only buttons (hidden before conversion)
    ----------------------------------------------- */
 
+/* .action-only starts hidden, shown by JS after conversion */
+
+/* URL-only buttons (visibility controlled in 4e) */
 .url-only {
   /* default: visible; hidden via data-source in chunk 4e */
 }

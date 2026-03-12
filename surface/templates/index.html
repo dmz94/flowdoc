@@ -15,6 +15,156 @@
 
   <main class="container">
 
+    <div id="toolbar-container" class="toolbar-container">
+      <div class="toolbar">
+
+        <!-- Text controls -->
+        <ul class="dropdown text-dropdown">
+          <li>
+            <button class="dropdown-toggle toolbar-button text-button"
+                    aria-label="Font and layout settings">
+              <span class="tb-icon-aa">Aa</span>
+              <span class="hover-label">Font &amp; Layout</span>
+            </button>
+          </li>
+          <li class="dropdown-popup" id="text-controls" tabindex="-1">
+            <div class="popup-body">
+
+              <div class="popup-group">
+                <div class="popup-label">Font</div>
+                <div class="font-btn-row">
+                  <button type="button" class="font-btn" data-font="sans">Sans-serif</button>
+                  <button type="button" class="font-btn" data-font="opendyslexic">OpenDyslexic</button>
+                  <button type="button" class="font-btn" data-font="serif">Serif</button>
+                </div>
+              </div>
+
+              <div class="popup-group">
+                <div class="popup-label">Font size</div>
+                <div class="slider-row">
+                  <span class="slider-label-sm">A</span>
+                  <input type="range" id="font-size-slider" min="0" max="4"
+                         value="2" step="1" class="range-slider">
+                  <span class="slider-label-lg">A</span>
+                </div>
+              </div>
+
+              <div class="popup-group">
+                <div class="popup-label">Content width</div>
+                <div class="width-btn-row">
+                  <button type="button" class="width-btn" data-width="narrow">Narrow</button>
+                  <button type="button" class="width-btn" data-width="medium">Medium</button>
+                  <button type="button" class="width-btn" data-width="wide">Wide</button>
+                </div>
+              </div>
+
+              <div class="popup-group">
+                <div class="popup-label">Text spacing</div>
+                <div class="spacing-btn-row">
+                  <button type="button" class="spacing-btn" data-spacing="standard">Standard</button>
+                  <button type="button" class="spacing-btn" data-spacing="loose">Loose</button>
+                  <button type="button" class="spacing-btn" data-spacing="veryloose">Very Loose</button>
+                </div>
+              </div>
+
+              <div class="popup-group popup-reset">
+                <button type="button" id="reset-btn" class="reset-btn">Reset to defaults</button>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+
+        <!-- Theme picker -->
+        <ul class="dropdown theme-dropdown">
+          <li>
+            <button class="dropdown-toggle toolbar-button theme-button"
+                    aria-label="Colors">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                   stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 1C4.1 1 1 3.8 1 7.2c0 2 1.2 3.3 2.5 3.3.9 0 1.5-.8 2.2-.8.9 0 1.1 1.3 2.3 1.3 3.9 0 7-2.8 7-6.2C15 2.5 11.4 1 8 1z"/>
+                <circle cx="5" cy="5" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="8" cy="3.8" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="11" cy="5" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="11.5" cy="8" r="1.2" fill="currentColor" stroke="none"/>
+              </svg>
+              <span class="hover-label">Colors</span>
+            </button>
+          </li>
+          <li class="dropdown-popup" id="theme-controls" tabindex="-1">
+            <!-- populated in chunk 4c -->
+          </li>
+        </ul>
+
+        <!-- Save -->
+        <ul class="dropdown save-dropdown action-only hidden">
+          <li>
+            <button class="dropdown-toggle toolbar-button save-button"
+                    aria-label="Save and print">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 2h10v12H3z"/>
+                <path d="M8 6v5M6 9l2 2 2-2"/>
+              </svg>
+              <span class="hover-label">Save / Print</span>
+            </button>
+          </li>
+          <li class="dropdown-popup" id="save-controls" tabindex="-1">
+            <!-- populated in chunk 4d -->
+          </li>
+        </ul>
+
+        <!-- Share (single action, URL only) -->
+        <button class="toolbar-button share-button url-only action-only hidden"
+                id="share-btn"
+                aria-label="Copy share link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9.5a3.5 3.5 0 0 0 4 0"/>
+            <path d="M6.5 6.5l3-3"/>
+            <circle cx="4.5" cy="8.5" r="2"/>
+            <circle cx="11.5" cy="3.5" r="2"/>
+            <circle cx="11.5" cy="12.5" r="2"/>
+            <path d="M6.5 10.5l3 3"/>
+          </svg>
+          <span class="hover-label">Share Link</span>
+        </button>
+
+        <!-- View Original (single action, URL only) -->
+        <button class="toolbar-button view-original-button url-only action-only hidden"
+                id="view-original-btn"
+                aria-label="View original page">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2H2v12h12v-4"/>
+            <path d="M9 2h5v5"/>
+            <path d="M7 9L14 2"/>
+          </svg>
+          <span class="hover-label">View Original</span>
+        </button>
+
+        <!-- Help -->
+        <ul class="dropdown help-dropdown">
+          <li>
+            <button class="dropdown-toggle toolbar-button help-button"
+                    aria-label="Help">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="8" r="6"/>
+                <path d="M6 6a2 2 0 1 1 2.5 1.94c-.39.2-.5.46-.5.81V10"/>
+                <circle cx="8" cy="12" r="0.5" fill="currentColor" stroke="none"/>
+              </svg>
+              <span class="hover-label">Help</span>
+            </button>
+          </li>
+          <li class="dropdown-popup" id="help-controls" tabindex="-1">
+            <!-- populated in chunk 5 -->
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
     <section id="input-zone" class="input-zone">
       <form id="url-form" class="url-form">
         <input type="text" id="url-input" name="url"
@@ -40,110 +190,10 @@
     </div>
 
     <section id="output" class="output-zone hidden">
-
-      <div id="toolbar-container" class="toolbar-container">
-        <div class="toolbar">
-
-          <!-- Text controls -->
-          <ul class="dropdown text-dropdown">
-            <li>
-              <button class="dropdown-toggle toolbar-button text-button"
-                      aria-label="Text and layout settings">
-                <span class="tb-icon-aa">Aa</span>
-                <span class="hover-label">Text</span>
-              </button>
-            </li>
-            <li class="dropdown-popup" id="text-controls" tabindex="-1">
-              <!-- populated in chunk 4b -->
-            </li>
-          </ul>
-
-          <!-- Theme picker -->
-          <ul class="dropdown theme-dropdown">
-            <li>
-              <button class="dropdown-toggle toolbar-button theme-button"
-                      aria-label="Theme">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <rect x="2" y="2" width="12" height="12" rx="4"/>
-                </svg>
-                <span class="hover-label">Theme</span>
-              </button>
-            </li>
-            <li class="dropdown-popup" id="theme-controls" tabindex="-1">
-              <!-- populated in chunk 4c -->
-            </li>
-          </ul>
-
-          <!-- Save -->
-          <ul class="dropdown save-dropdown">
-            <li>
-              <button class="dropdown-toggle toolbar-button save-button"
-                      aria-label="Save and print">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 2v8M5 7l3 3 3-3"/>
-                  <path d="M3 12h10"/>
-                </svg>
-                <span class="hover-label">Save</span>
-              </button>
-            </li>
-            <li class="dropdown-popup" id="save-controls" tabindex="-1">
-              <!-- populated in chunk 4d -->
-            </li>
-          </ul>
-
-          <!-- Share (single action, URL only) -->
-          <button class="toolbar-button share-button url-only"
-                  id="share-btn"
-                  aria-label="Copy share link">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M8 10V2M5 5l3-3 3 3"/>
-              <path d="M13 10v3H3v-3"/>
-            </svg>
-            <span class="hover-label">Share</span>
-          </button>
-
-          <!-- View Original (single action, URL only) -->
-          <button class="toolbar-button view-original-button url-only"
-                  id="view-original-btn"
-                  aria-label="View original page">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 2H2v12h12v-4"/>
-              <path d="M9 2h5v5"/>
-              <path d="M7 9L14 2"/>
-            </svg>
-            <span class="hover-label">View Original</span>
-          </button>
-
-          <!-- Help -->
-          <ul class="dropdown help-dropdown">
-            <li>
-              <button class="dropdown-toggle toolbar-button help-button"
-                      aria-label="Help and feedback">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="8" cy="8" r="6"/>
-                  <path d="M6 6a2 2 0 1 1 2.5 1.94c-.39.2-.5.46-.5.81V10"/>
-                  <circle cx="8" cy="12" r="0.5" fill="currentColor" stroke="none"/>
-                </svg>
-                <span class="hover-label">Help</span>
-              </button>
-            </li>
-            <li class="dropdown-popup" id="help-controls" tabindex="-1">
-              <!-- populated in chunk 5 -->
-            </li>
-          </ul>
-
-        </div>
-      </div>
-
       <iframe id="output-frame" sandbox="allow-same-origin"></iframe>
     </section>
 
   </main>
-
 
 </div>
 

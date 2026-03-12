@@ -15,6 +15,9 @@
   var errorMessage = document.getElementById("error-message");
   var errorHint = document.getElementById("error-hint");
   var convertingStatus = document.getElementById("converting");
+  var toolbarContainer = document.getElementById("toolbar-container");
+  var fontSizeSlider = document.getElementById("font-size-slider");
+  var resetBtn = document.getElementById("reset-btn");
 
   // --- Settings state ---
   var DEFAULTS = {
@@ -101,6 +104,11 @@
 
     currentHtml = html;
     currentSourceUrl = sourceUrl;
+
+    // Show action-only toolbar buttons
+    document.querySelectorAll(".action-only").forEach(function (el) {
+      el.classList.remove("hidden");
+    });
 
     applyToIframe();
   }
@@ -195,17 +203,14 @@
   // --- Sync controls to settings state ---
 
   function syncControlsToSettings() {
-    // Syncs control UI to current settings state.
-    // Controls are added in chunk 4b; querySelectorAll safely no-ops on empty results.
-    var slider = document.getElementById("font-size-slider");
-    if (slider) slider.value = settings.fontSize;
+    if (fontSizeSlider) fontSizeSlider.value = settings.fontSize;
+
+    document.querySelectorAll(".font-btn").forEach(function (el) {
+      el.classList.toggle("active", el.getAttribute("data-font") === settings.font);
+    });
 
     document.querySelectorAll(".theme-swatch").forEach(function (el) {
       el.classList.toggle("active", el.getAttribute("data-theme") === settings.theme);
-    });
-
-    document.querySelectorAll('input[name="font"]').forEach(function (el) {
-      el.checked = el.value === settings.font;
     });
 
     document.querySelectorAll(".spacing-btn").forEach(function (el) {
@@ -219,8 +224,52 @@
 
   function onSettingChange() {
     saveSettings();
+    syncControlsToSettings();
     applyToIframe();
   }
+
+  // --- Dropdown open/close ---
+
+  function closeAllDropdowns() {
+    document.querySelectorAll(".dropdown.open").forEach(function (el) {
+      el.classList.remove("open");
+    });
+    toolbarContainer.classList.remove("dropdown-open");
+  }
+
+  function toggleDropdown(dropdownEl) {
+    var wasOpen = dropdownEl.classList.contains("open");
+    closeAllDropdowns();
+    if (!wasOpen) {
+      dropdownEl.classList.add("open");
+      toolbarContainer.classList.add("dropdown-open");
+    }
+  }
+
+  // Event delegation for dropdown toggles
+  toolbarContainer.addEventListener("click", function (e) {
+    var toggle = e.target.closest(".dropdown-toggle");
+    if (toggle) {
+      e.stopPropagation();
+      var dropdown = toggle.closest(".dropdown");
+      if (dropdown) toggleDropdown(dropdown);
+      return;
+    }
+    // Clicks inside a popup should not close it
+    if (e.target.closest(".dropdown-popup")) return;
+  });
+
+  // Click outside closes all dropdowns
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".toolbar-container")) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Escape closes dropdowns
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
 
   // --- Conversion ---
 
@@ -306,8 +355,47 @@
   document.addEventListener("dragover", function (e) { e.preventDefault(); });
   document.addEventListener("drop", function (e) { e.preventDefault(); });
 
-  // --- Event listeners: settings controls ---
-  // (rewired in chunk 4b when controls are added to toolbar popouts)
+  // --- Event listeners: text controls ---
+
+  // Font choice
+  document.querySelectorAll(".font-btn").forEach(function (el) {
+    el.addEventListener("click", function () {
+      settings.font = el.getAttribute("data-font");
+      onSettingChange();
+    });
+  });
+
+  // Font size
+  if (fontSizeSlider) {
+    fontSizeSlider.addEventListener("input", function () {
+      settings.fontSize = parseInt(fontSizeSlider.value, 10);
+      onSettingChange();
+    });
+  }
+
+  // Width
+  document.querySelectorAll(".width-btn").forEach(function (el) {
+    el.addEventListener("click", function () {
+      settings.width = el.getAttribute("data-width");
+      onSettingChange();
+    });
+  });
+
+  // Spacing
+  document.querySelectorAll(".spacing-btn").forEach(function (el) {
+    el.addEventListener("click", function () {
+      settings.spacing = el.getAttribute("data-spacing");
+      onSettingChange();
+    });
+  });
+
+  // Reset
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      settings = JSON.parse(JSON.stringify(DEFAULTS));
+      onSettingChange();
+    });
+  }
 
   // --- Init ---
 
