@@ -670,8 +670,8 @@ body.loaded {
 
 .toast {
   position: fixed;
-  top: 20px;
-  left: 80px;
+  top: 170px;
+  left: 90px;
   background-color: var(--popup-bg);
   color: var(--popup-text);
   border: 1px solid var(--popup-border);
