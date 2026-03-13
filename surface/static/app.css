@@ -43,28 +43,11 @@ body {
   border-bottom: 1px solid #eee;
 }
 
-.site-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.site-logo svg {
-  display: block;
-  height: 36px;
-  width: auto;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #555;
 }
 
 /* Main container — left padding makes room for toolbar gutter */
@@ -849,6 +832,9 @@ body.sepia .site-header { border-bottom-color: rgba(91, 70, 54, 0.2); }
 body.dark .site-header { border-bottom-color: rgba(255, 255, 255, 0.1); }
 body.contrast .site-header { border-bottom-color: #ffee32; }
 
+body.sepia .site-title { color: rgb(91, 70, 54); }
+body.dark .site-title { color: rgb(251, 251, 254); }
+body.contrast .site-title { color: #ffee32; }
 
 /* Smooth theme transition (added after page load to prevent flash) */
 body.loaded {
