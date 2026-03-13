@@ -215,12 +215,14 @@
 
               <div class="help-section">
                 <h3 class="help-heading">Usage Notes</h3>
-                <p>Many apps and services let you export or save content as HTML -- recipes, notes, saved articles. Upload those files here.</p>
-                <p>If a web page requires login, save it from your browser (File &gt; Save As &gt; HTML) and upload it instead.</p>
-                <p>The Share and View Original buttons are only available when converting from a URL.</p>
-                <p>Links within converted articles open in a new tab. For file uploads, some links may not work correctly as the original website address is not available to resolve them.</p>
-                <p>Use the Reset button in Text controls to restore all settings to defaults.</p>
-                <p>To save as PDF, click Print and choose Save as PDF from your printer options. A dedicated PDF export is planned for a future release.</p>
+                <ul>
+                  <li>Many apps and services let you export or save content as HTML &mdash; recipes, notes, saved articles. Upload those files here.</li>
+                  <li>If a web page requires login, save it from your browser (File &gt; Save As &gt; HTML) and upload it instead.</li>
+                  <li>The Share and View Original buttons are only available when converting from a URL.</li>
+                  <li>Links within converted articles open in a new tab. For file uploads, some links may not work correctly as the original website address is not available to resolve them.</li>
+                  <li>Use the Reset button in Text controls to restore all settings to defaults.</li>
+                  <li>To save as PDF, click Print and choose Save as PDF from your printer options. A dedicated PDF export is planned for a future release.</li>
+                </ul>
               </div>
 
               <div class="help-section">
@@ -266,31 +268,30 @@
       Converting...
     </div>
 
+    <div id="feedback-widget" class="feedback-bar action-only hidden">
+      <button type="button" class="feedback-thumb" id="feedback-up" aria-label="Thumbs up">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 14H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2"/>
+          <path d="M5 7l2-5a1.5 1.5 0 0 1 1.5 1.5V6h3.28a1 1 0 0 1 .98 1.22l-1.12 5A1 1 0 0 1 10.66 13H5V7z"/>
+        </svg>
+      </button>
+      <button type="button" class="feedback-thumb" id="feedback-down" aria-label="Thumbs down">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 2h2a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-2"/>
+          <path d="M11 9l-2 5a1.5 1.5 0 0 1-1.5-1.5V10H4.22a1 1 0 0 1-.98-1.22l1.12-5A1 1 0 0 1 5.34 3H11v6z"/>
+        </svg>
+      </button>
+      <span class="feedback-prompt">How was this conversion?</span>
+      <div id="feedback-expand" class="feedback-inline hidden">
+        <input type="text" id="feedback-text" class="feedback-text-inline" placeholder="Any details? (optional)">
+        <button type="button" id="feedback-submit" class="feedback-submit-inline">Send</button>
+      </div>
+    </div>
+
     <section id="output" class="output-zone hidden">
       <iframe id="output-frame" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-
-      <div id="feedback-widget" class="feedback-widget action-only hidden">
-        <div class="feedback-thumbs">
-          <button type="button" class="feedback-thumb" id="feedback-up" aria-label="Thumbs up">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 14H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2"/>
-              <path d="M5 7l2-5a1.5 1.5 0 0 1 1.5 1.5V6h3.28a1 1 0 0 1 .98 1.22l-1.12 5A1 1 0 0 1 10.66 13H5V7z"/>
-            </svg>
-          </button>
-          <button type="button" class="feedback-thumb" id="feedback-down" aria-label="Thumbs down">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 2h2a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-2"/>
-              <path d="M11 9l-2 5a1.5 1.5 0 0 1-1.5-1.5V10H4.22a1 1 0 0 1-.98-1.22l1.12-5A1 1 0 0 1 5.34 3H11v6z"/>
-            </svg>
-          </button>
-        </div>
-        <div id="feedback-expand" class="feedback-expand hidden">
-          <textarea id="feedback-text" class="feedback-text" rows="2" placeholder="Any details? (optional)"></textarea>
-          <button type="button" id="feedback-submit" class="feedback-submit">Send</button>
-        </div>
-      </div>
     </section>
 
   </main>
