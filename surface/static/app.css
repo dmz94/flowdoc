@@ -587,7 +587,7 @@ body {
 
 .help-popup-body {
   width: 380px;
-  max-height: 70vh;
+  max-height: min(70vh, calc(100vh - 100px));
   overflow-y: auto;
   overscroll-behavior: contain;
 }
