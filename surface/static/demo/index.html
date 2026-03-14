@@ -32,13 +32,21 @@ a:hover { color: #a00; }
   0%, 100% { background-color: #d4a017; }
   50% { background-color: #e8b830; }
 }
+@keyframes label-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes btn-flash {
+  0%, 100% { background-color: #8b0000; }
+  50% { background-color: #ff2020; }
+}
 
 /* --- Promo banner --- */
 .promo-banner {
   background: #8b0000; color: #fff; text-align: center; padding: 8px 20px;
   font-size: 12px; font-weight: bold; letter-spacing: 0.5px;
 }
-.promo-banner span { animation: promo-pulse 1.5s ease-in-out infinite; display: inline-block; }
+.promo-banner span { animation: label-flash 1s ease-in-out infinite; display: inline-block; }
 .promo-banner a {
   color: #fff; margin-left: 6px; background: #8b0000; padding: 2px 8px;
   border-radius: 2px; text-decoration: none; font-size: 11px;
@@ -151,12 +159,13 @@ a:hover { color: #a00; }
 .inline-ad .ad-label {
   font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
   color: #999; margin-bottom: 8px;
+  animation: label-flash 1s ease-in-out infinite;
 }
 .inline-ad .ad-text { font-size: 15px; font-weight: bold; color: #444; margin-bottom: 10px; }
 .inline-ad .ad-btn {
   display: inline-block; padding: 6px 16px; background: #8b0000; color: #fff;
   border: none; font-size: 12px; cursor: pointer; text-decoration: none; border-radius: 2px;
-  animation: subscribe-pulse 2s ease-in-out infinite;
+  animation: btn-flash 1.5s ease-in-out infinite;
 }
 
 /* --- Newsletter inline --- */
@@ -195,6 +204,7 @@ a:hover { color: #a00; }
 .sponsored-block .sponsored-label {
   position: absolute; top: 8px; right: 10px; font-size: 9px;
   text-transform: uppercase; letter-spacing: 1px; color: #999;
+  animation: label-flash 1s ease-in-out infinite;
 }
 .sponsored-block .sp-thumb {
   width: 100%; height: 100px; background: #e4e0d4; border: 1px solid #d4d0c4; margin-bottom: 8px;
@@ -300,7 +310,7 @@ a:hover { color: #a00; }
   position: absolute; top: 8px; right: -4px; background: #c00; color: #fff;
   font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 2px;
   transform: rotate(5deg); letter-spacing: 0.5px; z-index: 1;
-  animation: sale-throb 2s ease-in-out infinite;
+  animation: sale-throb 2s ease-in-out infinite, label-flash 1s ease-in-out infinite;
 }
 
 .cat-list, .follow-list { list-style: none; }
@@ -353,7 +363,7 @@ a:hover { color: #a00; }
 .quiz-promo .quiz-btn {
   display: inline-block; padding: 8px 20px; background: #8b0000; color: #fff;
   border: none; font-size: 13px; cursor: pointer; border-radius: 2px;
-  text-decoration: none; animation: subscribe-pulse 2s ease-in-out infinite;
+  text-decoration: none; animation: btn-flash 1.5s ease-in-out infinite;
 }
 
 /* --- Social proof --- */
@@ -366,7 +376,7 @@ a:hover { color: #a00; }
 .social-proof .sp-btn {
   display: inline-block; padding: 6px 18px; background: #8b0000; color: #fff;
   border: none; font-size: 12px; cursor: pointer; border-radius: 2px;
-  text-decoration: none; animation: subscribe-pulse 2s ease-in-out infinite;
+  text-decoration: none; animation: btn-flash 1.5s ease-in-out infinite;
 }
 
 /* --- Editor's pick --- */
@@ -506,7 +516,6 @@ a:hover { color: #a00; }
 
       <!-- Trending Ticker -->
       <div class="trending-ticker">
-        <span class="ticker-label">Trending</span>
         <span class="ticker-track">
           <a href="#">Bordeaux 2024: What Experts Are Saying</a> &bull;
           <a href="#">Top 10 Decanters Under $50</a> &bull;
