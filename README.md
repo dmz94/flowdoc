@@ -1,3 +1,5 @@
+<img src="docs/brand/decant-wordmark-light.svg" width="200">
+
 # Decant
 
 Decant is a free, open-source tool that converts web articles
@@ -80,9 +82,8 @@ A single self-contained HTML file:
 
 ## Status
 
-v1 surface live at [decant.cc](https://decant.cc). Engine
-tested against 47 real-world fixtures (47 PASS, 264
-unit/integration tests). Published on
+Pre-release. Live at [decant.cc](https://decant.cc) for
+early testing. Published on
 [PyPI](https://pypi.org/project/decant-cli/) as decant-cli.
 
 ## License
