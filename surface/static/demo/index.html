@@ -24,6 +24,10 @@ a:hover { color: #a00; }
   0%, 100% { transform: rotate(5deg) scale(1.0); }
   50% { transform: rotate(5deg) scale(1.15); }
 }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* --- Promo banner --- */
 .promo-banner {
@@ -31,7 +35,11 @@ a:hover { color: #a00; }
   font-size: 12px; font-weight: bold; letter-spacing: 0.5px;
 }
 .promo-banner span { animation: promo-pulse 1.5s ease-in-out infinite; display: inline-block; }
-.promo-banner a { color: #fff; margin-left: 6px; }
+.promo-banner a {
+  color: #fff; margin-left: 6px; background: #8b0000; padding: 2px 8px;
+  border-radius: 2px; text-decoration: none; font-size: 11px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
 
 /* --- Header --- */
 .top-bar {
@@ -114,6 +122,7 @@ a:hover { color: #a00; }
 .inline-ad .ad-btn {
   display: inline-block; padding: 6px 16px; background: #8b0000; color: #fff;
   border: none; font-size: 12px; cursor: pointer; text-decoration: none; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
 }
 
 /* --- Newsletter inline --- */
@@ -251,6 +260,7 @@ a:hover { color: #a00; }
 .sidebar-ad .ad-btn {
   display: inline-block; padding: 6px 16px; background: #8b0000; color: #fff;
   border: none; font-size: 12px; cursor: pointer; text-decoration: none; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
 }
 .sale-badge {
   position: absolute; top: 8px; right: -4px; background: #c00; color: #fff;
@@ -282,6 +292,64 @@ a:hover { color: #a00; }
   display: inline-block; padding: 2px 8px; background: #eee; border: 1px solid #ddd;
   border-radius: 3px; text-decoration: none; color: #555;
 }
+
+/* --- Trending ticker --- */
+.trending-ticker {
+  margin: 18px 0; background: #2a2a2a; color: #fff; padding: 8px 0;
+  overflow: hidden; white-space: nowrap; font-size: 12px;
+}
+.trending-ticker .ticker-label {
+  display: inline-block; background: #8b0000; padding: 2px 10px;
+  font-weight: bold; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 1px; margin-right: 12px; vertical-align: middle;
+}
+.trending-ticker .ticker-track {
+  display: inline-block; animation: ticker-scroll 20s linear infinite;
+}
+.trending-ticker a { color: #ddd; text-decoration: none; }
+.trending-ticker a:hover { color: #fff; }
+
+/* --- Wine quiz promo --- */
+.quiz-promo {
+  margin: 20px 0; padding: 18px; background: #f5e6b8; border: 1px solid #e0c878;
+  text-align: center;
+}
+.quiz-promo .quiz-heading { font-size: 16px; font-weight: bold; color: #5a3e00; margin-bottom: 4px; }
+.quiz-promo .quiz-sub { font-size: 12px; color: #7a5c1a; margin-bottom: 10px; }
+.quiz-promo .quiz-btn {
+  display: inline-block; padding: 8px 20px; background: #8b0000; color: #fff;
+  border: none; font-size: 13px; cursor: pointer; border-radius: 2px;
+  text-decoration: none; animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+/* --- Social proof --- */
+.social-proof {
+  margin: 20px 0; padding: 16px; background: #e8f0f8; border: 1px solid #c8d8e8;
+  text-align: center;
+}
+.social-proof .sp-text { font-size: 13px; color: #2a4a6a; margin-bottom: 8px; }
+.social-proof .sp-text strong { font-size: 15px; }
+.social-proof .sp-btn {
+  display: inline-block; padding: 6px 18px; background: #8b0000; color: #fff;
+  border: none; font-size: 12px; cursor: pointer; border-radius: 2px;
+  text-decoration: none; animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+/* --- Editor's pick --- */
+.editors-pick {
+  margin: 20px 0; padding: 14px; background: #fff; border: 1px solid #ddd;
+  display: flex; gap: 14px; align-items: center;
+}
+.editors-pick .ep-label {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+  color: #8b0000; font-weight: bold; margin-bottom: 4px;
+}
+.editors-pick .ep-thumb {
+  width: 100px; height: 80px; background: #ddd; border: 1px solid #ccc; flex-shrink: 0;
+}
+.editors-pick .ep-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 2px; }
+.editors-pick .ep-sub { font-size: 12px; color: #666; }
+.editors-pick a { font-size: 12px; }
 
 /* --- Footer --- */
 .site-footer { background: #2a2a2a; color: #bbb; padding: 30px 20px 0; margin-top: 30px; }
@@ -367,6 +435,21 @@ a:hover { color: #a00; }
 
       <p>Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.</p>
 
+      <!-- Trending Ticker -->
+      <div class="trending-ticker">
+        <span class="ticker-label">Trending</span>
+        <span class="ticker-track">
+          <a href="#">Bordeaux 2024: What Experts Are Saying</a> &bull;
+          <a href="#">Top 10 Decanters Under $50</a> &bull;
+          <a href="#">Is Wine Decanting a Myth?</a> &bull;
+          <a href="#">New: Crystal vs Glass Guide</a> &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+          <a href="#">Bordeaux 2024: What Experts Are Saying</a> &bull;
+          <a href="#">Top 10 Decanters Under $50</a> &bull;
+          <a href="#">Is Wine Decanting a Myth?</a> &bull;
+          <a href="#">New: Crystal vs Glass Guide</a>
+        </span>
+      </div>
+
       <!-- Inline Ad 1 -->
       <div class="inline-ad">
         <div class="ad-label">Advertisement</div>
@@ -415,6 +498,13 @@ a:hover { color: #a00; }
         <div class="sp-sub">Presented by CrystalVine</div>
       </div>
 
+      <!-- Wine Quiz Promo -->
+      <div class="quiz-promo">
+        <div class="quiz-heading">What Type of Wine Drinker Are You?</div>
+        <div class="quiz-sub">Take our 2-minute quiz and find out. Over 50,000 quiz takers!</div>
+        <a href="#" class="quiz-btn">Start Quiz</a>
+      </div>
+
       <h2>Choosing the Right One</h2>
 
       <p>Fusce mauris. Vestibulum luctus nibh at lectus. Sed bibendum, nulla a faucibus semper, leo velit ultricies tellus, ac venenatis arcu wisi vel nisl. Vestibulum diam. Aliquam pellentesque, augue quis sagittis posuere, turpis lacus congue quam, in hendrerit risus eros eget felis. Maecenas eget erat in sapien mattis facilisis. Aliquam feugiat tellus ut neque. Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.</p>
@@ -433,6 +523,41 @@ a:hover { color: #a00; }
       </div>
 
       <p>Nam vestibulum accumsan nisl. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus.</p>
+
+      <!-- Inline Ad 3 -->
+      <div class="inline-ad">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-text">Personalized Wine Recommendations &mdash; Powered by AI. Try Free for 30 Days.</div>
+        <a href="#" class="ad-btn">Get Started</a>
+      </div>
+
+      <h2>Care and Maintenance</h2>
+
+      <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
+
+      <!-- Social Proof / Join the Conversation -->
+      <div class="social-proof">
+        <p class="sp-text"><strong>2,847</strong> wine enthusiasts are reading The Wine Blog right now. Join our community!</p>
+        <a href="#" class="sp-btn">Join Free</a>
+      </div>
+
+      <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</p>
+
+      <h2>Common Myths</h2>
+
+      <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.</p>
+
+      <!-- Editor's Pick -->
+      <div class="editors-pick">
+        <div class="ep-thumb"></div>
+        <div>
+          <div class="ep-label">Editor's Pick</div>
+          <div class="ep-title">Our Favorite Decanter of 2026</div>
+          <div class="ep-sub">The Riedel Amadeo &mdash; a stunning centerpiece. <a href="#">Read our review.</a></div>
+        </div>
+      </div>
+
+      <p>Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui.</p>
     </article>
 
     <!-- Tags -->
