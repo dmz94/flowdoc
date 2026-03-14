@@ -7,44 +7,16 @@
    viewBox="0 0 68 17"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
-   sodipodi:docname="decant-wordmark-dark.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     inkscape:zoom="7.089277"
-     inkscape:cx="128.50394"
-     inkscape:cy="32.161249"
-     inkscape:window-width="2575"
-     inkscape:window-height="1458"
-     inkscape:window-x="780"
-     inkscape:window-y="135"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g8" />
   <defs
      id="defs1" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-95.779913,-118.25255)">
     <g
        id="g8"
-       transform="matrix(0.25568162,0,0,0.25568162,73.405452,90.167546)"
-       inkscape:export-filename="decant-wordmark-light.png"
-       inkscape:export-xdpi="318.64215"
-       inkscape:export-ydpi="318.64215">
+       transform="matrix(0.25568162,0,0,0.25568162,73.405452,90.167546)">
       <path
          style="font-weight:500;font-size:70.5556px;font-family:Poppins;-inkscape-font-specification:'Poppins Medium';letter-spacing:0.211667px;direction:rtl;text-orientation:sideways;opacity:0.99;fill-opacity:0.98823529;stroke-width:0.264583;fill:#e8e6de"
          d="m 335.73954,134.97423 v 21.51946 q 0,2.18722 0.98778,3.175 1.05833,0.91722 3.52778,0.91722 h 4.93889 v 6.70279 h -6.35001 q -5.43278,0 -8.32556,-2.54001 -2.89278,-2.54 -2.89278,-8.255 v -21.51946 h -4.58611 v -6.56167 h 4.58611 v -9.66612 h 8.1139 v 9.66612 h 9.45445 v 6.56167 z"
@@ -72,8 +44,7 @@
       <path
          id="path8"
          style="font-weight:500;font-size:70.5556px;font-family:Poppins;-inkscape-font-specification:'Poppins Medium';letter-spacing:0.211667px;direction:rtl;text-orientation:sideways;opacity:0.99;fill:#c8a84e;fill-opacity:0.98823529;stroke-width:0.264583"
-         d="m 103.82312,144.69298 v 16.03416 h 7.97316 c 5.73852,0 10.1361,-1.55212 13.19351,-4.65656 2.73447,-2.77654 4.24629,-6.56931 4.53512,-11.3776 -12.23324,4.09727 -19.62597,2.78456 -25.70179,0 z"
-         sodipodi:nodetypes="ccsscc" />
+         d="m 103.82312,144.69298 v 16.03416 h 7.97316 c 5.73852,0 10.1361,-1.55212 13.19351,-4.65656 2.73447,-2.77654 4.24629,-6.56931 4.53512,-11.3776 -12.23324,4.09727 -19.62597,2.78456 -25.70179,0 z" />
     </g>
   </g>
 </svg>
