@@ -1,4 +1,4 @@
-# Flowdoc v1 - Locked Architecture and Tech Stack
+# Decant v1 - Locked Architecture and Tech Stack
 
 **Status:** Locked for v1
 **Last Updated:** February 16, 2026
@@ -18,7 +18,7 @@ Runtime:
 
 Distribution:
 - Dual distribution:
-  - pip package for developers: `pip install flowdoc`
+  - pip package for developers: `pip install decant-cli`
   - standalone binaries for Windows/macOS/Linux built with PyInstaller
 
 Rationale (short):
@@ -77,12 +77,12 @@ Why:
 Target layout:
 
 ```
-flowdoc/
+decant/
 +-- __init__.py              # Public library API
 +-- core/
 |   +-- constants.py         # Typography values, colors, spacing
 |   +-- model.py             # Internal Document Model classes
-|   +-- sanitizer.py         # nh3 wrapper with Flowdoc rules
+|   +-- sanitizer.py         # nh3 wrapper with Decant rules
 |   +-- content_selector.py  # Trafilatura extraction with deterministic fallback
 |   +-- parser.py            # DOM -> Internal Model transformation
 |   +-- degradation.py       # Table/image/form placeholder rules
@@ -162,3 +162,52 @@ Out of scope for v1 (do not implement in v1):
 - Additional fonts beyond OpenDyslexic
 - Native PDF generation (v1 uses browser print-to-PDF)
 - Additional input formats (PDF, DOCX, Markdown)
+
+---
+
+## Engineering Context
+
+(Preserved from docs/technical-companion.md)
+
+### Open Source Systems Reviewed
+
+Reference implementations and extraction baselines studied
+during development:
+
+- Mozilla Readability (content extraction algorithm)
+- Chromium DOM Distiller
+- WebKit Reader Mode
+- Trafilatura (current extraction engine)
+- Mercury Parser
+- jusText / Boilerpipe
+- Wallabag (end-to-end extraction + storage pipeline)
+
+### Architectural Seams
+
+Boundaries maintained across all development:
+
+- Extraction layer isolated from transformation logic
+- Sanitization as a hard security boundary
+- Explicit internal representation (IR) model
+- Renderer consumes IR only
+- Deterministic transformation passes
+- Explicit failure modes (no silent guessing)
+
+### Extraction Dependency Notes
+
+Decant depends on external extraction behavior (Trafilatura).
+Constraints:
+
+- Version-pin dependencies
+- Document extraction regressions
+- Treat extraction changes as explicit events
+- Add regression fixtures when behavior changes
+
+### License Awareness
+
+Before incorporating external logic:
+
+- Confirm compatible license
+- Avoid copying GPL-locked code into incompatible distribution
+- Prefer algorithmic inspiration over direct reuse
+- Document attribution where required

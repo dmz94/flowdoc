@@ -1,4 +1,4 @@
-# Flowdoc v1 - Known Limitations
+# Decant v1 - Known Limitations
 
 **Status:** Reference document for v2 planning
 **Last updated:** March 10, 2026
@@ -36,8 +36,8 @@ into single-phrase paragraphs. Atypical structure. Defer to v2.
 
 ## Scope Boundaries
 
-**MDN reference table pages** - Content lives in tables which Flowdoc strips.
-Wrong input type - Flowdoc is for prose articles, not reference tables.
+**MDN reference table pages** - Content lives in tables which Decant strips.
+Wrong input type - Decant is for prose articles, not reference tables.
 
 **Recipe sites** - Trafilatura strips heading structure from some recipe sites
 causing validation failure. Out of scope for v1.

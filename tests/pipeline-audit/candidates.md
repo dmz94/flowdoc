@@ -2,11 +2,11 @@
 
 Fixtures removed in MARGINAL recalibration session (2026-03-04).
 Reason: recipe sites and procedural/image-dependent content are
-poor representatives of the Flowdoc target use case (accessible
+poor representatives of the Decant target use case (accessible
 prose documents).
 
 Each candidate below needs URL screening before being added as
-a fixture. See docs/flowdoc-eval-cheatsheet.md for the screening
+a fixture. See docs/decant-eval-cheatsheet.md for the screening
 and fixture-addition workflow.
 
 ---
@@ -47,5 +47,5 @@ Suggested categories to target:
 - [ ] No login wall or paywall
 - [ ] Article is prose-dominant (not image-heavy or step-list-heavy)
 - [ ] Source word count is reasonable (not extreme chrome bloat)
-- [ ] Flowdoc output passes visual review
+- [ ] Decant output passes visual review
 - [ ] Baselined via --baseline interactive mode before committing

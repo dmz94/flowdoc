@@ -1,6 +1,6 @@
 # Main Fixture Manifest
 
-Single evaluation corpus for Flowdoc metrics runner.
+Single evaluation corpus for Decant metrics runner.
 Fixed set -- do not change filenames or scoring criteria mid-run.
 
 | # | filename | source_url | scope | notes |

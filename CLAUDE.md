@@ -1,8 +1,8 @@
-# Flowdoc - Project Rules for Claude Code
+# Decant - Project Rules for Claude Code
 
 ## Identity
 
-Flowdoc is a free, open-source CLI tool that converts semantic HTML into
+Decant is a free, open-source tool that converts semantic HTML into
 accessible, self-contained, printable HTML documents for readers with
 dyslexia and related conditions.
 

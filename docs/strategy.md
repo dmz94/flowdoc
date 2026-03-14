@@ -1,15 +1,15 @@
-# Flowdoc Strategy (Canonical)
+# Decant Strategy (Canonical)
 
 Status: Active  
 Supersedes: prior exploratory and session summary documents  
 Last Updated: 2026-03-02  
 
-This document defines the canonical identity, scope, and direction of Flowdoc.
+This document defines the canonical identity, scope, and direction of Decant.
 If any other document conflicts with this one, this document wins.
 
 ---
 
-# Flowdoc - Strategic Positioning (Revised)
+# Decant - Strategic Positioning (Revised)
 ## An Accessibility Document Compiler for Prose Content
 
 Version: Strategy Draft v2
@@ -19,7 +19,7 @@ Status: For structured review and critique
 
 ## 1. Core Identity
 
-Flowdoc is a free, open-source accessible HTML compiler. It transforms semantic
+Decant is a free, open-source accessible HTML compiler. It transforms semantic
 web articles into clean, portable, printable HTML documents formatted for readers
 with dyslexia and related conditions.
 
@@ -41,13 +41,13 @@ through the CLI directly.
 
 ## 2. Product Architecture
 
-Flowdoc is structured as three layers:
+Decant is structured as three layers:
 
 **Engine** -- the core conversion pipeline. Semantic HTML in, accessible HTML out.
 Deterministic, security-bounded, model-driven. This is the primary development focus.
 
 **PyPI package** -- the engine exposed as a clean Python API. Enables developers
-to integrate Flowdoc into their own tools, plugins, and surfaces without
+to integrate Decant into their own tools, plugins, and surfaces without
 maintaining the engine themselves.
 
 **Reference surface** -- a hosted implementation demonstrating the engine.
@@ -75,7 +75,7 @@ a student on a USB stick.
 
 Teachers, SEN coordinators, and parents need actual documents: portable,
 printable, readable offline, with typography tuned for accessibility.
-Today that means manual reformatting. Flowdoc automates it.
+Today that means manual reformatting. Decant automates it.
 
 The same problem applies across educational articles, health information,
 knowledge base content, and editorial/blog content -- any prose article
@@ -86,7 +86,7 @@ unnecessary barriers for dyslexic readers.
 
 ## 4. System Architecture (Conceptual)
 
-Flowdoc behaves like a compiler:
+Decant behaves like a compiler:
 
 Input: Semantic HTML (prose)
     -> Main content extraction
@@ -102,7 +102,7 @@ Key properties:
   or fonts. Images use original source URLs and render when online
   and in print.
 - Provenance: visible source attribution in every document (source
-  URL, conversion date, Flowdoc version).
+  URL, conversion date, Decant version).
 - Security-bounded: strict sanitization before parsing
 - Model-driven: renderer consumes IR only (no raw DOM)
 - Fail-fast: non-semantic inputs are rejected explicitly
@@ -127,7 +127,7 @@ Explicit exclusions:
 - Fully offline image rendering (images use external source URLs)
 - Self-contained image embedding
 
-Flowdoc rejects non-semantic HTML rather than guessing.
+Decant rejects non-semantic HTML rather than guessing.
 
 This constraint preserves determinism and clarity.
 
@@ -150,7 +150,7 @@ Includes:
 - Print-friendly formatting
 - Portable offline artifact
 
-Flowdoc does not claim universal efficacy.
+Decant does not claim universal efficacy.
 Validation must be empirical.
 
 ---
@@ -160,9 +160,9 @@ Validation must be empirical.
 The primary differentiator is artifact output, not features.
 
 Browser reader modes (Edge Immersive Reader, Chrome, Safari) provide a better
-in-session reading experience. Flowdoc does not compete on that ground.
+in-session reading experience. Decant does not compete on that ground.
 
-Flowdoc produces a file. That file can be printed, emailed, saved offline, handed
+Decant produces a file. That file can be printed, emailed, saved offline, handed
 to a student, or built into a resource pack. It exists outside the browser session
 and outside the original website. That is a categorically different use case, not
 a feature gap.
@@ -201,23 +201,17 @@ No monetization. No institutional sales dependency.
 
 ## 9. User-Facing Surface
 
-Flowdoc ships as a CLI tool. A user-facing surface is a v1
-deliverable required for product validation and non-technical
-user access. The engine alone is not a product.
-
-The primary workflow is: give it an HTML file or URL, get back
-a single portable accessible document.
-
-The surface accepts a URL or uploaded HTML file, passes content
-to the engine, and returns the converted document. Form factor
-TBD -- web page, browser extension, or other. Any surface must
-not compromise input constraints, determinism, or security boundary.
+Decant ships as both a CLI tool and a hosted web surface at
+decant.cc. The surface accepts a URL or uploaded HTML file,
+passes content to the engine, and returns the converted
+document. It includes font, size, spacing, width, and theme
+controls. The engine alone is not a product.
 
 ---
 
 ## 10. Quality Model
 
-Flowdoc follows a compiler-style quality model:
+Decant follows a compiler-style quality model:
 
 - Deterministic output
 - Explicit internal representation
@@ -255,7 +249,7 @@ Before expansion:
 
 Instrument: the test surface (contract section 10). A disposable
 web page used to validate the product before v1 ships. Accepts
-a URL or uploaded HTML file, returns a Flowdoc document. Includes
+a URL or uploaded HTML file, returns a Decant document. Includes
 curated side-by-side comparisons and a sandbox for user-supplied
 URLs.
 
@@ -263,7 +257,7 @@ URLs.
 2. Compare:
    - Original formatting
    - Browser Reader Mode
-   - Flowdoc output
+   - Decant output
 3. Measure:
    - Reread frequency
    - Line-loss incidents
@@ -295,21 +289,23 @@ All expansion must preserve:
 
 ---
 
-## 14. Open Questions
+## 14. Resolved Questions
 
-- Is the CLI sufficient for the target audience, or is a simpler interface
-  needed for non-technical users (parents, teachers)?
-- What distribution channels reach the dyslexia/SEN community effectively?
-  (BDA, dyslexia forums, SEN coordinator networks, parent groups)
-- What level of extraction imperfection is tolerable for the target use cases?
-- Does the tool need to handle URL input directly, or is "save page as HTML"
-  an acceptable workflow step?
+- CLI alone is not sufficient for non-technical users.
+  The hosted surface at decant.cc addresses this.
+- Distribution channels: tester recruitment via personal
+  contacts (family, teachers, SEN coordinators). Broader
+  channels (BDA, dyslexia forums) deferred to post-v1.
+- URL input is supported via the surface. File upload
+  covers login-required and paywalled content.
+- Extraction imperfection is tolerable when clearly flagged.
+  The notice banner and inline placeholders handle this.
 
 ---
 
 ## 15. Long-Term Identity
 
-Flowdoc aims to be:
+Decant aims to be:
 
 A free, focused tool that saves parents, teachers, and practitioners
 the effort of manually reformatting documents for dyslexic readers.

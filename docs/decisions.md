@@ -1,13 +1,13 @@
-# Flowdoc - Technical Decisions (Authoritative Spec)
+# Decant - Technical Decisions (Authoritative Spec)
 
 **Status:** Locked for v1 implementation
-**Last updated:** 2026-02-15
+**Last updated:** 2026-03-14
 
 This document is the single source of truth for v1 implementation and tests. If another document disagrees with this one, this one wins.
 
 References:
-- Scope boundaries and success criteria: [SCOPE.md](../SCOPE.md)
-- Typography evidence and citations: [research_typography_guidelines.md](research_typography_guidelines.md)
+- Scope boundaries and success criteria: See README.md
+- Typography evidence and citations: [research-typography-guidelines.md](research-typography-guidelines.md)
 
 ---
 
@@ -44,7 +44,7 @@ Given input HTML string:
 
 ## 3) Input validation and rejection (testable rules)
 
-Flowdoc rejects input as "non-semantic" when any of the following are true in the selected main content subtree (after extraction and sanitization):
+Decant rejects input as "non-semantic" when any of the following are true in the selected main content subtree (after extraction and sanitization):
 
 A. No headings usable for structure:
 - There is **no** `<h1>`, `<h2>`, or `<h3>` in the selected main content subtree.
@@ -290,7 +290,7 @@ OpenDyslexic embedding:
 
 v1 ships one command only:
 
-`flowdoc convert [INPUT] [-o OUTPUT] [--font opendyslexic]`
+`decant convert [INPUT] [-o OUTPUT] [--font opendyslexic]`
 
 Input:
 - If INPUT path is provided, read file.
@@ -298,7 +298,7 @@ Input:
 - If INPUT missing and stdin is a TTY, error with exit code 3.
 
 Output:
-- Default output filename: `<basename>.flowdoc.html` alongside input file.
+- Default output filename: `<basename>.decant.html` alongside input file.
 - `-o/--output` overrides output path.
 - In stdin mode, write to stdout unless `-o` is provided.
 
@@ -322,18 +322,18 @@ Explicitly out of v1:
 - `info` command
 - `--report json`
 
-(They may be discussed only in [architecture-exploration.md](architecture-exploration.md).)
+(They may be discussed only in docs/architecture.md.)
 
 ---
 
 ## 12) Determinism contract
 
 Contract:
-Same input HTML + same Flowdoc version + same flags -> byte-identical output.
+Same input HTML + same Decant version + same flags -> byte-identical output.
 
 Enforcement requirements:
 - No timestamps, random values, environment-dependent paths, or non-deterministic iteration.
-  Provenance metadata (source URL, conversion date, Flowdoc version)
+  Provenance metadata (source URL, conversion date, Decant version)
   is excluded from byte-comparison. See section 13.
 - Stable ordering when iterating attributes/collections during rendering.
 - Normalize output formatting (consistent indentation/newlines) in renderer.
@@ -373,7 +373,7 @@ Three extraction modes were measured: `baseline` (favor_precision=True, no_fallb
 Every output document includes visible provenance metadata:
 - Source URL (if supplied by surface or CLI parameter)
 - Conversion date
-- Flowdoc version
+- Decant version
 
 Provenance is rendered at the bottom of the output document.
 Provenance is excluded from the determinism byte-comparison contract.

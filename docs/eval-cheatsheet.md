@@ -1,9 +1,9 @@
-# Flowdoc Eval -- Cheat Sheet
+# Decant Eval -- Cheat Sheet
 
 ## What This System Does
 
 The eval runner measures pipeline output quality automatically.
-It answers the question: "Is Flowdoc still producing good output
+It answers the question: "Is Decant still producing good output
 from these articles?"
 
 It does NOT replace human judgment for new fixtures.
@@ -233,7 +233,7 @@ When you see a REGRESSION in the output:
 
 3. Open the converted output visually:
    python tests/pipeline-audit/visual-review/convert_fixtures.py
-   Open tests/pipeline-audit/test-pages/{name}.flowdoc.html in a browser
+   Open tests/pipeline-audit/test-pages/{name}.decant.html in a browser
 
 4. Decide:
    - Pipeline problem: fix the code, re-run, confirm PASS

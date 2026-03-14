@@ -39,7 +39,7 @@ This is a reference document (evidence, guidelines, citations). v1 implementatio
 ### Optional User-Preference Font (v1: OpenDyslexic Only)
 - **OpenDyslexic** (free, open-source, SIL-OFL license)
 
-**v1 Decision:** OpenDyslexic is provided as a user preference toggle. Flowdoc does not claim OpenDyslexic improves outcomes for everyone.
+**v1 Decision:** OpenDyslexic is provided as a user preference toggle. Decant does not claim OpenDyslexic improves outcomes for everyone.
 
 **Research Context:** Most controlled studies show no reliable improvement in reading speed or accuracy compared to standard sans serif fonts (Wery & Diliberto 2017; Kuster et al. 2018; Rello & Baeza-Yates 2013). For a related specialized font, Dyslexie, one study (Marinus et al. 2016) found a 7% speed improvement over Arial, but the advantage disappeared when Arial's spacing was matched - suggesting spacing, not letterforms, explained the difference. For OpenDyslexic, one preliminary study (Franzen et al. 2019, conference abstract) found improved reading comprehension in adults reading longer texts, despite no speed improvement; this has not been replicated in a full peer-reviewed paper. Individual preference varies, and many users report subjective comfort with OpenDyslexic.
 
@@ -208,7 +208,7 @@ BDA's Style Guide includes readability guidance beyond typography that affects s
 
 ## v2 Roadmap
 
-The typography decisions above are **format-agnostic** and will transfer directly to all future output formats. v2 expands Flowdoc's scope in two directions: additional output formats and content transformation.
+The typography decisions above are **format-agnostic** and will transfer directly to all future output formats. v2 expands Decant's scope in two directions: additional output formats and content transformation.
 
 ### Additional Output Formats
 - **DOCX:** Font stack, sizing, spacing, and layout rules apply via document styles
@@ -228,7 +228,7 @@ BDA explicitly frames its Style Guide as supporting TTS use. These require conte
 - Replace automatic numbering - some text readers skip these
 
 ### Content Cleanup and Editing
-Extends Flowdoc from format-only conversion to content transformation, informed by BDA writing style guidance:
+Extends Decant from format-only conversion to content transformation, informed by BDA writing style guidance:
 - **Readability scoring:** Assess document complexity against BDA plain language principles
 - **Sentence simplification:** Break long sentences, convert passive to active voice
 - **Jargon expansion:** Detect abbreviations and provide expanded forms on first use

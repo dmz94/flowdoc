@@ -51,7 +51,7 @@ in v1.
 ### Decisions informed
 
 - Layout table unwrapping deferred to v2. Only 2% of files affected,
-  concentrated in pre-HTML5 pages outside Flowdoc's target.
+  concentrated in pre-HTML5 pages outside Decant's target.
 - Simple table rendering confirmed as high-value v1 work. 40% of all
   tables in the wild are candidates.
 
@@ -190,7 +190,7 @@ Placeholder density: 2.3%
 
 **Pipeline success rate: 68.9%** matches the WCEB benchmark (68.3%).
 The 1,198 validation errors and 97 extraction failures are Trafilatura
-struggling with messy or non-article pages, not Flowdoc bugs.
+struggling with messy or non-article pages, not Decant bugs.
 
 **Image yield (4.1%) is misleading.** The 122K raw images include nav
 icons, ads, tracking pixels, social buttons, and avatars that Trafilatura
@@ -201,7 +201,7 @@ images that cannot be preserved with external URLs.
 
 **Heading shifts are extraction working correctly.** Raw HTML contains
 ~64K headings (most in navigation, sidebars, and footers). Output
-contains ~9K. This is Trafilatura doing its job, not Flowdoc losing
+contains ~9K. This is Trafilatura doing its job, not Decant losing
 content.
 
 **Short paragraphs (15.7%)** are a mix of legitimate short content
@@ -215,7 +215,7 @@ Low priority for article-focused content. Deferred to v2.
 **Non-standard captions (1,074)** are class-based caption patterns
 (div.caption, etc.) the figure/figcaption harvester does not recognize.
 Overwhelmingly in WCEB (1,048 of 1,074). Modern articles use semantic
-figcaption, which Flowdoc handles. Deferred to v2.
+figcaption, which Decant handles. Deferred to v2.
 
 **Placeholder density (2.3%)** is clean. Table placeholders (196) are
 lower than expected given 45% of source files contain tables; most

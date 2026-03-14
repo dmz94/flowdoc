@@ -1,6 +1,6 @@
 # Benchmark Results
 
-Flowdoc has been tested against two independent web content extraction
+Decant has been tested against two independent web content extraction
 benchmarks: 4,166 HTML pages total, zero crashes.
 
 | Benchmark   | Pages | PASS  | Rate  | ERROR (crashes) |
@@ -8,7 +8,7 @@ benchmarks: 4,166 HTML pages total, zero crashes.
 | ScrapingHub |   181 |   158 | 87.3% |               0 |
 | WCEB        | 3,985 | 2,723 | 68.3% |               0 |
 
-Scripts: `scripts/corpus/run_benchmark.py`, `scripts/corpus/run_wceb.py`
+Scripts: `tests/benchmark-scrapinghub/run_benchmark.py`, `tests/benchmark-wceb/run_wceb.py`
 Results: `eval/reports/benchmark/results.json`, `eval/reports/benchmark/wceb_results.json`
 
 
@@ -42,12 +42,12 @@ Mode breakdown: 176 extract, 5 transform.
 
 ### Ground truth overlap
 
-The benchmark script computes word-level overlap between Flowdoc output
+The benchmark script computes word-level overlap between Decant output
 and human-annotated article body text at runtime. This comparison is
 printed to console but not persisted to the JSON report. Re-run the
 script to reproduce:
 
-    python scripts/corpus/run_benchmark.py
+    python tests/benchmark-scrapinghub/run_benchmark.py
 
 
 ## Webis Web Content Extraction Benchmark (WCEB)
@@ -121,7 +121,7 @@ The 1,262 non-PASS results break down into categories that are largely
 correct behavior:
 
 - **650 SCOPE_ERROR** (51.5% of failures): Navigation pages, form/tool
-  pages, and table-heavy reference pages. Flowdoc intentionally rejects
+  pages, and table-heavy reference pages. Decant intentionally rejects
   these rather than producing garbage output. These are correct
   rejections, not bugs.
 
@@ -129,7 +129,7 @@ correct behavior:
   structure (no h1-h3 heading elements with body content in p/ul/ol).
   Dominated by CleanEval (339) and L3S-GN1 (134) -- older corpora from
   the pre-HTML5 era when heading elements were uncommon. Again, correct
-  rejection per Flowdoc's design.
+  rejection per Decant's design.
 
 - **75 EXTRACTION_FAIL** (5.9% of failures): Trafilatura extracted
   content but no paragraph had 20+ words of prose. Edge cases across
@@ -178,7 +178,7 @@ git clone https://github.com/scrapinghub/article-extraction-benchmark.git \
     ../article-extraction-benchmark
 
 # Run
-python scripts/corpus/run_benchmark.py
+python tests/benchmark-scrapinghub/run_benchmark.py
 ```
 
 ### WCEB benchmark
@@ -194,7 +194,7 @@ tar xf combined.tar.xz
 cd -
 
 # Run
-python scripts/corpus/run_wceb.py \
+python tests/benchmark-wceb/run_wceb.py \
     --benchmark-dir ../web-content-extraction-benchmark/datasets/combined
 ```
 

@@ -27,4 +27,4 @@ Automated metrics runner. Separate from pytest.
 
 ## Full Reference
 
-See docs/flowdoc-eval-cheatsheet.md for complete usage guide.
+See docs/decant-eval-cheatsheet.md for complete usage guide.

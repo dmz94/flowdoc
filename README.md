@@ -1,43 +1,89 @@
-# Flowdoc
+# Decant
 
-Flowdoc is a free, open-source CLI tool that converts web articles into clean, accessible, self-contained HTML files styled for readers with dyslexia and related conditions. It strips site chrome, extracts article content, and produces a single portable document with BDA-recommended typography -- printable, offline-readable, and ready to hand to a student or email to a teacher.
+Decant is a free, open-source tool that converts web articles
+into clean, accessible HTML documents styled for readers with
+dyslexia and related conditions. It strips site chrome,
+extracts article content, and produces a single portable
+document with accessibility-focused typography -- printable,
+offline-readable, and ready to hand to a student or email to
+a teacher.
 
-Many documents are technically "readable" but visually fatiguing for readers with dyslexia due to cramped line length, poor spacing, and layout choices that prioritize appearance over readability. Browser Reader Mode helps but is ephemeral -- you cannot save it, print it with controlled typography, or share it reliably. Flowdoc produces actual documents.
+Many web pages are technically readable but visually fatiguing
+for dyslexic readers due to cramped line length, poor spacing,
+and layouts that prioritize appearance over readability. Browser
+Reader Mode helps but is ephemeral -- you cannot save it, print
+it with controlled typography, or share it reliably. Decant
+produces actual documents.
 
-## v1 scope (summary)
+## Try it
 
-- Input: HTML with semantic structure (headings, paragraphs, lists)
-- Output: a single, self-contained HTML file (no external CSS/fonts/scripts/images)
-- Readability over fidelity: no attempt to preserve original styling or branding
-- Optional font toggle: `--font opendyslexic` (not default)
+**Web:** [decant.cc](https://decant.cc) -- paste a URL or
+upload an HTML file.
 
-Full boundaries: see [SCOPE.md](SCOPE.md).
+**CLI:**
 
-## Status
+    pip install decant-cli
+    decant input.html
+    decant input.html -o output.html
+    decant input.html --font opendyslexic
 
-Phase 2 complete. Core pipeline built and tested against 11 real-world fixtures (8 clean passes, 1 marginal, 2 known limitations). Preparing for v1 open-source release.
+Print to PDF: open the output in a browser and use
+print-to-PDF.
 
-## Planned CLI
+## What it handles
 
-```bash
-flowdoc convert input.html
-flowdoc convert input.html -o output.html
-flowdoc convert input.html --font opendyslexic
-```
+- Articles, blog posts, and long-form prose with semantic HTML
+- Headings, paragraphs, lists, blockquotes, code blocks,
+  images, tables
+- Inline emphasis, strong, code, and links
+- Automatic content extraction via Trafilatura
+- Strict sanitization of active content
 
-Print to PDF: open the output in a browser and use print-to-PDF.
+## What it does not handle
+
+- JavaScript-rendered pages or SPAs
+- Login-required content (save the page as HTML and upload it
+  instead)
+- PDF, DOCX, or Markdown input
+- Layout-heavy or table-dominant reference pages
+
+These are documented boundaries, not defects. When Decant
+encounters content outside its scope, it says so clearly.
+
+## Output
+
+A single self-contained HTML file:
+- No external CSS, fonts, or scripts
+- Images reference original source URLs
+- OpenDyslexic font embedded when enabled
+- Designed for screen, print, and offline reading
+
+## Testing
+
+- Unit and integration tests (pytest)
+- 47-fixture real-world corpus with metrics-based regression
+  tracking
+- ScrapingHub Article Extraction Benchmark (181 pages)
+- Webis Web Content Extraction Benchmark (3,985 pages)
 
 ## Documentation
 
-- [SCOPE.md](SCOPE.md) - frozen v1 product boundaries and success criteria
-- [docs/decisions.md](docs/decisions.md) - authoritative implementation/test spec (contracts + invariants)
-- [docs/architecture.md](docs/architecture.md) - locked v1 implementation choices (runtime, libraries, module structure, pipeline, testing)
-- [docs/flowdoc-v1-plan.md](docs/flowdoc-v1-plan.md) - execution checklist for v1
-- [docs/flowdoc-v1-success-contract.md](docs/flowdoc-v1-success-contract.md) - locked v1 success contract (takes precedence over all other docs where conflicts exist)
-- [docs/research_typography_guidelines.md](docs/research_typography_guidelines.md) - typography research/reference
-- [flowdoc-elevator-pitch.md](flowdoc-elevator-pitch.md) - what Flowdoc is in 60 seconds
-- [docs/flowdoc-project-summary.md](docs/flowdoc-project-summary.md) - project history and context
-- [ABOUT.md](ABOUT.md) - project origin story and motivation
+- [docs/decisions.md](docs/decisions.md) -- authoritative
+  implementation spec
+- [docs/architecture.md](docs/architecture.md) -- tech stack
+  and module structure
+- [docs/strategy.md](docs/strategy.md) -- identity and
+  direction
+- [docs/research-typography-guidelines.md](docs/research-typography-guidelines.md)
+  -- typography research
+- [ABOUT.md](ABOUT.md) -- project origin story
+
+## Status
+
+v1 surface live at [decant.cc](https://decant.cc). Engine
+tested against 47 real-world fixtures (47 PASS, 264
+unit/integration tests). Published on
+[PyPI](https://pypi.org/project/decant-cli/) as decant-cli.
 
 ## License
 

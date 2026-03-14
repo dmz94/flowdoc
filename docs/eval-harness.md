@@ -1,17 +1,17 @@
-# Flowdoc Eval Harness -- Reference
+# Decant Eval Harness -- Reference
 
 **Status:** Current as of 2026-03-03
 **Source of truth:** tests/pipeline-audit/run_metrics.py, tests/pipeline-audit/audit_config.py
 
 This document describes the eval harness: what it does, how it works,
 and how to use it. For quick-reference commands, see
-docs/flowdoc-eval-cheatsheet.md.
+docs/eval-cheatsheet.md.
 
 ---
 
 ## Purpose
 
-The eval harness measures the quality of Flowdoc's conversion pipeline
+The eval harness measures the quality of Decant's conversion pipeline
 by computing metrics on a corpus of real-world HTML fixtures and
 comparing them against human-reviewed baselines.
 
@@ -34,7 +34,7 @@ output well-structured? has anything regressed?).
   tests/pipeline-audit/README.md                    Short usage reference
   tests/pipeline-audit/test-pages/*.html        Source HTML fixture files
   tests/pipeline-audit/test-pages/manifest.md   Corpus manifest (defines fixture list)
-  docs/flowdoc-eval-cheatsheet.md   Quick-reference cheat sheet
+  docs/eval-cheatsheet.md   Quick-reference cheat sheet
 
 ---
 
@@ -44,7 +44,7 @@ The harness runs three stages for each fixture:
 
 ### Stage 1: Pipeline
 
-Runs the full Flowdoc conversion pipeline on the fixture HTML:
+Runs the full Decant conversion pipeline on the fixture HTML:
 
 1. detect_mode() determines extract vs transform mode
 2. In extract mode: Trafilatura extracts main content
