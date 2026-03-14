@@ -51,3 +51,4 @@ Fixed set -- do not change filenames or scoring criteria mid-run.
 | 44 | additude-adhd-in-children.html | https://www.additudemag.com/what-is-adhd-symptoms-causes-treatments/ | in-scope | |
 | 45 | golf-greenside-bunker.html | https://golf.com/instruction/bunker-shots/10-ways-greenside-bunker-kellie-stenzel/ | in-scope | |
 | 46 | seriouseats-brisket.html | https://www.seriouseats.com/sous-vide-barbecue-smoked-bbq-brisket-texas-recipe | in-scope | |
+| 47 | demo-decanters.html | https://decant.cc/static/demo/index.html | in-scope | Decant demo page - deliberately cluttered wine blog |

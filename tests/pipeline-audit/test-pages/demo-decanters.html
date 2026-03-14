@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Decanters: Everything You Need to Know | The Wine Blog</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.2; color: #333; background: #fff; }
+a { color: #8b0000; text-decoration: underline; }
+a:hover { color: #a00; }
+
+/* --- Animations --- */
+@keyframes promo-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+@keyframes subscribe-pulse {
+  0%, 100% { background-color: #8b0000; }
+  50% { background-color: #cc1010; }
+}
+@keyframes sale-throb {
+  0%, 100% { transform: rotate(5deg) scale(1.0); }
+  50% { transform: rotate(5deg) scale(1.15); }
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes quiz-pulse {
+  0%, 100% { background-color: #d4a017; }
+  50% { background-color: #e8b830; }
+}
+@keyframes label-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+@keyframes btn-flash {
+  0%, 100% { background-color: #8b0000; }
+  50% { background-color: #ff2020; }
+}
+
+/* --- Promo banner --- */
+.promo-banner {
+  background: #8b0000; color: #fff; text-align: center; padding: 8px 20px;
+  font-size: 12px; font-weight: bold; letter-spacing: 0.5px;
+}
+.promo-banner span { animation: label-flash 1s ease-in-out infinite; display: inline-block; }
+.promo-banner a {
+  color: #fff; margin-left: 6px; background: #8b0000; padding: 2px 8px;
+  border-radius: 2px; text-decoration: none; font-size: 11px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+/* --- Header --- */
+.top-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 20px; border-bottom: 1px solid #ddd; background: #fafafa;
+}
+.top-bar .logo { font-size: 22px; font-weight: bold; color: #333; text-decoration: none; }
+.top-bar .search-icon { color: #888; font-size: 16px; cursor: pointer; }
+.nav-bar {
+  display: flex; gap: 0; border-bottom: 2px solid #8b0000; background: #fff;
+}
+.nav-bar a {
+  display: block; padding: 10px 18px; text-decoration: none; color: #333;
+  font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.nav-bar a:hover { background: #f0f0f0; color: #8b0000; }
+.breadcrumbs {
+  padding: 8px 20px; font-size: 12px; color: #888; background: #f7f7f7;
+  border-bottom: 1px solid #eee;
+}
+.breadcrumbs a { color: #888; font-size: 12px; }
+
+/* --- Layout --- */
+.page-body { display: flex; max-width: 1200px; margin: 0 auto; padding: 0; }
+.left-sidebar {
+  width: 180px; flex-shrink: 0; padding: 20px 15px 40px 15px;
+  background: #fafaf8; border-right: 1px solid #eee;
+}
+.main-col { flex: 1; padding: 20px 25px 40px 20px; min-width: 0; }
+.sidebar {
+  width: 250px; flex-shrink: 0; padding: 20px 20px 40px 15px;
+  background: #fafaf8; border-left: 1px solid #eee;
+}
+
+/* --- Left sidebar widgets --- */
+.left-sidebar .widget { margin-bottom: 22px; }
+.left-sidebar .widget-title {
+  font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
+  color: #333; padding-bottom: 6px; border-bottom: 2px solid #8b0000; margin-bottom: 10px;
+}
+.left-sidebar .follow-list a { font-size: 12px; }
+.left-sidebar .trending-list { list-style: none; }
+.left-sidebar .trending-list li { padding: 4px 0; }
+.left-sidebar .trending-list a { font-size: 12px; }
+
+.left-ad {
+  padding: 16px 10px; background: #1a1a2e; text-align: center;
+  margin-bottom: 22px; border-radius: 4px;
+}
+.left-ad .ad-title {
+  font-size: 12px; font-weight: bold; color: #d4a017; text-transform: uppercase;
+  letter-spacing: 1px; line-height: 1.3; margin-bottom: 8px;
+}
+.left-ad .ad-desc { font-size: 11px; color: #ccc; line-height: 1.4; margin-bottom: 10px; }
+.left-ad .ad-btn {
+  display: inline-block; padding: 5px 14px; background: #8b0000; color: #fff;
+  font-size: 11px; font-weight: bold; text-decoration: none; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+.left-ad .ad-free { display: block; margin-top: 6px; font-size: 9px; color: #aaa; }
+
+.left-ad-small {
+  padding: 14px 10px; background: #f0f0ee; border: 1px solid #ddd; text-align: center;
+  margin-bottom: 22px; border-radius: 4px;
+}
+.left-ad-small .ad-label {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+  color: #999; margin-bottom: 6px;
+}
+.left-ad-small .ad-text { font-size: 12px; font-weight: bold; color: #444; margin-bottom: 4px; }
+.left-ad-small .ad-sub { font-size: 11px; color: #666; margin-bottom: 8px; }
+.left-ad-small .ad-btn {
+  display: inline-block; padding: 4px 12px; background: #8b0000; color: #fff;
+  font-size: 10px; font-weight: bold; text-decoration: none; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+/* --- Star rating --- */
+.star-rating { margin-bottom: 8px; font-size: 14px; }
+.star-rating .star-filled { color: #d4a017; }
+.star-rating .star-empty { color: #ccc; }
+.star-rating .rating-count { font-size: 11px; color: #888; margin-left: 4px; }
+.star-rating .rate-link { font-size: 11px; margin-left: 8px; }
+
+/* --- Article --- */
+.byline { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: #777; font-size: 13px; }
+.avatar-placeholder {
+  width: 36px; height: 36px; border-radius: 50%; background: #ccc; flex-shrink: 0;
+}
+.share-bar { display: flex; gap: 6px; margin-bottom: 18px; }
+.share-btn {
+  display: inline-block; padding: 4px 10px; font-size: 11px; color: #555;
+  background: #eee; border: 1px solid #ddd; border-radius: 3px;
+  text-decoration: none; cursor: pointer;
+}
+.share-btn:hover { background: #e0e0e0; color: #333; }
+
+.article-body h2 { font-size: 1.1em; font-weight: bold; margin: 14px 0 6px; color: #333; }
+.article-body p { margin: 0.5em 0; }
+.article-body .hero-img { width: 100%; display: block; margin-bottom: 4px; }
+.article-body .hero-caption { font-size: 11px; color: #888; margin-bottom: 14px; }
+.article-body .img-right {
+  float: right; width: 45%; margin: 4px 0 10px 16px; border: 1px solid #ccc;
+}
+.article-body .img-right-caption { font-size: 10px; color: #999; text-align: right; clear: right; margin: -6px 0 10px 0; }
+.article-body .img-full { width: 100%; display: block; margin: 10px 0 4px; }
+.article-body .img-full-caption { font-size: 11px; color: #888; font-style: italic; margin-bottom: 12px; }
+.article-body .img-left {
+  float: left; width: 40%; margin: 4px 14px 10px 0;
+}
+.article-body .img-left-caption { font-size: 10px; color: #777; margin: -6px 0 10px 0; }
+
+/* --- Inline ad --- */
+.inline-ad {
+  margin: 18px 0; padding: 18px; background: #f2f2f0; border: 1px solid #ddd;
+}
+.inline-ad .ad-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  color: #999; margin-bottom: 8px;
+  animation: label-flash 1s ease-in-out infinite;
+}
+.inline-ad .ad-text { font-size: 15px; font-weight: bold; color: #444; margin-bottom: 10px; }
+.inline-ad .ad-btn {
+  display: inline-block; padding: 6px 16px; background: #8b0000; color: #fff;
+  border: none; font-size: 12px; cursor: pointer; text-decoration: none; border-radius: 2px;
+  animation: btn-flash 1.5s ease-in-out infinite;
+}
+
+/* --- Newsletter inline --- */
+.inline-newsletter {
+  margin: 18px 0; padding: 16px; background: #f9f5ee; border: 1px solid #e0d8c8;
+  text-align: center;
+}
+.inline-newsletter .nl-heading { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 4px; }
+.inline-newsletter .nl-sub { font-size: 12px; color: #777; margin-bottom: 10px; }
+.inline-newsletter input[type="email"] {
+  padding: 6px 10px; font-size: 13px; border: 1px solid #ccc; width: 200px;
+}
+.inline-newsletter button {
+  padding: 6px 14px; font-size: 13px; background: #8b0000; color: #fff;
+  border: none; cursor: pointer; margin-left: 4px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+/* --- Related articles --- */
+.related-articles {
+  margin: 20px 0; padding: 16px; background: #f7f7f5; border: 1px solid #e0e0e0;
+}
+.related-articles .ra-heading { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; }
+.related-articles .ra-grid { display: flex; gap: 14px; }
+.related-articles .ra-item { flex: 1; }
+.related-articles .ra-thumb {
+  width: 100%; height: 80px; background: #ddd; border: 1px solid #ccc; margin-bottom: 6px;
+  object-fit: cover;
+}
+.related-articles .ra-item a { font-size: 12px; line-height: 1.3; }
+
+/* --- Sponsored content --- */
+.sponsored-block {
+  margin: 20px 0; padding: 16px; background: #faf8f2; border: 1px solid #e8e4d8;
+  position: relative;
+}
+.sponsored-block .sponsored-label {
+  position: absolute; top: 8px; right: 10px; font-size: 9px;
+  text-transform: uppercase; letter-spacing: 1px; color: #999;
+  animation: label-flash 1s ease-in-out infinite;
+}
+.sponsored-block .sp-thumb {
+  width: 100%; height: 100px; background: #e4e0d4; border: 1px solid #d4d0c4; margin-bottom: 8px;
+}
+.sponsored-block .sp-title { font-size: 14px; font-weight: bold; color: #444; margin-bottom: 4px; }
+.sponsored-block .sp-sub { font-size: 11px; color: #888; }
+
+/* --- Pull quote --- */
+.pull-quote {
+  margin: 20px 0; padding: 18px 20px; background: #fdf8f0; border-left: 4px solid #8b0000;
+}
+.pull-quote .pq-text {
+  font-size: 18px; font-style: italic; color: #444; line-height: 1.4; margin-bottom: 6px;
+}
+.pull-quote .pq-attr { font-size: 11px; color: #888; }
+
+/* --- Cookie banner --- */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: #f0f0f0; border-top: 1px solid #ccc; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; font-size: 12px; color: #444;
+}
+.cookie-banner .cookie-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-banner .cookie-accept {
+  padding: 6px 16px; background: #8b0000; color: #fff; border: none;
+  font-size: 12px; cursor: pointer; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+.cookie-banner .cookie-manage {
+  padding: 6px 16px; background: transparent; color: #555; border: 1px solid #999;
+  font-size: 12px; cursor: pointer; border-radius: 2px;
+}
+
+/* --- Tags --- */
+.tags-row { margin: 20px 0 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+.tag-pill {
+  display: inline-block; padding: 3px 10px; font-size: 11px; background: #eee;
+  border: 1px solid #ddd; border-radius: 12px; color: #555; text-decoration: none;
+}
+
+/* --- Author bio --- */
+.author-bio {
+  display: flex; gap: 12px; padding: 16px; background: #f5f5f5; border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+.author-bio .avatar-placeholder { width: 50px; height: 50px; }
+.author-bio .bio-text { font-size: 13px; color: #555; }
+.author-bio .bio-text strong { color: #333; }
+
+/* --- Comments --- */
+.comments-section { margin-top: 20px; }
+.comments-section h3 { font-size: 15px; margin-bottom: 12px; color: #333; }
+.comment {
+  padding: 10px 0; border-bottom: 1px solid #eee;
+}
+.comment .comment-meta { font-size: 12px; color: #888; margin-top: 4px; }
+.comment .comment-meta a { font-size: 12px; }
+.comment-form { margin-top: 16px; }
+.comment-form h4 { font-size: 14px; margin-bottom: 10px; color: #333; }
+.comment-form label { display: block; font-size: 12px; color: #555; margin: 8px 0 3px; }
+.comment-form input, .comment-form textarea {
+  width: 100%; padding: 6px 8px; font-size: 13px; border: 1px solid #ccc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.comment-form textarea { height: 80px; resize: vertical; }
+.comment-form button {
+  margin-top: 8px; padding: 7px 18px; font-size: 13px; background: #8b0000;
+  color: #fff; border: none; cursor: pointer;
+}
+
+/* --- Sidebar widgets --- */
+.widget { margin-bottom: 22px; }
+.widget-title {
+  font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
+  color: #333; padding-bottom: 6px; border-bottom: 2px solid #8b0000; margin-bottom: 10px;
+}
+.popular-item { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+.popular-thumb {
+  width: 60px; height: 45px; background: #ddd; flex-shrink: 0; border: 1px solid #ccc;
+  object-fit: cover;
+}
+.popular-item a { font-size: 13px; line-height: 1.3; }
+
+.sidebar-ad {
+  padding: 20px 14px; background: #f2f2f0; border: 1px solid #ddd; text-align: center;
+  margin-bottom: 22px; position: relative;
+}
+.sidebar-ad .ad-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+  color: #999; margin-bottom: 10px;
+}
+.sidebar-ad .ad-box {
+  width: 100%; height: 120px; background: #e0e0e0; border: 1px solid #ccc;
+  margin-bottom: 10px; position: relative;
+}
+.sidebar-ad .ad-text { font-size: 14px; font-weight: bold; color: #444; margin-bottom: 8px; }
+.sidebar-ad .ad-btn {
+  display: inline-block; padding: 6px 16px; background: #8b0000; color: #fff;
+  border: none; font-size: 12px; cursor: pointer; text-decoration: none; border-radius: 2px;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+.sale-badge {
+  position: absolute; top: 8px; right: -4px; background: #c00; color: #fff;
+  font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 2px;
+  transform: rotate(5deg); letter-spacing: 0.5px; z-index: 1;
+  animation: sale-throb 2s ease-in-out infinite, label-flash 1s ease-in-out infinite;
+}
+
+.cat-list, .follow-list { list-style: none; }
+.cat-list li, .follow-list li { padding: 4px 0; }
+.cat-list a, .follow-list a { font-size: 13px; }
+
+.sidebar-newsletter { padding: 14px; background: #f9f5ee; border: 1px solid #e0d8c8; margin-bottom: 22px; text-align: center; }
+.sidebar-newsletter .nl-heading { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+.sidebar-newsletter input[type="email"] {
+  padding: 6px 8px; font-size: 12px; border: 1px solid #ccc; width: 100%; margin-bottom: 6px;
+}
+.sidebar-newsletter button {
+  padding: 6px 14px; font-size: 12px; background: #8b0000; color: #fff;
+  border: none; cursor: pointer; width: 100%;
+  animation: subscribe-pulse 2s ease-in-out infinite;
+}
+
+.recent-comments-item { font-size: 12px; color: #666; padding: 4px 0; border-bottom: 1px solid #eee; }
+.recent-comments-item a { font-size: 12px; }
+
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag-cloud a {
+  display: inline-block; padding: 2px 8px; background: #eee; border: 1px solid #ddd;
+  border-radius: 3px; text-decoration: none; color: #555;
+}
+
+/* --- Trending ticker --- */
+.trending-ticker {
+  margin: 18px 0; background: #2a2a2a; color: #fff; padding: 8px 0;
+  overflow: hidden; white-space: nowrap; font-size: 12px;
+}
+.trending-ticker .ticker-label {
+  display: inline-block; background: #8b0000; padding: 2px 10px;
+  font-weight: bold; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 1px; margin-right: 12px; vertical-align: middle;
+}
+.trending-ticker .ticker-track {
+  display: inline-block; animation: ticker-scroll 20s linear infinite;
+}
+.trending-ticker a { color: #ddd; text-decoration: none; }
+.trending-ticker a:hover { color: #fff; }
+
+/* --- Wine quiz promo --- */
+.quiz-promo {
+  margin: 20px 0; padding: 18px; background: #d4a017; border: 1px solid #e0c878;
+  text-align: center; animation: quiz-pulse 2.5s ease-in-out infinite;
+}
+.quiz-promo .quiz-heading { font-size: 16px; font-weight: bold; color: #5a3e00; margin-bottom: 4px; }
+.quiz-promo .quiz-sub { font-size: 12px; color: #7a5c1a; margin-bottom: 10px; }
+.quiz-promo .quiz-btn {
+  display: inline-block; padding: 8px 20px; background: #8b0000; color: #fff;
+  border: none; font-size: 13px; cursor: pointer; border-radius: 2px;
+  text-decoration: none; animation: btn-flash 1.5s ease-in-out infinite;
+}
+
+/* --- Social proof --- */
+.social-proof {
+  margin: 20px 0; padding: 16px; background: #e8f0f8; border: 1px solid #c8d8e8;
+  text-align: center;
+}
+.social-proof .sp-text { font-size: 13px; color: #2a4a6a; margin-bottom: 8px; }
+.social-proof .sp-text strong { font-size: 15px; }
+.social-proof .sp-btn {
+  display: inline-block; padding: 6px 18px; background: #8b0000; color: #fff;
+  border: none; font-size: 12px; cursor: pointer; border-radius: 2px;
+  text-decoration: none; animation: btn-flash 1.5s ease-in-out infinite;
+}
+
+/* --- Editor's pick --- */
+.editors-pick {
+  margin: 20px 0; padding: 14px; background: #fff; border: 1px solid #ddd;
+  display: flex; gap: 14px; align-items: center;
+}
+.editors-pick .ep-label {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+  color: #8b0000; font-weight: bold; margin-bottom: 4px;
+}
+.editors-pick .ep-thumb {
+  width: 100px; height: 80px; background: #ddd; border: 1px solid #ccc; flex-shrink: 0;
+  object-fit: cover;
+}
+.editors-pick .ep-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 2px; }
+.editors-pick .ep-sub { font-size: 12px; color: #666; }
+.editors-pick a { font-size: 12px; }
+
+/* --- Footer --- */
+.site-footer { background: #2a2a2a; color: #bbb; padding: 30px 20px 0; margin-top: 30px; }
+.footer-cols { display: flex; max-width: 1200px; margin: 0 auto; gap: 40px; padding-bottom: 20px; }
+.footer-col { flex: 1; }
+.footer-col h4 { font-size: 14px; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-col p { font-size: 12px; line-height: 1.5; color: #999; }
+.footer-col ul { list-style: none; }
+.footer-col li { padding: 3px 0; }
+.footer-col a { color: #bbb; font-size: 12px; text-decoration: none; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  text-align: center; font-size: 11px; color: #777; border-top: 1px solid #444;
+  padding: 14px 0; max-width: 1200px; margin: 0 auto;
+}
+.footer-bottom a { color: #999; font-size: 11px; margin-left: 10px; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PROMO BANNER ==================== -->
+<div class="promo-banner">
+  <span>FREE SHIPPING on all orders over $50 &mdash; <a href="#">Shop Now</a></span>
+</div>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <div class="top-bar">
+    <a href="#" class="logo">The Wine Blog</a>
+    <span class="search-icon">&#128269;</span>
+  </div>
+  <nav class="nav-bar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Wine</a>
+    <a href="#">Chemistry</a>
+    <a href="#">Lifestyle</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="breadcrumbs">
+    <a href="#">Home</a> &gt; <a href="#">Articles</a> &gt; <a href="#">Wine &amp; Spirits</a> &gt; Decanters
+  </div>
+</header>
+
+<!-- ==================== PAGE BODY ==================== -->
+<div class="page-body">
+
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <div class="left-sidebar">
+
+    <!-- Wine Club Ad -->
+    <div class="left-ad">
+      <div class="ad-title">Wine of the Month Club</div>
+      <div class="ad-desc">Curated selections delivered to your door</div>
+      <a href="#" class="ad-btn">Join Now</a>
+      <span class="ad-free">First Bottle Free</span>
+    </div>
+
+    <!-- Trending Topics -->
+    <div class="widget">
+      <div class="widget-title">Trending Topics</div>
+      <ul class="trending-list">
+        <li><a href="#">Wine Decanting</a></li>
+        <li><a href="#">Bordeaux 2024</a></li>
+        <li><a href="#">Crystal vs Glass</a></li>
+        <li><a href="#">Best Decanters Under $50</a></li>
+        <li><a href="#">Wine Storage Tips</a></li>
+      </ul>
+    </div>
+
+    <!-- Follow Us -->
+    <div class="widget">
+      <div class="widget-title">Follow Us</div>
+      <ul class="follow-list">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+      </ul>
+    </div>
+
+    <!-- WineApp Ad -->
+    <div class="left-ad-small">
+      <div class="ad-label">Sponsored</div>
+      <div class="ad-text">WineApp</div>
+      <div class="ad-sub">Rate, Review, Discover. Download Free.</div>
+      <a href="#" class="ad-btn">Download</a>
+    </div>
+
+  </div>
+
+  <!-- ========== MAIN COLUMN ========== -->
+  <div class="main-col">
+
+    <h1 style="font-size:22px; margin-bottom:6px; line-height:1.2;">Decanters: Everything You Need to Know</h1>
+
+    <!-- Star Rating -->
+    <div class="star-rating">
+      <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-empty">&#9734;</span>
+      <span class="rating-count">(47 ratings)</span>
+      <a href="#" class="rate-link">Rate this article</a>
+    </div>
+
+    <div class="byline">
+      <div class="avatar-placeholder"></div>
+      <span>By Sarah Mitchell &nbsp;|&nbsp; March 8, 2026 &nbsp;|&nbsp; 8 min read</span>
+    </div>
+
+    <div class="share-bar">
+      <a href="#" class="share-btn">Facebook</a>
+      <a href="#" class="share-btn">Twitter</a>
+      <a href="#" class="share-btn">Pinterest</a>
+      <a href="#" class="share-btn">Email</a>
+    </div>
+
+    <article class="article-body">
+
+      <!-- Hero Image -->
+      <img src="img/decanter-and-glasses.jpg" alt="A crystal decanter with two wine glasses" class="hero-img">
+      <div class="hero-caption">A crystal decanter ready for service</div>
+
+      <h2>You might already know about Decant</h2>
+
+      <p>Decant is a free tool that takes cluttered web articles and turns them into clean, readable documents. You paste in a URL, it strips out the ads, the sidebars, the newsletter popups, and the rest of the noise, and gives you back something you can actually read. Save it. Print it. Share it. The content comes through. The junk stays behind.</p>
+
+      <p>If you are reading this on the original page, you are looking at exactly the kind of mess Decant was designed to fix. Take a moment. Notice the ads. The sidebar. The comment section nobody asked for. The newsletter signup that appears twice for some reason. This is the web in 2026.</p>
+
+      <p>Now paste this URL into Decant and read the same article without all of that. That is the whole pitch.</p>
+
+      <p>But here is a question: do you know what the word &ldquo;decant&rdquo; actually means? It turns out it shows up in more places than you might expect.</p>
+
+      <!-- Inline Ad 1 -->
+      <div class="inline-ad">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-text">Bordeaux Wine Club &mdash; First Case 50% Off</div>
+        <a href="#" class="ad-btn">Shop Now</a>
+      </div>
+
+      <h2>What the word means</h2>
+
+      <p>To decant is to pour a liquid gently from one container into another, leaving the sediment behind. That is the whole idea in one sentence: the good stuff flows through, the residue stays in the original vessel. Nobody shakes the bottle. Nobody forces anything through a filter. You just pour carefully and stop when the dregs start to move.</p>
+
+      <p>Merriam-Webster defines it as &ldquo;to draw off a liquid without disturbing the sediment or the lower liquid layers.&rdquo; It can also mean, more generally, to pour from one vessel into another, or to transfer and unload as if by pouring. That last sense is the loosest and the most recent, and it has taken the word into some unexpected territory.</p>
+
+      <!-- Trending Ticker -->
+      <div class="trending-ticker">
+        <span class="ticker-track">
+          <a href="#">Bordeaux 2024: What Experts Are Saying</a> &bull;
+          <a href="#">Top 10 Decanters Under $50</a> &bull;
+          <a href="#">Is Wine Decanting a Myth?</a> &bull;
+          <a href="#">New: Crystal vs Glass Guide</a> &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+          <a href="#">Bordeaux 2024: What Experts Are Saying</a> &bull;
+          <a href="#">Top 10 Decanters Under $50</a> &bull;
+          <a href="#">Is Wine Decanting a Myth?</a> &bull;
+          <a href="#">New: Crystal vs Glass Guide</a>
+        </span>
+      </div>
+
+      <h2>Where the word comes from</h2>
+
+      <p>&ldquo;Decant&rdquo; entered English from the French &ldquo;decanter&rdquo; in the seventeenth century. The French borrowed it from Medieval Latin &ldquo;decanthare,&rdquo; built from &ldquo;de-&rdquo; (away from) and &ldquo;canthus&rdquo; (the lip or edge of a vessel). The literal meaning is to pour off the edge, which is exactly what you do when you tip a bottle slowly and let the clear liquid run while the sediment stays put.</p>
+
+      <p>The Latin &ldquo;canthus&rdquo; itself comes from a word for the rim or beak of a jug. So the etymology is pleasingly specific: this is not a general word for pouring. It is a word about the lip of the container and what happens there. The separation occurs at the edge.</p>
+
+      <!-- Inline Newsletter -->
+      <div class="inline-newsletter">
+        <div class="nl-heading">Get Weekly Wine Tips</div>
+        <div class="nl-sub">Join 12,000 subscribers</div>
+        <input type="email" placeholder="Your email address">
+        <button type="button">Subscribe</button>
+      </div>
+
+      <h2>At the dinner table</h2>
+
+      <p>Wine is where most people first encounter the word. You open a bottle of old red, and instead of pouring it straight into glasses, you pour it slowly into a wide glass vessel, a decanter, leaving the sediment behind in the bottle. The wine arrives in the glass clearer, smoother, and more drinkable.</p>
+
+      <img src="img/pouring-into-decanter.jpg" alt="Pouring wine into a decanter" class="img-right">
+      <div class="img-right-caption">Pouring wine into a decanter</div>
+
+      <p>Sediment in wine is not harmful, but it is bitter and gritty. It forms naturally as tannins and pigments bond over years of aging. Decanting separates the wine from this residue. It also aerates the wine, letting it &ldquo;breathe,&rdquo; which softens harsh tannins and opens up the aromatics. Younger wines especially benefit from this.</p>
+
+      <p>There is a whole culture around the vessels themselves. Riedel, the Austrian crystal house, makes decanters that are as much sculptural objects as functional tools. Their Snake decanter has a double aeration system built into its curves. Their Amadeo Figaro, shaped like a lyre, was made in a limited edition of 1,756 pieces. These are objects designed to be beautiful while doing a simple job: hold wine and let it breathe.</p>
+
+      <img src="img/wine-glasses-dinner.jpg" alt="Wine glasses at a dinner table" class="img-full">
+      <div class="img-full-caption">An evening table setting</div>
+
+      <p>Decanter Magazine, founded in London in 1975, has been covering wine for half a century. Published in over 90 countries, it runs the Decanter World Wine Awards, the world&rsquo;s largest wine competition. The name of the magazine, like the name of our tool, comes from the same modest verb: to pour carefully.</p>
+
+      <!-- Related Articles -->
+      <div class="related-articles">
+        <div class="ra-heading">You Might Also Like</div>
+        <div class="ra-grid">
+          <div class="ra-item">
+            <img src="img/red-wine-pouring.jpg" alt="" class="ra-thumb">
+            <a href="#">How Long Should You Really Decant Wine?</a>
+          </div>
+          <div class="ra-item">
+            <img src="img/sommelier-corkscrew.jpg" alt="" class="ra-thumb">
+            <a href="#">The Surprising Science Behind Wine Aeration</a>
+          </div>
+          <div class="ra-item">
+            <img src="img/grape-harvest.jpg" alt="" class="ra-thumb">
+            <a href="#">A Sommelier&rsquo;s Guide to Glassware</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inline Ad 2 -->
+      <div class="inline-ad">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-text">Crystal Decanter Gift Set &mdash; Free Shipping</div>
+        <a href="#" class="ad-btn">Order Now</a>
+      </div>
+
+      <h2>In the laboratory</h2>
+
+      <p>In chemistry, decanting is one of the simplest separation techniques. You have a mixture of a liquid and something heavier, a solid, a denser liquid, whatever. You let gravity do the work: the heavy stuff sinks, you pour off the clear liquid on top. No filter required.</p>
+
+      <p>The technique is used to separate oil from water, cream from milk, mud from river water, precipitates from solutions. It is taught in introductory chemistry courses as one of the first separation methods students encounter, usually alongside filtration and distillation.</p>
+
+      <p>What makes decanting distinct from filtering is the absence of a barrier. Nothing is forced through anything. The separation happens because the components have already separated themselves by density. You are just completing the process by pouring.</p>
+
+      <!-- Wine Quiz Promo -->
+      <div class="quiz-promo">
+        <div class="quiz-heading">What Type of Wine Drinker Are You?</div>
+        <div class="quiz-sub">Take our 2-minute quiz and find out. Over 50,000 quiz takers!</div>
+        <a href="#" class="quiz-btn">Start Quiz</a>
+      </div>
+
+      <h2>On the factory floor</h2>
+
+      <p>Scale the laboratory technique up by several orders of magnitude and you get the decanter centrifuge. These are industrial machines that continuously separate solids from liquids using centrifugal force instead of gravity. The principle is the same but the forces involved are around 3,000 times stronger than gravity, so the separation happens fast.</p>
+
+      <p>Decanter centrifuges are used across dozens of industries: wastewater treatment, olive oil production, mining, food processing, pharmaceutical manufacturing, even wine production at commercial scale. Companies like Alfa Laval, Flottweg, and GEA build decanter centrifuges that run continuously, separating solids from one or two liquid phases in a single process.</p>
+
+      <p>The machines are enormous, expensive, and not particularly glamorous. But they are doing the same thing as the seventeenth-century gentleman tilting his wine bottle over a candle: separating what you want from what you do not.</p>
+
+      <!-- Sponsored Content -->
+      <div class="sponsored-block">
+        <div class="sponsored-label">Sponsored</div>
+        <div class="sp-thumb"></div>
+        <div class="sp-title">Why Every Home Chef Needs a Quality Decanter</div>
+        <div class="sp-sub">Presented by CrystalVine</div>
+      </div>
+
+      <!-- Pull Quote -->
+      <div class="pull-quote">
+        <div class="pq-text">&ldquo;A good decanter does not just hold wine. It transforms it.&rdquo;</div>
+        <div class="pq-attr">&mdash; The Wine Blog editorial team</div>
+      </div>
+
+      <h2>In the perfume world</h2>
+
+      <p>Walk into any fragrance community online and you will encounter the word &ldquo;decant&rdquo; used as a noun. A decant, in perfume culture, is a small sample vial of a fragrance, typically 2 to 10 milliliters, transferred from the original retail bottle into a smaller atomizer.</p>
+
+      <img src="img/wine-bottles.jpg" alt="Wine bottles lined up on a table" class="img-left">
+      <div class="img-left-caption">Bottles awaiting decanting</div>
+
+      <p>The practice exists because high-end fragrances are expensive. A full bottle of niche perfume can easily cost two hundred dollars or more. Decants let people try a fragrance for a few dollars before committing to the full bottle. There is an entire marketplace built around this: companies like DecantX, Scent Decant, and Surrender to Chance specialize in hand-decanting luxury fragrances into sample sizes and shipping them worldwide.</p>
+
+      <p>The word has evolved in this context. &ldquo;Decanting&rdquo; a perfume does not involve separating sediment from anything. It just means transferring liquid from a larger vessel to a smaller one. The word has kept the pouring part and dropped the separation part. Purists might object, but language does what it wants.</p>
+
+      <!-- Social Proof -->
+      <div class="social-proof">
+        <p class="sp-text"><strong>2,847</strong> wine enthusiasts are reading The Wine Blog right now. Join our community!</p>
+        <a href="#" class="sp-btn">Join Free</a>
+      </div>
+
+      <!-- Inline Ad 3 -->
+      <div class="inline-ad">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-text">Personalized Wine Recommendations &mdash; Powered by AI. Try Free for 30 Days.</div>
+        <a href="#" class="ad-btn">Get Started</a>
+      </div>
+
+      <h2>In housing</h2>
+
+      <p>In the United Kingdom, &ldquo;decanting&rdquo; tenants is an official term used by local councils and housing associations. It means temporarily moving residents out of their homes so that major repairs, renovation, or demolition can take place.</p>
+
+      <p>The term appears in formal government policy documents. Councils publish &ldquo;Decant Policies&rdquo; that outline how tenants will be rehoused, what compensation they receive, how long the process takes, and what happens if they refuse to move. The Housing Ombudsman has specific guidance on decant procedures, timelines, and resident rights.</p>
+
+      <p>It is a strangely gentle word for what is often a stressful experience. You are being poured out of your home into temporary accommodation so that work can happen in the container you just left. The metaphor is accurate even if the emotional register is completely wrong.</p>
+
+      <h2>In museums</h2>
+
+      <p>Museums use &ldquo;decant&rdquo; the same way housing authorities do: to describe the careful removal of contents from a space so that work can be done on the space itself.</p>
+
+      <p>The Victoria and Albert Museum decanted approximately 900 objects from its Europe galleries in 2011 before a major renovation. Every object had to be assessed, condition-checked, packed, and moved into storage. The V&amp;A blog describes the process in detail: chasubles removed from display cases, furniture placed on custom-built racked storage with plastazote cushioning, period rooms dismantled panel by panel.</p>
+
+      <p>The National Portrait Gallery completed a similar decant in 2020 before its Inspiring People redevelopment. They described it as the biggest move since portraits were evacuated to Buckinghamshire during the Second World War. 1,000 works, taken down and safely stored, some of the work planned from a bedroom desk during lockdown.</p>
+
+      <p>In both cases, &ldquo;decant&rdquo; is doing the same work as it does at the dinner table: the good stuff is carefully poured out, the container is left behind to be dealt with.</p>
+
+      <!-- Editor's Pick -->
+      <div class="editors-pick">
+        <img src="img/decanter-filling.jpg" alt="" class="ep-thumb">
+        <div>
+          <div class="ep-label">Editor&rsquo;s Pick</div>
+          <div class="ep-title">Our Favorite Decanter of 2026</div>
+          <div class="ep-sub">The Riedel Amadeo &mdash; a stunning centerpiece. <a href="#">Read our review.</a></div>
+        </div>
+      </div>
+
+      <h2>The decanting problem</h2>
+
+      <p>In mathematics, a &ldquo;decanting problem&rdquo; is the formal name for water pouring puzzles. You have two or three unmarked jugs of known capacity and you need to measure an exact quantity of liquid by pouring between them. No measuring devices, no markings, just capacity and logic.</p>
+
+      <p>The most famous version involves a 3-liter jug and a 5-liter jug, and the goal is to measure exactly 4 liters. It is solvable, and the mathematics behind it involves Bezout&rsquo;s identity and the greatest common divisor of the jug capacities.</p>
+
+      <p>This puzzle became a pop culture fixture through the film Die Hard with a Vengeance, where Bruce Willis and Samuel L. Jackson have to solve it to stop a bomb. The film version uses 3-gallon and 5-gallon jugs. The mathematics is the same regardless of units.</p>
+
+      <p>There is also the puzzle jug, a medieval drinking vessel designed so that the obvious way to drink from it does not work. The earliest known English example dates to around 1300 AD, made in Saintonge, western France. You have to figure out the trick, which usually involves sucking from a hidden tube while blocking holes along its length. This is less decanting and more problem-solving, but the family resemblance is there: vessels, liquid, and the question of how to get the contents from one place to another.</p>
+
+      <h2>One word, many uses</h2>
+
+      <p>Not many English words work equally well in a chemistry lab, a wine cellar, a council housing office, and a museum conservation department. &ldquo;Decant&rdquo; does. It has been quietly useful for four hundred years, adapting to whatever someone needs to carefully separate, and it shows no sign of stopping.</p>
+
+      <p>It is also worth 9 points in Scrabble, which is not bad for six letters.</p>
+
+    </article>
+
+    <!-- Tags -->
+    <div class="tags-row">
+      <a href="#" class="tag-pill">Wine</a>
+      <a href="#" class="tag-pill">Accessories</a>
+      <a href="#" class="tag-pill">How-To</a>
+      <a href="#" class="tag-pill">Entertaining</a>
+    </div>
+
+    <!-- Author Bio -->
+    <div class="author-bio">
+      <div class="avatar-placeholder"></div>
+      <div class="bio-text">
+        <strong>Sarah Mitchell</strong> &mdash; Wine writer and certified sommelier. Sarah has been reviewing wine accessories for over a decade.
+      </div>
+    </div>
+
+    <!-- Comments -->
+    <div class="comments-section">
+      <h3>Comments (3)</h3>
+
+      <div class="comment">
+        <p>Great article! I just bought my first decanter.</p>
+        <div class="comment-meta"><strong>WineLover42</strong> &middot; 2 days ago &middot; <a href="#">Reply</a></div>
+      </div>
+
+      <div class="comment">
+        <p>Does this apply to whiskey decanters too?</p>
+        <div class="comment-meta"><strong>SingleMalt_Steve</strong> &middot; 1 day ago &middot; <a href="#">Reply</a></div>
+      </div>
+
+      <div class="comment">
+        <p>Shared this with my wine group, thanks!</p>
+        <div class="comment-meta"><strong>CellarDoorJen</strong> &middot; 4 hours ago &middot; <a href="#">Reply</a></div>
+      </div>
+
+      <div class="comment-form">
+        <h4>Leave a comment</h4>
+        <label for="c-name">Name</label>
+        <input type="text" id="c-name">
+        <label for="c-email">Email</label>
+        <input type="email" id="c-email">
+        <label for="c-comment">Comment</label>
+        <textarea id="c-comment"></textarea>
+        <button type="button">Submit</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== SIDEBAR ========== -->
+  <div class="sidebar">
+
+    <!-- Popular Posts -->
+    <div class="widget">
+      <div class="widget-title">Popular Posts</div>
+      <div class="popular-item"><img src="img/wine-toast.jpg" alt="" class="popular-thumb"><a href="#">How to Choose the Right Wine Glass</a></div>
+      <div class="popular-item"><img src="img/rose-wine-outdoors.jpg" alt="" class="popular-thumb"><a href="#">Red vs White: A Beginner&rsquo;s Guide</a></div>
+      <div class="popular-item"><img src="img/wine-tasting-group.jpg" alt="" class="popular-thumb"><a href="#">5 Wine Storage Mistakes You&rsquo;re Making</a></div>
+      <div class="popular-item"><img src="img/grapes-on-vine.jpg" alt="" class="popular-thumb"><a href="#">The History of Bordeaux</a></div>
+      <div class="popular-item"><img src="img/restaurant-table.jpg" alt="" class="popular-thumb"><a href="#">Why Decanting Matters More Than You Think</a></div>
+    </div>
+
+    <!-- Sidebar Ad -->
+    <div class="sidebar-ad">
+      <div class="sale-badge">SALE</div>
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-box"></div>
+      <div class="ad-text">Wine Cellar Temperature Monitor &mdash; $49.99</div>
+      <a href="#" class="ad-btn">Learn More</a>
+    </div>
+
+    <!-- Categories -->
+    <div class="widget">
+      <div class="widget-title">Categories</div>
+      <ul class="cat-list">
+        <li><a href="#">Wine Basics</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Entertaining</a></li>
+        <li><a href="#">Regions</a></li>
+        <li><a href="#">Food Pairing</a></li>
+        <li><a href="#">Collector's Corner</a></li>
+      </ul>
+    </div>
+
+    <!-- Follow Us -->
+    <div class="widget">
+      <div class="widget-title">Follow Us</div>
+      <ul class="follow-list">
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+      </ul>
+    </div>
+
+    <!-- Sidebar Newsletter -->
+    <div class="sidebar-newsletter">
+      <div class="nl-heading">Never Miss a Post!</div>
+      <input type="email" placeholder="Your email address">
+      <button type="button">Subscribe</button>
+    </div>
+
+    <!-- Recent Comments -->
+    <div class="widget">
+      <div class="widget-title">Recent Comments</div>
+      <div class="recent-comments-item"><strong>WineLover42</strong> on <a href="#">Decanters: Everything...</a></div>
+      <div class="recent-comments-item"><strong>SingleMalt_Steve</strong> on <a href="#">Decanters: Everything...</a></div>
+      <div class="recent-comments-item"><strong>CellarDoorJen</strong> on <a href="#">Bordeaux History</a></div>
+    </div>
+
+    <!-- Tag Cloud -->
+    <div class="widget">
+      <div class="widget-title">Tags</div>
+      <div class="tag-cloud">
+        <a href="#" style="font-size:15px">decanter</a>
+        <a href="#" style="font-size:13px">wine</a>
+        <a href="#" style="font-size:11px">aeration</a>
+        <a href="#" style="font-size:10px">sediment</a>
+        <a href="#" style="font-size:14px">red wine</a>
+        <a href="#" style="font-size:12px">crystal</a>
+        <a href="#" style="font-size:13px">Bordeaux</a>
+        <a href="#" style="font-size:11px">tannins</a>
+        <a href="#" style="font-size:10px">sommelier</a>
+        <a href="#" style="font-size:14px">glassware</a>
+        <a href="#" style="font-size:11px">cellar</a>
+        <a href="#" style="font-size:12px">vintage</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h4>About</h4>
+      <p>The Wine Blog is your guide to wine, glassware, and the art of drinking well. Est. 2019.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#">Wine Basics</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Entertaining</a></li>
+        <li><a href="#">Regions</a></li>
+        <li><a href="#">Food Pairing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Advertise With Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 The Wine Blog. All rights reserved.
+    <a href="#">Back to top</a>
+  </div>
+</footer>
+
+<!-- ==================== COOKIE BANNER ==================== -->
+<div class="cookie-banner">
+  <span>We use cookies to improve your experience. By continuing to browse, you agree to our <a href="#">Cookie Policy</a>.</span>
+  <div class="cookie-buttons">
+    <button class="cookie-accept" type="button">Accept All</button>
+    <button class="cookie-manage" type="button">Manage Preferences</button>
+  </div>
+</div>
+
+</body>
+</html>
