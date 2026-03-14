@@ -1,8 +1,8 @@
 """
 Dev tool: batch convert all fixture HTML files.
 
-Runs the full Flowdoc pipeline on every .html file in tests/pipeline-audit/test-pages/
-and writes .flowdoc.html output alongside each input file.
+Runs the full Decant pipeline on every .html file in tests/pipeline-audit/test-pages/
+and writes .decant.html output alongside each input file.
 
 Usage (from project root with venv active):
     python tests/pipeline-audit/visual-review/convert_fixtures.py
@@ -13,9 +13,9 @@ Open them directly in a browser to inspect visually.
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
-from flowdoc.core.renderer import render
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError
+from decant.core.renderer import render
 
 FIXTURE_DIR = Path(__file__).resolve().parent.parent / "test-pages"
 
@@ -36,7 +36,7 @@ def convert_fixture(input_path: Path) -> None:
     doc = parse(html_to_parse, original_title=original_title)
     output = render(doc)
 
-    output_path = input_path.with_suffix(".flowdoc.html")
+    output_path = input_path.with_suffix(".decant.html")
     output_path.write_text(output, encoding="utf-8")
     print(f"  OK  [{mode}]  {output_path.name}")
 
@@ -44,7 +44,7 @@ def convert_fixture(input_path: Path) -> None:
 def main():
     fixtures = sorted(FIXTURE_DIR.glob("*.html"))
     # Skip already-converted files
-    fixtures = [f for f in fixtures if ".flowdoc." not in f.name]
+    fixtures = [f for f in fixtures if ".decant." not in f.name]
 
     print(f"Converting {len(fixtures)} fixtures from {FIXTURE_DIR}\n")
 

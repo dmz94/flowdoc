@@ -7,7 +7,7 @@ See decisions.md section 3 for validation rules.
 """
 import pytest
 from pathlib import Path
-from flowdoc.core.parser import parse, ValidationError
+from decant.core.parser import parse, ValidationError
 
 
 VALID_HTML = "<html><body><h1>Title</h1><p>Content</p></body></html>"

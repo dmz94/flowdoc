@@ -2,7 +2,7 @@
   "fixture": "ricksteves-blog-mont-blanc",
   "corpus": "main",
   "baselined_at": "2026-03-10T11:32:58.112958+00:00",
-  "flowdoc_version": "0.1.0",
+  "decant_version": "0.1.0",
   "status": "PASS",
   "notes": "",
   "metrics": {

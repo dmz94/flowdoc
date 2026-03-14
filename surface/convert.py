@@ -1,15 +1,15 @@
 """
 Pipeline wrapper for the Decant surface.
 
-Connects URL fetching and file upload to the flowdoc engine pipeline.
+Connects URL fetching and file upload to the decant engine pipeline.
 """
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import (
+from decant.core.content_selector import detect_mode
+from decant.core.parser import (
     parse, extract_with_trafilatura, ValidationError, harvest_captions,
 )
-from flowdoc.core.renderer import render
+from decant.core.renderer import render
 
 from fetch import fetch_url
 
@@ -28,7 +28,7 @@ class ConvertError(Exception):
 
 def _run_engine(raw_html: str, source_url: str = "") -> str:
     """
-    Run the flowdoc engine pipeline on raw HTML.
+    Run the decant engine pipeline on raw HTML.
 
     Matches the logic in cli/main.py.
 

@@ -3,7 +3,7 @@ Tests for typography and layout constants.
 
 Validates that constants exist, have correct types, and are properly formatted.
 """
-from flowdoc.core.constants import (
+from decant.core.constants import (
     FONT_STACK, BODY_FONT_SIZE, HEADING_MULTIPLIERS,
     LINE_HEIGHT, LETTER_SPACING, WORD_SPACING,
     BACKGROUND_COLOR, TEXT_COLOR, LINK_COLOR,

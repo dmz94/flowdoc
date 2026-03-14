@@ -12,9 +12,9 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
-from flowdoc.core.renderer import render
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError
+from decant.core.renderer import render
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 AUDIT_DIR = SCRIPT_DIR.parent
@@ -52,10 +52,10 @@ LABELS = {
 }
 
 README_TEXT = """\
-FLOWDOC REVIEW PACK
+DECANT REVIEW PACK
 ====================
 
-Flowdoc is a tool that takes web articles and converts them
+Decant is a tool that takes web articles and converts them
 into cleaner, easier-to-read versions. It is still a work in
 progress -- there are known bugs and rough edges. That is
 exactly why we need your feedback.
@@ -69,7 +69,7 @@ Two starting pages and a folder of converted articles.
 
   index.html
     Start here. Shows 10 articles. For each one you can see
-    the original website and the Flowdoc version side by side.
+    the original website and the Decant version side by side.
 
   index-opendyslexic.html
     Same articles, but using a font called OpenDyslexic. The
@@ -82,13 +82,13 @@ WHAT TO DO
 1. Open index.html in your browser
 2. Pick 2 or 3 articles that interest you
 3. For each one, click "Original" to see the website,
-   then click "Flowdoc" to see our version
+   then click "Decant" to see our version
 4. Read a bit of each and compare
 
 WHAT TO EXPECT
 --------------
 The articles will not look like the original websites. That
-is intentional -- Flowdoc strips away the clutter and
+is intentional -- Decant strips away the clutter and
 reformats the text to be easier to read. What we care about
 is whether the important content came through cleanly.
 
@@ -112,9 +112,9 @@ WHAT WE WANT TO KNOW
 After you have looked at a few:
 
 - Which articles did you look at?
-- Is the Flowdoc version actually easier to read than the
+- Is the Decant version actually easier to read than the
   original website, or just different?
-- Is anything important missing or broken in the Flowdoc
+- Is anything important missing or broken in the Decant
   version compared to the original?
 - Did you notice anything odd -- missing images, weird
   spacing, content that looks out of place?
@@ -141,7 +141,7 @@ def parse_manifest() -> dict[str, str]:
 
 
 def convert_fixture(input_path: Path, use_opendyslexic: bool = False) -> str:
-    """Run the Flowdoc pipeline on a single fixture and return rendered HTML."""
+    """Run the Decant pipeline on a single fixture and return rendered HTML."""
     html = input_path.read_text(encoding="utf-8")
     mode = detect_mode(html)
 
@@ -168,16 +168,16 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
             "Some people find it much more comfortable; others prefer a "
             "standard font. Both reactions are completely normal.</p>\n"
             "      <p>For each article below, click 'Original' to see the website "
-            "version, then click 'Flowdoc (OpenDyslexic)' to see our "
+            "version, then click 'Decant (OpenDyslexic)' to see our "
             "converted output."
         )
-        flowdoc_col_header = "Flowdoc (OpenDyslexic)"
-        suffix = ".flowdoc.od.html"
+        decant_col_header = "Decant (OpenDyslexic)"
+        suffix = ".decant.od.html"
         bottom_questions = (
             "        <li>Which articles did you look at?</li>\n"
-            "        <li>Is the Flowdoc version actually easier to read than\n"
+            "        <li>Is the Decant version actually easier to read than\n"
             "          the original website, or just different?</li>\n"
-            "        <li>Is anything important missing or broken in the Flowdoc\n"
+            "        <li>Is anything important missing or broken in the Decant\n"
             "          version compared to the original?</li>\n"
             "        <li>Did you notice anything odd \u2014 missing images, weird\n"
             "          spacing, content that looks out of place?</li>\n"
@@ -186,22 +186,22 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
         )
     else:
         top_text = (
-            "Flowdoc converts web articles into cleaner, more readable "
+            "Decant converts web articles into cleaner, more readable "
             "documents. We would love your feedback on how well it works.</p>\n"
             "      <p>For each article below, click 'Original' to see the website "
-            "version, then click 'Flowdoc' to see our converted output. "
+            "version, then click 'Decant' to see our converted output. "
             "Read a bit of each and let us know what you think.</p>\n"
             "      <p>This folder also contains a second version of each article "
             "using a specialist font called OpenDyslexic. If you are "
             "curious, open index-opendyslexic.html to see those."
         )
-        flowdoc_col_header = "Flowdoc"
-        suffix = ".flowdoc.html"
+        decant_col_header = "Decant"
+        suffix = ".decant.html"
         bottom_questions = (
             "        <li>Which articles did you look at?</li>\n"
-            "        <li>Is the Flowdoc version actually easier to read than\n"
+            "        <li>Is the Decant version actually easier to read than\n"
             "          the original website, or just different?</li>\n"
-            "        <li>Is anything important missing or broken in the Flowdoc\n"
+            "        <li>Is anything important missing or broken in the Decant\n"
             "          version compared to the original?</li>\n"
             "        <li>Did you notice anything odd \u2014 missing images, weird\n"
             "          spacing, content that looks out of place?</li>\n"
@@ -217,7 +217,7 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
             f"        <tr>\n"
             f"          <td>{label}</td>\n"
             f'          <td><a href="{url}" target="_blank">Original</a></td>\n'
-            f'          <td><a href="{local_file}">{flowdoc_col_header}</a></td>\n'
+            f'          <td><a href="{local_file}">{decant_col_header}</a></td>\n'
             f"        </tr>\n"
         )
 
@@ -225,7 +225,7 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Flowdoc Review Pack</title>
+  <title>Decant Review Pack</title>
   <style>
     body {{
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -277,11 +277,11 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
 </head>
 <body>
   <div class="container">
-    <h1>Flowdoc Review Pack</h1>
+    <h1>Decant Review Pack</h1>
 
     <section>
       <p>{top_text}</p>
-      <p>Note: Flowdoc is still a work in progress. You may spot
+      <p>Note: Decant is still a work in progress. You may spot
         rough edges \u2014 bits of website furniture leaking through,
         decorative images that should not be there, or sections
         that feel out of place. That is expected, and your
@@ -294,7 +294,7 @@ def generate_index(urls: dict[str, str], opendyslexic: bool = False) -> str:
           <tr>
             <th>Article</th>
             <th>Original</th>
-            <th>{flowdoc_col_header}</th>
+            <th>{decant_col_header}</th>
           </tr>
         </thead>
         <tbody>
@@ -336,23 +336,23 @@ def main():
         # Standard font variant
         try:
             output = convert_fixture(input_path, use_opendyslexic=False)
-            out_path = ARTICLES_DIR / f"{name}.flowdoc.html"
+            out_path = ARTICLES_DIR / f"{name}.decant.html"
             out_path.write_text(output, encoding="utf-8")
             print(f"  OK  {out_path.name}")
             converted += 1
         except (ValidationError, Exception) as e:
-            print(f"  FAIL  {name}.flowdoc.html: {e}")
+            print(f"  FAIL  {name}.decant.html: {e}")
             failed += 1
 
         # OpenDyslexic variant
         try:
             output = convert_fixture(input_path, use_opendyslexic=True)
-            out_path = ARTICLES_DIR / f"{name}.flowdoc.od.html"
+            out_path = ARTICLES_DIR / f"{name}.decant.od.html"
             out_path.write_text(output, encoding="utf-8")
             print(f"  OK  {out_path.name}")
             converted += 1
         except (ValidationError, Exception) as e:
-            print(f"  FAIL  {name}.flowdoc.od.html: {e}")
+            print(f"  FAIL  {name}.decant.od.html: {e}")
             failed += 1
 
     # Generate index files

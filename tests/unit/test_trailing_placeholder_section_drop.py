@@ -10,8 +10,8 @@ The check is end-anchored — only the final section is inspected.
 """
 from pathlib import Path
 
-from flowdoc.core.model import Heading, Paragraph, Text, Section, ListBlock, ListItem
-from flowdoc.core.parser import (
+from decant.core.model import Heading, Paragraph, Text, Section, ListBlock, ListItem
+from decant.core.parser import (
     extract_with_trafilatura,
     parse,
     drop_trailing_orphan_section,

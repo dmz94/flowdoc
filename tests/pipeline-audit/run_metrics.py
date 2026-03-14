@@ -1,5 +1,5 @@
 """
-Flowdoc eval metrics runner.
+Decant eval metrics runner.
 
 Runs the conversion pipeline on fixture corpora and reports metrics.
 Separate from pytest — this is for regression detection and quality tracking.
@@ -13,10 +13,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
-from flowdoc.core.renderer import render
-from flowdoc.core.model import (
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError
+from decant.core.renderer import render
+from decant.core.model import (
     Document, Paragraph, ListBlock, Quote, Preformatted, Table,
     Text, Emphasis, Strong, Code, Link,
 )
@@ -102,7 +102,7 @@ def parse_manifest(manifest_path: Path) -> list[dict]:
 
 def run_pipeline(fixture_path: Path):
     """
-    Run the full Flowdoc pipeline on a single fixture file.
+    Run the full Decant pipeline on a single fixture file.
 
     Returns (doc, rendered_html, source_html) on success.
     Raises on validation or pipeline failure.
@@ -340,7 +340,7 @@ def build_baseline_record(fixture_name: str, corpus: str, metrics: dict) -> dict
         "fixture": fixture_name,
         "corpus": corpus,
         "baselined_at": datetime.now(timezone.utc).isoformat(),
-        "flowdoc_version": "0.1.0",
+        "decant_version": "0.1.0",
         "status": "PASS",
         "notes": "",
         "metrics": metrics,
@@ -520,7 +520,7 @@ def save_report(corpus: str, fixture_results: list[dict]) -> Path:
     report = {
         "generated_at": ts.isoformat(),
         "corpus": corpus,
-        "flowdoc_version": "0.1.0",
+        "decant_version": "0.1.0",
         "fixture_count": len(fixture_results),
         "summary": summary,
         "fixtures": fixture_results,
@@ -580,7 +580,7 @@ def prompt_action() -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Flowdoc eval metrics runner")
+    parser = argparse.ArgumentParser(description="Decant eval metrics runner")
     parser.add_argument(
         "--select-corpus",
         required=True,
@@ -638,7 +638,7 @@ def main():
 
     # Header
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(f"Flowdoc Eval -- {args.select_corpus} -- {now}")
+    print(f"Decant Eval -- {args.select_corpus} -- {now}")
     print()
 
     # Process each fixture

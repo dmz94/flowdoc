@@ -2,8 +2,8 @@
 Tests for trim_trailing_noise() — end-anchored removal of trailing
 noise paragraphs (photo credits, license text, date stamps, trivial noise).
 """
-from flowdoc.core.model import Heading, Paragraph, Text, Section, ListBlock, ListItem
-from flowdoc.core.parser import trim_trailing_noise
+from decant.core.model import Heading, Paragraph, Text, Section, ListBlock, ListItem
+from decant.core.parser import trim_trailing_noise
 
 
 def _make_heading(text: str = "Section") -> Heading:

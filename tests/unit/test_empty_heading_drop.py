@@ -10,8 +10,8 @@ Affected fixture:
 """
 from pathlib import Path
 
-from flowdoc.core.model import Heading, Text
-from flowdoc.core.parser import extract_with_trafilatura, parse, _heading_has_text
+from decant.core.model import Heading, Text
+from decant.core.parser import extract_with_trafilatura, parse, _heading_has_text
 
 
 def test_heading_has_text_returns_false_for_empty():

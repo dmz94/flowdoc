@@ -2,9 +2,9 @@
 Tests for image caption support: harvest_captions, parse_figure, caption_map
 threading, and renderer figure/figcaption output.
 """
-from flowdoc.core.model import Document, Section, Heading, Paragraph, Image, Text
-from flowdoc.core.parser import harvest_captions, parse
-from flowdoc.core.renderer import render
+from decant.core.model import Document, Section, Heading, Paragraph, Image, Text
+from decant.core.parser import harvest_captions, parse
+from decant.core.renderer import render
 
 
 # ---------------------------------------------------------------------------

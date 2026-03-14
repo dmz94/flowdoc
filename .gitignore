@@ -55,7 +55,7 @@ package-lock.json
 *.tmp
 *.bak
 *.log
-*.flowdoc.html
+*.decant.html
 repo_snapshot.txt
 extraction_trial_output.txt
 project_files.txt

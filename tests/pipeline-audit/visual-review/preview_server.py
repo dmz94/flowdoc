@@ -1,7 +1,7 @@
 """
-Flowdoc drag-drop preview server (dev tool only).
+Decant drag-drop preview server (dev tool only).
 
-Runs the Flowdoc pipeline on uploaded HTML files and returns
+Runs the Decant pipeline on uploaded HTML files and returns
 converted output for visual inspection in a browser.
 
 Usage (from project root):
@@ -12,9 +12,9 @@ from flask import Flask, request
 import os
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura
-from flowdoc.core.renderer import render
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura
+from decant.core.renderer import render
 
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ def index():
 @app.route("/convert", methods=["POST"])
 def convert():
     """
-    Accept uploaded HTML, run Flowdoc pipeline, return converted HTML.
+    Accept uploaded HTML, run Decant pipeline, return converted HTML.
 
     Form fields:
         file - HTML file to convert (required)
@@ -70,7 +70,7 @@ def convert():
         # Add mode info as HTML comment for debugging
         output = output.replace(
             "<!DOCTYPE html>",
-            f"<!DOCTYPE html>\n<!-- flowdoc mode: {mode} -->"
+            f"<!DOCTYPE html>\n<!-- decant mode: {mode} -->"
         )
 
         return output, 200, {"Content-Type": "text/html; charset=utf-8"}

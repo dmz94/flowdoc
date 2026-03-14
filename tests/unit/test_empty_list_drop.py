@@ -10,8 +10,8 @@ Affected fixture:
 """
 from pathlib import Path
 
-from flowdoc.core.model import ListBlock
-from flowdoc.core.parser import extract_with_trafilatura, parse
+from decant.core.model import ListBlock
+from decant.core.parser import extract_with_trafilatura, parse
 
 
 def _all_listblocks(doc) -> list[ListBlock]:

@@ -7,7 +7,7 @@ placeholder model objects. See decisions.md section 7 for rules.
 from urllib.parse import urlparse
 
 from bs4 import Tag
-from flowdoc.core.model import Image, Paragraph, Text, Table, TableRow, TableCell
+from decant.core.model import Image, Paragraph, Text, Table, TableRow, TableCell
 
 
 def _is_simple_table(element: Tag) -> bool:
@@ -72,7 +72,7 @@ def _parse_simple_table(element: Tag) -> Table:
     Walks rows and cells, parsing inline content from each cell.
     Cells are marked as headers if they are <th> elements.
     """
-    from flowdoc.core.parser import parse_inlines
+    from decant.core.parser import parse_inlines
 
     model_rows: list[TableRow] = []
     for tr in element.find_all("tr"):

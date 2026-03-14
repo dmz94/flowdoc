@@ -2,7 +2,7 @@
   "fixture": "ieee-spectrum-boeing-max",
   "corpus": "main",
   "baselined_at": "2026-03-10T11:32:59.330238+00:00",
-  "flowdoc_version": "0.1.0",
+  "decant_version": "0.1.0",
   "status": "PASS",
   "notes": "",
   "metrics": {

@@ -3,8 +3,8 @@ Tests for renderer block-level element rendering.
 
 Part 2 of renderer tests - validates block element HTML generation.
 """
-from flowdoc.core.model import Document, Section, Heading, Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table, TableRow, TableCell, Text
-from flowdoc.core.renderer import render
+from decant.core.model import Document, Section, Heading, Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table, TableRow, TableCell, Text
+from decant.core.renderer import render
 
 
 def test_renders_paragraph():
@@ -237,7 +237,7 @@ def test_renders_simple_table():
         ]
     )
     html = render(doc)
-    assert '<table class="flowdoc-table">' in html
+    assert '<table class="decant-table">' in html
     assert "<th>Name</th>" in html
     assert "<td>A</td>" in html
 
@@ -284,5 +284,5 @@ def test_table_css_present():
         ]
     )
     html = render(doc)
-    assert ".flowdoc-table" in html
+    assert ".decant-table" in html
     assert "border-collapse" in html

@@ -3,7 +3,7 @@ Tests for parser sectioning logic.
 
 Part 2 of parser tests - validates section creation from headings.
 """
-from flowdoc.core.parser import parse, ValidationError
+from decant.core.parser import parse, ValidationError
 
 
 def test_creates_sections_from_headings():

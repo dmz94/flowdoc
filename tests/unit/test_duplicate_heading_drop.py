@@ -7,8 +7,8 @@ section is dropped entirely.  Non-consecutive duplicates are left untouched.
 Normalization: strip leading/trailing whitespace, collapse internal whitespace
 to a single space, lowercase.
 """
-from flowdoc.core.model import Heading, Paragraph, Text, Section
-from flowdoc.core.parser import (
+from decant.core.model import Heading, Paragraph, Text, Section
+from decant.core.parser import (
     drop_duplicate_consecutive_sections,
     _normalize_heading_text,
 )

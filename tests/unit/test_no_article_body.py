@@ -12,13 +12,13 @@ Fixture integration tests (regression guards):
 import pytest
 from pathlib import Path
 
-from flowdoc.core.parser import (
+from decant.core.parser import (
     extract_with_trafilatura,
     parse,
     ValidationError,
     _has_article_body,
 )
-from flowdoc.core.model import Paragraph, Text, Section, Heading
+from decant.core.model import Paragraph, Text, Section, Heading
 
 FIXTURES = Path(__file__).resolve().parent / "test-data"
 

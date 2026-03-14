@@ -3,7 +3,7 @@ Tests for HTML sanitization.
 
 Validates that dangerous content is removed while safe content is preserved.
 """
-from flowdoc.core.sanitizer import sanitize
+from decant.core.sanitizer import sanitize
 
 
 def test_allowed_tags_preserved():

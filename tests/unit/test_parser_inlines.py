@@ -3,8 +3,8 @@ Tests for parser inline element parsing.
 
 Part 4 of parser tests - validates inline element conversion and nesting.
 """
-from flowdoc.core.parser import parse
-from flowdoc.core.model import Text, Emphasis, Strong, Code, Link
+from decant.core.parser import parse
+from decant.core.model import Text, Emphasis, Strong, Code, Link
 
 
 def test_parses_plain_text():
@@ -82,7 +82,7 @@ def test_degrades_inline_image():
 
 def test_br_tag_becomes_linebreak():
     """BR tags produce a LineBreak inline object."""
-    from flowdoc.core.model import LineBreak
+    from decant.core.model import LineBreak
     html = "<body><h1>Title</h1><p>Step 1.<br/>Step 2.</p></body>"
     doc = parse(html)
     para = doc.sections[0].blocks[0]

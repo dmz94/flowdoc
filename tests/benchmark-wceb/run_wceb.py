@@ -1,5 +1,5 @@
 """
-Run the Webis Web Content Extraction Benchmark (WCEB) against Flowdoc.
+Run the Webis Web Content Extraction Benchmark (WCEB) against Decant.
 
 Iterates over 3985 HTML files across 8 datasets and reports pass/fail
 rates per dataset and overall.
@@ -19,10 +19,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
-from flowdoc.core.renderer import render
-from flowdoc.core.model import (
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError
+from decant.core.renderer import render
+from decant.core.model import (
     Document, Paragraph, ListBlock, Quote, Preformatted,
     Text, Emphasis, Strong, Code, Link,
 )
@@ -150,7 +150,7 @@ def run_one(html: str) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run Webis WCEB against Flowdoc"
+        description="Run Webis WCEB against Decant"
     )
     parser.add_argument(
         "--benchmark-dir",

@@ -2,7 +2,7 @@
   "fixture": "demo-decanters",
   "corpus": "main",
   "baselined_at": "2026-03-14T14:32:39.701030+00:00",
-  "flowdoc_version": "0.1.0",
+  "decant_version": "0.1.0",
   "status": "PASS",
   "notes": "",
   "metrics": {

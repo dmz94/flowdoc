@@ -3,8 +3,8 @@ Tests for renderer inline element rendering.
 
 Part 3 of renderer tests - validates inline element HTML generation.
 """
-from flowdoc.core.model import Document, Section, Heading, Paragraph, Text, Emphasis, Strong, Code, Link
-from flowdoc.core.renderer import render
+from decant.core.model import Document, Section, Heading, Paragraph, Text, Emphasis, Strong, Code, Link
+from decant.core.renderer import render
 
 
 def test_renders_plain_text():
@@ -133,7 +133,7 @@ def test_renders_nested_inlines():
 
 def test_renders_linebreak():
     """LineBreak renders as br element."""
-    from flowdoc.core.model import LineBreak
+    from decant.core.model import LineBreak
     doc = Document(
         title="Test",
         sections=[

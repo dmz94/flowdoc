@@ -7,12 +7,12 @@ See decisions.md section 10 for rendering invariants.
 """
 import html as html_module
 
-from flowdoc.core.model import (
+from decant.core.model import (
     Document, Section, Heading,
     Paragraph, ListBlock, ListItem, Quote, Preformatted, Image, Table,
     Text, Emphasis, Strong, Code, Link, LineBreak
 )
-from flowdoc.core.constants import (
+from decant.core.constants import (
     FONT_STACK, BODY_FONT_SIZE, HEADING_MULTIPLIERS,
     LINE_HEIGHT, LETTER_SPACING, WORD_SPACING,
     PARAGRAPH_SPACING, HEADING_MARGIN_TOP, HEADING_MARGIN_BOTTOM,
@@ -87,7 +87,7 @@ def render_notice_banner(document: Document) -> str:
         suffix = " for details."
 
     return (
-        f'<div class="flowdoc-notice">'
+        f'<div class="decant-notice">'
         f'This document contains {summary} that could not be included. '
         f'Look for the marked notes below{suffix}'
         f'</div>\n'
@@ -179,8 +179,8 @@ em {
     font-style: normal;
 }
 
-.flowdoc-table th,
-.flowdoc-table td {
+.decant-table th,
+.decant-table td {
     padding: 0.6em 0.85em;
     line-height: 1.6;
 }
@@ -296,7 +296,7 @@ figcaption {{
     line-height: 1.4;
 }}
 
-.flowdoc-notice {{
+.decant-notice {{
     background-color: #f0f0e8;
     border-left: 3px solid #b0a870;
     padding: 0.75em 1em;
@@ -316,7 +316,7 @@ figcaption {{
     margin-left: 0.3em;
 }}
 
-.flowdoc-table {{
+.decant-table {{
   border-collapse: collapse;
   width: 100%;
   max-width: 100%;
@@ -324,18 +324,18 @@ figcaption {{
   font-size: 0.95em;
   overflow-x: auto;
 }}
-.flowdoc-table th,
-.flowdoc-table td {{
+.decant-table th,
+.decant-table td {{
   border: 1px solid #ccc;
   padding: 0.5em 0.75em;
   text-align: left;
   vertical-align: top;
 }}
-.flowdoc-table th {{
+.decant-table th {{
   background-color: #f5f5f5;
   font-weight: bold;
 }}
-.flowdoc-table tr:nth-child(even) td {{
+.decant-table tr:nth-child(even) td {{
   background-color: #fafafa;
 }}
 
@@ -351,20 +351,20 @@ figcaption {{
     figcaption {{
         color: #333;
     }}
-    .flowdoc-notice {{
+    .decant-notice {{
         border-left-color: #999;
     }}
-    .flowdoc-table {{
+    .decant-table {{
       font-size: 0.9em;
     }}
-    .flowdoc-table th,
-    .flowdoc-table td {{
+    .decant-table th,
+    .decant-table td {{
       border: 1px solid #999;
     }}
-    .flowdoc-table th {{
+    .decant-table th {{
       background-color: #eee !important;
     }}
-    .flowdoc-table tr:nth-child(even) td {{
+    .decant-table tr:nth-child(even) td {{
       background-color: transparent !important;
     }}
 }}
@@ -510,7 +510,7 @@ def render_preformatted(pre: Preformatted) -> str:
 
 def render_table(table: Table) -> str:
     """Render Table to styled HTML table."""
-    parts = ['<table class="flowdoc-table">\n']
+    parts = ['<table class="decant-table">\n']
     for row in table.rows:
         parts.append("<tr>\n")
         for cell in row.cells:

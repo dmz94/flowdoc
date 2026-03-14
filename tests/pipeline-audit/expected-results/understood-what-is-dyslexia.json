@@ -2,7 +2,7 @@
   "fixture": "understood-what-is-dyslexia",
   "corpus": "main",
   "baselined_at": "2026-03-10T11:32:56.250818+00:00",
-  "flowdoc_version": "0.1.0",
+  "decant_version": "0.1.0",
   "status": "PASS",
   "notes": "",
   "metrics": {

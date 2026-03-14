@@ -1,16 +1,16 @@
 """
-Flowdoc CLI entry point.
+Decant CLI entry point.
 
 Provides convert command for HTML to readable HTML conversion.
 """
 import argparse
 import sys
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError, harvest_captions
-from flowdoc.core.renderer import render
-from flowdoc.io.reader import read_html
-from flowdoc.io.writer import write_html
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError, harvest_captions
+from decant.core.renderer import render
+from decant.io.reader import read_html
+from decant.io.writer import write_html
 
 
 def main():
@@ -24,8 +24,8 @@ def main():
     - 3: I/O error
     """
     parser = argparse.ArgumentParser(
-        prog='flowdoc',
-        description='Convert semantic HTML to dyslexia-friendly readable HTML'
+        prog='decant',
+        description='Convert semantic HTML to accessible readable HTML'
     )
 
     parser.add_argument(
@@ -36,7 +36,7 @@ def main():
 
     parser.add_argument(
         '-o', '--output',
-        help='Output file path (default: <input>.flowdoc.html or stdout)'
+        help='Output file path (default: <input>.decant.html or stdout)'
     )
 
     parser.add_argument(
@@ -78,9 +78,9 @@ def main():
     # If no output specified and reading from file, use default naming
     if not output_path and input_path:
         if input_path.endswith('.html'):
-            output_path = input_path.replace('.html', '.flowdoc.html')
+            output_path = input_path.replace('.html', '.decant.html')
         else:
-            output_path = input_path + '.flowdoc.html'
+            output_path = input_path + '.decant.html'
 
     # Font flag
     use_opendyslexic = args.font == 'opendyslexic'

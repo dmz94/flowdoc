@@ -1,8 +1,8 @@
 """
-Run the ScrapingHub Article Extraction Benchmark against Flowdoc.
+Run the ScrapingHub Article Extraction Benchmark against Decant.
 
 Iterates over 181 gzip-compressed HTML files from the benchmark repo,
-runs the full Flowdoc pipeline on each, and reports pass/fail rates.
+runs the full Decant pipeline on each, and reports pass/fail rates.
 
 Usage (from project root):
     python tests/benchmark-scrapinghub/run_benchmark.py
@@ -22,10 +22,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import parse, extract_with_trafilatura, ValidationError
-from flowdoc.core.renderer import render
-from flowdoc.core.model import (
+from decant.core.content_selector import detect_mode
+from decant.core.parser import parse, extract_with_trafilatura, ValidationError
+from decant.core.renderer import render
+from decant.core.model import (
     Document, Paragraph, ListBlock, Quote, Preformatted,
     Text, Emphasis, Strong, Code, Link,
 )
@@ -91,7 +91,7 @@ def count_output_words(doc: Document) -> int:
 # ---------------------------------------------------------------------------
 
 def run_one(html: str) -> dict:
-    """Run Flowdoc pipeline on a single HTML string. Returns result dict."""
+    """Run Decant pipeline on a single HTML string. Returns result dict."""
     try:
         mode = detect_mode(html)
         original_title = None

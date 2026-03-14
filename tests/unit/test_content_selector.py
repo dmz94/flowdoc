@@ -6,7 +6,7 @@ Also validates auto mode detection routing logic.
 """
 import pytest
 from bs4 import BeautifulSoup
-from flowdoc.core.content_selector import select_main_content, detect_mode
+from decant.core.content_selector import select_main_content, detect_mode
 
 
 def test_selects_main_when_present():

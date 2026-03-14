@@ -8,8 +8,8 @@ was lost in extraction.
 """
 from pathlib import Path
 
-from flowdoc.core.model import Heading, Paragraph, Text, Section
-from flowdoc.core.parser import (
+from decant.core.model import Heading, Paragraph, Text, Section
+from decant.core.parser import (
     drop_empty_sections,
     extract_with_trafilatura,
     parse,

@@ -2,7 +2,7 @@
 Comprehensive structural audit of ScrapingHub and WCEB benchmark corpora.
 
 Phase 1: Raw HTML scan (pre-pipeline) — element counts and patterns.
-Phase 2: Pipeline analysis — Document model inspection after Flowdoc processing.
+Phase 2: Pipeline analysis — Document model inspection after Decant processing.
 
 Usage:
     python tests/benchmark-structural/run_structural_audit.py
@@ -18,16 +18,16 @@ from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 import warnings
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
-# Flowdoc imports for Phase 2
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.parser import (
+# Decant imports for Phase 2
+from decant.core.content_selector import detect_mode
+from decant.core.parser import (
     parse,
     extract_with_trafilatura,
     harvest_captions,
     ValidationError,
 )
-from flowdoc.core.renderer import render
-from flowdoc.core.model import (
+from decant.core.renderer import render
+from decant.core.model import (
     Document, Section, Paragraph, ListBlock, Quote, Preformatted, Image,
     Text, Emphasis, Strong, Code, Link, LineBreak,
 )
@@ -395,7 +395,7 @@ def analyze_document(doc, stats):
 
 
 def run_pipeline(html):
-    """Run the full Flowdoc pipeline. Returns Document or raises."""
+    """Run the full Decant pipeline. Returns Document or raises."""
     mode = detect_mode(html)
 
     original_title = None

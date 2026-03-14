@@ -10,9 +10,9 @@ Documented in known-limitations.md as "Trailing CMS boilerplate".
 """
 from pathlib import Path
 
-from flowdoc.core.model import Heading, Paragraph, Text, Section
-from flowdoc.core.parser import extract_with_trafilatura, parse, trim_trailing_boilerplate
-from flowdoc.core.renderer import render
+from decant.core.model import Heading, Paragraph, Text, Section
+from decant.core.parser import extract_with_trafilatura, parse, trim_trailing_boilerplate
+from decant.core.renderer import render
 
 
 def _make_heading(text: str = "Section") -> Heading:

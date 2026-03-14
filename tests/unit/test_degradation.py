@@ -5,8 +5,8 @@ Validates placeholder generation for unsupported elements
 and image preservation for images with external URLs.
 """
 from bs4 import BeautifulSoup
-from flowdoc.core.degradation import degrade_table, degrade_image, degrade_form, degrade_hr, _is_simple_table
-from flowdoc.core.model import Image, Paragraph, Text, Table, TableRow, TableCell
+from decant.core.degradation import degrade_table, degrade_image, degrade_form, degrade_hr, _is_simple_table
+from decant.core.model import Image, Paragraph, Text, Table, TableRow, TableCell
 
 
 def test_table_counts_rows_and_columns():

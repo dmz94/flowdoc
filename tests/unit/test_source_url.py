@@ -1,9 +1,9 @@
 """
 Tests for source URL threading and "View original" placeholder links.
 """
-from flowdoc.core.model import Document, Section, Heading, Paragraph, Text, Image
-from flowdoc.core.parser import parse
-from flowdoc.core.renderer import render, render_notice_banner
+from decant.core.model import Document, Section, Heading, Paragraph, Text, Image
+from decant.core.parser import parse
+from decant.core.renderer import render, render_notice_banner
 
 
 def _make_heading(text: str = "Section") -> Heading:
@@ -119,7 +119,7 @@ def test_no_banner_without_placeholders():
         source_url="https://example.com",
     )
     rendered = render(doc)
-    assert '<div class="flowdoc-notice">' not in rendered
+    assert '<div class="decant-notice">' not in rendered
 
 
 # ---------------------------------------------------------------------------

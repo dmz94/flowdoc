@@ -3,7 +3,7 @@ Tests for parser title extraction.
 
 Part 1 of parser tests - validates title extraction logic.
 """
-from flowdoc.core.parser import parse, ValidationError
+from decant.core.parser import parse, ValidationError
 
 
 def test_title_from_title_tag():

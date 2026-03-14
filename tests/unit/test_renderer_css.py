@@ -3,8 +3,8 @@ Tests for renderer CSS generation.
 
 Part 1 of renderer tests - validates CSS generation from constants.
 """
-from flowdoc.core.renderer import generate_css
-from flowdoc.core.constants import FONT_STACK, BODY_FONT_SIZE, BACKGROUND_COLOR
+from decant.core.renderer import generate_css
+from decant.core.constants import FONT_STACK, BODY_FONT_SIZE, BACKGROUND_COLOR
 
 
 def test_generates_basic_css():
@@ -40,7 +40,7 @@ def test_includes_font_face_with_opendyslexic():
     css = generate_css(use_opendyslexic=True)
     # If OPENDYSLEXIC_BASE64 is empty (v1 placeholder), font-face won't be added
     # This test documents the conditional behavior
-    from flowdoc.core.constants import OPENDYSLEXIC_BASE64
+    from decant.core.constants import OPENDYSLEXIC_BASE64
     if OPENDYSLEXIC_BASE64:
         assert "@font-face" in css
         assert "OpenDyslexic" in css

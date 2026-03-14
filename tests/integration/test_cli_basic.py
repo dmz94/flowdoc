@@ -4,7 +4,7 @@ Basic CLI tests.
 Validates argument parsing and basic I/O flow.
 """
 import sys
-from flowdoc.cli.main import main
+from decant.cli.main import main
 
 
 def test_cli_file_to_file(tmp_path):
@@ -14,7 +14,7 @@ def test_cli_file_to_file(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file)]
+    sys.argv = ['decant', str(input_file), '-o', str(output_file)]
 
     try:
         main()
@@ -28,18 +28,18 @@ def test_cli_file_to_file(tmp_path):
 
 
 def test_cli_default_output_naming(tmp_path):
-    """CLI uses default .flowdoc.html naming."""
+    """CLI uses default .decant.html naming."""
     input_file = tmp_path / "test.html"
     input_file.write_text("<html><body><h1>Test</h1><p>Content</p></body></html>")
 
-    sys.argv = ['flowdoc', str(input_file)]
+    sys.argv = ['decant', str(input_file)]
 
     try:
         main()
     except SystemExit as e:
         assert e.code == 0
 
-    expected_output = tmp_path / "test.flowdoc.html"
+    expected_output = tmp_path / "test.decant.html"
     assert expected_output.exists()
 
 
@@ -50,7 +50,7 @@ def test_cli_exits_1_on_validation_error(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file)]
+    sys.argv = ['decant', str(input_file), '-o', str(output_file)]
 
     try:
         main()
@@ -60,7 +60,7 @@ def test_cli_exits_1_on_validation_error(tmp_path):
 
 def test_cli_exits_3_on_io_error():
     """CLI exits with code 3 for I/O errors."""
-    sys.argv = ['flowdoc', '/nonexistent/file.html', '-o', '/tmp/out.html']
+    sys.argv = ['decant', '/nonexistent/file.html', '-o', '/tmp/out.html']
 
     try:
         main()
@@ -75,7 +75,7 @@ def test_cli_mode_transform(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--mode', 'transform']
+    sys.argv = ['decant', str(input_file), '-o', str(output_file), '--mode', 'transform']
 
     try:
         main()
@@ -94,7 +94,7 @@ def test_cli_mode_extract(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--mode', 'extract']
+    sys.argv = ['decant', str(input_file), '-o', str(output_file), '--mode', 'extract']
 
     try:
         main()
@@ -111,7 +111,7 @@ def test_cli_mode_auto(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--mode', 'auto']
+    sys.argv = ['decant', str(input_file), '-o', str(output_file), '--mode', 'auto']
 
     try:
         main()
@@ -128,7 +128,7 @@ def test_cli_verbose_flag(tmp_path, capsys):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--verbose']
+    sys.argv = ['decant', str(input_file), '-o', str(output_file), '--verbose']
 
     try:
         main()
@@ -146,7 +146,7 @@ def test_cli_font_opendyslexic(tmp_path):
 
     output_file = tmp_path / "output.html"
 
-    sys.argv = ['flowdoc', str(input_file), '-o', str(output_file), '--font', 'opendyslexic']
+    sys.argv = ['decant', str(input_file), '-o', str(output_file), '--font', 'opendyslexic']
 
     try:
         main()
@@ -168,7 +168,7 @@ def test_cli_source_url_flag(tmp_path):
     )
     output_file = tmp_path / "output.html"
     sys.argv = [
-        'flowdoc', str(input_file),
+        'decant', str(input_file),
         '-o', str(output_file),
         '--source-url', 'https://example.com/article',
     ]
@@ -179,4 +179,4 @@ def test_cli_source_url_flag(tmp_path):
     output = output_file.read_text()
     assert "View original" in output
     assert "https://example.com/article" in output
-    assert '<div class="flowdoc-notice">' in output
+    assert '<div class="decant-notice">' in output

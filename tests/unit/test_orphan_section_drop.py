@@ -16,13 +16,13 @@ Documented in known-limitations.md as "Orphan trailing section".
 """
 from pathlib import Path
 
-from flowdoc.core.model import Heading, Paragraph, Text, Section
-from flowdoc.core.parser import (
+from decant.core.model import Heading, Paragraph, Text, Section
+from decant.core.parser import (
     drop_trailing_orphan_section,
     extract_with_trafilatura,
     parse,
 )
-from flowdoc.core.renderer import render
+from decant.core.renderer import render
 
 
 def _make_heading(text: str, level: int = 2) -> Heading:

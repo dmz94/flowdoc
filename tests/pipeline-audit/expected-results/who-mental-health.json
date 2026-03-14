@@ -2,7 +2,7 @@
   "fixture": "who-mental-health",
   "corpus": "main",
   "baselined_at": "2026-03-10T11:33:01.028200+00:00",
-  "flowdoc_version": "0.1.0",
+  "decant_version": "0.1.0",
   "status": "PASS",
   "notes": "",
   "metrics": {

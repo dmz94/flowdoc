@@ -3,7 +3,7 @@ Tests for internal document model classes.
 
 Verifies dataclass creation and nested structures.
 """
-from flowdoc.core.model import (
+from decant.core.model import (
     Text, Emphasis, Strong, Code, Link,
     Paragraph, ListItem, ListBlock, Quote, Preformatted,
     Heading, Section, Document

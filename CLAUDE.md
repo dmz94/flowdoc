@@ -83,7 +83,7 @@ Do not silently guess.
      the locked top-level structure)
   3. Delete any __pycache__, .pyc, or temp files outside .venv/
   4. Verify no new top-level directories exist beyond the locked
-     set: .claude, .github, .vscode, docs, eval, flowdoc, tests
+     set: .claude, .github, .vscode, docs, decant, surface, tests
      (plus dotfiles and root-level config/doc files). If a new
      directory was created, delete it unless the task explicitly
      required it.
@@ -105,8 +105,9 @@ Do not silently guess.
   assumptions about what the code "probably" does. Specs
   describe intent. Code describes reality. They diverge.
 
-- Wait for Render deploy to go live before pushing another
-  commit. Back-to-back pushes crash Render free tier.
+- Wait for Railway deploy to complete before pushing
+  another commit. Check the Railway dashboard or allow
+  60 seconds.
 
 - Surface fixes: commit and push each fix individually.
   Do not batch pushes.

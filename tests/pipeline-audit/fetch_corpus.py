@@ -1,5 +1,5 @@
 """
-Fetch HTML fixture files for Flowdoc test corpora.
+Fetch HTML fixture files for Decant test corpora.
 
 Downloads pages from their source URLs and saves them as HTML fixtures.
 Supports multiple corpora via the --corpus argument.
@@ -349,7 +349,7 @@ def fetch_corpus(name, corpus, session):
 
 def main():
     all_choices = list(CORPORA.keys()) + ["candidates"]
-    parser = argparse.ArgumentParser(description="Fetch HTML fixtures for Flowdoc test corpora")
+    parser = argparse.ArgumentParser(description="Fetch HTML fixtures for Decant test corpora")
     parser.add_argument(
         "--corpus",
         default=None,

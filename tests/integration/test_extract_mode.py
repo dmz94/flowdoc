@@ -12,8 +12,8 @@ Known documented limitations in extract mode:
 import pytest
 import trafilatura as _trafilatura
 from pathlib import Path
-from flowdoc.core.parser import parse, extract_with_trafilatura, ExtractionMode
-from flowdoc.core.renderer import render
+from decant.core.parser import parse, extract_with_trafilatura, ExtractionMode
+from decant.core.renderer import render
 
 
 def test_extract_with_trafilatura_returns_string():

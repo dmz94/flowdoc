@@ -12,8 +12,8 @@ Affected fixtures:
 """
 from pathlib import Path
 
-from flowdoc.core.model import Paragraph, Text
-from flowdoc.core.parser import (
+from decant.core.model import Paragraph, Text
+from decant.core.parser import (
     extract_with_trafilatura,
     parse,
     _is_placeholder_paragraph,

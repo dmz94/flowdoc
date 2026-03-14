@@ -3,8 +3,8 @@ Tests for parser block-level element parsing.
 
 Part 3 of parser tests - validates block element conversion.
 """
-from flowdoc.core.parser import parse
-from flowdoc.core.model import Paragraph, ListBlock, Quote, Preformatted, Image, Table
+from decant.core.parser import parse
+from decant.core.model import Paragraph, ListBlock, Quote, Preformatted, Image, Table
 
 
 def test_parses_paragraph():

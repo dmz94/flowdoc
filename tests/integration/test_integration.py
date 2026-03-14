@@ -7,10 +7,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from flowdoc.core.content_selector import detect_mode
-from flowdoc.core.model import Image
-from flowdoc.core.parser import parse, extract_with_trafilatura
-from flowdoc.core.renderer import render
+from decant.core.content_selector import detect_mode
+from decant.core.model import Image
+from decant.core.parser import parse, extract_with_trafilatura
+from decant.core.renderer import render
 
 FIXTURE_DIR = Path(__file__).resolve().parent.parent.parent / "tests" / "pipeline-audit" / "test-pages"
 UNIT_FIXTURE_DIR = Path(__file__).resolve().parent.parent / "unit" / "test-data"
