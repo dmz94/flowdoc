@@ -1,0 +1,54 @@
+{
+  "fixture": "demo-decanters",
+  "corpus": "main",
+  "baselined_at": "2026-03-14T14:32:39.701030+00:00",
+  "flowdoc_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 11,
+    "headings": [
+      "You might already know about Decant",
+      "What the word means",
+      "Where the word comes from",
+      "At the dinner table",
+      "In the laboratory",
+      "On the factory floor",
+      "In the perfume world",
+      "In housing",
+      "In museums",
+      "The decanting problem",
+      "One word, many uses"
+    ],
+    "output_word_count": 1650,
+    "source_plain_word_count": 4513,
+    "word_count_ratio": 0.3656104586749391,
+    "paragraph_count": 35,
+    "avg_paragraph_words": 47.142857142857146,
+    "shortest_paragraph_words": [
+      13,
+      15,
+      20
+    ],
+    "placeholder_count": 6,
+    "placeholder_types": {
+      "image": 5,
+      "form": 1,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.14634146341463414,
+    "link_word_count": 0,
+    "prose_word_count": 1650,
+    "link_to_prose_ratio": 0.0,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

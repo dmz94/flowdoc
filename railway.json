@@ -5,7 +5,7 @@
     "buildCommand": "pip install . && pip install -r surface/requirements.txt"
   },
   "deploy": {
-    "startCommand": "cd surface && gunicorn app:app --bind 0.0.0.0:$PORT",
+    "startCommand": "cd surface && gunicorn app:app --bind 0.0.0.0:$PORT --workers 2",
     "healthcheckPath": "/healthz",
     "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE",

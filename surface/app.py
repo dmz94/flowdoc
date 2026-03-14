@@ -184,18 +184,37 @@ def convert():
                     "message": "Please provide a URL or upload a file.",
                 }), 422
 
-            # Acquire fetch slot
-            if not acquire_fetch_slot():
-                return jsonify({
-                    "status": "error",
-                    "message": "The service is busy. Please try again in a moment.",
-                }), 503
+            # Self-URL detection: read from disk instead of fetching
+            _self_url_hit = False
+            for _prefix in ("https://decant.cc/static/", "https://www.decant.cc/static/"):
+                if url.startswith(_prefix):
+                    rel_path = url[len(_prefix):]
+                    local_path = os.path.realpath(
+                        os.path.join(app.static_folder, *rel_path.split("/"))
+                    )
+                    # Guard against path traversal
+                    if local_path.startswith(os.path.realpath(app.static_folder) + os.sep) \
+                            and os.path.isfile(local_path):
+                        with open(local_path, "rb") as f:
+                            html_bytes = f.read()
+                        source = url
+                        converted_html, source_url = convert_file(html_bytes)
+                        _self_url_hit = True
+                    break
 
-            try:
-                source = url
-                converted_html, source_url = convert_url(url)
-            finally:
-                release_fetch_slot()
+            if not _self_url_hit:
+                # Acquire fetch slot
+                if not acquire_fetch_slot():
+                    return jsonify({
+                        "status": "error",
+                        "message": "The service is busy. Please try again in a moment.",
+                    }), 503
+
+                try:
+                    source = url
+                    converted_html, source_url = convert_url(url)
+                finally:
+                    release_fetch_slot()
 
         elapsed_ms = int((time.monotonic() - start) * 1000)
         log.info("convert OK source=%s elapsed=%dms", source, elapsed_ms)
