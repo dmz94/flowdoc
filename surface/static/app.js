@@ -39,10 +39,10 @@
   var FONT_SIZE_MULTIPLIERS = [0.7, 0.85, 1.0, 1.25, 1.5];
 
   var THEMES = {
-    light:    { bg: "#fafaf7", text: "#333",    link: "#1856a8", visited: "#694598", notice: { bg: "#f0f0e8", border: "#b0a870", text: "#555555" }, demo: { bg: "#eef4fa", border: "#7aabe0", text: "#2a4a6a", btnBg: "#7aabe0", btnText: "#fff" } },
-    cream:    { bg: "#f5f0e8", text: "#333",    link: "#3a6ea5", visited: "#8b5e83", notice: { bg: "#e8dfca", border: "#a08860", text: "#5b4636" }, demo: { bg: "#eae4d8", border: "#8a7a60", text: "#5b4636", btnBg: "#8a7a60", btnText: "#fff" } },
-    dark:     { bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff", notice: { bg: "rgb(55, 54, 66)", border: "rgb(140, 140, 160)", text: "rgb(200, 200, 210)" }, demo: { bg: "rgb(40, 50, 65)", border: "rgb(100, 150, 200)", text: "rgb(200, 210, 225)", btnBg: "rgb(100, 150, 200)", btnText: "#1e1e1e" } },
-    contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#00e5ff", visited: "#ff80ab", notice: { bg: "#000000", border: "#ffee32", text: "#ffffff" }, demo: { bg: "#000000", border: "#00e5ff", text: "#ffffff", btnBg: "#00e5ff", btnText: "#000" } }
+    light:    { bg: "#fafaf7", text: "#333",    link: "#1856a8", visited: "#694598", notice: { bg: "#f0f0e8", border: "#b0a870", text: "#555555" } },
+    cream:    { bg: "#f5f0e8", text: "#333",    link: "#3a6ea5", visited: "#8b5e83", notice: { bg: "#e8dfca", border: "#a08860", text: "#5b4636" } },
+    dark:     { bg: "#1e1e1e", text: "#e0e0e0", link: "#6db3f2", visited: "#c4a4ff", notice: { bg: "rgb(55, 54, 66)", border: "rgb(140, 140, 160)", text: "rgb(200, 200, 210)" } },
+    contrast: { bg: "#1a1a1a", text: "#ffd700", link: "#00e5ff", visited: "#ff80ab", notice: { bg: "#000000", border: "#ffee32", text: "#ffffff" } }
   };
 
   var WIDTH_VALUES = { narrow: "38em", medium: "48em", wide: "60em" };
@@ -87,6 +87,41 @@
     } catch (e) { /* ignore */ }
   }
 
+  // --- Demo overlay ---
+
+  function dismissDemoOverlay() {
+    var existing = document.getElementById("demo-overlay");
+    if (existing) existing.remove();
+  }
+
+  function showDemoOverlay() {
+    dismissDemoOverlay();
+
+    var overlay = document.createElement("div");
+    overlay.id = "demo-overlay";
+    overlay.className = "demo-overlay-backdrop";
+
+    var card = document.createElement("div");
+    card.className = "demo-overlay-card";
+
+    card.innerHTML =
+      '<div class="demo-overlay-badge">Demo</div>' +
+      '<p>You\u2019re looking at the demo web page, cleaned up by Decant.</p>' +
+      '<p>The original is full of ads, pop-ups, and clutter. ' +
+      'Click <strong>View Original</strong> in the toolbar to see how bad it is.</p>' +
+      '<p>When you\u2019re done, come back to ' +
+      '<strong>Help &gt; Getting Started</strong> to finish the guide.</p>' +
+      '<button type="button" class="demo-overlay-btn">Got it</button>';
+
+    overlay.appendChild(card);
+    outputSection.appendChild(overlay);
+
+    card.querySelector(".demo-overlay-btn").addEventListener("click", dismissDemoOverlay);
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) dismissDemoOverlay();
+    });
+  }
+
   // --- UI state helpers ---
 
   function showError(message, hint) {
@@ -129,6 +164,14 @@
     feedbackDown.classList.remove("active");
     feedbackExpand.classList.add("hidden");
     feedbackText.value = "";
+
+    // Show demo welcome overlay if triggered from "Try the demo"
+    if (isDemoConversion) {
+      showDemoOverlay();
+      isDemoConversion = false;
+    } else {
+      dismissDemoOverlay();
+    }
 
     applyToIframe();
   }
@@ -195,12 +238,6 @@
       css.push(".decant-notice { background-color: " + theme.notice.bg + " !important; border-left-color: " + theme.notice.border + " !important; color: " + theme.notice.text + " !important; }");
     }
 
-    // Demo welcome banner theme colors
-    if (theme.demo) {
-      css.push(".decant-demo-banner { background-color: " + theme.demo.bg + " !important; border-left-color: " + theme.demo.border + " !important; color: " + theme.demo.text + " !important; }");
-      css.push(".decant-demo-banner button { background-color: " + theme.demo.btnBg + " !important; color: " + theme.demo.btnText + " !important; }");
-    }
-
     return css.join("\n");
   }
 
@@ -220,22 +257,6 @@
     if (cls) document.body.classList.add(cls);
   }
 
-  var DEMO_BANNER_HTML =
-    '<div class="decant-demo-banner" style="' +
-      'font-family: Arial, Verdana, sans-serif; font-size: 14px; line-height: 1.6; ' +
-      'padding: 16px 20px; margin: 0 auto 16px; max-width: 48em; ' +
-      'border-left: 4px solid; border-radius: 4px;">' +
-      '<p style="margin: 0 0 8px;">You\u2019re looking at the demo web page, cleaned up by Decant. ' +
-      'The original is full of ads, pop-ups, and clutter \u2014 click ' +
-      '<strong>View Original</strong> in the toolbar to see how bad it is.</p>' +
-      '<p style="margin: 0 0 12px;">When you\u2019re done, come back to ' +
-      '<strong>Help &gt; Getting Started</strong> to finish the guide.</p>' +
-      '<button id="decant-demo-dismiss" style="' +
-        'border: none; border-radius: 4px; padding: 5px 14px; ' +
-        'font-size: 13px; font-weight: 600; cursor: pointer;">' +
-        'Got it</button>' +
-    '</div>';
-
   function applyToIframe() {
     if (!currentHtml) return;
 
@@ -250,18 +271,6 @@
       injected = injected.replace("</head>", styleTag + "</head>");
     } else {
       injected = styleTag + injected;
-    }
-
-    // Inject demo welcome banner if this is a demo conversion
-    if (isDemoConversion) {
-      var bodyIdx = injected.indexOf("<body");
-      if (bodyIdx !== -1) {
-        var bodyClose = injected.indexOf(">", bodyIdx);
-        if (bodyClose !== -1) {
-          injected = injected.slice(0, bodyClose + 1) + DEMO_BANNER_HTML + injected.slice(bodyClose + 1);
-        }
-      }
-      isDemoConversion = false;
     }
 
     outputFrame.srcdoc = injected;
@@ -287,15 +296,6 @@
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener noreferrer");
       });
-
-      // Demo banner dismiss (inline scripts blocked by sandbox)
-      var dismissBtn = doc.getElementById("decant-demo-dismiss");
-      if (dismissBtn) {
-        dismissBtn.addEventListener("click", function () {
-          var banner = dismissBtn.closest(".decant-demo-banner");
-          if (banner) banner.remove();
-        });
-      }
     } catch (e) { /* cross-origin or sandbox restriction */ }
   });
 

@@ -772,6 +772,74 @@ body {
 }
 
 /* -----------------------------------------------
+   Demo welcome overlay
+   ----------------------------------------------- */
+
+.demo-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: rgba(30, 30, 30, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.demo-overlay-card {
+  width: 420px;
+  max-width: calc(100% - 40px);
+  background-color: var(--popup-bg);
+  color: var(--popup-text);
+  border: 1px solid var(--popup-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px var(--popup-shadow);
+  padding: 28px 28px 24px;
+  font-family: system-ui, sans-serif;
+  text-align: center;
+}
+
+.demo-overlay-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--icon-fill);
+  border: 1px solid var(--popup-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 16px;
+}
+
+.demo-overlay-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+.demo-overlay-card p:last-of-type {
+  margin-bottom: 20px;
+}
+
+.demo-overlay-btn {
+  display: inline-block;
+  padding: 8px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--icon-fill);
+  border-radius: 6px;
+  background: var(--icon-fill);
+  color: var(--toolbar-bg);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.demo-overlay-btn:hover {
+  opacity: 0.85;
+}
+
+/* -----------------------------------------------
    Footer
    ----------------------------------------------- */
 
