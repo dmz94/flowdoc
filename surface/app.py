@@ -14,7 +14,7 @@ import time
 from functools import wraps
 
 import requests as http_requests
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template, make_response
 
 import config
 from convert import convert_url, convert_file, ConvertError
@@ -138,7 +138,13 @@ def feedback():
 
 @app.route("/test-page")
 def test_page():
-    return send_from_directory(app.static_folder, "demo/index.html")
+    path = os.path.join(app.static_folder, "demo", "index.html")
+    with open(path, "r", encoding="utf-8") as f:
+        html = f.read()
+    html = html.replace("<head>", '<head>\n<base href="/static/demo/">', 1)
+    resp = make_response(html)
+    resp.headers["Content-Type"] = "text/html; charset=utf-8"
+    return resp
 
 
 @app.route("/")
