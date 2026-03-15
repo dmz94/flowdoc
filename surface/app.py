@@ -191,21 +191,45 @@ def convert():
 
             # Self-URL detection: read from disk instead of fetching
             _self_url_hit = False
-            for _prefix in ("https://decant.cc/static/", "https://www.decant.cc/static/"):
-                if url.startswith(_prefix):
-                    rel_path = url[len(_prefix):]
-                    local_path = os.path.realpath(
-                        os.path.join(app.static_folder, *rel_path.split("/"))
-                    )
-                    # Guard against path traversal
-                    if local_path.startswith(os.path.realpath(app.static_folder) + os.sep) \
-                            and os.path.isfile(local_path):
-                        with open(local_path, "rb") as f:
-                            html_bytes = f.read()
-                        source = url
-                        converted_html, source_url = convert_file(html_bytes)
-                        _self_url_hit = True
+
+            # Vanity routes that map to static files
+            _VANITY_ROUTES = {
+                "/demo": "demo/index.html",
+            }
+            for _origin in ("https://decant.cc", "https://www.decant.cc"):
+                for _vanity, _static_rel in _VANITY_ROUTES.items():
+                    if url.rstrip("/") == _origin + _vanity:
+                        local_path = os.path.realpath(
+                            os.path.join(app.static_folder, *_static_rel.split("/"))
+                        )
+                        if local_path.startswith(os.path.realpath(app.static_folder) + os.sep) \
+                                and os.path.isfile(local_path):
+                            with open(local_path, "rb") as f:
+                                html_bytes = f.read()
+                            source = url
+                            converted_html, source_url = convert_file(html_bytes)
+                            _self_url_hit = True
+                        break
+                if _self_url_hit:
                     break
+
+            # Static file URLs (e.g. /static/demo/index.html)
+            if not _self_url_hit:
+                for _prefix in ("https://decant.cc/static/", "https://www.decant.cc/static/"):
+                    if url.startswith(_prefix):
+                        rel_path = url[len(_prefix):]
+                        local_path = os.path.realpath(
+                            os.path.join(app.static_folder, *rel_path.split("/"))
+                        )
+                        # Guard against path traversal
+                        if local_path.startswith(os.path.realpath(app.static_folder) + os.sep) \
+                                and os.path.isfile(local_path):
+                            with open(local_path, "rb") as f:
+                                html_bytes = f.read()
+                            source = url
+                            converted_html, source_url = convert_file(html_bytes)
+                            _self_url_hit = True
+                        break
 
             if not _self_url_hit:
                 # Acquire fetch slot
