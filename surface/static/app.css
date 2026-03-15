@@ -1073,6 +1073,60 @@ body.loaded {
   opacity: 0;
 }
 
+/* -----------------------------------------------
+   Tablet breakpoint
+   ----------------------------------------------- */
+
+@media (max-width: 768px) {
+  /* Tighten header */
+  .site-header {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Reduce container gutter */
+  .container {
+    padding: 1.5rem;
+    padding-left: 60px;
+  }
+
+  /* Toolbar gutter adjustment */
+  .toolbar-container {
+    margin-left: -44px;
+  }
+
+  /* Clamp popup widths so they don't overflow right edge */
+  .popup-body {
+    width: 280px;
+  }
+
+  .theme-popup-body {
+    width: 230px;
+  }
+
+  .save-popup-body {
+    width: 180px;
+  }
+
+  #help-getting-started,
+  #help-about {
+    width: 380px;
+  }
+
+  #help-chooser {
+    width: 180px;
+  }
+
+  /* Tighten footer */
+  .site-footer {
+    padding: 1rem 1rem;
+  }
+
+  /* Toast reposition for narrower gutter */
+  .toast {
+    left: 76px;
+  }
+}
+
 /* Utility */
 .hidden {
   display: none;
