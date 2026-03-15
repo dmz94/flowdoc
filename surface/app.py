@@ -14,7 +14,7 @@ import time
 from functools import wraps
 
 import requests as http_requests
-from flask import Flask, request, jsonify, render_template, redirect
+from flask import Flask, request, jsonify, render_template, send_from_directory
 
 import config
 from convert import convert_url, convert_file, ConvertError
@@ -138,7 +138,7 @@ def feedback():
 
 @app.route("/test-page")
 def test_page():
-    return redirect("/static/demo/index.html")
+    return send_from_directory(app.static_folder, "demo/index.html")
 
 
 @app.route("/")
