@@ -9,10 +9,16 @@ AIRTABLE_API_TOKEN = os.environ.get("AIRTABLE_API_TOKEN", "")
 AIRTABLE_BASE_ID = os.environ.get("AIRTABLE_BASE_ID", "")
 AIRTABLE_TABLE_NAME = "Feedback"
 
-# HTTP Basic Auth (development credentials — change before deploy)
+# Login credentials (development defaults — override via env vars in production)
 BASIC_AUTH_ENABLED = True
 BASIC_AUTH_USERNAME = os.environ.get("BASIC_AUTH_USERNAME", "decant")
 BASIC_AUTH_PASSWORD = os.environ.get("BASIC_AUTH_PASSWORD", "preview")
+
+# Flask session
+FLASK_SECRET_KEY = os.environ.get(
+    "FLASK_SECRET_KEY",
+    "dev-insecure-change-me-a7f3b9c1e2d4",
+)
 
 # URL fetching
 REQUEST_TIMEOUT = 20  # seconds

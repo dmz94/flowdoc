@@ -2,19 +2,24 @@
 Flask application for the Decant hosted surface.
 
 Routes:
-    GET  /healthz  — Health check (no auth).
-    POST /feedback — Log user feedback as JSON (no auth).
-    GET  /         — Serve the index page.
-    POST /convert  — Accept URL or file, return converted HTML as JSON.
+    GET  /healthz   — Health check (no auth).
+    POST /feedback  — Log user feedback as JSON (no auth).
+    GET  /login     — Login form.
+    POST /login     — Authenticate and set session.
+    GET  /          — Serve the index page (session required).
+    POST /convert   — Accept URL or file, return converted HTML as JSON.
 """
 import json
 import logging
 import os
 import time
-from functools import wraps
+from datetime import timedelta
 
 import requests as http_requests
-from flask import Flask, request, jsonify, render_template, make_response
+from flask import (
+    Flask, request, jsonify, render_template, make_response,
+    session, redirect, url_for,
+)
 
 import config
 from convert import convert_url, convert_file, ConvertError
@@ -24,6 +29,8 @@ from rate_limit import (
 )
 
 app = Flask(__name__)
+app.secret_key = config.FLASK_SECRET_KEY
+app.permanent_session_lifetime = timedelta(days=30)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -33,25 +40,20 @@ log = logging.getLogger("decant")
 
 
 # ---------------------------------------------------------------------------
-# HTTP Basic Auth
+# Login / Session Auth
 # ---------------------------------------------------------------------------
 
-def _check_auth(username: str, password: str) -> bool:
-    return (
-        username == config.BASIC_AUTH_USERNAME
-        and password == config.BASIC_AUTH_PASSWORD
-    )
-
-
-_AUTH_PAGE_HTML = """\
+_LOGIN_PAGE_HTML = """\
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Decant</title>
+<title>Decant — Log in</title>
+<link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
 <style>
-body {
+body {{
   font-family: system-ui, -apple-system, sans-serif;
   background: #fafaf7;
   color: #333;
@@ -61,22 +63,72 @@ body {
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-}
-.card {
-  max-width: 420px;
+}}
+.card {{
+  max-width: 360px;
+  width: 100%;
   padding: 2rem;
-}
-.logo {
+}}
+.logo {{
   height: 36px;
   width: auto;
   margin-bottom: 1.5rem;
-}
-p {
-  font-size: 15px;
+}}
+p {{
+  font-size: 14px;
   line-height: 1.6;
+  margin: 0 0 1.25rem;
+}}
+.error {{
+  color: #cc3333;
+  font-size: 13px;
   margin: 0 0 1rem;
-}
-a { color: #1856a8; }
+}}
+form {{
+  text-align: left;
+}}
+label {{
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}}
+input[type="text"],
+input[type="password"] {{
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 15px;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  box-sizing: border-box;
+  background: #fff;
+}}
+input:focus {{
+  outline: none;
+  border-color: rgb(91,91,102);
+}}
+button {{
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 15px;
+  font-weight: 500;
+  background: rgb(91,91,102);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}}
+button:hover {{
+  opacity: 0.85;
+}}
+.contact {{
+  margin-top: 1.5rem;
+  font-size: 13px;
+  text-align: center;
+}}
+a {{ color: #1856a8; }}
 </style>
 </head>
 <body>
@@ -95,30 +147,48 @@ a { color: #1856a8; }
     </g>
   </svg>
   <p>Decant is in early testing. If you have been invited, check your invite message for the username and password.</p>
-  <p>If you need help, contact <a href="mailto:feedback@decant.cc">feedback@decant.cc</a></p>
+  {error}
+  <form method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" autocomplete="username" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required>
+    <button type="submit">Log in</button>
+  </form>
+  <p class="contact">If you need help, contact <a href="mailto:feedback@decant.cc">feedback@decant.cc</a></p>
 </div>
 </body>
 </html>
 """
 
 
-def _auth_required_response():
-    resp = make_response(_AUTH_PAGE_HTML, 401)
-    resp.headers["WWW-Authenticate"] = 'Basic realm="Decant"'
-    resp.headers["Content-Type"] = "text/html; charset=utf-8"
-    return resp
+@app.before_request
+def _require_login():
+    if not config.BASIC_AUTH_ENABLED:
+        return None
+    # Routes that don't require auth
+    open_paths = ("/login", "/healthz", "/feedback", "/static/")
+    path = request.path
+    if any(path == p or path.startswith(p) for p in open_paths):
+        return None
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+    return None
 
 
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        if not config.BASIC_AUTH_ENABLED:
-            return f(*args, **kwargs)
-        auth = request.authorization
-        if not auth or not _check_auth(auth.username, auth.password):
-            return _auth_required_response()
-        return f(*args, **kwargs)
-    return decorated
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error_html = ""
+    if request.method == "POST":
+        username = request.form.get("username", "")
+        password = request.form.get("password", "")
+        if (username == config.BASIC_AUTH_USERNAME
+                and password == config.BASIC_AUTH_PASSWORD):
+            session.permanent = True
+            session["logged_in"] = True
+            return redirect(url_for("index"))
+        error_html = '<p class="error">Incorrect username or password.</p>'
+    return make_response(_LOGIN_PAGE_HTML.format(error=error_html))
 
 
 # ---------------------------------------------------------------------------
@@ -206,14 +276,12 @@ def test_page():
 
 
 @app.route("/")
-@requires_auth
 def index():
     prefilled_url = request.args.get("url", "")
     return render_template("index.html", prefilled_url=prefilled_url)
 
 
 @app.route("/convert", methods=["POST"])
-@requires_auth
 def convert():
     start = time.monotonic()
     source = None
