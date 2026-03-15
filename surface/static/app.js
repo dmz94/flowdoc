@@ -230,7 +230,7 @@
       '<strong>View Original</strong> in the toolbar to see how bad it is.</p>' +
       '<p style="margin: 0 0 12px;">When you\u2019re done, come back to ' +
       '<strong>Help &gt; Getting Started</strong> to finish the guide.</p>' +
-      '<button onclick="this.parentNode.remove()" style="' +
+      '<button id="decant-demo-dismiss" style="' +
         'border: none; border-radius: 4px; padding: 5px 14px; ' +
         'font-size: 13px; font-weight: 600; cursor: pointer;">' +
         'Got it</button>' +
@@ -287,6 +287,15 @@
         a.setAttribute("target", "_blank");
         a.setAttribute("rel", "noopener noreferrer");
       });
+
+      // Demo banner dismiss (inline scripts blocked by sandbox)
+      var dismissBtn = doc.getElementById("decant-demo-dismiss");
+      if (dismissBtn) {
+        dismissBtn.addEventListener("click", function () {
+          var banner = dismissBtn.closest(".decant-demo-banner");
+          if (banner) banner.remove();
+        });
+      }
     } catch (e) { /* cross-origin or sandbox restriction */ }
   });
 
