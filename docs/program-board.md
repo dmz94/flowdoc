@@ -84,6 +84,13 @@ First tester round active.
   manual (build + twine upload). A GitHub Actions workflow
   triggered by version tags would automate the release
   pipeline.
+- **Contributing, Security, and Acknowledgments sections** --
+  Add CONTRIBUTING.md, SECURITY.md, and an Acknowledgments
+  section to the README. Follow the pattern used by similar
+  open-source projects (contributor guidelines, vulnerability
+  reporting instructions, credits for tools and people).
+  Reference: https://github.com/TobiiNT/ClaudeTracker for
+  a good example of these sections.
 
 ## Known Issues (v1 accepted)
 
