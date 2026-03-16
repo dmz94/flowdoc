@@ -1125,6 +1125,93 @@ body.loaded {
   .toast {
     left: 76px;
   }
+
+  /* --- Tap target sizing (44px minimum for touch devices) --- */
+
+  .toolbar-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Toolbar width to match larger buttons */
+  .toolbar {
+    width: 56px;
+    padding-inline: 6px;
+  }
+
+  /* Adjust container gutter for wider toolbar */
+  .container {
+    padding-left: 72px;
+  }
+
+  /* Adjust toolbar container offset for wider toolbar */
+  .toolbar-container {
+    margin-left: -56px;
+  }
+
+  /* Font, width, spacing buttons */
+  .font-btn,
+  .width-btn,
+  .spacing-btn {
+    padding: 10px 4px;
+    font-size: 0.85rem;
+  }
+
+  /* Theme swatches */
+  .theme-swatch {
+    padding: 10px;
+  }
+
+  /* Save and help-chooser buttons */
+  .save-action-btn {
+    padding: 12px;
+  }
+
+  /* Reset button */
+  .reset-btn {
+    padding: 10px 12px;
+  }
+
+  /* Help back button */
+  .help-back-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Try demo button */
+  .try-demo-btn {
+    padding: 10px 14px;
+  }
+
+  /* Feedback thumbs */
+  .feedback-thumb {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Feedback text input and submit button */
+  .feedback-text-inline {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .feedback-submit-inline {
+    height: 44px;
+    padding: 4px 14px;
+    font-size: 14px;
+  }
+
+  /* URL clear button */
+  .url-clear {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  /* Range slider -- bigger touch target */
+  .range-slider {
+    height: 44px;
+  }
 }
 
 /* -----------------------------------------------
