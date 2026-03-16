@@ -416,6 +416,94 @@
     closeAllDropdowns();
   });
 
+  // --- Bottom sheet swipe-to-dismiss (phone only) ---
+
+  var phoneMQ = window.matchMedia("(max-width: 430px)");
+
+  document.querySelectorAll(".dropdown-popup").forEach(function (popup) {
+    var startY = 0;
+    var startTime = 0;
+    var dragInitiated = false;
+    var dragRejected = false;
+    var currentDeltaY = 0;
+
+    function hasScrollableContent(el) {
+      var children = el.querySelectorAll(".help-popup-body, .popup-body, .theme-popup-body, .save-popup-body");
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].scrollHeight > children[i].clientHeight) return children[i];
+      }
+      return null;
+    }
+
+    function resetPopup() {
+      popup.style.transform = "";
+      popup.style.opacity = "";
+      popup.classList.remove("dragging", "dismissing");
+    }
+
+    popup.addEventListener("touchstart", function (e) {
+      if (!phoneMQ.matches) return;
+      var touch = e.touches[0];
+      startY = touch.clientY;
+      startTime = Date.now();
+      dragInitiated = false;
+      dragRejected = false;
+      currentDeltaY = 0;
+    }, { passive: true });
+
+    popup.addEventListener("touchmove", function (e) {
+      if (!phoneMQ.matches || dragRejected) return;
+      var touch = e.touches[0];
+      var deltaY = touch.clientY - startY;
+
+      if (!dragInitiated) {
+        if (deltaY <= 0) {
+          dragRejected = true;
+          return;
+        }
+        var popupRect = popup.getBoundingClientRect();
+        var touchInHandle = (startY - popupRect.top) < 24;
+        var scrollable = hasScrollableContent(popup);
+        if (!touchInHandle && scrollable && scrollable.scrollTop > 0) {
+          dragRejected = true;
+          return;
+        }
+        dragInitiated = true;
+        popup.classList.add("dragging");
+      }
+
+      e.preventDefault();
+      currentDeltaY = deltaY * 0.6;
+      popup.style.transform = "translateY(" + currentDeltaY + "px)";
+    }, { passive: false });
+
+    popup.addEventListener("touchend", function () {
+      if (!phoneMQ.matches || !dragInitiated) return;
+      popup.classList.remove("dragging");
+
+      var elapsed = Date.now() - startTime;
+      var velocity = currentDeltaY / elapsed;
+      var popupHeight = popup.offsetHeight;
+
+      if (velocity > 0.5 || currentDeltaY > popupHeight * 0.3) {
+        popup.classList.add("dismissing");
+        popup.style.transform = "translateY(" + (popupHeight + 40) + "px)";
+        popup.style.opacity = "0";
+        popup.addEventListener("transitionend", function onEnd() {
+          popup.removeEventListener("transitionend", onEnd);
+          closeAllDropdowns();
+          resetPopup();
+        });
+      } else {
+        popup.style.transform = "translateY(0)";
+        popup.addEventListener("transitionend", function onEnd() {
+          popup.removeEventListener("transitionend", onEnd);
+          resetPopup();
+        });
+      }
+    }, { passive: true });
+  });
+
   // --- Conversion ---
 
   function handleConversion(formData, sourceUrl) {
