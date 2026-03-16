@@ -1235,6 +1235,7 @@ body.loaded {
     margin-left: 0;
     z-index: 100;
     padding-bottom: env(safe-area-inset-bottom, 0px);
+    background-color: var(--toolbar-bg);
   }
 
   .toolbar {
@@ -1317,11 +1318,6 @@ body.loaded {
     transform: translateX(-50%);
     top: auto;
     bottom: 70px;
-  }
-
-  /* --- Page wrapper: room for fixed bottom bar --- */
-  .page-wrapper {
-    padding-bottom: 56px;
   }
 
   /* --- Footer --- */
