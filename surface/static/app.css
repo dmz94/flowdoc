@@ -1083,17 +1083,6 @@ body.loaded {
     padding: 0.75rem 1rem;
   }
 
-  /* Reduce container gutter */
-  .container {
-    padding: 1.5rem;
-    padding-left: 60px;
-  }
-
-  /* Toolbar gutter adjustment */
-  .toolbar-container {
-    margin-left: -44px;
-  }
-
   /* Clamp popup widths so they don't overflow right edge */
   .popup-body {
     width: 280px;
