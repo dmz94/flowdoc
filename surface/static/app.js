@@ -162,9 +162,19 @@
 
   // --- UI state helpers ---
 
-  function showError(message, hint) {
+  function showError(message, hint, hintUrl) {
     errorMessage.textContent = message;
-    errorHint.textContent = hint || "";
+    errorHint.textContent = "";
+    if (hint && hintUrl) {
+      var link = document.createElement("a");
+      link.href = hintUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = hint;
+      errorHint.appendChild(link);
+    } else {
+      errorHint.textContent = hint || "";
+    }
     errorContainer.classList.remove("hidden");
     outputSection.classList.add("hidden");
     convertingStatus.classList.add("hidden");
@@ -220,15 +230,19 @@
   function handleErrorResponse(resp, data) {
     var message = (data && data.message) || "Conversion failed.";
     var hint = "";
+    var hintUrl = "";
     var status = resp.status;
 
-    if (status === 429) {
+    if (data && data.hint) {
+      hint = data.hint;
+      hintUrl = data.hint_url || "";
+    } else if (status === 429) {
       hint = "You can try again shortly.";
     } else if (status === 500) {
       hint = "If this keeps happening, the page may not be compatible.";
     }
 
-    showError(message, hint);
+    showError(message, hint, hintUrl);
   }
 
   // --- CSS injection into iframe ---

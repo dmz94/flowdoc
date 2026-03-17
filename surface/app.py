@@ -447,6 +447,8 @@ def convert():
         return jsonify({
             "status": "error",
             "message": e.user_message,
+            "hint": "See what kinds of pages work well.",
+            "hint_url": "/what-works",
         }), 422
 
     except Exception:
