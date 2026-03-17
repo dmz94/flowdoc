@@ -19,8 +19,10 @@
   var fontSizeSlider = document.getElementById("font-size-slider");
   var resetBtn = document.getElementById("reset-btn");
   var feedbackWidget = document.getElementById("feedback-widget");
-  var feedbackUp = document.getElementById("feedback-up");
-  var feedbackDown = document.getElementById("feedback-down");
+  var feedbackOptions = document.getElementById("feedback-widget");
+  var feedbackRadios = document.querySelectorAll('input[name="feedback-rating"]');
+  var feedbackThanks = document.getElementById("feedback-thanks");
+  var feedbackUpdateBtn = document.getElementById("feedback-update");
   var feedbackExpand = document.getElementById("feedback-expand");
   var feedbackText = document.getElementById("feedback-text");
   var feedbackSubmit = document.getElementById("feedback-submit");
@@ -85,6 +87,37 @@
     try {
       localStorage.setItem("decant_settings", JSON.stringify(settings));
     } catch (e) { /* ignore */ }
+  }
+
+  // --- Feedback state ---
+
+  var feedbackInteractionId = "";
+  var feedbackSubmitted = false;
+
+  function generateInteractionId() {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+
+  function getViewport() {
+    var w = window.innerWidth;
+    if (w <= 430) return "phone";
+    if (w <= 768) return "tablet";
+    return "desktop";
+  }
+
+  function getSourceDomain(url) {
+    try { return new URL(url).hostname; } catch (e) { return ""; }
+  }
+
+  function getSelectedRating() {
+    var checked = document.querySelector('input[name="feedback-rating"]:checked');
+    return checked ? checked.value : "";
   }
 
   // --- Demo overlay ---
@@ -165,10 +198,13 @@
     });
 
     // Reset feedback widget
-    feedbackUp.classList.remove("sent");
-    feedbackDown.classList.remove("sent");
+    feedbackRadios.forEach(function (r) { r.checked = false; });
     feedbackExpand.classList.add("hidden");
+    feedbackThanks.classList.add("hidden");
     feedbackText.value = "";
+    feedbackInteractionId = generateInteractionId();
+    feedbackSubmitted = false;
+    feedbackWidget.classList.remove("feedback-submitted");
 
     // Show demo welcome overlay if triggered from "Try the demo"
     if (isDemoConversion) {
@@ -744,41 +780,70 @@
 
   function sendFeedback(rating, text) {
     var source = currentSourceUrl || "file_upload";
+    var now = new Date().toISOString();
+    var payload = {
+      interaction_id: feedbackInteractionId,
+      source: source,
+      source_domain: getSourceDomain(source),
+      rating: rating,
+      text: text || "",
+      viewport: getViewport(),
+      theme: settings.theme,
+      timestamp: now
+    };
+    if (!feedbackSubmitted) {
+      payload.created_at = now;
+    }
+    payload.updated_at = now;
+
     fetch("/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        source: source,
-        rating: rating,
-        text: text || "",
-        timestamp: new Date().toISOString()
-      })
+      body: JSON.stringify(payload)
     }).catch(function () { /* silent */ });
   }
 
-  function handleThumbClick(rating, btn, other) {
-    if (btn.classList.contains("sent")) return;
-    sendFeedback(rating, "");
-    btn.classList.add("sent");
-    other.classList.remove("sent");
-    feedbackExpand.classList.remove("hidden");
-  }
-
-  feedbackUp.addEventListener("click", function () {
-    handleThumbClick("up", feedbackUp, feedbackDown);
+  // Radio selection: expand comment, update placeholder
+  feedbackRadios.forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      if (feedbackSubmitted) {
+        // Re-opening after submit: show form again
+        feedbackThanks.classList.add("hidden");
+        feedbackWidget.classList.remove("feedback-submitted");
+      }
+      feedbackExpand.classList.remove("hidden");
+      // Context-sensitive placeholder
+      if (radio.value === "up") {
+        feedbackText.placeholder = "What worked well? (optional)";
+      } else {
+        feedbackText.placeholder = "What went wrong? (optional)";
+      }
+    });
   });
 
-  feedbackDown.addEventListener("click", function () {
-    handleThumbClick("down", feedbackDown, feedbackUp);
-  });
-
+  // Send button: submit and show confirmation
   feedbackSubmit.addEventListener("click", function () {
-    var rating = feedbackUp.classList.contains("sent") ? "up" : "down";
+    var rating = getSelectedRating();
+    if (!rating) return;
     var text = feedbackText.value.trim();
-    if (text) {
-      sendFeedback(rating, text);
-      feedbackText.value = "";
-      feedbackExpand.classList.add("hidden");
+    sendFeedback(rating, text);
+    feedbackSubmitted = true;
+    feedbackExpand.classList.add("hidden");
+    feedbackThanks.classList.remove("hidden");
+    feedbackWidget.classList.add("feedback-submitted");
+    feedbackText.value = "";
+  });
+
+  // Update button: re-open for editing
+  feedbackUpdateBtn.addEventListener("click", function () {
+    feedbackThanks.classList.add("hidden");
+    feedbackWidget.classList.remove("feedback-submitted");
+    feedbackExpand.classList.remove("hidden");
+    var rating = getSelectedRating();
+    if (rating === "up") {
+      feedbackText.placeholder = "What worked well? (optional)";
+    } else {
+      feedbackText.placeholder = "What went wrong? (optional)";
     }
   });
 

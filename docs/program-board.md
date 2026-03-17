@@ -94,10 +94,6 @@ First tester round active.
 
 ## Known Issues (v1 accepted)
 
-- **Feedback double-send** -- Clicking a thumb POSTs
-  immediately. If the user then types a comment and clicks
-  Send, a second POST fires. Two Airtable rows per
-  feedback-with-comment. Acceptable at tester scale.
 - **Demo page social proof line** -- "2,847 wine
   enthusiasts..." leaks through Trafilatura extraction.
   Shows testers where engine gaps are. Not worth a

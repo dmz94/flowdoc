@@ -219,25 +219,53 @@ def feedback():
     data = request.get_json(silent=True)
     if not data:
         return jsonify({"status": "error", "message": "Invalid JSON."}), 400
+
     rating = data.get("rating", "")
     source = data.get("source", "")
-    if rating not in ("up", "down"):
-        return jsonify({"status": "error", "message": "Rating must be 'up' or 'down'."}), 400
+    interaction_id = data.get("interaction_id", "")
+
+    if rating not in ("up", "down", "broken"):
+        return jsonify({"status": "error", "message": "Rating must be 'up', 'down', or 'broken'."}), 400
     if not source:
         return jsonify({"status": "error", "message": "Source is required."}), 400
+    if not interaction_id:
+        return jsonify({"status": "error", "message": "Interaction ID is required."}), 400
+
     payload = {
         "event": "feedback",
+        "interaction_id": interaction_id,
         "source": source,
+        "source_domain": data.get("source_domain", ""),
         "rating": rating,
         "text": data.get("text", ""),
+        "viewport": data.get("viewport", ""),
+        "theme": data.get("theme", ""),
         "timestamp": data.get("timestamp", ""),
     }
     print(json.dumps(payload), flush=True)
 
     if config.AIRTABLE_API_TOKEN and config.AIRTABLE_BASE_ID:
         client_ip = get_client_ip(request)
+        now = data.get("updated_at", data.get("timestamp", ""))
+        fields = {
+            "interaction_id": interaction_id,
+            "timestamp": payload["timestamp"],
+            "source": payload["source"],
+            "source_domain": payload["source_domain"],
+            "rating": payload["rating"],
+            "text": payload["text"],
+            "viewport": payload["viewport"],
+            "theme": payload["theme"],
+            "ip": client_ip,
+            "updated_at": now,
+        }
+        # Only set created_at on first submission
+        created_at = data.get("created_at", "")
+        if created_at:
+            fields["created_at"] = created_at
+
         try:
-            http_requests.post(
+            http_requests.patch(
                 "https://api.airtable.com/v0/{}/{}".format(
                     config.AIRTABLE_BASE_ID, config.AIRTABLE_TABLE_NAME,
                 ),
@@ -246,21 +274,18 @@ def feedback():
                     "Content-Type": "application/json",
                 },
                 json={
+                    "performUpsert": {
+                        "fieldsToMergeOn": ["interaction_id"]
+                    },
                     "records": [{
-                        "fields": {
-                            "timestamp": payload["timestamp"],
-                            "source": payload["source"],
-                            "rating": payload["rating"],
-                            "text": payload["text"],
-                            "ip": client_ip,
-                        }
+                        "fields": fields
                     }]
                 },
                 timeout=5,
             )
-            log.info("Feedback sent to Airtable")
+            log.info("Feedback upserted to Airtable")
         except Exception as e:
-            log.warning("Airtable POST failed: %s", str(e))
+            log.warning("Airtable upsert failed: %s", str(e))
 
     return jsonify({"status": "ok"})
 

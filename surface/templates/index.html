@@ -298,7 +298,7 @@
 
                 <div class="help-section" style="border-bottom:none">
                   <p class="help-section-heading">Feedback</p>
-                  <p>After every conversion, you will see a thumbs up/down bar. Let us know how it went -- it helps us improve.</p>
+                  <p>After every conversion, rate the result: Good, Bad, or Broken. You can add an optional comment. This helps us improve.</p>
                 </div>
               </div>
 
@@ -391,27 +391,51 @@
     </div>
 
     <section id="output" class="output-zone hidden">
-      <div id="feedback-widget" class="feedback-bar action-only hidden">
-        <button type="button" class="feedback-thumb" id="feedback-up" aria-label="Thumbs up" title="Give positive feedback">
-          <svg width="20" height="20" viewBox="0 0 16 16" fill="none"
-               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 14H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2"/>
-            <path d="M5 7l2-5a1.5 1.5 0 0 1 1.5 1.5V6h3.28a1 1 0 0 1 .98 1.22l-1.12 5A1 1 0 0 1 10.66 13H5V7z"/>
-          </svg>
-        </button>
-        <button type="button" class="feedback-thumb" id="feedback-down" aria-label="Thumbs down" title="Give negative feedback">
-          <svg width="20" height="20" viewBox="0 0 16 16" fill="none"
-               stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 2h2a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-2"/>
-            <path d="M11 9l-2 5a1.5 1.5 0 0 1-1.5-1.5V10H4.22a1 1 0 0 1-.98-1.22l1.12-5A1 1 0 0 1 5.34 3H11v6z"/>
-          </svg>
-        </button>
-        <span class="feedback-prompt">How was this conversion?</span>
+      <fieldset id="feedback-widget" class="feedback-bar action-only hidden">
+        <legend class="feedback-prompt">How was this conversion?</legend>
+        <div class="feedback-options" role="radiogroup" aria-label="Rate this conversion">
+          <input type="radio" class="feedback-radio" id="fb-up" name="feedback-rating" value="up">
+          <label class="feedback-option" for="fb-up">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M5 14H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h2"/>
+              <path d="M5 7l2-5a1.5 1.5 0 0 1 1.5 1.5V6h3.28a1 1 0 0 1 .98 1.22l-1.12 5A1 1 0 0 1 10.66 13H5V7z"/>
+            </svg>
+            <span class="feedback-label">Good</span>
+          </label>
+          <input type="radio" class="feedback-radio" id="fb-down" name="feedback-rating" value="down">
+          <label class="feedback-option" for="fb-down">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M11 2h2a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-2"/>
+              <path d="M11 9l-2 5a1.5 1.5 0 0 1-1.5-1.5V10H4.22a1 1 0 0 1-.98-1.22l1.12-5A1 1 0 0 1 5.34 3H11v6z"/>
+            </svg>
+            <span class="feedback-label">Bad</span>
+          </label>
+          <input type="radio" class="feedback-radio" id="fb-broken" name="feedback-rating" value="broken">
+          <label class="feedback-option" for="fb-broken">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true">
+              <path d="M8 2L1.5 13h13L8 2z"/>
+              <path d="M8 6.5v3"/>
+              <path d="M8 11.5h.01"/>
+            </svg>
+            <span class="feedback-label">Broken</span>
+          </label>
+        </div>
         <div id="feedback-expand" class="feedback-inline hidden">
-          <input type="text" id="feedback-text" class="feedback-text-inline" placeholder="Any details? (optional)">
+          <input type="text" id="feedback-text" class="feedback-text-inline"
+                 placeholder="Any details? (optional)">
           <button type="button" id="feedback-submit" class="feedback-submit-inline">Send</button>
         </div>
-      </div>
+        <div id="feedback-thanks" class="feedback-thanks hidden">
+          <span class="feedback-thanks-text">Thanks!</span>
+          <button type="button" id="feedback-update" class="feedback-update-btn">Update</button>
+        </div>
+      </fieldset>
       <iframe id="output-frame" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </section>
 
