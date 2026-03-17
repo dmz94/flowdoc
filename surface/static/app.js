@@ -806,6 +806,7 @@
   // Radio selection: expand comment, update placeholder
   feedbackRadios.forEach(function (radio) {
     radio.addEventListener("change", function () {
+      sendFeedback(radio.value, "");
       if (feedbackSubmitted) {
         // Re-opening after submit: show form again
         feedbackThanks.classList.add("hidden");
@@ -832,6 +833,13 @@
     feedbackThanks.classList.remove("hidden");
     feedbackWidget.classList.add("feedback-submitted");
     feedbackText.value = "";
+  });
+
+  feedbackText.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      feedbackSubmit.click();
+    }
   });
 
   // Update button: re-open for editing
