@@ -66,7 +66,8 @@
     </div>
 
     <div class="ww-back">
-      <p>Close this tab to return to Decant.</p>
+      <button type="button" class="ww-close-btn" onclick="window.close()">Close this tab</button>
+      <p class="ww-close-fallback" style="display:none">Close this tab to return to Decant.</p>
     </div>
 
   </div>
@@ -92,6 +93,16 @@
     }
   } catch (e) {}
   document.body.classList.add("loaded");
+
+  // If window.close() was blocked, show fallback text
+  document.querySelector(".ww-close-btn").addEventListener("click", function () {
+    setTimeout(function () {
+      var btn = document.querySelector(".ww-close-btn");
+      var fallback = document.querySelector(".ww-close-fallback");
+      if (btn) btn.style.display = "none";
+      if (fallback) fallback.style.display = "block";
+    }, 500);
+  });
 })();
 </script>
 </body>

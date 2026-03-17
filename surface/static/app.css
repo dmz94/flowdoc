@@ -800,6 +800,10 @@ body {
   background-color: var(--toolbar-button-hover);
 }
 
+.help-popup-body a.try-demo-btn {
+  text-decoration: none;
+}
+
 /* Code in help popout */
 .help-popup-body code {
   font-family: monospace;
@@ -1334,9 +1338,27 @@ body.loaded {
   display: inline-block;
 }
 
-.ww-back p {
-  font-size: 0.9rem;
-  color: var(--popup-text);
+.ww-close-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  border: 1px solid var(--popup-border, #ccc);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--popup-text, #666);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.ww-close-btn:hover {
+  background-color: var(--toolbar-button-hover, rgba(0,0,0,0.05));
+}
+
+.ww-close-fallback {
+  font-size: 13px;
+  color: var(--popup-text, #999);
   opacity: 0.6;
   margin: 0;
 }
