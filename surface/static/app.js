@@ -806,6 +806,7 @@
   // Radio selection: expand comment, update placeholder
   feedbackRadios.forEach(function (radio) {
     radio.addEventListener("change", function () {
+      console.log("RADIO CHANGE", { value: radio.value, submitted: feedbackSubmitted });
       sendFeedback(radio.value, "");
       if (feedbackSubmitted) {
         // Re-opening after submit: show form again
@@ -824,6 +825,7 @@
 
   // Send button: submit and show confirmation
   feedbackSubmit.addEventListener("click", function () {
+    console.log("SEND CLICKED", { rating: getSelectedRating(), text: feedbackText.value.trim(), submitted: feedbackSubmitted });
     var rating = getSelectedRating();
     if (!rating) return;
     var text = feedbackText.value.trim();
@@ -844,6 +846,7 @@
 
   // Update button: re-open for editing
   feedbackUpdateBtn.addEventListener("click", function () {
+    console.log("UPDATE CLICKED", { rating: getSelectedRating(), submitted: feedbackSubmitted });
     feedbackThanks.classList.add("hidden");
     feedbackWidget.classList.remove("feedback-submitted");
     feedbackExpand.classList.remove("hidden");
