@@ -63,9 +63,9 @@ First tester round active.
   toolbar does not work on small screens. Needs a different
   interaction pattern (hamburger menu, bottom sheet, or
   single-pane layout).
-- **Canny integration** -- Feature request voting board so
-  testers and users can suggest and prioritize improvements.
-  Deferred from v1 to keep the surface simple.
+- **~~Canny integration~~** -- Replaced by Fider. Feature
+  board live at https://decant.fider.io. Linked from Help
+  popout and footer. Completed 2026-03-17.
 - **Color vision support** -- Additional theme options or
   color adjustments for users with color vision deficiencies.
   Current themes address dyslexia; color blindness is a
