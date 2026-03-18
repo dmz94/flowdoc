@@ -267,7 +267,7 @@ def feedback():
             fields["created_at"] = created_at
 
         try:
-            airtable_resp = http_requests.patch(
+            http_requests.patch(
                 "https://api.airtable.com/v0/{}/{}".format(
                     config.AIRTABLE_BASE_ID, config.AIRTABLE_TABLE_NAME,
                 ),
@@ -285,7 +285,7 @@ def feedback():
                 },
                 timeout=5,
             )
-            log.info("Airtable response %d: %s", airtable_resp.status_code, airtable_resp.text[:500])
+            log.info("Feedback upserted to Airtable")
         except Exception as e:
             log.warning("Airtable upsert failed: %s", str(e))
 
