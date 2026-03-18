@@ -69,8 +69,8 @@ def _run_engine(raw_html: str, source_url: str = "") -> str:
         raise ConvertError(
             "Validation failed",
             user_message=(
-                "Couldn't find an article on this page. "
-                "Decant works best with articles and blog posts."
+                "This page doesn't look like a good fit for Decant. "
+                "Decant works best with articles, blog posts, and information pages."
             ),
         )
     except ConvertError:
