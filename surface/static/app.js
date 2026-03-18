@@ -34,6 +34,12 @@
   var articleOverlay = document.getElementById("article-overlay");
   var articleOverlayStatus = document.getElementById("article-overlay-status");
   var srAnnouncer = document.getElementById("sr-announcer");
+  var errorFeedback = document.getElementById("error-feedback");
+  var errorFeedbackToggle = document.getElementById("error-feedback-toggle");
+  var errorFeedbackForm = document.getElementById("error-feedback-form");
+  var errorFeedbackText = document.getElementById("error-feedback-text");
+  var errorFeedbackSubmit = document.getElementById("error-feedback-submit");
+  var errorFeedbackThanks = document.getElementById("error-feedback-thanks");
 
   // --- Settings state ---
   var DEFAULTS = {
@@ -111,6 +117,10 @@
 
   var feedbackInteractionId = "";
   var feedbackSubmitted = false;
+  var errorFeedbackInteractionId = "";
+  var errorAttemptedUrl = "";
+  var errorErrorType = "";
+  var errorFeedbackSubmitted = false;
 
   function generateInteractionId() {
     if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -258,12 +268,18 @@
       });
       currentSourceUrl = "";
       currentHtml = "";
+      errorFeedbackForm.classList.add("hidden");
+      errorFeedbackThanks.classList.add("hidden");
+      errorFeedbackToggle.classList.remove("hidden");
+      errorFeedbackText.value = "";
+      errorFeedback.classList.remove("hidden");
     }
   }
 
   function hideError() {
     errorContainer.classList.add("hidden");
     inlineError.classList.add("hidden");
+    errorFeedback.classList.add("hidden");
   }
 
   function showArticleOverlay(statusText) {
@@ -374,6 +390,11 @@
     } else if (status === 500) {
       hint = "If this keeps happening, the page may not be compatible.";
     }
+
+    errorErrorType = (data && data.error_type) || "";
+    errorAttemptedUrl = (options && options.attemptedUrl !== undefined) ? options.attemptedUrl : (urlInput.value || "");
+    errorFeedbackInteractionId = generateInteractionId();
+    errorFeedbackSubmitted = false;
 
     showError(message, hint, hintUrl, options);
   }
@@ -1003,10 +1024,14 @@
             );
           }
         } else {
-          handleErrorResponse(result.resp, result.data);
+          handleErrorResponse(result.resp, result.data, { attemptedUrl: sourceUrl });
         }
       })
       .catch(function () {
+        errorErrorType = "network_error";
+        errorAttemptedUrl = sourceUrl || "";
+        errorFeedbackInteractionId = generateInteractionId();
+        errorFeedbackSubmitted = false;
         showError(
           "Couldn't connect to the server.",
           "Check your internet connection and try again."
@@ -1251,6 +1276,33 @@
     }).catch(function () { /* silent */ });
   }
 
+  function sendErrorFeedback(text) {
+    var source = errorAttemptedUrl || "file_upload";
+    var now = new Date().toISOString();
+    var payload = {
+      interaction_id: errorFeedbackInteractionId,
+      source: source,
+      source_domain: getSourceDomain(source),
+      attempted_url: errorAttemptedUrl,
+      error_type: errorErrorType,
+      rating: "error_report",
+      text: text || "",
+      viewport: getViewport(),
+      theme: settings.theme === "cream" ? "sepia" : settings.theme,
+      timestamp: now
+    };
+    if (!errorFeedbackSubmitted) {
+      payload.created_at = now;
+    }
+    payload.updated_at = now;
+
+    fetch("/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function () { /* silent */ });
+  }
+
   // Radio selection: expand comment, update placeholder
   feedbackRadios.forEach(function (radio) {
     radio.addEventListener("change", function () {
@@ -1304,6 +1356,30 @@
       feedbackText.placeholder = "What happened? (optional)";
     } else {
       feedbackText.placeholder = "What went wrong? (optional)";
+    }
+  });
+
+  // --- Error feedback ---
+
+  errorFeedbackToggle.addEventListener("click", function () {
+    errorFeedbackToggle.classList.add("hidden");
+    errorFeedbackForm.classList.remove("hidden");
+    errorFeedbackText.focus();
+  });
+
+  errorFeedbackSubmit.addEventListener("click", function () {
+    var text = errorFeedbackText.value.trim();
+    sendErrorFeedback(text);
+    errorFeedbackSubmitted = true;
+    errorFeedbackForm.classList.add("hidden");
+    errorFeedbackThanks.classList.remove("hidden");
+    errorFeedbackText.value = "";
+  });
+
+  errorFeedbackText.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      errorFeedbackSubmit.click();
     }
   });
 

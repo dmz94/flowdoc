@@ -399,6 +399,20 @@
     <div id="error" class="error-container hidden">
       <p class="error-message" id="error-message"></p>
       <p class="error-hint" id="error-hint"></p>
+      <div id="error-feedback" class="error-feedback hidden">
+        <button type="button" id="error-feedback-toggle"
+                class="error-feedback-toggle">Tell us about this page</button>
+        <div id="error-feedback-form" class="error-feedback-form hidden">
+          <input type="text" id="error-feedback-text"
+                 class="error-feedback-text"
+                 placeholder="What were you hoping to get from this page? (optional)">
+          <button type="button" id="error-feedback-submit"
+                  class="error-feedback-submit">Send</button>
+        </div>
+        <div id="error-feedback-thanks" class="error-feedback-thanks hidden">
+          <span>Thanks for letting us know.</span>
+        </div>
+      </div>
     </div>
 
     <div id="converting" class="converting-status hidden">

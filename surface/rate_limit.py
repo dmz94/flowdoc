@@ -9,6 +9,7 @@ import config
 
 class RateLimitError(Exception):
     """Client has exceeded the rate limit."""
+    error_type = "rate_limit"
 
     @property
     def user_message(self) -> str:

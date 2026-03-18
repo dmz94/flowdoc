@@ -276,6 +276,77 @@ body.contrast .article-overlay {
   opacity: 0.8;
 }
 
+/* Error feedback */
+.error-feedback {
+  margin-top: 0.75rem;
+  font-family: system-ui, sans-serif;
+}
+
+.error-feedback-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--error-hint);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: system-ui, sans-serif;
+}
+
+.error-feedback-toggle:hover {
+  opacity: 0.8;
+}
+
+.error-feedback-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.5rem;
+}
+
+.error-feedback-text {
+  font-size: 0.8125rem;
+  font-family: system-ui, sans-serif;
+  padding: 6px 10px;
+  border: 1px solid var(--error-hint);
+  border-radius: 4px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  flex: 1;
+  max-width: 400px;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.error-feedback-text::placeholder {
+  color: var(--input-text);
+  opacity: 0.5;
+}
+
+.error-feedback-submit {
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  border: 1px solid var(--error-hint);
+  border-radius: 4px;
+  background: var(--icon-fill);
+  color: var(--toolbar-bg);
+  cursor: pointer;
+  white-space: nowrap;
+  height: 32px;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+.error-feedback-submit:hover {
+  opacity: 0.85;
+}
+
+.error-feedback-thanks {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--error-hint);
+}
+
 /* Inline error container (preserving mode — inside output zone) */
 .inline-error-container {
   max-width: 800px;
@@ -1585,6 +1656,23 @@ body.loaded {
   /* Range slider -- bigger touch target */
   .range-slider {
     height: 44px;
+  }
+
+  .error-feedback-toggle {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .error-feedback-text {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .error-feedback-submit {
+    height: 44px;
+    padding: 6px 14px;
+    font-size: 14px;
   }
 }
 

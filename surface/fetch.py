@@ -19,6 +19,7 @@ import config
 
 class FetchError(Exception):
     """Base class for fetch errors."""
+    error_type = "fetch_error"
 
     @property
     def user_message(self) -> str:
@@ -27,6 +28,7 @@ class FetchError(Exception):
 
 class InvalidURLError(FetchError):
     """Bad format, scheme, or length."""
+    error_type = "invalid_url"
 
     @property
     def user_message(self) -> str:
@@ -35,6 +37,7 @@ class InvalidURLError(FetchError):
 
 class SSRFBlockedError(FetchError):
     """Private or reserved IP detected."""
+    error_type = "ssrf_blocked"
 
     @property
     def user_message(self) -> str:
@@ -43,6 +46,7 @@ class SSRFBlockedError(FetchError):
 
 class FetchTimeoutError(FetchError):
     """Request timed out."""
+    error_type = "fetch_timeout"
 
     @property
     def user_message(self) -> str:
@@ -51,6 +55,7 @@ class FetchTimeoutError(FetchError):
 
 class ContentTypeError(FetchError):
     """Response is not text/html."""
+    error_type = "content_type"
 
     @property
     def user_message(self) -> str:
@@ -59,6 +64,7 @@ class ContentTypeError(FetchError):
 
 class ResponseTooLargeError(FetchError):
     """Response exceeds size limit."""
+    error_type = "response_too_large"
 
     @property
     def user_message(self) -> str:
@@ -67,6 +73,7 @@ class ResponseTooLargeError(FetchError):
 
 class FetchConnectionError(FetchError):
     """DNS failure, connection refused, etc."""
+    error_type = "fetch_connection"
 
     @property
     def user_message(self) -> str:
@@ -75,6 +82,7 @@ class FetchConnectionError(FetchError):
 
 class BotProtectionError(FetchError):
     """Response appears to be a bot-protection challenge page."""
+    error_type = "bot_protection"
 
     @property
     def user_message(self) -> str:

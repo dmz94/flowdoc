@@ -224,7 +224,7 @@ def feedback():
     source = data.get("source", "")
     interaction_id = data.get("interaction_id", "")
 
-    if rating not in ("up", "down", "broken"):
+    if rating not in ("up", "down", "broken", "error_report"):
         return jsonify({"status": "error", "message": "Rating must be 'up', 'down', or 'broken'."}), 400
     if not source:
         return jsonify({"status": "error", "message": "Source is required."}), 400
@@ -256,6 +256,8 @@ def feedback():
             "text": payload["text"],
             "viewport": payload["viewport"],
             "theme": payload["theme"],
+            "attempted_url": data.get("attempted_url", ""),
+            "error_type": data.get("error_type", ""),
             "ip": client_ip,
             "updated_at": now,
         }
@@ -332,6 +334,7 @@ def convert():
                 return jsonify({
                     "status": "error",
                     "message": "Please upload an HTML file (.html or .htm).",
+                    "error_type": "invalid_file_type",
                 }), 422
 
             # Validate file size
@@ -340,6 +343,7 @@ def convert():
                 return jsonify({
                     "status": "error",
                     "message": "That file is too large to convert.",
+                    "error_type": "file_too_large",
                 }), 422
 
             source = "file_upload"
@@ -350,6 +354,7 @@ def convert():
                 return jsonify({
                     "status": "error",
                     "message": "Please provide a URL or upload a file.",
+                    "error_type": "missing_input",
                 }), 422
 
             # Self-URL detection: read from disk instead of fetching
@@ -400,6 +405,7 @@ def convert():
                     return jsonify({
                         "status": "error",
                         "message": "The service is busy. Please try again in a moment.",
+                        "error_type": "service_busy",
                     }), 503
 
                 try:
@@ -425,6 +431,7 @@ def convert():
         return jsonify({
             "status": "error",
             "message": e.user_message,
+            "error_type": e.error_type,
         }), 429
 
     except FetchError as e:
@@ -436,6 +443,7 @@ def convert():
         return jsonify({
             "status": "error",
             "message": e.user_message,
+            "error_type": getattr(e, "error_type", "fetch_error"),
         }), 422
 
     except ConvertError as e:
@@ -447,6 +455,7 @@ def convert():
         return jsonify({
             "status": "error",
             "message": e.user_message,
+            "error_type": e.error_type,
             "hint": "See what kinds of pages work well.",
             "hint_url": "/what-works",
         }), 422
@@ -460,6 +469,7 @@ def convert():
         return jsonify({
             "status": "error",
             "message": "Something went wrong on our end. Try again in a moment.",
+            "error_type": "server_error",
         }), 500
 
 

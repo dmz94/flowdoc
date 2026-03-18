@@ -16,6 +16,7 @@ from fetch import fetch_url
 
 class ConvertError(Exception):
     """Engine-level conversion failure."""
+    error_type = "convert_error"
 
     def __init__(self, message: str, user_message: str | None = None):
         super().__init__(message)
