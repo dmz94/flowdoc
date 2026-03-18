@@ -41,6 +41,12 @@
   var errorFeedbackText = document.getElementById("error-feedback-text");
   var errorFeedbackSubmit = document.getElementById("error-feedback-submit");
   var errorFeedbackThanks = document.getElementById("error-feedback-thanks");
+  var inlineErrorFeedback = document.getElementById("inline-error-feedback");
+  var inlineErrorFeedbackToggle = document.getElementById("inline-error-feedback-toggle");
+  var inlineErrorFeedbackForm = document.getElementById("inline-error-feedback-form");
+  var inlineErrorFeedbackText = document.getElementById("inline-error-feedback-text");
+  var inlineErrorFeedbackSubmit = document.getElementById("inline-error-feedback-submit");
+  var inlineErrorFeedbackThanks = document.getElementById("inline-error-feedback-thanks");
 
   // --- Settings state ---
   var DEFAULTS = {
@@ -257,6 +263,11 @@
       inlineErrorMessage.textContent = message;
       populateHint(inlineErrorHint, hint, hintUrl);
       inlineError.classList.remove("hidden");
+      inlineErrorFeedbackForm.classList.add("hidden");
+      inlineErrorFeedbackThanks.classList.add("hidden");
+      inlineErrorFeedbackToggle.classList.remove("hidden");
+      inlineErrorFeedbackText.value = "";
+      inlineErrorFeedback.classList.remove("hidden");
     } else {
       errorMessage.textContent = message;
       populateHint(errorHint, hint, hintUrl);
@@ -280,6 +291,7 @@
   function hideError() {
     errorContainer.classList.add("hidden");
     inlineError.classList.add("hidden");
+    inlineErrorFeedback.classList.add("hidden");
     errorFeedback.classList.add("hidden");
   }
 
@@ -1380,6 +1392,28 @@
     if (e.key === "Enter") {
       e.preventDefault();
       errorFeedbackSubmit.click();
+    }
+  });
+
+  inlineErrorFeedbackToggle.addEventListener("click", function () {
+    inlineErrorFeedbackToggle.classList.add("hidden");
+    inlineErrorFeedbackForm.classList.remove("hidden");
+    inlineErrorFeedbackText.focus();
+  });
+
+  inlineErrorFeedbackSubmit.addEventListener("click", function () {
+    var text = inlineErrorFeedbackText.value.trim();
+    sendErrorFeedback(text);
+    errorFeedbackSubmitted = true;
+    inlineErrorFeedbackForm.classList.add("hidden");
+    inlineErrorFeedbackThanks.classList.remove("hidden");
+    inlineErrorFeedbackText.value = "";
+  });
+
+  inlineErrorFeedbackText.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      inlineErrorFeedbackSubmit.click();
     }
   });
 

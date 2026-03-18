@@ -464,6 +464,20 @@
       <div id="inline-error" class="inline-error-container hidden">
         <p class="error-message" id="inline-error-message"></p>
         <p class="error-hint" id="inline-error-hint"></p>
+        <div id="inline-error-feedback" class="error-feedback hidden">
+          <button type="button" id="inline-error-feedback-toggle"
+                  class="error-feedback-toggle">Tell us what you were looking for</button>
+          <div id="inline-error-feedback-form" class="error-feedback-form hidden">
+            <input type="text" id="inline-error-feedback-text"
+                   class="error-feedback-text"
+                   placeholder="e.g. I needed this for a school project">
+            <button type="button" id="inline-error-feedback-submit"
+                    class="error-feedback-submit">Send</button>
+          </div>
+          <div id="inline-error-feedback-thanks" class="error-feedback-thanks hidden">
+            <span>Thanks for letting us know.</span>
+          </div>
+        </div>
       </div>
       <div class="article-frame-wrap">
         <div id="article-overlay" class="article-overlay hidden"
