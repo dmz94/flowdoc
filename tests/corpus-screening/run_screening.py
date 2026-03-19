@@ -39,6 +39,72 @@ REVIEW_DIR = SCREENING_DIR / "review"
 
 
 # ---------------------------------------------------------------------------
+# Boilerplate heading patterns (normalized, lowercase)
+# ---------------------------------------------------------------------------
+
+BOILERPLATE_HEADINGS_EXACT = {
+    "related articles", "related stories", "related", "more stories",
+    "read more", "recommended", "trending", "popular", "comments",
+    "join the discussion", "leave a comment", "subscribe",
+    "newsletter", "get more", "sign up", "follow us", "follow",
+    "connect", "share", "share this", "share this story", "tags",
+    "categories", "topics", "advertisement", "sponsored", "ad",
+    "about us", "contact", "privacy policy", "terms", "cookie",
+    "cookies", "advertise", "for musicians", "for members",
+    "more access", "install", "previous", "next", "previous / next",
+    "quick links", "resources", "is this page useful",
+    "thank you", "thank you for your feedback",
+    "sorry something went wrong", "fuel", "donate", "support",
+    "go ad free", "premium", "welcome", "notification", "portals",
+    "join", "view sources", "references", "more in", "also in",
+    "next article", "comment on", "use your social network",
+    "discover more", "find even more", "prepare for your trip",
+    "help us improve", "get more of a good thing", "blogchains",
+    "meta", "sections", "for ieee members", "ieee spectrum",
+    "follow ieee spectrum", "support ieee spectrum",
+    "more from", "more esp", "join the conversation",
+    "subscriber only", "subscriber-only content",
+    "ready for more", "discussion about this post",
+    "latest in", "you might also like",
+    "we care about your privacy", "from mayo clinic",
+    "better health starts here", "care at", "experts you can trust",
+    "fuel groundbreaking", "associated procedures",
+    "mayo clinic press", "more serious eats recipes",
+    "healthier families", "be active for your mental health",
+    "listen to the", "about this classroom resource",
+}
+
+BOILERPLATE_HEADINGS_PREFIX = [
+    "more from", "more esp", "more in", "also in", "enjoy more",
+    "saving articles", "the institute", "downloading",
+    "access to", "following topics", "adding your response",
+    "create an account", "join the world", "select your free",
+    "we and our partners", "discover more", "find even more",
+]
+
+BOILERPLATE_HEADINGS_CONTAINS = [
+    "subscribe", "newsletter", "sign up", "cookie",
+    "privacy", "account", "log in", "members", "membership",
+    "exclusive for", "requires an", "create an account",
+]
+
+
+def _is_boilerplate_heading(normalized: str) -> bool:
+    """Check if a normalized heading matches known boilerplate patterns."""
+    if not normalized:
+        return True
+    if normalized in BOILERPLATE_HEADINGS_EXACT:
+        return True
+    for prefix in BOILERPLATE_HEADINGS_PREFIX:
+        if normalized.startswith(prefix):
+            return True
+    for phrase in BOILERPLATE_HEADINGS_CONTAINS:
+        if phrase in normalized:
+            return True
+    return False
+
+
+# ---------------------------------------------------------------------------
 # Manifest parsing (duplicated from run_metrics.py to avoid cross-dir imports)
 # ---------------------------------------------------------------------------
 
@@ -326,14 +392,16 @@ def _count_block_words(blocks) -> int:
 def _normalize_heading(text: str) -> str:
     """Normalize heading text for fuzzy comparison.
 
-    Lowercase, strip, collapse whitespace, remove hyphens/colons/em dashes
-    and other punctuation that commonly differs between source and output.
+    Lowercase, strip, collapse whitespace, remove hyphens/colons/em dashes,
+    strip emoji and non-alphanumeric symbols.
     """
     t = text.lower().strip()
     # Replace common separators with space
     t = re.sub(r'[\-\u2013\u2014:]+', ' ', t)
     # Remove non-breaking spaces and other unicode whitespace
     t = re.sub(r'[\u00a0\u200b]+', ' ', t)
+    # Strip emoji and symbols: keep only alphanumeric, spaces, and basic punctuation
+    t = re.sub(r'[^\w\s.,;:!?\'\-]', '', t, flags=re.UNICODE)
     # Collapse whitespace
     t = re.sub(r'\s+', ' ', t).strip()
     return t
@@ -348,6 +416,8 @@ def generate_flags(source: dict, output: dict) -> dict:
         "sections": [],
         "placeholders": [],
     }
+    # Track boilerplate suppression count for display
+    flags["_boilerplate_suppressed"] = 0
 
     # --- Images ---
     src_img_count = len(source["images"])
@@ -415,11 +485,16 @@ def generate_flags(source: dict, output: dict) -> dict:
     out_norm_set = {norm for _, norm in out_headings_norm}
     src_norm_set = {norm for _, norm in src_headings_norm}
 
+    boilerplate_suppressed = 0
     missing = []
     for raw, norm in src_headings_norm:
         if norm in out_norm_set:
             continue
         if any(norm in on or on in norm for on in out_norm_set if norm and on):
+            continue
+        # Check boilerplate before flagging as missing
+        if _is_boilerplate_heading(norm):
+            boilerplate_suppressed += 1
             continue
         missing.append(raw)
 
@@ -430,6 +505,8 @@ def generate_flags(source: dict, output: dict) -> dict:
         if any(norm in sn or sn in norm for sn in src_norm_set if norm and sn):
             continue
         extra.append(raw)
+
+    flags["_boilerplate_suppressed"] = boilerplate_suppressed
 
     if missing:
         for h in missing:
@@ -445,18 +522,19 @@ def generate_flags(source: dict, output: dict) -> dict:
                 f'Short section: "{sec["heading"]}" has only {sec["word_count"]} words'
             )
 
-    # --- Placeholders ---
+    # --- Placeholders (exclude image placeholders, already in IMAGES) ---
     for ph in output["placeholders"]:
-        flags["placeholders"].append(
-            f'{ph["text"]} in "{ph["section"]}"'
-        )
+        if not ph["text"].startswith("[Image"):
+            flags["placeholders"].append(
+                f'{ph["text"]} in "{ph["section"]}"'
+            )
 
     return flags
 
 
 def count_flags(flags: dict) -> int:
     """Count total flags across all categories."""
-    return sum(len(v) for v in flags.values())
+    return sum(len(v) for k, v in flags.items() if not k.startswith("_"))
 
 
 # ---------------------------------------------------------------------------
@@ -499,8 +577,11 @@ def print_screening(name: str, source: dict, output: dict, flags: dict):
     # Headings
     src_h_count = len(source["headings"])
     out_h_count = len(output["headings"])
+    boilerplate_count = flags.get("_boilerplate_suppressed", 0)
     print("HEADINGS")
     print(f"  Source: {src_h_count} | Output: {out_h_count}")
+    if boilerplate_count > 0:
+        print(f"  ({boilerplate_count} boilerplate headings suppressed)")
     for f in flags["headings"]:
         print(f"  >> {f}")
     print()
@@ -514,13 +595,13 @@ def print_screening(name: str, source: dict, output: dict, flags: dict):
         print("  All sections have >= 20 words")
     print()
 
-    # Placeholders
+    # Placeholders (image placeholders excluded)
     print("PLACEHOLDERS")
     if flags["placeholders"]:
         for i, f in enumerate(flags["placeholders"], 1):
             print(f"  {i}. {f}")
     else:
-        print("  None")
+        print("  None (image placeholders listed above)")
     print()
 
     print(f"FLAGS: {total} items to review")
@@ -542,14 +623,21 @@ def generate_review_page(
 ) -> str:
     """Generate a single fixture review HTML page."""
     total = count_flags(flags)
+    boilerplate_count = flags.get("_boilerplate_suppressed", 0)
 
     # Build flags panel HTML
     flags_html_parts = []
     for category, items in flags.items():
-        if not items:
+        if category.startswith("_"):
+            continue
+        if not items and category != "headings":
             continue
         cat_label = category.upper()
         flags_html_parts.append(f'<h3>{cat_label}</h3>')
+        if category == "headings" and boilerplate_count > 0:
+            flags_html_parts.append(
+                f'<p class="boilerplate-note">{boilerplate_count} boilerplate headings suppressed</p>'
+            )
         for item in items:
             escaped = html_module.escape(item)
             flags_html_parts.append(
@@ -576,6 +664,7 @@ def generate_review_page(
     srcdoc_escaped = html_module.escape(rendered_html)
 
     source_link = ""
+    escaped_url = ""
     if source_url:
         escaped_url = html_module.escape(source_url)
         source_link = f'<a href="{escaped_url}" target="_blank" rel="noopener">{escaped_url}</a>'
@@ -617,6 +706,7 @@ body {{ font-family: system-ui, -apple-system, sans-serif; font-size: 14px; colo
 .flags-panel h3:first-child {{ margin-top: 0; }}
 .flag-item {{ display: block; font-size: 13px; padding: 3px 0; cursor: pointer; }}
 .flag-item input {{ margin-right: 6px; }}
+.boilerplate-note {{ font-size: 12px; color: #888; font-style: italic; margin: 2px 0 4px; }}
 .toggle-btn {{
   position: fixed; z-index: 95; right: 20px;
   background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;
@@ -637,6 +727,27 @@ body {{ font-family: system-ui, -apple-system, sans-serif; font-size: 14px; colo
   position: absolute; top: 8px; padding: 2px 8px;
   background: rgba(0,0,0,0.6); color: #fff; font-size: 11px;
   border-radius: 3px; z-index: 10;
+}}
+.source-panel-content {{
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; height: 100%; padding: 2rem;
+  text-align: center; background: #fafafa;
+}}
+.open-original-btn {{
+  display: inline-block; padding: 12px 24px;
+  background: #0051a5; color: #fff; font-size: 15px;
+  text-decoration: none; border-radius: 6px; font-weight: 600;
+  margin-bottom: 12px;
+}}
+.open-original-btn:hover {{ background: #003d7a; }}
+.source-url-display {{
+  font-size: 12px; color: #888; word-break: break-all;
+  max-width: 90%; margin-top: 8px;
+}}
+.source-url-display a {{ color: #888; text-decoration: underline; }}
+.source-hint {{
+  font-size: 13px; color: #666; margin-top: 16px; max-width: 320px;
+  line-height: 1.5;
 }}
 
 @media (max-width: 768px) {{
@@ -660,8 +771,12 @@ body {{ font-family: system-ui, -apple-system, sans-serif; font-size: 14px; colo
 
 <div class="main-area" id="main-area">
   <div class="panel" style="position: relative;">
-    <span class="panel-label" style="left: 8px;">Source (requires internet)</span>
-    <iframe src="{html_module.escape(source_url) if source_url else 'about:blank'}"></iframe>
+    <span class="panel-label" style="left: 8px;">Source</span>
+    <div class="source-panel-content">
+      <a href="{escaped_url}" target="_blank" rel="noopener" class="open-original-btn">Open Original</a>
+      <div class="source-hint">Open the original page in a new tab and compare with the converted version on the right.</div>
+      <div class="source-url-display"><a href="{escaped_url}" target="_blank" rel="noopener">{escaped_url}</a></div>
+    </div>
   </div>
   <div class="panel" style="position: relative;">
     <span class="panel-label" style="left: 8px;">Converted</span>
@@ -813,6 +928,10 @@ def main():
         help="Filter by category column in manifest",
     )
     args = parser.parse_args()
+
+    # Ensure stdout can handle Unicode on Windows
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     manifest_path = AUDIT_DIR / "manifest.md"
     if not manifest_path.exists():
