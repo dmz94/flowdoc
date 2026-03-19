@@ -616,6 +616,7 @@ def print_screening(name: str, source: dict, output: dict, flags: dict):
 def generate_review_page(
     name: str,
     source_url: str,
+    source_html: str,
     rendered_html: str,
     flags: dict,
     prev_name: str | None,
@@ -660,14 +661,20 @@ def generate_review_page(
         nav_parts.append('<span class="nav-disabled">Next &rarr;</span>')
     nav_html = " | ".join(nav_parts)
 
-    # Escape rendered HTML for srcdoc
-    srcdoc_escaped = html_module.escape(rendered_html)
+    # Escape both HTML strings for srcdoc
+    source_srcdoc_escaped = html_module.escape(source_html)
+    output_srcdoc_escaped = html_module.escape(rendered_html)
 
     source_link = ""
     escaped_url = ""
     if source_url:
         escaped_url = html_module.escape(source_url)
         source_link = f'<a href="{escaped_url}" target="_blank" rel="noopener">{escaped_url}</a>'
+
+    # Live page link for left panel footer
+    live_link = ""
+    if source_url:
+        live_link = f'<a href="{escaped_url}" target="_blank" rel="noopener">Open live page in new tab</a>'
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -717,38 +724,26 @@ body {{ font-family: system-ui, -apple-system, sans-serif; font-size: 14px; colo
   display: flex; height: 100vh;
 }}
 .panel {{
-  flex: 1; overflow: hidden; border-right: 1px solid #ddd;
+  flex: 1; display: flex; flex-direction: column;
+  overflow: hidden; border-right: 1px solid #ddd;
 }}
 .panel:last-child {{ border-right: none; }}
 .panel iframe {{
-  width: 100%; height: 100%; border: none;
+  flex: 1; width: 100%; border: none;
 }}
-.panel-label {{
-  position: absolute; top: 8px; padding: 2px 8px;
-  background: rgba(0,0,0,0.6); color: #fff; font-size: 11px;
-  border-radius: 3px; z-index: 10;
+.panel-header {{
+  padding: 6px 12px;
+  background: #f0f0f0; border-bottom: 1px solid #ddd;
+  font-size: 12px; font-weight: 600; color: #555;
+  text-transform: uppercase; letter-spacing: 0.03em;
 }}
-.source-panel-content {{
-  display: flex; flex-direction: column; align-items: center;
-  justify-content: center; height: 100%; padding: 2rem;
-  text-align: center; background: #fafafa;
+.panel-footer {{
+  padding: 4px 12px;
+  background: #f9f9f9; border-top: 1px solid #eee;
+  font-size: 11px; color: #888;
 }}
-.open-original-btn {{
-  display: inline-block; padding: 12px 24px;
-  background: #0051a5; color: #fff; font-size: 15px;
-  text-decoration: none; border-radius: 6px; font-weight: 600;
-  margin-bottom: 12px;
-}}
-.open-original-btn:hover {{ background: #003d7a; }}
-.source-url-display {{
-  font-size: 12px; color: #888; word-break: break-all;
-  max-width: 90%; margin-top: 8px;
-}}
-.source-url-display a {{ color: #888; text-decoration: underline; }}
-.source-hint {{
-  font-size: 13px; color: #666; margin-top: 16px; max-width: 320px;
-  line-height: 1.5;
-}}
+.panel-footer a {{ color: #1856a8; text-decoration: none; }}
+.panel-footer a:hover {{ text-decoration: underline; }}
 
 @media (max-width: 768px) {{
   .main-area {{ flex-direction: column; }}
@@ -770,17 +765,14 @@ body {{ font-family: system-ui, -apple-system, sans-serif; font-size: 14px; colo
 </div>
 
 <div class="main-area" id="main-area">
-  <div class="panel" style="position: relative;">
-    <span class="panel-label" style="left: 8px;">Source</span>
-    <div class="source-panel-content">
-      <a href="{escaped_url}" target="_blank" rel="noopener" class="open-original-btn">Open Original</a>
-      <div class="source-hint">Open the original page in a new tab and compare with the converted version on the right.</div>
-      <div class="source-url-display"><a href="{escaped_url}" target="_blank" rel="noopener">{escaped_url}</a></div>
-    </div>
+  <div class="panel">
+    <div class="panel-header">Source HTML</div>
+    <iframe srcdoc="{source_srcdoc_escaped}"></iframe>
+    <div class="panel-footer">{live_link}</div>
   </div>
-  <div class="panel" style="position: relative;">
-    <span class="panel-label" style="left: 8px;">Converted</span>
-    <iframe srcdoc="{srcdoc_escaped}"></iframe>
+  <div class="panel">
+    <div class="panel-header">Decant Output</div>
+    <iframe srcdoc="{output_srcdoc_escaped}"></iframe>
   </div>
 </div>
 
@@ -1001,7 +993,7 @@ def main():
 
             print_screening(name, source_analysis, output_analysis, flags)
 
-            page = generate_review_page(name, source_url, rendered, flags, prev_name, next_name)
+            page = generate_review_page(name, source_url, source_html, rendered, flags, prev_name, next_name)
             (REVIEW_DIR / f"{name}.html").write_text(page, encoding="utf-8")
 
             results.append({
