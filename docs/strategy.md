@@ -250,7 +250,7 @@ Validation is ongoing through early tester recruitment.
 The surface at decant.cc is the primary instrument.
 
 Current validation:
-- 47-fixture eval corpus with metrics-based regression tracking
+- 38-fixture eval corpus with metrics-based regression tracking
 - ScrapingHub benchmark (181 pages, 87.3% pass)
 - WCEB benchmark (3,985 pages, 68.3% pass)
 - Tester recruitment via personal contacts (teachers, SEN

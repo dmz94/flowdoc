@@ -229,7 +229,7 @@ Examples:
 
 ### Current State
 
-47 fixtures, all PASS. All baselines human-reviewed via
+38 fixtures, all PASS. All baselines human-reviewed via
 interactive baseline process. See
 tests/pipeline-audit/test-pages/manifest.md for the full
 fixture list.

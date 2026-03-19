@@ -3,7 +3,7 @@
 ## Current State
 
 v1 shipped. Surface live at decant.cc. Engine published on
-PyPI as decant-cli 0.1.0. 47 fixtures, 47 PASS, 264 tests.
+PyPI as decant-cli 0.1.0. 38 fixtures, 38 PASS, 272 tests.
 First tester round active.
 
 ## v1 Remaining

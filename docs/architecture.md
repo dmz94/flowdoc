@@ -144,7 +144,7 @@ Required test layers:
 - Parametrized fixtures for element handling rules
 
 2) Pipeline audit eval harness (separate from pytest)
-- 47 real-world HTML fixtures with human-reviewed baselines
+- 38 real-world HTML fixtures with human-reviewed baselines
 - 16 metrics computed per fixture (word counts, structure,
   placeholder density, link-to-prose ratio)
 - Threshold-based regression detection
@@ -156,7 +156,7 @@ Required test layers:
 - outputs must be byte-identical
 
 Fixture corpus:
-- 47 fixtures from real-world sites (NHS, BDA, Wikipedia,
+- 38 fixtures from real-world sites (NHS, BDA, Wikipedia,
   news, science journalism, educational content)
 - All human-reviewed via interactive baseline process
 
