@@ -568,9 +568,15 @@ def render_inline(inline) -> str:
         escaped = html_module.escape(inline.text)
         return f"<code>{escaped}</code>"
     elif isinstance(inline, Link):
-        escaped_href = html_module.escape(inline.href)
-        content = render_inlines(inline.children)
-        return f'<a href="{escaped_href}">{content}</a>'
+        href = inline.href
+        if href.startswith(("http://", "https://", "#")):
+            escaped_href = html_module.escape(href)
+            content = render_inlines(inline.children)
+            return f'<a href="{escaped_href}">{content}</a>'
+        else:
+            # Relative or empty href -- no base URL to resolve
+            # against, so render as plain text to avoid broken links.
+            return render_inlines(inline.children)
     elif isinstance(inline, LineBreak):
         return "<br>"
     else:
