@@ -126,3 +126,5 @@ Fixed set -- do not change filenames or scoring criteria mid-run.
 | 119 | nature-comms.html | https://www.nature.com/articles/s41467-024-50779-y | in-scope | cat 16 |
 | 120 | cochrane-evidence.html | https://www.cochrane.org/evidence | in-scope | cat 16 |
 | 121 | arxiv-html.html | https://arxiv.org/html/2510.15842v1 | in-scope | cat 16 |
+| 122 | drugs-metformin.html | https://www.drugs.com/metformin.html | in-scope | cat 4 |
+| 123 | ssa-disability.html | https://www.ssa.gov/applyfordisability/ | in-scope | cat 8 |
