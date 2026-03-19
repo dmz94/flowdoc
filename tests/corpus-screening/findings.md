@@ -5,22 +5,31 @@ Updated after each screening run or engine fix.
 
 ## Current State
 
-- Corpus: 38 fixtures, all PASS (9 culled for redundancy)
+- Corpus: 38 in-scope fixtures, all PASS (manifest is source
+  of truth: tests/pipeline-audit/test-pages/manifest.md)
 - Screening tool: tests/corpus-screening/run_screening.py
-  (working, needs refinement)
-- Candidate URLs: research in progress via Claude Research
-  and ChatGPT. Claude list complete (see
-  claude-research-corpus-candidates.md in project
-  knowledge). GPT list pending.
+  (working; heading noise suppression and emoji normalization
+  done; minor heading noise remains, fix as it surfaces)
+- Candidate URLs: 97 candidates merged from four research
+  runs into tests/pipeline-audit/candidates.md
 - Corpus design: docs/corpus-design.md (16 categories,
-  coverage targets defined)
+  coverage targets defined, 60 new fixtures needed)
 
 ## Sequencing
 
-1. Fix screening tool (heading noise, emoji normalization)
-2. Fix engine issues surfaced by screening
-3. Merge and finalize candidate URL lists
-4. Fetch, screen, review, and baseline new fixtures
+1. ~~Fix screening tool (heading noise, emoji normalization)~~ Done
+2. Fix engine issues surfaced by screening (deferred --
+   log during expansion, batch-fix after pattern triage)
+3. ~~Merge and finalize candidate URL lists~~ Done (97 candidates)
+4. Fetch candidates to staging -- IN PROGRESS
+5. Review fetch results, cull failures
+6. Move survivors to test-pages, add to manifest
+7. Run metrics with --interactive-baseline on new fixtures
+8. Run screening tool on new fixtures
+9. Human review via side-by-side review pages
+10. Cull failed fixtures
+11. Pattern triage on engine issues logged during expansion
+12. Commit corpus, update docs
 
 ## Screening Tool Improvements Needed
 
