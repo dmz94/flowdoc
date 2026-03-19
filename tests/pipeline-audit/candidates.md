@@ -26,8 +26,6 @@ addition workflow.
 | C02 | aljazeera-iran-economy | https://www.aljazeera.com/news/2026/3/16/the-tell-tale-signs-how-bad-has-the-iran-war-hit-the-global-economy | 1 | verified | Al Jazeera WordPress, inline images, H2 subheadings |
 | C03 | abcnews-state-laws | https://abcnews.go.com/Politics/notable-new-state-laws-taking-effect-2026-cover/story?id=128811522 | 1 | verified | Disney CMS, SSR, distinct sections per law |
 | C04 | apnews-immigration | https://apnews.com/article/trump-immigration-law-enforcement-ice-fa3d8b65321fb207dfbcfec4dae08b1e | 1 | verified | Wire service, minimal chrome |
-| C05 | reuters-nuclear | https://www.reuters.com/article/business/energy/kremlin-says-its-concerned-by-us-british-nuclear-energy-moves-idUSS8N37L08R/ | 1 | verified | Reuters, dateline formatting, navigation noise |
-| C06 | axios-iran-fuel | https://www.axios.com/2026/03/08/us-dismayed-israel-iran-fuel-strikes | 1 | verified | Short-form scoop, compact body, heavy header chrome |
 | C07 | newsweek-cholesterol | https://www.newsweek.com/americas-cholesterol-guidelines-updated-acc-aha-11679770 | 1 | verified | News-magazine template, published/updated metadata |
 | C08 | startribune-mayo-clinic | https://www.startribune.com/mayo-clinic-reports-record-147b-profit-in-2025/601593203 | 1 | high-confidence | Local/regional news, metered paywall |
 | C09 | longreads-best-2025 | https://longreads.com/2025/12/15/best-of-2025-our-most-popular-originals-of-the-year/ | 2 | verified | WordPress editorial, prose commentary |
@@ -49,7 +47,6 @@ addition workflow.
 | C25 | openstax-photosynthesis | https://openstax.org/books/biology-ap-courses/pages/8-1-overview-of-photosynthesis | 5 | verified | OER textbook chapter, learning objectives, diagrams |
 | C26 | khanacademy-blog | https://blog.khanacademy.org/khan-academy-goes-way-beyond-math-new-courses-launch-for-2024-school-year-in-stem-humanities-computer-science-and-more/ | 5 | verified | WordPress blog (not SPA), educational context |
 | C27 | edutopia-strategies | https://www.edutopia.org/article/selecting-instructional-strategies-students-can-master/ | 5 | verified | Teaching strategies, topic tags, byline |
-| C28 | openlearn-teachers | https://www.open.edu/openlearn/education-development/teachers-sharing-resources-online/content-section-0 | 5 | verified | Open University OER, course nav, enrollment option |
 | C29 | scholastic-reading | https://www.scholastic.com/teachers/teaching-tools/articles/literacy/science-of-reading-resources.html | 5 | verified | Teacher resource, Science of Reading |
 | C30 | colorincolorado-ell | https://www.colorincolorado.org/article/what-ell-educator | 5 | verified | Bilingual education, ELL-specific content |
 | C31 | bbcgoodfood-victoria | https://www.bbcgoodfood.com/recipes/classic-victoria-sandwich-recipe | 6 | verified | Editorial recipe, skip-to-ingredients anchor, star ratings |
@@ -81,8 +78,6 @@ addition workflow.
 | C61 | newworldencyclopedia | https://www.newworldencyclopedia.org/entry/Encyclopedia | 11 | verified | MediaWiki-style, inline citations, Wikipedia-fork |
 | C62 | simple-wiki-photosynthesis | https://simple.wikipedia.org/wiki/Photosynthesis | 11 | verified | Simple English Wikipedia, simplified vocabulary |
 | C63 | scholarpedia-deeplearning | http://www.scholarpedia.org/article/Deep_Learning | 11 | verified | Peer-reviewed wiki, math notation, 888+ references |
-| C64 | wiktionary-dyslexia | https://en.wiktionary.org/wiki/dyslexia | 11 | verified | Dictionary entry, etymology, multi-language sections |
-| C65 | wikisource-magna-carta | https://en.wikisource.org/wiki/Magna_Carta | 11 | verified | Primary source, editorial header furniture, long continuous text |
 | C66 | copyright-gov-faq | https://www.copyright.gov/help/faq/ | 12 | verified | Gov FAQ, TOC-based hub, multi-page pattern |
 | C67 | apple-support-2fa | https://support.apple.com/en-in/102641 | 12 | verified | Help article, step numbering, inline callouts |
 | C68 | netflix-help | https://help.netflix.com/en/node/22 | 12 | verified | Short sections, inline answers, account warnings |
@@ -94,13 +89,11 @@ addition workflow.
 | C74 | zapier-note-apps | https://zapier.com/blog/best-note-taking-apps/ | 13 | verified | Software review roundup, prose-heavy, no product cards |
 | C75 | tomsguide-espresso | https://www.tomsguide.com/home/coffee-makers/best-espresso-machines | 13 | verified | Classic roundup, product cards, buy buttons, pros/cons |
 | C76 | outdoorgearlab-boots | https://www.outdoorgearlab.com/topics/shoes-and-boots/best-hiking-boots | 13 | verified | 41 items lab-tested, scoring methodology, comparison table |
-| C77 | rogerebert-shadows | https://www.rogerebert.com/reviews/great-movie-army-of-shadows-1969 | 13 | verified | Film review, structured metadata, rating |
 | C78 | caranddriver-landrover | https://www.caranddriver.com/reviews/a70679541/2026-land-rover-discovery-test/ | 13 | verified | Auto review, VERDICT callout, spec blocks, CTA modules |
 | C79 | pitchfork-kimgordon | https://pitchfork.com/reviews/albums/kim-gordon-play-me/ | 13 | verified | Album review, score widget, taxonomy nav elements |
 | C80 | goodhousekeeping-robot | https://www.goodhousekeeping.com/home-products/a40510449/litter-robot-4-review/ | 13 | verified | Home product review, jump-to nav, question subsections |
 | C81 | coffeegeek-espresso | https://coffeegeek.com/opinions/state-of-coffee/the-best-espresso-machine/ | 13 | verified | Essay-style review, opinionated, no product cards |
 | C82 | lonelyplanet-summer | https://www.lonelyplanet.com/articles/where-to-go-in-summer | 14 | verified | Destination prose, SSR |
-| C83 | atlasobscura-medieval | https://www.atlasobscura.com/articles/a-history-buffs-guide-to-medieval-london | 14 | high-confidence | Culture-history travel, numbered locations, returns 403 to bots |
 | C84 | timeout-london | https://www.timeout.com/london/things-to-do/101-things-to-do-in-london | 14 | verified | Large listicle, at-a-glance blocks, many short sections |
 | C85 | unesco-heritage | https://whc.unesco.org/en/list/426/ | 14 | verified | UNESCO site detail, tabbed sections, templated blocks |
 | C86 | si-wembanyama | https://www.si.com/nba/spurs/looks-like-spurs-latest-dynasty-is-forming-victor-wembanyama | 15 | verified | SI feature, locker room reporting, Maven CMS |
