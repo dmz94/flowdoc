@@ -40,14 +40,6 @@ First tester round active.
   for page layout, not data. These get rendered as data
   tables or trigger the "too complex" placeholder. Detecting
   and unwrapping layout tables would recover the prose inside.
-- **Structural quality checker** -- Automated scoring of
-  output quality beyond the current metrics: heading hierarchy
-  coherence, paragraph length distribution, placeholder
-  density. Would feed into a quality dashboard.
-- **Vision model scoring** -- Use a vision model to compare
-  rendered output against the original page and score visual
-  quality. Expensive but could automate what is currently
-  manual visual review.
 
 **Output**
 
@@ -91,6 +83,26 @@ First tester round active.
   reporting instructions, credits for tools and people).
   Reference: https://github.com/TobiiNT/ClaudeTracker for
   a good example of these sections.
+
+**Testing & Quality**
+
+- **AI-powered corpus evaluation** -- A set of evaluation
+  personas (completeness, noise detection, structure
+  fidelity, readability, semantic accuracy, metadata) that
+  read source pages and converted output, producing
+  structured qualitative feedback per fixture. Complements
+  the existing metrics runner, which measures quantities
+  but not quality. Design in progress.
+- **Accessibility audit of renderer output** -- One-time
+  task: run axe-core against representative conversions,
+  fix any issues in the renderer. Repeat after major
+  renderer changes. Not a recurring automated layer --
+  the renderer produces identical HTML structure for every
+  fixture, so one audit covers all.
+- **CSS regression tooling** -- Playwright screenshot
+  diffing for before/after comparison when theme or
+  surface CSS changes. Only worth building if CSS changes
+  become frequent enough to warrant automation.
 
 ## Known Issues (v1 accepted)
 
