@@ -84,7 +84,7 @@ Fixed set -- do not change filenames or scoring criteria mid-run.
 | 78 | eu-commission-apply.html | https://commission.europa.eu/funding-tenders/how-apply/application-process_en | in-scope | cat 8 |
 | 79 | insideclimate-2025.html | https://insideclimatenews.org/news/28122025/2025-year-in-climate/ | in-scope | cat 9 |
 | 81 | sciencenews-animals.html | https://www.sciencenews.org/article/favorite-animal-stories-2025 | in-scope | cat 9 |
-| 82 | history-constitution.html | https://www.history.com/topics/united-states-constitution/constitution | in-scope | cat 10 |
+| 82 | history-constitution.html | https://www.history.com/topics/united-states-constitution/constitution | out-of-scope | Culled: geo-redirect homepage, not an article |
 | 83 | mentalfloss-hysteria.html | https://www.mentalfloss.com/history/dark-history-of-hysteria | in-scope | cat 10 |
 | 84 | jstor-footnotes.html | https://daily.jstor.org/historys-footnotes/ | in-scope | cat 10 |
 | 85 | iwm-dunkirk.html | https://www.iwm.org.uk/history/what-you-need-to-know-about-the-dunkirk-evacuations | in-scope | cat 10 |
