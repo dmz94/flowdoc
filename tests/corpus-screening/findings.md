@@ -179,3 +179,138 @@ Once tool and engine fixes are complete:
 6. Pattern triage: group flagged items across fixtures,
    identify low-hanging engine fixes vs known limitations.
 7. Baseline and commit approved fixtures.
+
+## Visual Review Results (2026-03-20)
+
+### Review Process
+
+11 of 119 fixtures reviewed manually using four inputs
+per fixture: (1) screening tool review page, (2) original
+webpage screenshot, (3) Firefox Reader Mode screenshot as
+extraction benchmark, (4) tool diagnostic text.
+
+Reader Mode comparison proved decisive: it settles "engine
+problem vs scope problem" immediately. Every fixture tested
+extracts cleanly in Reader Mode, meaning all content losses
+are engine issues, not exotic HTML.
+
+Manual review does not scale. 10-15 minutes of mechanical
+work per fixture (screenshotting, copying, pasting) before
+AI analysis begins. Tooling needed to automate baseline
+comparison. See tooling investigation notes below.
+
+### Fixture Calls
+
+KEEP (10):
+1. foxsports-nfl (cat 15, marginal)
+2. arxiv-html (cat 16, marginal, needs image/table fixes)
+3. outdoorgearlab-boots (cat 13, poor conversion, proven extractable)
+4. timeout-london (cat 14, FAIL-level total content loss, proven extractable)
+5. tomsguide-espresso (cat 13, partial, empty sections bug)
+6. insideclimate-2025 (cat 1, good conversion, images lost)
+7. nature-patcid (cat 16, marginal, title/authors dropped)
+8. atavist-castles (cat 2, excellent prose, subscription boilerplate leaks)
+9. bleacherreport-bracket (cat 15, clean conversion, best result in batch)
+10. yale360-baboons (cat 9, existing PASS but opening lede dropped)
+
+CULL (1):
+11. history-constitution (geo-redirect homepage, not an article)
+
+### Engine Patterns
+
+1. IMAGE SURVIVAL: 0% on most fixtures. Partial on
+   tomsguide (53/154) and bleacherreport (4/30). Reader
+   Mode extracts images on every page tested. Engine
+   problem, not source problem.
+
+2. CONTENT BEFORE FIRST HEADING DROPPED (high priority):
+   Fixtures: nature-patcid, yale360-baboons. Title, authors,
+   and opening content above first h2/h3 discarded. Affects
+   academic papers and feature articles. Most important
+   content on the page is often above the first heading.
+
+3. STRUCTURED LISTICLE WIPEOUT (high priority):
+   Fixture: timeout-london. All 50 list items missing. Only
+   intro preamble survives. Repeating card/div structure
+   stripped entirely. Reader Mode pulls all 50 items.
+
+4. EMPTY SECTIONS (medium priority):
+   Fixture: tomsguide-espresso. Headings survive but 0 words
+   beneath them. Prose exists but doesn't land in sections.
+
+5. BRACKETED LINK REFERENCES (low priority):
+   Fixture: foxsports-nfl. Inline promotional links render
+   as bracketed text in output.
+
+6. STRUCTURED CONTENT LOSS (medium priority):
+   Fixtures: foxsports-nfl (stat cards), outdoorgearlab-boots
+   (pros/cons). Non-widget structured content stripped.
+
+7. SUBSCRIPTION/PAYWALL CTA SURVIVING EXTRACTION:
+   Fixture: atavist-castles. Subscribe block and form
+   placeholder appear at top of output.
+
+8. HUB/HOMEPAGE PAGES PASSING SCOPE VALIDATION:
+   history-constitution (geo-redirect), espn.com,
+   espn.com/nfl. Card-grid homepages pass prose word-count
+   threshold. Reader Mode refuses all three.
+
+9. CAPTION LOSS (known, reinforced):
+   Every fixture with figcaptions in source has 0 captions
+   in output.
+
+10. ITALICIZED INLINE CONTENT DROPPED:
+    Fixture: allaboutjazz-genesis (existing PASS). Album
+    titles in em/i tags missing throughout. Article
+    unreadable without them. Metrics did not catch it.
+
+### Existing Fixture Issues
+
+Two fixtures baselined as PASS have undetected content loss:
+
+1. allaboutjazz-genesis: Album titles (em/i content) dropped.
+   Discography walkthrough unreadable without them. Word
+   counts barely change so metrics missed it.
+
+2. yale360-baboons: Opening lede dropped. First ~3 paragraphs
+   (Kataza kitchen-raid anecdote) missing. Content before
+   first heading pattern.
+
+### Tool Fixes
+
+Applied:
+- Heading whitespace normalization: strip all spaces in
+  _normalize_heading() before comparison. Reduced false
+  flags by 60-70 per affected fixture. (2026-03-20)
+
+Needed:
+- Boilerplate heading dictionary gaps: yale360-baboons
+  missing headings are mostly navigation/footer ("Related
+  Articles", "Solutions", "Biodiversity", "Energy", etc.)
+  that should be suppressed.
+
+### Side Observations
+
+1. CATEGORY GAP: No entertainment review fixtures (music,
+   film, TV). Different CMS templates, embedded media
+   players, tracklists, star ratings. Consider adding 1-2.
+
+2. READER MODE AS BENCHMARK: Reader Mode consistently
+   extracts more content than Decant. Gap is: (a) images
+   surviving, (b) pull quotes and breakout elements
+   preserved, (c) opening content before first heading
+   preserved. North-star benchmark for extraction quality.
+
+3. PASS FIXTURES WITH HIDDEN CONTENT LOSS: The
+   allaboutjazz finding proves metrics-only baselining
+   misses qualitative problems. Consider targeted re-review
+   of all 38 existing fixtures after expansion.
+
+### Tooling Investigation
+
+Manual review does not scale for remaining 108 fixtures.
+Proposed: use Readability.js (Mozilla's Reader Mode engine)
+as automated baseline comparator. Run it programmatically
+against each fixture, diff against Decant output, flag
+differences. Reduces human review from 10-15 min/fixture
+to seconds per fixture. Investigation in progress.
