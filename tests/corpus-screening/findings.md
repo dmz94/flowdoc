@@ -1,12 +1,13 @@
 # Corpus Screening: Findings and Coordination
 
-Status of the corpus expansion from 38 to 100 fixtures.
+Status of the corpus expansion from 38 to 105 fixtures.
 Updated after each screening run or engine fix.
+See docs/comparison-results-summary.md for current counts.
 
 ## Current State
 
-- Corpus: 38 in-scope fixtures, all PASS (manifest is source
-  of truth: tests/pipeline-audit/test-pages/manifest.md)
+- Corpus: 105 in-scope fixtures (102 PASS, 2 MARGINAL, 1 FAIL).
+  Manifest: tests/pipeline-audit/test-pages/manifest.md
 - Screening tool: tests/corpus-screening/run_screening.py
   (working; heading noise suppression and emoji normalization
   done; minor heading noise remains, fix as it surfaces)
