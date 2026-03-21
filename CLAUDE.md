@@ -91,7 +91,7 @@ contents without reading them.
    or anything not in the locked top-level structure).
 3. Delete __pycache__, .pyc, or temp files outside .venv/.
 4. Verify no new top-level directories exist beyond the locked
-   set: .claude, .github, .vscode, docs, decant, surface, tests
+   set: .claude, .github, .vscode, docs, decant, scripts, surface, tests
    (plus dotfiles and root-level config/doc files). Delete any
    unauthorized new directories.
 
