@@ -107,7 +107,7 @@ Scripts (tracked):
 - scripts/readability-extract.js
 - scripts/compare-extractions.py
 - scripts/run-comparison-batch.py
-- package.json
+- scripts/package.json
 
 Output (gitignored):
 - scripts/output/ (full-results.json, summaries, manifests)
