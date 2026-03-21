@@ -1,0 +1,45 @@
+{
+  "fixture": "si-wembanyama",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:34.211276+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 2,
+    "headings": [
+      "Looks Like the Spurs Are Forming Their Latest Dynasty",
+      "More NBA from Sports Illustrated"
+    ],
+    "output_word_count": 1251,
+    "source_plain_word_count": 8437,
+    "word_count_ratio": 0.14827545336019912,
+    "paragraph_count": 29,
+    "avg_paragraph_words": 43.13793103448276,
+    "shortest_paragraph_words": [
+      1,
+      2,
+      2
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 44,
+    "prose_word_count": 1251,
+    "link_to_prose_ratio": 0.035171862509992005,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

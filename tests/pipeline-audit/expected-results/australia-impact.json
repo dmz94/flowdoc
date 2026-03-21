@@ -1,0 +1,44 @@
+{
+  "fixture": "australia-impact",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:26.126102+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "Australian Government Guide to Policy Impact Analysis"
+    ],
+    "output_word_count": 202,
+    "source_plain_word_count": 296,
+    "word_count_ratio": 0.6824324324324325,
+    "paragraph_count": 5,
+    "avg_paragraph_words": 28.2,
+    "shortest_paragraph_words": [
+      22,
+      23,
+      24
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 42,
+    "prose_word_count": 202,
+    "link_to_prose_ratio": 0.2079207920792079,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

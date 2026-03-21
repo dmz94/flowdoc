@@ -1,0 +1,63 @@
+{
+  "fixture": "atavist-castles",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:20.840427+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 20,
+    "headings": [
+      "Like what you’re reading? Subscribe to The Atavist Magazine today for access to our full archive.",
+      "Castles in the Sky",
+      "The Atavist Magazine, No. 109",
+      "One",
+      "Two",
+      "Three",
+      "Anna and Hans knew better than most that the bonds of blood aren’t always enough to keep people together. Together they would create something stronger.",
+      "Four",
+      "Five",
+      "“I have seen many beautiful girls,” Hans writes in his diary, “but no one has been able to erase the image of my dear black-haired girl with the brave and joyful mind.”",
+      "Six",
+      "Seven",
+      "She still has hope, or maybe it’s faith. “It is God’s will that when you and I again get together it will be under different circumstances,” Anna writes.",
+      "Eight",
+      "Nine",
+      "Ten",
+      "More from The Atavist Magazine",
+      "Master and Commander",
+      "“That’s Somebody’s Son”",
+      "The Two Faces of Lummie Jenkins"
+    ],
+    "output_word_count": 8558,
+    "source_plain_word_count": 15398,
+    "word_count_ratio": 0.555786465774776,
+    "paragraph_count": 108,
+    "avg_paragraph_words": 79.24074074074075,
+    "shortest_paragraph_words": [
+      3,
+      3,
+      4
+    ],
+    "placeholder_count": 2,
+    "placeholder_types": {
+      "image": 0,
+      "form": 1,
+      "table": 0,
+      "hr": 1,
+      "other": 0
+    },
+    "placeholder_density": 0.01818181818181818,
+    "link_word_count": 10,
+    "prose_word_count": 8558,
+    "link_to_prose_ratio": 0.0011684973124561813,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

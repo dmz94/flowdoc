@@ -1,0 +1,51 @@
+{
+  "fixture": "loc-magna-carta",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:27.246476+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 8,
+    "headings": [
+      "Executive Power - Magna Carta: Muse and Mentor",
+      "No One Is above the Law",
+      "Tyrannies Present and Future",
+      "Steel Seizure Case",
+      "Harry Truman’s Seizure of the Steel Industry",
+      "King Milhous I",
+      "Presidential Immunity from Civil Suits",
+      "President Cannot Defer Civil Suits"
+    ],
+    "output_word_count": 1132,
+    "source_plain_word_count": 1780,
+    "word_count_ratio": 0.6359550561797753,
+    "paragraph_count": 28,
+    "avg_paragraph_words": 40.42857142857143,
+    "shortest_paragraph_words": [
+      3,
+      4,
+      4
+    ],
+    "placeholder_count": 2,
+    "placeholder_types": {
+      "image": 2,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.06666666666666667,
+    "link_word_count": 50,
+    "prose_word_count": 1132,
+    "link_to_prose_ratio": 0.044169611307420496,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

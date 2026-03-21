@@ -1,0 +1,55 @@
+{
+  "fixture": "sallysbaking-applepie",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:24.500097+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 12,
+    "headings": [
+      "My Favorite Apple Pie Recipe (VIDEO)",
+      "Here’s Why You’ll Love This Apple Pie, Too",
+      "Begin With Quality Pie Crust",
+      "Key Ingredients You Need",
+      "What Are the Best Apples to Use for Apple Pie?",
+      "In Pictures: How to Make Perfect Apple Pie",
+      "How Do I Know When Apple Pie Is Done?",
+      "4 Apple Pie Success Tips",
+      "Description",
+      "Ingredients",
+      "Instructions",
+      "Notes"
+    ],
+    "output_word_count": 2885,
+    "source_plain_word_count": 12738,
+    "word_count_ratio": 0.22648767467420317,
+    "paragraph_count": 43,
+    "avg_paragraph_words": 36.395348837209305,
+    "shortest_paragraph_words": [
+      3,
+      3,
+      7
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 168,
+    "prose_word_count": 2885,
+    "link_to_prose_ratio": 0.058232235701906415,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

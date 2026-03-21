@@ -1,0 +1,15 @@
+{
+  "fixture": "scholastic-reading",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:24.023307+00:00",
+  "decant_version": "0.1.0",
+  "status": "FAIL",
+  "notes": "No article body detected: document contains no paragraph with 20 or more words of prose text.  Extraction may have captured navigation or boilerplate instead of article content.",
+  "metrics": {},
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "fixture": "outdoorgearlab-boots",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:31.561370+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "10 Best Hiking Boots"
+    ],
+    "output_word_count": 7102,
+    "source_plain_word_count": 13161,
+    "word_count_ratio": 0.5396246485829345,
+    "paragraph_count": 160,
+    "avg_paragraph_words": 44.3875,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      1
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 0,
+    "prose_word_count": 7102,
+    "link_to_prose_ratio": 0.0,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

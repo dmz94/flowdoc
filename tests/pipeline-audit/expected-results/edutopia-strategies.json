@@ -1,0 +1,47 @@
+{
+  "fixture": "edutopia-strategies",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:23.971418+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 4,
+    "headings": [
+      "How to Select Instructional Strategies That Students Can Master",
+      "1. Cognitive Routines",
+      "2. Visual Routines",
+      "3. Discussion Protocols"
+    ],
+    "output_word_count": 716,
+    "source_plain_word_count": 2891,
+    "word_count_ratio": 0.24766516776202005,
+    "paragraph_count": 12,
+    "avg_paragraph_words": 54.666666666666664,
+    "shortest_paragraph_words": [
+      8,
+      16,
+      18
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 4,
+    "prose_word_count": 716,
+    "link_to_prose_ratio": 0.00558659217877095,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

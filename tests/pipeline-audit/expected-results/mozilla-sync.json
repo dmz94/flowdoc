@@ -1,0 +1,49 @@
+{
+  "fixture": "mozilla-sync",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:28.345431+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 6,
+    "headings": [
+      "Sign in or create an account to start Sync",
+      "Enter your email address",
+      "Confirm your new account (if applicable)",
+      "Choose what to sync",
+      "Connect additional devices to Sync",
+      "Disable Sync for previously synced devices"
+    ],
+    "output_word_count": 370,
+    "source_plain_word_count": 3492,
+    "word_count_ratio": 0.10595647193585338,
+    "paragraph_count": 8,
+    "avg_paragraph_words": 17.625,
+    "shortest_paragraph_words": [
+      6,
+      6,
+      9
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 28,
+    "prose_word_count": 370,
+    "link_to_prose_ratio": 0.07567567567567568,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

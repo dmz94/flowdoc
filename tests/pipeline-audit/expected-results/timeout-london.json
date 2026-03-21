@@ -1,0 +1,45 @@
+{
+  "fixture": "timeout-london",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:33.773197+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 2,
+    "headings": [
+      "Best Things To Do In London – Your Ultimate Guide To London [Updated 2026]",
+      "The 50 best things to do in London at a glance"
+    ],
+    "output_word_count": 361,
+    "source_plain_word_count": 9181,
+    "word_count_ratio": 0.03932033547543841,
+    "paragraph_count": 7,
+    "avg_paragraph_words": 51.57142857142857,
+    "shortest_paragraph_words": [
+      19,
+      20,
+      23
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 44,
+    "prose_word_count": 361,
+    "link_to_prose_ratio": 0.12188365650969529,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

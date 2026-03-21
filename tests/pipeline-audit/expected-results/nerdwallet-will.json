@@ -1,0 +1,53 @@
+{
+  "fixture": "nerdwallet-will",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:25.478541+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "Estate Planning Checklist: A 7-Step Guide",
+      "Estate planning checklist",
+      "1. Create an inventory",
+      "2. Account for your family's needs",
+      "3. Establish your directives",
+      "4. Review your beneficiaries",
+      "5. Note your state's estate tax laws",
+      "6. Weigh the value of professional help",
+      "7. Plan to reassess",
+      "Article sources"
+    ],
+    "output_word_count": 1246,
+    "source_plain_word_count": 5803,
+    "word_count_ratio": 0.2147165259348613,
+    "paragraph_count": 16,
+    "avg_paragraph_words": 21.6875,
+    "shortest_paragraph_words": [
+      2,
+      3,
+      7
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 8,
+    "prose_word_count": 1246,
+    "link_to_prose_ratio": 0.006420545746388443,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

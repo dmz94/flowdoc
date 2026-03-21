@@ -1,0 +1,55 @@
+{
+  "fixture": "zapier-note-apps",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:29.827136+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 12,
+    "headings": [
+      "The 7 best note taking apps in 2026",
+      "The best note-taking apps",
+      "How we evaluate and test apps",
+      "Microsoft OneNote(iOS, Android, macOS, Windows, Web)",
+      "Apple Notes(iOS, macOS, Web)",
+      "Google Keep(Android, iOS, Web, Chrome)",
+      "Notion(Android, iOS, macOS, Windows, Web)",
+      "Obsidian(Android, iOS, macOS, Windows, Linux)",
+      "Joplin(Android, iOS, macOS, Windows, Linux)",
+      "Evernote (Android, iOS, macOS, Windows, Web)",
+      "Other note-taking apps to consider",
+      "Which note-taking software should you choose?"
+    ],
+    "output_word_count": 4498,
+    "source_plain_word_count": 19657,
+    "word_count_ratio": 0.22882433738617286,
+    "paragraph_count": 95,
+    "avg_paragraph_words": 36.8,
+    "shortest_paragraph_words": [
+      1,
+      1,
+      1
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 632,
+    "prose_word_count": 4498,
+    "link_to_prose_ratio": 0.14050689195197866,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

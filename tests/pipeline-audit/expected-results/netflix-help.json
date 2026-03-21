@@ -1,0 +1,46 @@
+{
+  "fixture": "netflix-help",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:28.234629+00:00",
+  "decant_version": "0.1.0",
+  "status": "MARGINAL",
+  "notes": "",
+  "metrics": {
+    "section_count": 3,
+    "headings": [
+      "How to change your plan",
+      "Related Articles",
+      "Need more help?"
+    ],
+    "output_word_count": 186,
+    "source_plain_word_count": 890,
+    "word_count_ratio": 0.20898876404494382,
+    "paragraph_count": 3,
+    "avg_paragraph_words": 36.0,
+    "shortest_paragraph_words": [
+      10,
+      31,
+      67
+    ],
+    "placeholder_count": 2,
+    "placeholder_types": {
+      "image": 0,
+      "form": 2,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.4,
+    "link_word_count": 32,
+    "prose_word_count": 186,
+    "link_to_prose_ratio": 0.17204301075268819,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

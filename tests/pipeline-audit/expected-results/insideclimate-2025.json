@@ -1,0 +1,58 @@
+{
+  "fixture": "insideclimate-2025",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:26.545285+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 15,
+    "headings": [
+      "The Year in Climate: Attacks on Science, the Start of Trump’s Second Term and Surging Electricity Demand Foreshadow a Future Filled with Uncertainty",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "This story is funded by readers like you.",
+      "November",
+      "December",
+      "About This Story"
+    ],
+    "output_word_count": 3884,
+    "source_plain_word_count": 7124,
+    "word_count_ratio": 0.545199326221224,
+    "paragraph_count": 87,
+    "avg_paragraph_words": 44.64367816091954,
+    "shortest_paragraph_words": [
+      2,
+      2,
+      3
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 332,
+    "prose_word_count": 3884,
+    "link_to_prose_ratio": 0.0854788877445932,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

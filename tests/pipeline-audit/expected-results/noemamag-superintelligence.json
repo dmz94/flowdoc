@@ -1,0 +1,48 @@
+{
+  "fixture": "noemamag-superintelligence",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:21.633319+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 5,
+    "headings": [
+      "The Politics Of Superintelligence",
+      "Bowing At The Altar Of Rationalism",
+      "Entrepreneurs Of The Apocalypse",
+      "The Abandoned Present",
+      "Alternative Imaginaries For The Age Of AI"
+    ],
+    "output_word_count": 5531,
+    "source_plain_word_count": 12750,
+    "word_count_ratio": 0.43380392156862746,
+    "paragraph_count": 66,
+    "avg_paragraph_words": 83.8030303030303,
+    "shortest_paragraph_words": [
+      25,
+      30,
+      42
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 37,
+    "prose_word_count": 5531,
+    "link_to_prose_ratio": 0.006689567890074128,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "fixture": "bda-about-history",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:36.391442+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "Our History"
+    ],
+    "output_word_count": 527,
+    "source_plain_word_count": 1807,
+    "word_count_ratio": 0.2916436081903708,
+    "paragraph_count": 13,
+    "avg_paragraph_words": 40.53846153846154,
+    "shortest_paragraph_words": [
+      6,
+      7,
+      9
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 3,
+    "prose_word_count": 527,
+    "link_to_prose_ratio": 0.0056925996204933585,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

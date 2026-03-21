@@ -1,0 +1,64 @@
+{
+  "fixture": "lonelyplanet-summer",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:33.268375+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 21,
+    "headings": [
+      "20 places to travel in summer 2025",
+      "1. Bora Bora, French Polynesia",
+      "2. Western Colorado, USA",
+      "3. Byron Bay, Australia",
+      "4. Shetland, Scotland",
+      "5. Aveiro and Coimbra, Portugal",
+      "6. Sicily, Italy",
+      "7. Cape Cod, USA",
+      "8. Lithuania",
+      "9. Slovakia",
+      "10. Kazakhstan",
+      "11. Zanzibar, Tanzania",
+      "12. Andros and Bimini, the Bahamas",
+      "13. Northwest Territories, Canada",
+      "14. Aarhus and Jutland, Denmark",
+      "15. East Anglia, England",
+      "16. Giresun and Ordu, Türkiye",
+      "17. Northeast Sri Lanka",
+      "18. Ecuador",
+      "19. Singapore",
+      "20. Georgia and Armenia, the Caucasus"
+    ],
+    "output_word_count": 2765,
+    "source_plain_word_count": 10334,
+    "word_count_ratio": 0.2675633830075479,
+    "paragraph_count": 52,
+    "avg_paragraph_words": 53.17307692307692,
+    "shortest_paragraph_words": [
+      4,
+      5,
+      6
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 80,
+    "prose_word_count": 2765,
+    "link_to_prose_ratio": 0.028933092224231464,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

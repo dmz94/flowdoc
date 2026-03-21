@@ -1,0 +1,57 @@
+{
+  "fixture": "medlineplus-metformin",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:22.334075+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 14,
+    "headings": [
+      "IMPORTANT WARNING:",
+      "Why is this medication prescribed?",
+      "How should this medicine be used?",
+      "Other uses for this medicine",
+      "Before taking metformin,",
+      "What special dietary instructions should I follow?",
+      "What should I do if I forget a dose?",
+      "Metformin may cause side effects. Tell your doctor if any of these symptoms are severe, do not go away, go away and come back, or do not begin for some time after you begin taking metformin:",
+      "Some side effects can be serious. If you experience any of these symptoms or those listed in the IMPORTANT WARNING section, call your doctor immediately or get emergency treatment:",
+      "What should I know about storage and disposal of this medication?",
+      "In case of emergency/overdose",
+      "Symptoms of overdose may include hypoglycemia symptoms as well as the following:",
+      "What other information should I know?",
+      "Brand names of combination products"
+    ],
+    "output_word_count": 1592,
+    "source_plain_word_count": 2025,
+    "word_count_ratio": 0.7861728395061729,
+    "paragraph_count": 28,
+    "avg_paragraph_words": 47.535714285714285,
+    "shortest_paragraph_words": [
+      12,
+      15,
+      15
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 4,
+    "prose_word_count": 1592,
+    "link_to_prose_ratio": 0.002512562814070352,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "fixture": "epa-climate-actions",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:26.030482+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "Climate Change Regulatory Actions and Initiatives",
+      "Emissions and Fuel Use Standards for New Light-Duty and Heavy-Duty Motor Vehicles",
+      "Greenhouse Gas Standards for Aircraft",
+      "Renewable Fuel Standard Program",
+      "Oil and Natural Gas",
+      "Power Plants",
+      "Carbon Pollution Standards for New and Existing Fossil Fuel-Fired Power Plans",
+      "New and Existing Municipal Solid Waste Landfills",
+      "Greenhouse Gas Reporting Program",
+      "Power Sector CO2 Emissions"
+    ],
+    "output_word_count": 1636,
+    "source_plain_word_count": 1945,
+    "word_count_ratio": 0.8411311053984576,
+    "paragraph_count": 24,
+    "avg_paragraph_words": 66.875,
+    "shortest_paragraph_words": [
+      3,
+      26,
+      27
+    ],
+    "placeholder_count": 4,
+    "placeholder_types": {
+      "image": 4,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.14285714285714285,
+    "link_word_count": 200,
+    "prose_word_count": 1636,
+    "link_to_prose_ratio": 0.12224938875305623,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

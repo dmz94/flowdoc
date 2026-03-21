@@ -1,0 +1,48 @@
+{
+  "fixture": "bleacherreport-bracket",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:35.765546+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 5,
+    "headings": [
+      "NCAA Tournament 2026 Predictions for Men's Sweet 16 Bracket After Selection Sunday",
+      "East Region",
+      "South Region",
+      "West Region",
+      "Midwest Region"
+    ],
+    "output_word_count": 970,
+    "source_plain_word_count": 93121,
+    "word_count_ratio": 0.010416554805038605,
+    "paragraph_count": 43,
+    "avg_paragraph_words": 22.558139534883722,
+    "shortest_paragraph_words": [
+      9,
+      10,
+      10
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 0,
+    "prose_word_count": 970,
+    "link_to_prose_ratio": 0.0,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

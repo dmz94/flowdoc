@@ -1,0 +1,51 @@
+{
+  "fixture": "startribune-mayo-clinic",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:20.504776+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 8,
+    "headings": [
+      "Not-for-profit Mayo Clinic reports record profit last year",
+      "Related Coverage",
+      "Christopher Snowbeck",
+      "More from Health Care",
+      "Will the Allina-Sutter Health deal drive up the cost of health care in Minnesota?",
+      "How will the Sutter acquisition affect Allina patients?",
+      "Large California nonprofit to acquire Allina Health, creating $26B health system",
+      "Will the Allina-Sutter Health deal drive up the cost of health care in Minnesota?"
+    ],
+    "output_word_count": 860,
+    "source_plain_word_count": 3655,
+    "word_count_ratio": 0.23529411764705882,
+    "paragraph_count": 30,
+    "avg_paragraph_words": 26.233333333333334,
+    "shortest_paragraph_words": [
+      2,
+      2,
+      2
+    ],
+    "placeholder_count": 6,
+    "placeholder_types": {
+      "image": 2,
+      "form": 4,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.16666666666666666,
+    "link_word_count": 23,
+    "prose_word_count": 860,
+    "link_to_prose_ratio": 0.026744186046511628,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

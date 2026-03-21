@@ -1,0 +1,53 @@
+{
+  "fixture": "colorincolorado-ell",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:24.153302+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "What is an ELL educator?",
+      "What do ELL teachers do?",
+      "EL identification and assessment",
+      "English Language Development instruction",
+      "Content-area instruction",
+      "Collaboration in the school setting",
+      "Family engagement",
+      "How ELL Teachers Can Share Their Expertise",
+      "Closing Thoughts",
+      "Acknowledgements"
+    ],
+    "output_word_count": 979,
+    "source_plain_word_count": 3732,
+    "word_count_ratio": 0.26232583065380494,
+    "paragraph_count": 10,
+    "avg_paragraph_words": 50.5,
+    "shortest_paragraph_words": [
+      8,
+      17,
+      39
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 71,
+    "prose_word_count": 979,
+    "link_to_prose_ratio": 0.07252298263534218,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

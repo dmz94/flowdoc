@@ -1,0 +1,49 @@
+{
+  "fixture": "openstax-photosynthesis",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:23.819991+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 6,
+    "headings": [
+      "Learning Objectives",
+      "Connection for AP® Courses",
+      "Importance of Photosynthesis",
+      "Main Structures and Summary of Photosynthesis",
+      "The Two Parts of Photosynthesis",
+      "Photosynthesis at the Grocery Store"
+    ],
+    "output_word_count": 1789,
+    "source_plain_word_count": 9212,
+    "word_count_ratio": 0.1942032132001737,
+    "paragraph_count": 20,
+    "avg_paragraph_words": 78.45,
+    "shortest_paragraph_words": [
+      1,
+      9,
+      10
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 16,
+    "prose_word_count": 1789,
+    "link_to_prose_ratio": 0.008943543879262158,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

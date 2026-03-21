@@ -1,0 +1,47 @@
+{
+  "fixture": "brookings-china",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:21.895691+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 4,
+    "headings": [
+      "How China reads the 2025 US National Security Strategy",
+      "From liberal internationalism to conservative nationalism",
+      "The Western Hemisphere pivot doesn’t ease China competition",
+      "Why Chinese analysts do not see the 2025 NSS as decisive"
+    ],
+    "output_word_count": 2194,
+    "source_plain_word_count": 3668,
+    "word_count_ratio": 0.5981461286804798,
+    "paragraph_count": 24,
+    "avg_paragraph_words": 91.41666666666667,
+    "shortest_paragraph_words": [
+      8,
+      13,
+      15
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 32,
+    "prose_word_count": 2194,
+    "link_to_prose_ratio": 0.014585232452142206,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

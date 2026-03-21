@@ -1,0 +1,53 @@
+{
+  "fixture": "fightcancer-faq",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:28.911291+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "ACS CAN Answers Your Most Frequently Asked Questions",
+      "Q: What is ACS CAN?",
+      "Q: Why does ACS CAN and the American Cancer Society get involved in politics/advocacy?",
+      "Q: I've been diagnosed with cancer, can you help?",
+      "Q: How can I get a refund on a donation to ACS CAN?",
+      "Q: How can I make a change to my recurring giving pledge?",
+      "Q: Who do I contact to raise money for ACS CAN, including general donations, Lights of Hope, and volunteer fundraisers?",
+      "Q: Where do I send the money I raised for ACS CAN?",
+      "Q: How do I apply for a job with ACS CAN?",
+      "Q: Who do I contact to raise money for the American Cancer Society, including general donations, Relay For Life, Determination and Making Strides Against Breast Cancer?"
+    ],
+    "output_word_count": 568,
+    "source_plain_word_count": 1158,
+    "word_count_ratio": 0.4905008635578584,
+    "paragraph_count": 12,
+    "avg_paragraph_words": 47.333333333333336,
+    "shortest_paragraph_words": [
+      0,
+      24,
+      26
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 21,
+    "prose_word_count": 568,
+    "link_to_prose_ratio": 0.03697183098591549,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

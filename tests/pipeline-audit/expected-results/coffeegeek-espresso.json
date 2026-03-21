@@ -1,0 +1,50 @@
+{
+  "fixture": "coffeegeek-espresso",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:32.473521+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 7,
+    "headings": [
+      "The Best Espresso Machine",
+      "The Speedster",
+      "The La Marzocco GS3",
+      "The Best Espresso Machine Today",
+      "The Lelit Bianca V3: The Best Espresso Machine of All Time",
+      "The Breville Bambino Plus: The Best Espresso Machine of All Time",
+      "Best is Subjective but Price / Service Must be a Factor"
+    ],
+    "output_word_count": 3026,
+    "source_plain_word_count": 19033,
+    "word_count_ratio": 0.1589870225397993,
+    "paragraph_count": 50,
+    "avg_paragraph_words": 56.66,
+    "shortest_paragraph_words": [
+      4,
+      14,
+      16
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 47,
+    "prose_word_count": 3026,
+    "link_to_prose_ratio": 0.015532055518836747,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

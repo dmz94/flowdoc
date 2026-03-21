@@ -1,0 +1,59 @@
+{
+  "fixture": "dropbox-2fa",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:28.648610+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 16,
+    "headings": [
+      "In this article",
+      "How to turn on 2-factor authentication",
+      "How to change my 2-factor authentication phone number",
+      "How to add a backup method for 2-factor authentication",
+      "How to use an emergency backup code for 2-factor authentication",
+      "How to use a security key for 2-factor authentication",
+      "How to use a passkey for 2-factor authentication",
+      "How to add a passkey when logging in",
+      "How to add a passkey to your Dropbox account",
+      "How to remove a passkey from your Dropbox account",
+      "How to turn off 2-factor authentication",
+      "How to reset a team member’s 2-factor authentication method",
+      "Dropbox can’t send 2-factor authentication text messages to phone numbers from the following countries and regions:",
+      "Community answers",
+      "Other ways to get help",
+      "Choose a language"
+    ],
+    "output_word_count": 2207,
+    "source_plain_word_count": 8833,
+    "word_count_ratio": 0.24985848522585757,
+    "paragraph_count": 40,
+    "avg_paragraph_words": 23.35,
+    "shortest_paragraph_words": [
+      1,
+      2,
+      2
+    ],
+    "placeholder_count": 3,
+    "placeholder_types": {
+      "image": 0,
+      "form": 3,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.06976744186046512,
+    "link_word_count": 251,
+    "prose_word_count": 2207,
+    "link_to_prose_ratio": 0.1137290439510648,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

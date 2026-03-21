@@ -1,0 +1,53 @@
+{
+  "fixture": "webmd-diabetes",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:22.738451+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 10,
+    "headings": [
+      "What is Metformin?",
+      "Metformin Medications",
+      "Common Side Effects of Metformin",
+      "Rare Side Effects of Metformin",
+      "Serious Side Effects of Metformin",
+      "Who’s at High Risk of Serious Side Effects?",
+      "Managing Metformin Side Effects",
+      "Metformin Drug Interactions",
+      "Takeaways",
+      "Metformin Side Effect FAQs"
+    ],
+    "output_word_count": 1323,
+    "source_plain_word_count": 11332,
+    "word_count_ratio": 0.11674902929756442,
+    "paragraph_count": 33,
+    "avg_paragraph_words": 27.242424242424242,
+    "shortest_paragraph_words": [
+      1,
+      2,
+      3
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 40,
+    "prose_word_count": 1323,
+    "link_to_prose_ratio": 0.030234315948601664,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "fixture": "sciencenews-animals",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:26.740793+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 9,
+    "headings": [
+      "These are our favorite animal stories of 2025",
+      "Killer vomit",
+      "Hidden hybrid",
+      "Mischievous mealtime",
+      "Noisy sharks",
+      "Thirst-quenching claws",
+      "Ranging roars",
+      "Deadly chic",
+      "Woolly mice"
+    ],
+    "output_word_count": 758,
+    "source_plain_word_count": 13394,
+    "word_count_ratio": 0.05659250410631626,
+    "paragraph_count": 10,
+    "avg_paragraph_words": 75.8,
+    "shortest_paragraph_words": [
+      7,
+      23,
+      67
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 69,
+    "prose_word_count": 758,
+    "link_to_prose_ratio": 0.09102902374670185,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

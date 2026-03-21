@@ -1,0 +1,52 @@
+{
+  "fixture": "cancer-org-risk",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:29.259174+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 9,
+    "headings": [
+      "Common Questions About Causes of Cancer",
+      "What is a risk factor?",
+      "Can injuries cause cancer?",
+      "Can I bring cancer on myself?",
+      "Can stress cause cancer?",
+      "Does sugar feed cancer?",
+      "Is cancer contagious?",
+      "Is cancer inherited?",
+      "To learn more"
+    ],
+    "output_word_count": 648,
+    "source_plain_word_count": 4333,
+    "word_count_ratio": 0.14954996538195245,
+    "paragraph_count": 17,
+    "avg_paragraph_words": 37.94117647058823,
+    "shortest_paragraph_words": [
+      5,
+      16,
+      20
+    ],
+    "placeholder_count": 1,
+    "placeholder_types": {
+      "image": 1,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.05555555555555555,
+    "link_word_count": 9,
+    "prose_word_count": 648,
+    "link_to_prose_ratio": 0.013888888888888888,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

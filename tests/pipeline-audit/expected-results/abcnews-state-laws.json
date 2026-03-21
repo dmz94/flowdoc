@@ -1,0 +1,44 @@
+{
+  "fixture": "abcnews-state-laws",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:19.211904+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 1,
+    "headings": [
+      "Notable new state laws taking effect in 2026 cover hotels, AI and climate"
+    ],
+    "output_word_count": 818,
+    "source_plain_word_count": 4552,
+    "word_count_ratio": 0.179701230228471,
+    "paragraph_count": 30,
+    "avg_paragraph_words": 27.266666666666666,
+    "shortest_paragraph_words": [
+      7,
+      8,
+      8
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 48,
+    "prose_word_count": 818,
+    "link_to_prose_ratio": 0.05867970660146699,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

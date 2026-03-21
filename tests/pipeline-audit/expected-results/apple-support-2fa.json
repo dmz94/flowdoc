@@ -1,0 +1,52 @@
+{
+  "fixture": "apple-support-2fa",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:28.214026+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 9,
+    "headings": [
+      "Set up an account recovery contact",
+      "What is a recovery contact?",
+      "Who should be your recovery contact?",
+      "What does your recovery contact need?",
+      "Requirements for setting up a recovery contact",
+      "How to set up an account recovery contact",
+      "On your iPhone or iPad",
+      "On your Mac",
+      "How to get a recovery code from your recovery contact"
+    ],
+    "output_word_count": 715,
+    "source_plain_word_count": 1301,
+    "word_count_ratio": 0.5495772482705611,
+    "paragraph_count": 9,
+    "avg_paragraph_words": 41.44444444444444,
+    "shortest_paragraph_words": [
+      23,
+      29,
+      29
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 12,
+    "prose_word_count": 715,
+    "link_to_prose_ratio": 0.016783216783216783,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

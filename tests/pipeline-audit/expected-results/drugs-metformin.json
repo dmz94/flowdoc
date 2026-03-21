@@ -1,0 +1,66 @@
+{
+  "fixture": "drugs-metformin",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:36.313749+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 23,
+    "headings": [
+      "Metformin",
+      "What is metformin?",
+      "Warnings",
+      "Before taking this medicine",
+      "How should I take metformin?",
+      "What happens if I miss a dose?",
+      "What happens if I overdose?",
+      "What to avoid",
+      "Metformin side effects",
+      "What other drugs will affect metformin?",
+      "How long does metformin take to work?",
+      "Can you take metformin and Ozempic together​?",
+      "What is the safest diabetes medication?",
+      "Why does metformin cause diarrhea?",
+      "Can you take metformin without food?",
+      "Does metformin lower A1C, if so how much?",
+      "Does metformin cause weight loss?",
+      "How do Ozempic and Metformin compare for diabetes?",
+      "More about metformin",
+      "Other brands",
+      "Professional resources",
+      "Other brands",
+      "Further information"
+    ],
+    "output_word_count": 1495,
+    "source_plain_word_count": 2938,
+    "word_count_ratio": 0.5088495575221239,
+    "paragraph_count": 50,
+    "avg_paragraph_words": 27.42,
+    "shortest_paragraph_words": [
+      2,
+      2,
+      2
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 86,
+    "prose_word_count": 1495,
+    "link_to_prose_ratio": 0.05752508361204013,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

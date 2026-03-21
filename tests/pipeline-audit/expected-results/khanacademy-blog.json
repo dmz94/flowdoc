@@ -1,0 +1,49 @@
+{
+  "fixture": "khanacademy-blog",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:23.888074+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 6,
+    "headings": [
+      "New Khan Academy Courses: STEM, Humanities, Python, & More",
+      "Science",
+      "Humanities",
+      "Computer science",
+      "Financial literacy",
+      "Courses exclusively for Texas students & educators"
+    ],
+    "output_word_count": 505,
+    "source_plain_word_count": 2455,
+    "word_count_ratio": 0.20570264765784113,
+    "paragraph_count": 13,
+    "avg_paragraph_words": 38.84615384615385,
+    "shortest_paragraph_words": [
+      16,
+      19,
+      27
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 11,
+    "prose_word_count": 505,
+    "link_to_prose_ratio": 0.02178217821782178,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

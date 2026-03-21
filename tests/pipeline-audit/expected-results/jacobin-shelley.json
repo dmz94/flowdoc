@@ -1,0 +1,46 @@
+{
+  "fixture": "jacobin-shelley",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:22.027076+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 3,
+    "headings": [
+      "Child of Revolution",
+      "Shelley’s Contradictions",
+      "The Spirit of Liberty"
+    ],
+    "output_word_count": 2103,
+    "source_plain_word_count": 2879,
+    "word_count_ratio": 0.7304619659604029,
+    "paragraph_count": 20,
+    "avg_paragraph_words": 105.15,
+    "shortest_paragraph_words": [
+      28,
+      30,
+      39
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 0,
+    "prose_word_count": 2103,
+    "link_to_prose_ratio": 0.0,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

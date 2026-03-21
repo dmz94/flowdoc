@@ -1,0 +1,52 @@
+{
+  "fixture": "goodhousekeeping-robot",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:32.087420+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 9,
+    "headings": [
+      "Litter-Robot 4 Review: I Tried It With Two Cats",
+      "How does the Litter-Robot 4 work?",
+      "What are the benefits of a self-cleaning litter box?",
+      "I had to get over the size.",
+      "Then I had to get my cats to switch.",
+      "Pros and cons",
+      "What’s the best litter to use (and how long does it last)?",
+      "My bottom line",
+      "Why trust Good Housekeeping?"
+    ],
+    "output_word_count": 1781,
+    "source_plain_word_count": 12954,
+    "word_count_ratio": 0.13748649065925583,
+    "paragraph_count": 29,
+    "avg_paragraph_words": 47.03448275862069,
+    "shortest_paragraph_words": [
+      3,
+      9,
+      17
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 51,
+    "prose_word_count": 1781,
+    "link_to_prose_ratio": 0.028635597978663673,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}

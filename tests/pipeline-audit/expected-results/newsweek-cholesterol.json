@@ -1,0 +1,49 @@
+{
+  "fixture": "newsweek-cholesterol",
+  "corpus": "main",
+  "baselined_at": "2026-03-20T23:05:20.376535+00:00",
+  "decant_version": "0.1.0",
+  "status": "PASS",
+  "notes": "",
+  "metrics": {
+    "section_count": 6,
+    "headings": [
+      "America’s Cholesterol Guidelines Updated by ACC and AHA",
+      "Why the Guidelines Changed",
+      "Screening Starts Earlier",
+      "New Tests Added to Standard Cholesterol Checks",
+      "Cholesterol Targets Return",
+      "Lifestyle First, Medication Earlier When Needed"
+    ],
+    "output_word_count": 699,
+    "source_plain_word_count": 24169,
+    "word_count_ratio": 0.02892134552525963,
+    "paragraph_count": 18,
+    "avg_paragraph_words": 36.666666666666664,
+    "shortest_paragraph_words": [
+      15,
+      17,
+      30
+    ],
+    "placeholder_count": 0,
+    "placeholder_types": {
+      "image": 0,
+      "form": 0,
+      "table": 0,
+      "hr": 0,
+      "other": 0
+    },
+    "placeholder_density": 0.0,
+    "link_word_count": 17,
+    "prose_word_count": 699,
+    "link_to_prose_ratio": 0.024320457796852647,
+    "empty_sections": 0,
+    "stub_sections": 0
+  },
+  "thresholds_applied": {
+    "word_count_ratio_max": 1.5,
+    "avg_paragraph_words_min": 8.0,
+    "placeholder_density_max": 0.2,
+    "link_to_prose_ratio_max": 0.5
+  }
+}
